@@ -10,6 +10,11 @@
       "pluginKey": "stablyai.orca-vscode-default-themes",
       "path": "stablyai.orca-vscode-default-themes",
       "contentHash": "ce11b29f4c21bedeaa3613e7ce9c4a6863f800e6945754ad1e36d04e24991139"
+    },
+    {
+      "pluginKey": "stablyai.otodus-blues",
+      "path": "stablyai.otodus-blues",
+      "contentHash": "eb3a690af03090421f513d88732f63d1ccb82499ec021d26365d4fce44392f69"
     }
   ]
 }
