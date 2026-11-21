@@ -2,7 +2,7 @@ import { useCallback, useMemo, useRef, useState } from 'react'
 import { Animated, BackHandler, Easing, Text, View, type LayoutChangeEvent } from 'react-native'
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { OrcaLogo } from '../src/components/icons/OrcaLogo'
+import { OtodusLogo } from '../src/components/icons/OtodusLogo'
 import { ensureNotificationPermissions } from '../src/notifications/delivery-policy/notification-permissions'
 import {
   MobileOnboardingPage,
@@ -155,7 +155,7 @@ function MobileOnboardingFlow({
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.brandRow}>
-        <OrcaLogo size={22} />
+        <OtodusLogo size={22} />
         <Text style={styles.brandName}>Orca</Text>
         {steps.length > 1 ? (
           <View

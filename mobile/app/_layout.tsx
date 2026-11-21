@@ -15,7 +15,7 @@ import { colors } from '../src/theme/mobile-theme'
 import { startMobileAppearance } from '../src/theme/mobile-appearance'
 import { themedStyleSheet } from '../src/theme/themed-styles'
 import { useMobileColorScheme } from '../src/theme/use-mobile-color-scheme'
-import { OrcaLogo } from '../src/components/icons/OrcaLogo'
+import { OtodusLogo } from '../src/components/icons/OtodusLogo'
 import { RpcClientProvider } from '../src/transport/connection/client-context'
 import { OrcaQueryProvider } from '../src/query/orca-query-provider'
 import { getNotificationNavigationTarget } from '../src/notifications/navigation/notification-routing'
@@ -212,7 +212,7 @@ export default function RootLayout() {
                   name="index"
                   options={{
                     headerShown: false,
-                    headerTitle: () => <OrcaLogo size={22} />
+                    headerTitle: () => <OtodusLogo size={22} />
                   }}
                 />
                 <Stack.Screen name="pair-scan" options={{ headerShown: false }} />

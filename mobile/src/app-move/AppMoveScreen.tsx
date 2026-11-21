@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { NumberedStepsPanel, type NumberedStep } from '../components/list/NumberedStepsPanel'
-import { OrcaLogo } from '../components/icons/OrcaLogo'
+import { OtodusLogo } from '../components/icons/OtodusLogo'
 import type { Translate } from '../i18n/mobile-i18n'
 import { useMobileTranslation } from '../i18n/use-mobile-translation'
 import { useResponsiveLayout } from '../layout/responsive-layout'
@@ -142,7 +142,7 @@ export function AppMoveScreen() {
         onContentSizeChange={(_, height) => setContentHeight(height)}
       >
         <View style={styles.hero}>
-          <OrcaLogo size={44} />
+          <OtodusLogo size={44} />
           <Text style={styles.title} accessibilityRole="header">
             {play
               ? t('appMove.play.title', 'Orca is now on Google Play')

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { View, Text } from 'react-native'
 import { Globe } from 'lucide-react-native'
 import Svg, { Path } from 'react-native-svg'
-import { OrcaLogo } from '../components/icons/OrcaLogo'
+import { OtodusLogo } from '../components/icons/OtodusLogo'
 import { LIST_LEADING_INSET, ListRow } from '../components/list/ListGroup'
 import { useMobileTranslation } from '../i18n/use-mobile-translation'
 import { colors, spacing, typography } from '../theme/mobile-theme'
@@ -48,7 +48,7 @@ export default function AboutScreen({
   return (
     <SettingsScreen title={t('settings.aboutScreen.title', 'About')} onBack={onBack}>
       <View style={styles.brand}>
-        <OrcaLogo size={28} />
+        <OtodusLogo size={28} />
         <Text style={styles.brandName}>Orca</Text>
         <Text style={styles.brandSub}>
           {t('settings.aboutScreen.tagline', 'Open-source agent IDE for 100x builders')}
