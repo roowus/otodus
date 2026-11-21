@@ -10,11 +10,11 @@ import {
   getDailySegments,
   getDailyTotal,
   getLegendItems,
-  OrcaLogo,
   RANGE_LABELS
 } from './share-card-utils'
 import type { ClaudeShareData, CodexShareData } from './share-card-utils'
 import { useIntlLocale, useTranslate } from '@/i18n/use-translate'
+import { OtodusMark } from '@/components/branding/OtodusMark'
 
 export type ShareUsageCardProps = (ClaudeShareData | CodexShareData) & {
   range: string
@@ -110,7 +110,7 @@ function CardHeader(props: { providerLabel: string; range: string }): React.JSX.
     >
       <div style={{ display: 'table-cell', verticalAlign: 'middle' }}>
         <div style={{ display: 'inline-block', verticalAlign: 'middle' }}>
-          <OrcaLogo />
+          <OtodusMark style={{ width: 26, height: 26, opacity: 0.9, verticalAlign: 'middle' }} />
         </div>
         <div style={{ display: 'inline-block', verticalAlign: 'middle', marginLeft: 10 }}>
           <div style={{ fontSize: 14, fontWeight: 600, color: '#fafafa', lineHeight: 1.2 }}>

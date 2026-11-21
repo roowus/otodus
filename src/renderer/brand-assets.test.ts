@@ -54,3 +54,21 @@ describe('brand assets', () => {
     expect(existsSync(join(rendererRoot, 'public', 'favicon.svg'))).toBe(true)
   })
 })
+
+// The docs site logo ships to its own public directory, and three components there render it.
+describe('docs site logo', () => {
+  const docsLogoSvg = readFileSync(
+    join(rendererRoot, '..', '..', 'docs', 'site', 'public', 'docs', 'logo.svg'),
+    'utf8'
+  )
+
+  it('matches the app logo outline', () => {
+    expect(pathData(docsLogoSvg)).toEqual(pathData(logoSvg))
+  })
+
+  it('is a single rooted document', () => {
+    const body = documentBody(docsLogoSvg)
+    expect(body.startsWith('<svg')).toBe(true)
+    expect(body.endsWith('</svg>')).toBe(true)
+  })
+})
