@@ -234,9 +234,9 @@ export function releaseCommitFieldsForCapturedArchive(captured: WorkerOutputArch
 }
 
 const OLDER_READER_NOTE =
-  'This version of Orca reads released output from the saved copy only. Read it with a newer Orca, or see its report (worker_done) or task result.'
+  'This version of Otodus reads released output from the saved copy only. Read it with a newer Otodus, or see its report (worker_done) or task result.'
 
-/** Empty copy fields, so a downgraded Orca shows a note instead of failing on a reference row. */
+/** Empty copy fields, so a downgraded Otodus shows a note instead of failing on a reference row. */
 function olderReaderFields(kind: WorkerTerminalArchiveKind) {
   return kind === 'terminal_tail'
     ? { lines: [], truncated: false, terminalStatus: 'exited', warnings: [OLDER_READER_NOTE] }

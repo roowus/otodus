@@ -29,9 +29,9 @@ function packagedLayout(scriptPath: string | undefined): PackagedLayout | null {
   const root = dirname(resourcesPath)
   const exePath =
     process.platform === 'darwin'
-      ? join(root, 'MacOS', 'Orca')
+      ? join(root, 'MacOS', 'Otodus')
       : process.platform === 'win32'
-        ? join(root, 'Orca.exe')
+        ? join(root, 'Otodus.exe')
         : join(root, 'orca-ide')
   return { resourcesPath, exePath }
 }
@@ -56,7 +56,7 @@ async function createCliHost(client: RuntimeClient): Promise<OrcaUninstallHost> 
       import('../../main/cli/cli-installer.js'),
       import('../agents/agent-hooks.js')
     ])
-  // Without the app's own layout the installer cannot tell Orca's command from someone else's.
+  // Without the app's own layout the installer cannot tell Otodus's command from someone else's.
   const installerOptions: CliInstallerOptions | null = layout
     ? {
         isPackaged: true,
@@ -83,14 +83,14 @@ async function createCliHost(client: RuntimeClient): Promise<OrcaUninstallHost> 
       installerOptions ? new CliInstaller(installerOptions).getStatus() : null,
     removeCli: async () => {
       if (!installerOptions) {
-        throw new Error('Remove the command from Orca Settings instead.')
+        throw new Error('Remove the command from Otodus Settings instead.')
       }
       return new CliInstaller(installerOptions).remove()
     },
     // The app reaches SSH hosts; here each host runs `orca uninstall` itself.
     listHosts: async () => [],
     removeHostHooks: async () => {
-      throw new Error('SSH hosts are removed from the Orca app.')
+      throw new Error('SSH hosts are removed from the Otodus app.')
     }
   }
 }
@@ -175,10 +175,10 @@ export function formatOrcaUninstallPlan(plan: OrcaUninstallPlan): string {
       )
     )
   ]
-  return lines.length > 0 ? lines.join('\n') : '  Nothing outside Orca to remove.'
+  return lines.length > 0 ? lines.join('\n') : '  Nothing outside Otodus to remove.'
 }
 
-/** The last thing the user does; Orca never deletes the app itself. */
+/** The last thing the user does; Otodus never deletes the app itself. */
 export function formatRemoveAppLine(plan: OrcaUninstallPlan): string {
   switch (plan.installKind) {
     case 'mac-homebrew':
@@ -187,7 +187,7 @@ export function formatRemoveAppLine(plan: OrcaUninstallPlan): string {
     case 'mac-app':
       return `To delete the app, move ${plan.appPath} to the Trash.`
     case 'windows-installer':
-      return 'To delete the app, open Settings > Apps > Installed apps, find Orca and choose Uninstall.'
+      return 'To delete the app, open Settings > Apps > Installed apps, find Otodus and choose Uninstall.'
     case 'linux-appimage':
       return `To delete the app, delete ${plan.appPath}.`
     case 'unknown':
@@ -215,12 +215,12 @@ export const UNINSTALL_HANDLERS: Record<string, CommandHandler> = {
       if (!confirm) {
         throw new RuntimeClientError(
           'confirmation_required',
-          'Removes what Orca added outside its own folders. Re-run with --yes to confirm.',
+          'Removes what Otodus added outside its own folders. Re-run with --yes to confirm.',
           { plan }
         )
       }
       const question = [
-        'Orca will remove what it added outside its own folders. Your projects, worktrees, chat history and Orca settings stay.',
+        'Otodus will remove what it added outside its own folders. Your projects, worktrees, chat history and Otodus settings stay.',
         formatOrcaUninstallPlan(plan),
         ...(plan.otherOrcaBuildName
           ? [`${plan.otherOrcaBuildName} is still installed, so the shared agent hooks stay.`]

@@ -14,7 +14,7 @@ export async function forgetClaudeAgentViewMarkers(): Promise<void> {
     const configPath = getConfigPath(undefined, configDir)
     const markerPath = join(dirname(configPath), markerName)
     await serializeClaudeAgentViewConfig(configPath, async () => {
-      // The writer's rolling .bak of this marker holds only Orca's own state.
+      // The writer's rolling .bak of this marker holds only Otodus's own state.
       for (const path of [markerPath, `${markerPath}.bak`]) {
         const marker = parseHooksJsonText(await readFile(path, 'utf8').catch(() => '{}'))
         if (marker?.owner === ownership.owner) {

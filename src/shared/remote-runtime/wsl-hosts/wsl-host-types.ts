@@ -7,7 +7,7 @@ export const WSL_HOST_CAPABILITY_CHANNEL = 'wslHosts:capabilityChanged'
 
 export type WslHostDistro = {
   name: string
-  /** 'unverifiable': WSL's running list couldn't be read, so Orca can't say. */
+  /** 'unverifiable': WSL's running list couldn't be read, so Otodus can't say. */
   state: 'running' | 'stopped' | 'unverifiable'
   /** WSL 1 runs no Linux kernel, so it cannot host orcad; null when the registry did not say. */
   version: 1 | 2 | null
@@ -42,7 +42,7 @@ export type WslHostStatus = {
 /** An explicit Update retries a skipped build behind the terminal census; Force also passes it. */
 export type WslHostConnectIntent = 'update' | 'force'
 
-/** A host a newer Orca runs refused this build: only Force (or updating Orca) changes that. */
+/** A host a newer Otodus runs refused this build: only Force (or updating Otodus) changes that. */
 export const ORCAD_HOST_NEWER_DEFERRAL_CODE = 'orcad_host_newer'
 
 /** A project move to the host runs on this desktop; the update waits for it to finish. */
@@ -66,11 +66,11 @@ export type WslHostCapability = {
 
 /**
  * What removing a host left behind in its distro, in the census vocabulary: `live` when something
- * is proven still running, `unverifiable` when Orca could not tell. `kept` (E11): the host stays
+ * is proven still running, `unverifiable` when Otodus could not tell. `kept` (E11): the host stays
  * listed with its stop pending, so Remove can retry; older mains removed it anyway.
  */
 export type WslHostServerStop =
-  /** `keptForOtherDesktops`: another Orca shares the server, so only this desktop let go of it. */
+  /** `keptForOtherDesktops`: another Otodus shares the server, so only this desktop let go of it. */
   | { stopped: true; keptForOtherDesktops?: string[] }
   | {
       stopped: false

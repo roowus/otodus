@@ -31,7 +31,7 @@ export const CONNECTOR_CLIENT_LIMITS = {
   maxDisplayTextLength: 200
 } as const
 
-// Machine-side readers: they keep what this Orca uses and ignore fields a newer cloud adds.
+// Machine-side readers: they keep what this Otodus uses and ignore fields a newer cloud adds.
 export const ConnectorErrorResponse = z.object({ error: z.string().min(1) })
 
 // Each hello gets a revision above every earlier one for this machine; polls, acks and events carry it.
@@ -80,10 +80,10 @@ export const ConnectorDelivery = z.discriminatedUnion('kind', [
 ])
 export type ConnectorDelivery = z.infer<typeof ConnectorDelivery>
 
-/** Enough of a delivery this Orca cannot read to settle it as unsupported. */
+/** Enough of a delivery this Otodus cannot read to settle it as unsupported. */
 export const ConnectorDeliveryId = z.object({ deliveryId: z.string().min(1) })
 
-// Each delivery and the control are read one by one, so one this Orca cannot read never drops the rest.
+// Each delivery and the control are read one by one, so one this Otodus cannot read never drops the rest.
 export const ConnectorPollResponse = z.object({
   serverNow: z.number().int().positive(),
   holdMs: z.number().int().nonnegative(),

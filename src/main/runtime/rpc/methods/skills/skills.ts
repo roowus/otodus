@@ -128,7 +128,7 @@ export const SKILL_METHODS = [
         skillDeleteDependencies(runtime)
       )
   }),
-  // The host plans Orca's skills on its own disk; a paired client never sends a WSL target.
+  // The host plans Otodus's skills on its own disk; a paired client never sends a WSL target.
   defineMethod({
     name: 'skills.planBundledOrca',
     permission: 'workspace',
@@ -156,14 +156,14 @@ export const SKILL_METHODS = [
       if (clientKind !== undefined) {
         throw new AgentSkillSharingError(
           AGENT_SKILL_SHARING_UNSUPPORTED_ENVIRONMENT_CODE,
-          'Publishing skills through a paired client is not supported. Run the command from Orca on the machine that stores the skills.'
+          'Publishing skills through a paired client is not supported. Run the command from Otodus on the machine that stores the skills.'
         )
       }
       const resolvedTarget = await resolveDiscoveryTarget(params.target ?? {}, runtime)
       if (resolvedTarget.kind !== 'native-host') {
         throw new AgentSkillSharingError(
           AGENT_SKILL_SHARING_UNSUPPORTED_ENVIRONMENT_CODE,
-          'Publishing skills from a forwarded WSL session is not supported yet. Run the command from Orca on the machine that stores the skills.'
+          'Publishing skills from a forwarded WSL session is not supported yet. Run the command from Otodus on the machine that stores the skills.'
         )
       }
       // Sharing named skills is a user act: it may start the workspace's distro.

@@ -305,7 +305,7 @@ export function renameUnsupportedOnOldHost(error: unknown, hostLabel: string): u
     ? new Error(
         translate(
           'accounts.rename.unsupportedHost',
-          'Update Orca on {{host}} to change this setting there.',
+          'Update Otodus on {{host}} to change this setting there.',
           { host: hostLabel }
         )
       )

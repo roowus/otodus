@@ -92,7 +92,7 @@ export function serializeMuseSettings(
   const existing = current?.managed_hooks_env_vars
   const listed = Array.isArray(existing) ? existing : []
   const orcaNames: readonly string[] = MUSE_MANAGED_HOOK_ENV_VARS
-  // Removal keeps only names the user added; an emptied list goes with Orca's pointer.
+  // Removal keeps only names the user added; an emptied list goes with Otodus's pointer.
   const nextNames =
     managedHooksPath !== undefined
       ? [

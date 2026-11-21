@@ -23,7 +23,7 @@ export function isBundledSkillOpKind(value: string): value is BundledSkillOpKind
 
 export const BUNDLED_SKILL_LEAVE_REASONS = Object.freeze([
   'edited',
-  /** A copy another Orca build (newer, or a dev build) installed; its bytes are unknown here. */
+  /** A copy another Otodus build (newer, or a dev build) installed; its bytes are unknown here. */
   'other-build',
   'other',
   'unwritable',
@@ -61,10 +61,10 @@ export type BundledSkillObserved =
   | { kind: 'file'; mtimeMs: number | null; treeDigest?: string }
   | { kind: 'unreadable' }
 
-/** A leftover sibling of an interrupted Orca swap, handled before the target's op. */
+/** A leftover sibling of an interrupted Otodus swap, handled before the target's op. */
 export type BundledSkillCleanup = {
   path: string
-  /** `delete` only ever applies to Orca's stage siblings and released old copies. */
+  /** `delete` only ever applies to Otodus's stage siblings and released old copies. */
   action: 'delete' | 'backup'
   observed: BundledSkillObserved
 }
@@ -90,7 +90,7 @@ export type BundledSkillOp = {
     retain?: boolean
   }[]
   reason?: BundledSkillLeaveReason
-  /** Whether Replace / `--force` may back this up and put Orca's copy in its place. */
+  /** Whether Replace / `--force` may back this up and put Otodus's copy in its place. */
   replaceable?: boolean
   /** Path of an earlier op that must succeed first. */
   requires?: string
@@ -161,7 +161,7 @@ export const BundledSkillExecuteRequestSchema = z.strictObject({
 })
 export type BundledSkillExecuteRequest = z.infer<typeof BundledSkillExecuteRequestSchema>
 
-/** Silently updates only hash-verified Orca copies of the named installed skills; never writes elsewhere. */
+/** Silently updates only hash-verified Otodus copies of the named installed skills; never writes elsewhere. */
 export const BundledSkillAutoUpdateRequestSchema = z.strictObject({
   names: z
     .array(z.string().regex(/^[a-z0-9][a-z0-9-]{0,63}$/u))

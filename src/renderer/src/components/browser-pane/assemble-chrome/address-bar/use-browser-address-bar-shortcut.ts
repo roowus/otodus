@@ -6,7 +6,7 @@ import { keybindingMatchesAction } from '../../../../../../shared/keybindings/ma
 import { browserChromeShortcutOwnsEvent } from '../../describe-page/browser-overlay-shortcut-target'
 import type { BrowserChromeShortcutScope } from '../../describe-page/browser-page-types'
 
-/** The focus-address-bar chord while Orca's chrome has the keyboard. */
+/** The focus-address-bar chord while Otodus's chrome has the keyboard. */
 export function useBrowserAddressBarShortcut({
   workspaceId,
   chromeShortcutScope,

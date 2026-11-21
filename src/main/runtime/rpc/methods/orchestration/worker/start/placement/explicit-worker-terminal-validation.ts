@@ -28,7 +28,7 @@ export async function assertExplicitWorkerTerminalUsable(args: {
   const targetPane = runtime.getTerminalPaneKey(terminal)
   const callerPane = coordinator?.paneKey ?? runtime.getTerminalPaneKey(from)
   // Structured coordinators may have no showable terminal; compare their handle/pane identity, or session address for handle-less callers.
-  // A paired Orca's coordinator has no terminal here either; its address is its handle.
+  // A paired Otodus's coordinator has no terminal here either; its address is its handle.
   const coordinatorHandle =
     coordinator?.terminalHandle === null || isPeerCaller(coordinator)
       ? coordinator.address
@@ -58,7 +58,7 @@ export async function assertExplicitWorkerTerminalUsable(args: {
   }
 }
 
-/** A `--terminal` party: a terminal pane, or a chat named by its Orca session ID. */
+/** A `--terminal` party: a terminal pane, or a chat named by its Otodus session ID. */
 export async function assertExplicitWorkerUsable(args: {
   runtime: OrcaRuntimeService
   db: OrchestrationDb
@@ -73,7 +73,7 @@ export async function assertExplicitWorkerUsable(args: {
     : assertExplicitWorkerTerminalUsable({ ...args, terminal: args.terminal.address }))
 }
 
-/** The same refusals for a chat named by its Orca session ID: itself, unreachable, another worktree. */
+/** The same refusals for a chat named by its Otodus session ID: itself, unreachable, another worktree. */
 async function assertExplicitWorkerChatUsable(args: {
   runtime: Pick<OrcaRuntimeService, 'ensureStructuredAgentSessionHost'>
   db: OrchestrationDb

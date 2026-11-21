@@ -78,7 +78,7 @@ export function agentSessionSignInCommand(
   return argv.length > 0 ? argv.join(' ') : null
 }
 
-/** Bypass the selected-profile function and restore the config Orca replaced for this login. */
+/** Bypass the selected-profile function and restore the config Otodus replaced for this login. */
 function claudeSystemSignInCommand(shell: AgentStartupShell): string {
   if (shell === 'powershell') {
     return [

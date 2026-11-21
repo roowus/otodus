@@ -4,7 +4,7 @@ import { parseTccLogVerdict, readTccLogVerdict } from '../tcc-denial-log-verdict
 
 // Real tccd lines from a macOS 27.2 VM (usernames redacted), as `log show --style ndjson` emits them.
 const HELPER =
-  '/Users/user/Library/Application Support/orca/daemon-host/macos/terminal-host-57202dec6187e819396a5a0ab07c2932bf5a00fe/app.noindex/Orca Terminal Host.app/Contents/MacOS/orca-terminal-host'
+  '/Users/user/Library/Application Support/orca/daemon-host/macos/terminal-host-57202dec6187e819396a5a0ab07c2932bf5a00fe/app.noindex/Otodus Terminal Host.app/Contents/MacOS/orca-terminal-host'
 const TCCD = '/System/Library/PrivateFrameworks/TCC.framework/Support/tccd'
 const SANDBOXD = '/usr/libexec/sandboxd'
 const DENIED_AT_MS = Date.UTC(2026, 10, 13, 20, 24, 30)
@@ -52,7 +52,7 @@ const APP_DOCUMENTS_REFUSED = [
     '20:14:22.730560',
     TCCD,
     350,
-    'AUTHREQ_ATTRIBUTION: msgID=153.1044, attribution={responsible={TCCDProcess: identifier=com.stablyai.orca, pid=902, auid=501, euid=501, responsible_path=/Applications/Orca.app/Contents/MacOS/Orca, binary_path=/Applications/Orca.app/Contents/MacOS/Orca}, accessing={TCCDProcess: identifier=com.stablyai.orca.helper, pid=1959, auid=501, euid=501, binary_path=/Applications/Orca.app/Contents/Frameworks/Orca Helper.app/Contents/MacOS/Orca Helper}, requesting={TCCDProcess: identifier=com.apple.sandboxd, pid=153, auid=0, euid=0, binary_path=/usr/libexec/sandboxd}, },'
+    'AUTHREQ_ATTRIBUTION: msgID=153.1044, attribution={responsible={TCCDProcess: identifier=com.stablyai.orca, pid=902, auid=501, euid=501, responsible_path=/Applications/Otodus.app/Contents/MacOS/Otodus, binary_path=/Applications/Otodus.app/Contents/MacOS/Otodus}, accessing={TCCDProcess: identifier=com.stablyai.orca.helper, pid=1959, auid=501, euid=501, binary_path=/Applications/Otodus.app/Contents/Frameworks/Otodus Helper.app/Contents/MacOS/Otodus Helper}, requesting={TCCDProcess: identifier=com.apple.sandboxd, pid=153, auid=0, euid=0, binary_path=/usr/libexec/sandboxd}, },'
   ),
   line(
     '20:14:22.738046',

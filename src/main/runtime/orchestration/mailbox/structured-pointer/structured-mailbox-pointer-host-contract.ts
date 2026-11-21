@@ -58,7 +58,7 @@ export type StructuredPointerDeliveryDependencies<TWaiter extends OrchestrationM
   unresolvedCustody?: (mailboxHandle: string) => 'elsewhere' | 'unverifiable'
   /** The CLI name the recipient runs, for the reply line and the oversized-message pointer. */
   getCliCommand: () => OrchestrationCliCommand
-  /** What Orca calls a sender now, snapshotted onto the message; null when it has no name. */
+  /** What Otodus calls a sender now, snapshotted onto the message; null when it has no name. */
   senderSnapshotReader?: () => SenderSnapshotResolver
   senderSnapshot: SenderSnapshotResolver
   host: StructuredMailboxPointerHost

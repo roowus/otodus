@@ -126,7 +126,7 @@ export async function runOrcadProfilePreflight(
   try {
     artifactVersion = await readOrcadArtifactIdentity(directory)
   } catch (cause) {
-    throw new OrcadBundledRuntimeError('The bundled Orca artifacts are incomplete or altered', {
+    throw new OrcadBundledRuntimeError('The bundled Otodus artifacts are incomplete or altered', {
       cause
     })
   }
@@ -175,7 +175,7 @@ async function readInstalledVersion(directory: string): Promise<string> {
     )
   } catch (cause) {
     throw new OrcadBundledRuntimeError(
-      'The installed Orca artifact version is missing or invalid',
+      'The installed Otodus artifact version is missing or invalid',
       {
         cause
       }

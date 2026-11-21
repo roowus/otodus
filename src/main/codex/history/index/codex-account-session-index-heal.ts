@@ -18,7 +18,7 @@ const failedThreadIdsByHome = new Map<string, Set<string>>()
 
 /**
  * Indexes `pendingThreads` (thread id -> rollout timestamp), newest rollout
- * first, skipping threads that already failed in this home since Orca started.
+ * first, skipping threads that already failed in this home since Otodus started.
  */
 export async function healPendingCodexAccountThreads(
   codexHomePath: string,

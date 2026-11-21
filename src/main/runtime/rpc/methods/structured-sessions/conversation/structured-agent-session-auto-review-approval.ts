@@ -8,7 +8,7 @@ export const STRUCTURED_AGENT_SESSION_AUTO_REVIEW_METHODS = [
     name: 'agentSession.approveAutoReviewDenial',
     permission: 'workspace',
     params: AutoReviewApprovalParams,
-    // Only a person may approve, so only this computer's own Orca window: the CLI, plugins and any
+    // Only a person may approve, so only this computer's own Otodus window: the CLI, plugins and any
     // paired client (whose agent marker is self-declared) could be an agent authorizing itself.
     handler: async ({ sessionId, itemId }, ctx): Promise<AgentSessionAutoReviewApprovalResult> => {
       if (ctx.caller?.kind !== 'desktop' || ctx.plugin) {

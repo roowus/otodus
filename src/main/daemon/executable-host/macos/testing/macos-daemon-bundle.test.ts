@@ -35,13 +35,13 @@ let verifyCode: number
 let onCopy: (() => Promise<void>) | null
 
 const signal = (): AbortSignal => new AbortController().signal
-const helperExecutable = (): string => join(helper, 'Contents', 'MacOS', 'Orca Agents')
+const helperExecutable = (): string => join(helper, 'Contents', 'MacOS', 'Otodus Agents')
 
 beforeEach(async () => {
   root = await realpath(await mkdtemp(join(tmpdir(), 'orca-mac-runtime-')))
   // Model an update that moved the running bundle and replaced its original path.
-  source = join(root, 'com.stablyai.orca.ShipIt.old', 'Orca.app')
-  helper = join(source, 'Contents', 'Helpers', 'Orca Agents.app')
+  source = join(root, 'com.stablyai.orca.ShipIt.old', 'Otodus.app')
+  helper = join(source, 'Contents', 'Helpers', 'Otodus Agents.app')
   copies = join(root, 'profile', 'daemon-host', 'macos')
   await mkdir(join(source, 'Contents', 'MacOS'), { recursive: true })
   await mkdir(join(helper, 'Contents', 'MacOS'), { recursive: true })
@@ -57,7 +57,7 @@ beforeEach(async () => {
   onCopy = null
   inspectMock.mockReset().mockResolvedValue({
     identity: 'parked',
-    executablePath: join(source, 'Contents', 'MacOS', 'Orca')
+    executablePath: join(source, 'Contents', 'MacOS', 'Otodus')
   })
   runProcessMock.mockReset().mockImplementation(async (spec) => {
     const args = spec.args ?? []
@@ -101,7 +101,7 @@ it('publishes one verified copy per helper build, from the running app rather th
   await rm(source, { recursive: true })
   expect(copy.directory).toBe(join(copies, `terminal-host-${cdhash}`))
   expect(copy.execPath).toBe(
-    join(copy.directory, 'app.noindex', 'Orca Agents.app', 'Contents', 'MacOS', 'Orca Agents')
+    join(copy.directory, 'app.noindex', 'Otodus Agents.app', 'Contents', 'MacOS', 'Otodus Agents')
   )
   expect(await readFile(copy.execPath, 'utf8')).toBe('signed-node')
   expect(await readFile(copy.entryPath, 'utf8')).toBe('daemon-code')
@@ -129,9 +129,9 @@ it("rejects a copy that does not satisfy the running app's requirement and publi
 it('keeps the winning copy when a concurrent publisher renames first', async () => {
   onCopy = async () => {
     onCopy = null
-    const winner = join(copies, `terminal-host-${cdhash}`, 'app.noindex', 'Orca Agents.app')
+    const winner = join(copies, `terminal-host-${cdhash}`, 'app.noindex', 'Otodus Agents.app')
     await cp(helper, winner, { recursive: true })
-    await writeFile(join(winner, 'Contents', 'MacOS', 'Orca Agents'), 'winner')
+    await writeFile(join(winner, 'Contents', 'MacOS', 'Otodus Agents'), 'winner')
   }
   const copy = await materializeMacDaemonBundle(copies, signal())
   expect(await readFile(copy.execPath, 'utf8')).toBe('winner')
@@ -148,7 +148,7 @@ it('stops at the shared deadline and removes the staging copy', async () => {
     return controller.signal.aborted ? { ...ok, code: null } : (signed?.(spec) ?? ok)
   })
   await expect(materializeMacDaemonBundle(copies, controller.signal)).rejects.toThrow(
-    'Could not copy Orca Agents.app'
+    'Could not copy Otodus Agents.app'
   )
   expect(await readdir(copies)).toEqual([])
 })
@@ -158,7 +158,7 @@ it('copies the app behind a symbolic link rather than retaining a link to the up
   await symlink(source, alias, 'junction')
   inspectMock.mockResolvedValue({
     identity: 'resolved',
-    executablePath: join(alias, 'Contents', 'MacOS', 'Orca')
+    executablePath: join(alias, 'Contents', 'MacOS', 'Otodus')
   })
   const copy = await materializeMacDaemonBundle(copies, signal())
   await rm(alias)

@@ -129,7 +129,7 @@ describe('registerHostedReviewHandlers', () => {
     listRepoWorktreeGraphMock.mockResolvedValue([{ path: worktreePath }])
   })
 
-  // Shared symlinks belong to Orca and must not fail the user's dirty preflight (#10451).
+  // Shared symlinks belong to Otodus and must not fail the user's dirty preflight (#10451).
 
   // Remote paths must not resolve unrelated local orca.yaml files.
 

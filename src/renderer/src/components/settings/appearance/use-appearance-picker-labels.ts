@@ -16,7 +16,7 @@ export function useIconThemePickerLabels() {
   return { themes, builtIn, labels: disambiguatedPluginContentLabels(themes, [builtIn], t) }
 }
 
-/** Orca's languages, labelled as the language picker lists them, and installed language packs. */
+/** Otodus's languages, labelled as the language picker lists them, and installed language packs. */
 export function useUiLanguagePickerLabels() {
   const packs = usePluginLanguagePacks()
   const choices = UI_LANGUAGE_CHOICES.map((choice) => getUiLanguageChoiceLabel(choice, translate))

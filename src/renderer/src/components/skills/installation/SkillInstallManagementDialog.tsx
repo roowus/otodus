@@ -85,7 +85,7 @@ export function SkillInstallManagementDialog({
       setError(
         translate(
           'auto.components.skills.install.inspectManagedFailed',
-          'Orca could not inspect managed installs on this machine.'
+          'Otodus could not inspect managed installs on this machine.'
         )
       )
     } finally {
@@ -252,7 +252,7 @@ export function SkillInstallManagementDialog({
       setError(
         t(
           'auto.components.skills.install.versionVerificationFailed',
-          'Orca could not verify the requested version.'
+          'Otodus could not verify the requested version.'
         )
       )
     } finally {
@@ -321,7 +321,10 @@ export function SkillInstallManagementDialog({
     } catch (cause) {
       console.warn('[skills] managed removal failed:', cause)
       setError(
-        t('auto.components.skills.install.removeFailed', 'Orca could not safely remove this skill.')
+        t(
+          'auto.components.skills.install.removeFailed',
+          'Otodus could not safely remove this skill.'
+        )
       )
     } finally {
       setBusy(false)

@@ -59,7 +59,7 @@ export function removeProjectTrustContent(content: string, projectPath: string):
 
 /**
  * The exact bytes removeProjectTrustContent would delete for the path, or null
- * when no table exists — the ownership check compares this to what Orca wrote.
+ * when no table exists — the ownership check compares this to what Otodus wrote.
  */
 export function findProjectTrustRemovedBytes(content: string, projectPath: string): string | null {
   return spliceProjectTrustTables(content, projectPath).removed

@@ -43,7 +43,7 @@ afterEach(async () => {
 async function git(cwd: string, args: string[]): Promise<void> {
   await execFileAsync(
     'git',
-    ['-c', 'user.name=Orca Test', '-c', 'user.email=t@example.invalid', ...args],
+    ['-c', 'user.name=Otodus Test', '-c', 'user.email=t@example.invalid', ...args],
     { cwd }
   )
 }
@@ -182,7 +182,7 @@ async function harness() {
     applyConsent: async ({ pluginKey, reviewedFingerprint }) => {
       consents[pluginKey] = reviewedFingerprint
     },
-    executionHost: 'the Orca host (build-box)',
+    executionHost: 'the Otodus host (build-box)',
     caller: { kind: 'local-cli' }
   }
   const lock = async () => (await readPluginLockfile(getUserPluginsDir(userDataPath))).plugins

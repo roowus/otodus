@@ -242,7 +242,7 @@ async function afterDeploy(
   if (result.outcome !== 'already-current') {
     return { route: 'managed', environmentId }
   }
-  // Another Orca version may serve it; only the now-paired server can say whether it may update.
+  // Another Otodus version may serve it; only the now-paired server can say whether it may update.
   const update = await checkManagedServerUpdate(target, environmentId, deps, () =>
     deps.progress(target, 'updating')
   )

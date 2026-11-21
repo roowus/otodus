@@ -21,12 +21,12 @@ async function componentsPlugin(): Promise<string> {
 
 describe('orca plugin test', () => {
   it(
-    "runs the components template's own test with node:test on Orca's runtime and passes",
+    "runs the components template's own test with node:test on Otodus's runtime and passes",
     async () => {
       const dir = await componentsPlugin()
       const files = await findPluginTestFiles(dir)
       expect(files).toEqual(['src/panel.test.tsx'])
-      // Orca's own runtime, as on a machine with no system Node.
+      // Otodus's own runtime, as on a machine with no system Node.
       const orca = {
         program: process.execPath,
         env: { ELECTRON_RUN_AS_NODE: '1' },
@@ -96,7 +96,7 @@ describe('orca plugin test', () => {
 
 describe('orca plugin test with a worker', () => {
   it(
-    "runs a .ts worker's own tests through mountWorker, resolving its imports as Orca does",
+    "runs a .ts worker's own tests through mountWorker, resolving its imports as Otodus does",
     async () => {
       const dir = await componentsPlugin()
       const manifestPath = join(dir, 'orca-plugin.json')
@@ -234,7 +234,7 @@ describe('orca plugin check', () => {
         ['List "Agents": 3 item(s)']
       ])
       expect(checks[1]?.tree).toMatchObject({ type: 'List', props: { label: 'Agents' } })
-      // One scenario, with the tree Orca would draw: it validates and keeps live handler ids.
+      // One scenario, with the tree Otodus would draw: it validates and keeps live handler ids.
       expect(await readPluginCheckScenarioNames(dir, 'src/panel.tsx')).toEqual(['empty', 'busy'])
       const [busy] = await checkPluginPanels(dir, { scenario: 'busy', drawnTree: true })
       expect(busy).toMatchObject({ scenario: 'busy', issues: [] })
@@ -309,7 +309,7 @@ describe('orca plugin check', () => {
   )
 
   it(
-    'warns about host calls Orca would refuse, and reports a repeated throw once',
+    'warns about host calls Otodus would refuse, and reports a repeated throw once',
     async () => {
       const dir = await componentsPlugin()
       await writeFile(

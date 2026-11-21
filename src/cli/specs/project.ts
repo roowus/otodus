@@ -4,7 +4,7 @@ import { CLI_GLOBAL_FLAGS as GLOBAL_FLAGS } from '../../shared/cli/cli-argument-
 export const PROJECT_COMMAND_SPECS: CommandSpec[] = [
   {
     path: ['project', 'list'],
-    summary: 'List durable projects known to Orca',
+    summary: 'List durable projects known to Otodus',
     usage: 'orca project list [--json]',
     allowedFlags: [...GLOBAL_FLAGS],
     examples: ['orca project list', 'orca project list --json']
@@ -90,7 +90,7 @@ export const PROJECT_COMMAND_SPECS: CommandSpec[] = [
     notes: [
       'Creates setup metadata without registering a repo compatibility record.',
       '--host takes local, ssh:<target-id>, runtime:<environment-id>, or the bare host name `orca host list` prints for any of them.',
-      'Use setup-existing-folder when Orca should import and manage an actual checkout path now.'
+      'Use setup-existing-folder when Otodus should import and manage an actual checkout path now.'
     ],
     examples: [
       'orca project setup-create --project github:stablyai/orca --host runtime:03ef704c-b180-4b10-998d-e28fbd5de9a3 --state setting-up --method provisioned --json'

@@ -24,7 +24,7 @@ export function relaunchApp(
   runWithLaunchPath(() => app.relaunch(options ?? defaultRelaunchOptions()))
 }
 
-// The user restarted Orca, so the new window comes forward even when `orca open` started this one.
+// The user restarted Otodus, so the new window comes forward even when `orca open` started this one.
 function defaultRelaunchOptions(): Electron.RelaunchOptions | undefined {
   const administrator = getWindowsAdministratorRelaunchOptions()
   if (!administrator && !process.argv.includes(BACKGROUND_OPEN_ARG)) {

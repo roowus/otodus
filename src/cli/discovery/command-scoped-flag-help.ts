@@ -2,7 +2,7 @@ import { COMPUTER_WAIT_DEFAULT_TIMEOUT_MS } from '../../shared/computer/computer
 
 // File focus differs from terminal create's shared --focus help.
 const FILE_OPEN_FOCUS_HELP =
-  "--focus                Bring the user to the file (switches Orca's window to its worktree)"
+  "--focus                Bring the user to the file (switches Otodus's window to its worktree)"
 
 const COMMAND_SCOPED_FLAG_HELP: Record<string, Record<string, string>> = {
   'extension reload': {
@@ -57,9 +57,9 @@ const COMMAND_SCOPED_FLAG_HELP: Record<string, Record<string, string>> = {
   },
   'plugin create': {
     template: '--template <name>      Template to scaffold from (see Usage)',
-    publisher: '--publisher <name>     Repository owner; only for Orca older than 1.4.246',
+    publisher: '--publisher <name>     Repository owner; only for Otodus older than 1.4.246',
     id: '--id <id>              Plugin id (default: the folder name)',
-    name: '--name <display name>  Plugin name shown in Orca'
+    name: '--name <display name>  Plugin name shown in Otodus'
   },
   'environment update': {
     force: '--force                Restart over running terminals instead of deferring the update'

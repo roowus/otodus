@@ -33,8 +33,8 @@ describe.skipIf(process.platform === 'win32')('orcad Electron browser helper', (
     Object.defineProperty(process, 'platform', { value: 'darwin' })
     // The install park lives under the user's Library; keep it inside this test.
     process.env.HOME = root
-    const bundle = join(root, 'Applications', 'Orca.app')
-    executable = join(bundle, 'Contents', 'MacOS', 'Orca')
+    const bundle = join(root, 'Applications', 'Otodus.app')
+    executable = join(bundle, 'Contents', 'MacOS', 'Otodus')
     await mkdir(join(bundle, 'Contents', 'MacOS'), { recursive: true })
     await writeFile(join(bundle, 'Contents', 'Info.plist'), 'v1')
     spawnProcessMock.mockClear()
@@ -64,7 +64,7 @@ describe.skipIf(process.platform === 'win32')('orcad Electron browser helper', (
     expect(provider?.kind).toBe('electron')
 
     // ShipIt swapped the bundle: Info.plist changed.
-    await writeFile(join(root, 'Applications', 'Orca.app', 'Contents', 'Info.plist'), 'v2-new')
+    await writeFile(join(root, 'Applications', 'Otodus.app', 'Contents', 'Info.plist'), 'v2-new')
     await vi.advanceTimersByTimeAsync(1_000)
     await vi.waitFor(() =>
       expect(spawnProcessMock).toHaveBeenCalledWith(

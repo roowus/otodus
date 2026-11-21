@@ -9,7 +9,7 @@ const STATUS_PROBE_TIMEOUT_MS = 4_000
 // The host removes every agent's hooks before it answers.
 const REMOVE_TIMEOUT_MS = 60_000
 
-/** SSH hosts running a server Orca deployed; that server installs agent hooks on the host. */
+/** SSH hosts running a server Otodus deployed; that server installs agent hooks on the host. */
 export async function listOrcaUninstallSshHosts(
   userDataPath: string
 ): Promise<OrcaUninstallHostEntry[]> {

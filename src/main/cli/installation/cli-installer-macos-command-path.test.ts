@@ -34,7 +34,7 @@ async function makeBundledLauncherFixture() {
       isPackaged: true,
       resourcesPath,
       userDataPath: fixture.userDataPath,
-      execPath: '/Applications/Orca.app/Contents/MacOS/Orca',
+      execPath: '/Applications/Otodus.app/Contents/MacOS/Otodus',
       appPath: fixture.appPath,
       homePath: join(fixture.root, 'home')
     },
@@ -77,7 +77,7 @@ describe('CliInstaller', () => {
         isPackaged: true,
         resourcesPath,
         userDataPath: fixture.userDataPath,
-        execPath: '/Applications/Orca.app/Contents/MacOS/Orca',
+        execPath: '/Applications/Otodus.app/Contents/MacOS/Otodus',
         appPath: fixture.appPath,
         homePath,
         defaultMacCommandPath: defaultInstallPath,
@@ -87,13 +87,13 @@ describe('CliInstaller', () => {
       const status = await installer.getStatus()
       expect(status.commandPath).toBe(userInstallPath)
       expect(status.state).toBe('conflict')
-      await expect(installer.install()).rejects.toThrow('Refusing to replace non-Orca command')
+      await expect(installer.install()).rejects.toThrow('Refusing to replace non-Otodus command')
       await expect(lstat(defaultInstallPath)).rejects.toMatchObject({ code: 'ENOENT' })
       await expect(readFile(userInstallPath, 'utf8')).resolves.toContain('other-orca')
     }
   )
 
-  // Why (#33872): Orca terminals put the bundled bin dir first on PATH, so registration linked the launcher to itself.
+  // Why (#33872): Otodus terminals put the bundled bin dir first on PATH, so registration linked the launcher to itself.
   describe.skipIf(process.platform === 'win32')('with the bundled launcher on PATH', () => {
     it('registers the default command instead of linking the launcher to itself', async () => {
       const { root, bundledBin, installerOptions, expectLauncherIntact } =

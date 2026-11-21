@@ -130,7 +130,7 @@ async function clearBrowserExtensionDataEverywhere(extensionId: string): Promise
   )
 }
 
-/** Removes the extension from every profile (Orca installs once, enables per profile), data included. */
+/** Removes the extension from every profile (Otodus installs once, enables per profile), data included. */
 export function removeBrowserExtension(extensionId: string): Promise<BrowserExtensionActionResult> {
   // Why the lock: an update committing mid-removal would reinstall the extension.
   return settle(() =>
@@ -196,7 +196,7 @@ export function reloadUnpackedBrowserExtension(
   )
 }
 
-/** Developer "Load unpacked…": loaded from Orca's copy, enabled for the profile it was added from. */
+/** Developer "Load unpacked…": loaded from Otodus's copy, enabled for the profile it was added from. */
 export function addUnpackedBrowserExtension(
   browserProfileId: string,
   directory: string

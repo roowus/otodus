@@ -44,7 +44,7 @@ import type {
 } from './runtime-client-settings-shape'
 import { normalizeNewTabMenuLayout } from '../../../../shared/new-tab-menu/new-tab-menu-layout'
 
-/** Which Orca cloud services this host registered; headless hosts register none. */
+/** Which Otodus cloud services this host registered; headless hosts register none. */
 export type RuntimeSharingServicePresence = {
   artifacts(): boolean
   skills(): boolean

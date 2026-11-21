@@ -25,7 +25,7 @@ import {
 } from '../api-runtime/browser-extension-worker-shim-source'
 
 /**
- * Orca loads every extension from a folder it owns, so it can add its worker wrapper, API shim and
+ * Otodus loads every extension from a folder it owns, so it can add its worker wrapper, API shim and
  * token without touching the original: store installs in place, unpacked folders from a copy.
  */
 
@@ -122,7 +122,7 @@ export async function browserExtensionIdForUnpackedFolder(directory: string): Pr
   return chromeExtensionIdFromKey(manifestKey(original, { source: 'unpacked', path: directory }))
 }
 
-// Why: Orca writes these into the package; none of them is meant for web pages.
+// Why: Otodus writes these into the package; none of them is meant for web pages.
 const ORCA_PRIVATE_FILES = [
   BROWSER_EXTENSION_WORKER_TOKEN_FILE,
   BROWSER_EXTENSION_ORIGINAL_MANIFEST_FILE
@@ -138,7 +138,7 @@ const ORCA_GENERATED_FILE_NAMES = new Set([
 ])
 
 /**
- * Refuses a package that already has a file where Orca writes its own, which would overwrite it.
+ * Refuses a package that already has a file where Otodus writes its own, which would overwrite it.
  * Asks the file system rather than comparing names, so every spelling that aliases one counts.
  */
 export async function refuseOrcaFileCollisions(
@@ -149,7 +149,9 @@ export async function refuseOrcaFileCollisions(
   for (const path of wrapperPath ? [...ORCA_ROOT_FILES, wrapperPath] : ORCA_ROOT_FILES) {
     const target = resolveInsideExtensionDirectory(directory, path)
     if (target && (await stat(target).catch(() => null))) {
-      throw new Error(`Orca can't load this extension: its file ${path} uses a name Orca reserves`)
+      throw new Error(
+        `Otodus can't load this extension: its file ${path} uses a name Otodus reserves`
+      )
     }
   }
 }
@@ -163,7 +165,7 @@ function fileIdentity(path: string): string | null {
   }
 }
 
-/** True for a resource that is one of Orca's private files on disk, whatever its spelling. */
+/** True for a resource that is one of Otodus's private files on disk, whatever its spelling. */
 function isPrivateFileOnDisk(directory: string): (resource: string) => boolean {
   const privateIds = new Set(ORCA_PRIVATE_FILES.map((file) => fileIdentity(join(directory, file))))
   privateIds.delete(null)
@@ -173,7 +175,7 @@ function isPrivateFileOnDisk(directory: string): (resource: string) => boolean {
   }
 }
 
-// Why skip Orca's own files: they appear only after the first load, and listing them would change
+// Why skip Otodus's own files: they appear only after the first load, and listing them would change
 // the manifest on the next launch and needlessly re-register the worker.
 async function listPackageFiles(directory: string): Promise<string[]> {
   const entries = await readdir(directory, { recursive: true, withFileTypes: true })
@@ -251,7 +253,7 @@ const pending = new Map<string, Promise<PreparedBrowserExtensionDirectory>>()
 const copiedThisRun = new Map<string, PreparedBrowserExtensionDirectory>()
 
 /**
- * Store folders are re-checked on every load (an Orca update brings a new shim). An unpacked
+ * Store folders are re-checked on every load (an Otodus update brings a new shim). An unpacked
  * folder is copied once per run, so a second profile never rewrites a copy another profile runs;
  * `refresh` (Settings › Reload) copies it again.
  */

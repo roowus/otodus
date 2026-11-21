@@ -251,7 +251,7 @@ export function getHostSetupUnavailableDetail(
   ) {
     return t(
       'auto.components.settings.RepositoryPane.hostSetupMissingCapability',
-      'Update Orca on this host to set up projects'
+      'Update Otodus on this host to set up projects'
     )
   }
   return null

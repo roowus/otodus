@@ -14,7 +14,7 @@ import type {
 
 const NO_EFFECTS = { effectsApplied: false } as const
 
-/** Kinds named by an ID: one this Orca does not have is in no Run, and the method answers it as
+/** Kinds named by an ID: one this Otodus does not have is in no Run, and the method answers it as
  *  not found. Addresses also name terminals and sessions that work in no Run, so they must resolve. */
 const ID_KINDS: ReadonlySet<OrchestrationSubjectKind> = new Set([
   'dispatch',
@@ -24,10 +24,10 @@ const ID_KINDS: ReadonlySet<OrchestrationSubjectKind> = new Set([
 ])
 
 /**
- * A paired Orca changes only the Run it coordinates here: every subject a write names must be in
- * that Run. Reads are not fenced, since the pairing already reads all of this Orca; a collection
- * that names no Run reads the paired Orca's own, as a coordinator's does. Calls that act on this
- * Orca as a whole are this Orca's own. Returns the params the method runs with.
+ * A paired Otodus changes only the Run it coordinates here: every subject a write names must be in
+ * that Run. Reads are not fenced, since the pairing already reads all of this Otodus; a collection
+ * that names no Run reads the paired Otodus's own, as a coordinator's does. Calls that act on this
+ * Otodus as a whole are this Otodus's own. Returns the params the method runs with.
  */
 export function checkPeerAccess<P>(
   access: OrchestrationMethodAccessDeclaration,
@@ -60,7 +60,7 @@ export function checkPeerAccess<P>(
   const runField = access.collection
     ? Object.entries(access.targets).find(([, kind]) => kind === 'run')?.[0]
     : undefined
-  // The paired Orca's forwarded lists drop its own Run ID, which names nothing here.
+  // The paired Otodus's forwarded lists drop its own Run ID, which names nothing here.
   if (runField && values[runField] === undefined) {
     values[runField] = runId
   }
@@ -93,7 +93,7 @@ function subjectsOf(value: unknown): string[] {
   return typeof dispatchId === 'string' ? [dispatchId] : []
 }
 
-/** The Run a subject belongs to on this Orca, or undefined when it names nothing here. */
+/** The Run a subject belongs to on this Otodus, or undefined when it names nothing here. */
 export function resolveSubjectRunId(
   db: OrchestrationDb,
   kind: OrchestrationSubjectKind,
@@ -112,7 +112,7 @@ export function resolveSubjectRunId(
     case 'gate':
       return db.getGate(subject)?.run_id
     case 'request':
-      // Receipts are keyed by the pairing, so they are its own; the same paired Orca may read another of its Runs' receipts.
+      // Receipts are keyed by the pairing, so they are its own; the same paired Otodus may read another of its Runs' receipts.
       return peer.peerRun.run_id
     case 'worker':
     case 'session':
@@ -156,27 +156,27 @@ function assigneeRunId(db: OrchestrationDb, subject: string): string | undefined
   return row?.run_id
 }
 
-/** Only a paired Orca's own frames speak as it: its address is predictable, so no other caller may
+/** Only a paired Otodus's own frames speak as it: its address is predictable, so no other caller may
  *  declare it as its handle or pane and read or bind its Run's mail. */
 export function refusePeerAddressClaim(declared: string | undefined): void {
   if (isPeerCoordinatorAddress(declared)) {
     throw new OrchestrationError(
       'forbidden',
-      `${declared} is a paired Orca's coordinator address, and only that Orca can act as it. No effects were applied.`,
+      `${declared} is a paired Otodus's coordinator address, and only that Otodus can act as it. No effects were applied.`,
       NO_EFFECTS
     )
   }
 }
 
-/** Pairing is one-way: work running in a paired Orca's Run, its helpers' included, never calls on
- *  to another server, and neither does that Orca through this one. */
+/** Pairing is one-way: work running in a paired Otodus's Run, its helpers' included, never calls on
+ *  to another server, and neither does that Otodus through this one. */
 export function refuseServerCallFromPeerRun(
   ctx: RpcContext,
   callerHandle: string | undefined
 ): void {
   const db = ctx.runtime.getOrchestrationDb()
   const caller = ctx.orchestrationCaller
-  // Most servers coordinate no paired Orca's Run, and then the creator lookup (which can refuse) is skipped.
+  // Most servers coordinate no paired Otodus's Run, and then the creator lookup (which can refuse) is skipped.
   const peerRun =
     caller?.kind === 'peer'
       ? caller.peerRun

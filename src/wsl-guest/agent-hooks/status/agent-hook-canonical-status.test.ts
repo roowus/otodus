@@ -38,7 +38,7 @@ async function post(body: unknown = tmuxTestBody(), source = 'opencode') {
   const coordinates = server.getCoordinates()
   return fetch(`http://127.0.0.1:${coordinates.port}/hook/${source}`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'X-Orca-Agent-Hook-Token': coordinates.token },
+    headers: { 'Content-Type': 'application/json', 'X-Otodus-Agent-Hook-Token': coordinates.token },
     body: JSON.stringify(body)
   })
 }

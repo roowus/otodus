@@ -52,11 +52,11 @@ export type NativeChatStructuredComposerTransport = {
   worktreeId?: string
   /** Present only where the host can set this session's goal. */
   threadGoal?: { setObjective: (objective: string) => Promise<boolean> }
-  /** `/btw`; absent where Orca can't fork this chat, so the command stays the agent's. */
+  /** `/btw`; absent where Otodus can't fork this chat, so the command stays the agent's. */
   sideChat?: NativeChatSideChat
   /** Present only where the host can read this chat's Codex account usage. */
   accountUsage?: { open: () => void }
-  /** Present only where the host manages this agent's MCP servers; `/mcp` opens Orca's MCP tray. */
+  /** Present only where the host manages this agent's MCP servers; `/mcp` opens Otodus's MCP tray. */
   mcpPanel?: NativeChatMcpTrayState
   /** Present only where this chat can fork; `run` answers with a notice when it didn't fork. */
   fork?: { run: () => string | null }

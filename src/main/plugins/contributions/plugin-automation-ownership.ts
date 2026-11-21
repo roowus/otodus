@@ -26,7 +26,7 @@ type AutomationSource = {
 
 /**
  * Whether the person took the plugin away from this automation: uninstalled it after creating it
- * (`removedAt`), disabled it or all plugins, or Orca blocked it. Only these settings and the
+ * (`removedAt`), disabled it or all plugins, or Otodus blocked it. Only these settings and the
  * uninstall itself count; a plugin missing from a discovery (an unreadable folder, a failed scan)
  * keeps its automations.
  */
@@ -45,7 +45,7 @@ export function pluginOwnershipEnded(
 }
 
 /**
- * Pauses the automations of a plugin the person uninstalled or disabled, or Orca blocked, and ends
+ * Pauses the automations of a plugin the person uninstalled or disabled, or Otodus blocked, and ends
  * its ownership, so neither re-enabling it nor a later install under the same key resumes or edits
  * them without the person. Sweeps only once the plugin service has loaded.
  */

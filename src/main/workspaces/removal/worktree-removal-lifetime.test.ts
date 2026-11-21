@@ -58,7 +58,7 @@ it('lets owned teardown admit during close without running cleanup, and recovers
   const release = worktreeRemovalLifetime.acquirePreparation()
   const closing = worktreeRemovalLifetime.close()
   expect(worktreeRemovalLifetime.close()).toBe(closing)
-  expect(() => worktreeRemovalLifetime.acquirePreparation()).toThrow('Orca is stopping')
+  expect(() => worktreeRemovalLifetime.acquirePreparation()).toThrow('Otodus is stopping')
   const run = vi.fn(async () => ({}))
   void startBackgroundWorktreeRemoval({ removal, run, publish: () => {} })
   release()

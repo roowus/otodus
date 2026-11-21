@@ -17,7 +17,7 @@ import type { LocalPtyProviderOptions } from './local-pty-provider-types'
 import type { PtySpawnOptions } from '../pty/provider-contract'
 import { stripInheritedAgentSessionEnv } from '../../../shared/agent-launch/startup/parent-agent-session-env'
 
-/** Pane ownership must be fresh even when Orca itself was launched inside an agent. */
+/** Pane ownership must be fresh even when Otodus itself was launched inside an agent. */
 export function buildLocalPtySpawnEnvironment(args: {
   id: string
   spawn: PtySpawnOptions
@@ -63,10 +63,10 @@ export function buildInheritedLocalPtyEnvironment(
     ...mergeGitConfigEnvProtocol(inheritedEnv, explicitEnv),
     TERM: 'xterm-256color',
     COLORTERM: 'truecolor',
-    TERM_PROGRAM: 'Orca',
+    TERM_PROGRAM: 'Otodus',
     // TUIs gate features on version; plain-node/test launches lack the app version.
     TERM_PROGRAM_VERSION: process.env.ORCA_APP_VERSION ?? '0.0.0-dev',
-    // supports-hyperlinks rejects Orca by name despite xterm supporting OSC 8; force support.
+    // supports-hyperlinks rejects Otodus by name despite xterm supporting OSC 8; force support.
     FORCE_HYPERLINK: '1',
     [ORCA_IMAGE_PROTOCOL_ENV]: ORCA_IMAGE_PROTOCOL_VALUE
   } satisfies Record<string, string>

@@ -1,7 +1,7 @@
 import { getChromeExtensionOrigin } from '../../../../shared/browser/extensions/browser-extension-url'
 import { openHiddenHelperWindow } from '../../hidden-helper-window'
 
-/** Native extension bindings without Orca's API wrappers, always on a hidden document. */
+/** Native extension bindings without Otodus's API wrappers, always on a hidden document. */
 export async function runBrowserExtensionNativePage(options: {
   session: Electron.Session
   extensionId: string

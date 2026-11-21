@@ -181,7 +181,7 @@ describe.skipIf(process.platform === 'win32')('Antigravity POSIX hook executable
     ['Stop', '{"decision":""}'],
     ['PreInvocation', '{}']
   ])(
-    'outside an Orca pane, %s skips the managed script and returns while stdin stays open',
+    'outside an Otodus pane, %s skips the managed script and returns while stdin stays open',
     async (event, expectedStdout) => {
       home = mkdtempSync(join(tmpdir(), 'orca-agy-outside-'))
       const command = installedCommand(home, event)

@@ -66,7 +66,7 @@ export async function probeOpenCodeLaunchModelContext(options: {
       OPENCODE_SERVER_PASSWORD: password
     },
     process.platform,
-    // opencode serve ignores stdin EOF; POSIX supervision must stop it with Orca.
+    // opencode serve ignores stdin EOF; POSIX supervision must stop it with Otodus.
     { lifetime: 'one-shot' }
   )
   const unsupervisedChild = !spawnSpec.supervised

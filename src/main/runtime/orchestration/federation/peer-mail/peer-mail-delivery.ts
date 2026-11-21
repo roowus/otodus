@@ -39,7 +39,7 @@ export function peerMailMessageId(
   return `msg_${digest.slice(0, 12)}`
 }
 
-/** Refuses before any effect when the server's Orca cannot receive mail or queue its replies. */
+/** Refuses before any effect when the server's Otodus cannot receive mail or queue its replies. */
 export async function requirePeerMailServer(
   runtime: PeerMailRuntime,
   selector: string
@@ -61,14 +61,14 @@ export async function requirePeerMailServer(
   ) {
     throw new OrchestrationError(
       'server_mail_unsupported',
-      `Server ${server.name} runs an older Orca that cannot receive agent mail from another server. Update Orca on ${server.name}, then send again. Nothing was sent.`,
+      `Server ${server.name} runs an older Otodus that cannot receive agent mail from another server. Update Otodus on ${server.name}, then send again. Nothing was sent.`,
       { ...NOTHING_SENT, server: server.name }
     )
   }
   return server
 }
 
-/** The pairing credential the server knows this Orca by; a re-pair starts new conversations under it. */
+/** The pairing credential the server knows this Otodus by; a re-pair starts new conversations under it. */
 export function peerMailPairing(server: OrchestrationWorkerServer): string {
   return server.homePeerFingerprint ?? server.peerFingerprint
 }

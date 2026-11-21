@@ -106,7 +106,7 @@ describePosix('daemon shell-ready bash wrapper', () => {
     'still emits 133;C when bash-preexec re-arms the DEBUG trap at first prompt',
     async () => {
       const { getDaemonBashShellReadyRcfileContent } = await importFreshDaemonBashRcfile()
-      // Simulate bash-preexec replacing Orca’s DEBUG trap at the first prompt.
+      // Simulate bash-preexec replacing Otodus’s DEBUG trap at the first prompt.
       writeFileSync(
         join(userDataPath, '.bash_profile'),
         [
@@ -129,7 +129,7 @@ describePosix('daemon shell-ready bash wrapper', () => {
   )
 
   itWithBash(
-    'dispatches a non-empty preexec_functions against the real command, not Orca hooks',
+    'dispatches a non-empty preexec_functions against the real command, not Otodus hooks',
     async () => {
       const { getDaemonBashShellReadyRcfileContent } = await importFreshDaemonBashRcfile()
       // A real callback verifies that chaining preserves the user’s preexec handler.
@@ -173,7 +173,7 @@ describePosix('daemon shell-ready bash wrapper', () => {
   // Profiles discard Bash's own prompt output the way attached ble.sh does (internal_suppress_bash_output).
   itWithBash('signals readiness at the first prompt once ble.sh attaches its decoder', async () => {
     const { getDaemonBashShellReadyRcfileContent } = await importFreshDaemonBashRcfile()
-    // Prompt-time ble-attach renders, running Orca's epilogue, before its decoder attaches.
+    // Prompt-time ble-attach renders, running Otodus's epilogue, before its decoder attaches.
     writeFileSync(
       join(userDataPath, '.bash_profile'),
       [

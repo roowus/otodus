@@ -9,7 +9,7 @@ import { LOCAL_ENVIRONMENT } from '../hosts/local-environment-selector'
 import type { RuntimeClient } from '../runtime/client'
 import { quoteCliCommandArgument } from '../arguments/shell-command-quote'
 
-/** Which Orca answered: `local`, a saved environment, or a one-off pairing-code connection (id null). */
+/** Which Otodus answered: `local`, a saved environment, or a one-off pairing-code connection (id null). */
 export type WorkspaceEnvironment = { id: string | null; name: string | null }
 
 /** A copyable route to one workspace; `environment` is the exact `--environment` value. */
@@ -216,7 +216,7 @@ const UNAVAILABLE_TEXT: Record<AddressUnavailableReason, string> = {
     'unavailable (one-off pairing-code connection; save it with `orca environment add --name <name> --pairing-code <code>`)',
   'unverifiable-row': "unavailable (this row's host or identity can't be verified)",
   'duplicate-folder-id':
-    'unavailable (several folder workspaces share this id; remove one in the Orca app and add its folder again)'
+    'unavailable (several folder workspaces share this id; remove one in the Otodus app and add its folder again)'
 }
 
 /** `environment:` and `address:` lines, each on its own line. */

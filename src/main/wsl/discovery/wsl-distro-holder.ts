@@ -34,9 +34,9 @@ const RELEASE_EXIT_TIMEOUT_MS = 5_000
 export const WSL_HOLDER_UNVERIFIABLE_REPLACE_AFTER_MS = 5 * 60_000
 
 function spawnDetachedHolder(distro: string): WslDistroHolderChild {
-  // Detached and broken away from Orca's jobs where they allow it, so a holder outlives a crash of
-  // Orca even inside a kill-on-close job (an OpenSSH session's); taskkill /T still reaches it.
-  // Inheriting none of Orca's handles keeps a launcher's pipe or a DevTools socket from outliving Orca.
+  // Detached and broken away from Otodus's jobs where they allow it, so a holder outlives a crash of
+  // Otodus even inside a kill-on-close job (an OpenSSH session's); taskkill /T still reaches it.
+  // Inheriting none of Otodus's handles keeps a launcher's pipe or a DevTools socket from outliving Otodus.
   return spawnDetachedWithoutInheritance({
     program: resolveWslExecutablePath(),
     args: buildWslDistroHolderArgs(distro),
@@ -142,7 +142,7 @@ export function createWslDistroHolder(dependencies: WslDistroHolderDependencies)
         child.once('spawn', resolve)
         child.once('error', reject)
       })
-      // Unref so the surviving holder cannot keep Orca alive.
+      // Unref so the surviving holder cannot keep Otodus alive.
       child.unref()
       const pid = child.pid
       if (pid === undefined) {

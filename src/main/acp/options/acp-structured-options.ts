@@ -57,9 +57,9 @@ export class AcpStructuredOptions {
   // A control without refreshed options leaves the prior current values unproven.
   private readonly unobservedCurrent = new Set<'model' | 'effort'>()
   writeRevision = 0
-  /** Orca's own writes in flight; config changes outside them are the agent's own. */
+  /** Otodus's own writes in flight; config changes outside them are the agent's own. */
   writing = 0
-  /** While Orca's hidden model command runs, its reply belongs to it, never to the chat. */
+  /** While Otodus's hidden model command runs, its reply belongs to it, never to the chat. */
   commandReply: string | null = null
   // What a launch-line or model-command selection resolved to. The agent never echoes the raw
   // selector, so a concrete change away from this retires it; ordinary control proof never does.

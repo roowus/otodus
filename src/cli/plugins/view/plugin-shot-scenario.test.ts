@@ -112,7 +112,7 @@ describe('orca plugin shot --scenario', () => {
       context(['plugin', 'shot', pluginKey, '--scenario', 'counted'], dev, { cwd: dir })
     )
     expect(dev.mock.calls.map(([method]) => method)).toEqual(['plugins.list', 'plugins.shotReplay'])
-    // A key from outside its folder: Orca does not share dev folder paths.
+    // A key from outside its folder: Otodus does not share dev folder paths.
     await expect(
       run(['plugin', 'shot', pluginKey, '--scenario', 'counted'], list(true))
     ).rejects.toThrow(/Run this inside/)

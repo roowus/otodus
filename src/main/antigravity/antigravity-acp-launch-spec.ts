@@ -1,4 +1,4 @@
-// Antigravity chats run Orca's managed ACP server, or the host's own `agy acp` when compatible.
+// Antigravity chats run Otodus's managed ACP server, or the host's own `agy acp` when compatible.
 
 import { join } from 'node:path'
 import { homedir } from 'node:os'
@@ -53,7 +53,7 @@ function antigravityClientInfo(version: string | null): Implementation {
     : { name: 'zed', version: '0.0.0' }
 }
 
-// Orca's managed ACP server keeps its own sign-in under <userData>/antigravity-chat.
+// Otodus's managed ACP server keeps its own sign-in under <userData>/antigravity-chat.
 const ANTIGRAVITY_MANAGED_LAUNCH_SPEC = {
   agent: 'antigravity',
   command: ANTIGRAVITY_ACP_COMMAND,
@@ -109,7 +109,7 @@ function scrubAgyHostApiKeys(env: Record<string, string>, inherited: NodeJS.Proc
   return removed
 }
 
-// The host's `agy acp` uses agy's own sign-in and history; Orca neither signs it in nor out.
+// The host's `agy acp` uses agy's own sign-in and history; Otodus neither signs it in nor out.
 const ANTIGRAVITY_HOST_LAUNCH_SPEC: AcpLaunchSpec = {
   ...ANTIGRAVITY_MANAGED_LAUNCH_SPEC,
   command: 'agy',
@@ -163,7 +163,7 @@ export const ANTIGRAVITY_LAUNCH_SPEC = {
   hostBackend: {
     spec: ANTIGRAVITY_HOST_LAUNCH_SPEC,
     pins: isAntigravityHostAccountHome,
-    // Someone signed in to Orca's own Chat keeps it; the host's agy needs a sign-in that serves
+    // Someone signed in to Otodus's own Chat keeps it; the host's agy needs a sign-in that serves
     // sessions, not an API-key provider whose key the host launch drops.
     select: async ({ command, env, envToDelete, homePath, stateDirectory, settings }) =>
       savedChatAuthIsPersonal(settings.antigravityChatAuth) &&

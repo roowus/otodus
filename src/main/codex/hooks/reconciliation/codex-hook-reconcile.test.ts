@@ -342,7 +342,7 @@ describe('reconcileCodexHooks', () => {
     expect(readHooks().Stop).toEqual([{ hooks: [buildCodexManagedHook(command(), 'Stop')] }])
   })
 
-  it("leaves Orca's entry and approvals in ~/.codex as they are while Codex cannot be found", async () => {
+  it("leaves Otodus's entry and approvals in ~/.codex as they are while Codex cannot be found", async () => {
     await start()
     writeHooks({ Stop: [olderBuildStop()] })
     const before = snapshot(codexHome())
@@ -379,7 +379,7 @@ describe('while the lookup is still asking Codex', () => {
       })
     )?.trustedHash
 
-  it("writes the entry with Orca's own hash within a launch's wait, then Codex's once it answers", async () => {
+  it("writes the entry with Otodus's own hash within a launch's wait, then Codex's once it answers", async () => {
     enabled = false
     await start()
     enabled = true
@@ -397,7 +397,7 @@ describe('while the lookup is still asking Codex', () => {
   })
 })
 
-describe('a ~/.codex/hooks.json Orca cannot add to', () => {
+describe('a ~/.codex/hooks.json Otodus cannot add to', () => {
   it.each([
     ['an unparseable file', '{ not json'],
     ['unknown top-level fields', JSON.stringify({ hooks: {}, _managed: true })],
@@ -414,7 +414,7 @@ describe('a ~/.codex/hooks.json Orca cannot add to', () => {
       expect(readFileSync(hooksPath(), 'utf-8')).toBe(content)
       expect(existsSync(tomlPath())).toBe(false)
       expect(readRealHomeHooksFileProblem()).toBe(
-        `Orca cannot add its hook to ${hooksPath()}, so Orca shows no status for ~/.codex`
+        `Otodus cannot add its hook to ${hooksPath()}, so Otodus shows no status for ~/.codex`
       )
 
       writeHooks({})
@@ -453,7 +453,7 @@ describe('an app start whose lookup has not answered within its wait', () => {
     expect(snapshot(codexHome())).toEqual(settled)
   })
 
-  it("keeps the approval main's grant recorded for Orca's entry", async () => {
+  it("keeps the approval main's grant recorded for Otodus's entry", async () => {
     const stop = {
       sourcePath: hooksPath(),
       eventLabel: 'stop' as const,

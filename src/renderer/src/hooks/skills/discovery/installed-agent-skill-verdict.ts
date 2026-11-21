@@ -60,7 +60,7 @@ export function getInstalledAgentSkillVerdict(
   }
 }
 
-// Why: Claude desktop owns `~/.claude/skills/synced/<bucket>/<name>` copies; they are not Orca feature installs.
+// Why: Claude desktop owns `~/.claude/skills/synced/<bucket>/<name>` copies; they are not Otodus feature installs.
 export function isClaudeDesktopSyncedSkill(skill: DiscoveredSkill): boolean {
   if (skill.sourceKind !== 'home' || !skill.providers.includes('claude')) {
     return false

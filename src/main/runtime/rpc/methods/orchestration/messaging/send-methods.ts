@@ -174,7 +174,7 @@ export const ORCHESTRATION_SEND_METHODS = [
           if (!recipient.ok) {
             throw new OrchestrationError(recipient.code, withDispatchPrefixHint(db, to, recipient))
           }
-          // A paired Orca's former worker may since have taken up local work; it is no longer its to reach.
+          // A paired Otodus's former worker may since have taken up local work; it is no longer its to reach.
           if (
             orchestrationCaller?.kind === 'peer' &&
             recipient.runId !== orchestrationCaller.peerRun.run_id

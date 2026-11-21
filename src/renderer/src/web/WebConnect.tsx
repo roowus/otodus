@@ -46,7 +46,7 @@ export default function WebConnect({
   const connect = async (): Promise<void> => {
     setError(null)
     if (!parsedOffer) {
-      setError('Enter a valid Orca pairing URL or pairing code.')
+      setError('Enter a valid Otodus pairing URL or pairing code.')
       return
     }
     if (parsedOffer.scope === 'mobile') {

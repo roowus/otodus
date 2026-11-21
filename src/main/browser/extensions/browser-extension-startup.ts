@@ -53,7 +53,7 @@ export function initializeBrowserExtensionSupport(options: {
 }
 
 /**
- * The extensions setting changed while Orca runs. Off unloads every profile's extensions and
+ * The extensions setting changed while Otodus runs. Off unloads every profile's extensions and
  * keeps their data; on loads them into each profile that has a page open.
  */
 export function switchBrowserExtensionSupport(enabled: boolean): Promise<void> {

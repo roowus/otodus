@@ -27,7 +27,7 @@ async function fixture() {
     const { port, token } = server.getCoordinates()
     const response = await fetch(`http://127.0.0.1:${port}/hook/claude`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'X-Orca-Agent-Hook-Token': token },
+      headers: { 'Content-Type': 'application/json', 'X-Otodus-Agent-Hook-Token': token },
       body: JSON.stringify({
         paneKey: PANE,
         tabId: 'tab-1',

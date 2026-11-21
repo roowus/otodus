@@ -72,7 +72,7 @@ export function RepositoryBrowserProfileSection({
   // A real listing always has Default; a cache holding only an adopted managed profile is not one.
   const loaded = Boolean(profiles?.some((profile) => profile.id === 'default'))
   const picked = repo.browserProfileId
-  // Orca-managed repo/workspace profiles go away with their owner, so they're offered only when already picked.
+  // Otodus-managed repo/workspace profiles go away with their owner, so they're offered only when already picked.
   const choices = (profiles ?? []).filter((profile) => !profile.owner || profile.id === picked)
   const pickMissing = Boolean(picked) && loaded && !choices.some((p) => p.id === picked)
   const value = picked || INHERIT_VALUE
@@ -155,7 +155,7 @@ export function RepositoryBrowserProfileSection({
         <p className="text-xs text-destructive">
           {t(
             'components.RepositoryBrowserProfileSection.saveFailed',
-            "Couldn't save the browser profile. The Orca on this project's host may need an update."
+            "Couldn't save the browser profile. The Otodus on this project's host may need an update."
           )}
         </p>
       ) : null}

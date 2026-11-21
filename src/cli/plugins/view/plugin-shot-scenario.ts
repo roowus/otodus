@@ -40,12 +40,12 @@ function refuse(code: string, message: string, nextSteps: string[] = []): Runtim
   return new RuntimeClientError(code, message, nextSteps.length > 0 ? { nextSteps } : undefined)
 }
 
-/** Why local only: the scenario runs the plugin's code here, then Orca on this machine draws it. */
+/** Why local only: the scenario runs the plugin's code here, then Otodus on this machine draws it. */
 function requireLocal(ctx: HandlerContext): void {
   if (process.env.ORCA_CLI_CWD || ctx.client.isRemote) {
     throw refuse(
       'invalid_environment',
-      "shot --scenario runs the plugin's code on this machine and shows it in the Orca on this machine, so it does not reach another host. Run it where Orca and the plugin folder are, without --environment."
+      "shot --scenario runs the plugin's code on this machine and shows it in the Otodus on this machine, so it does not reach another host. Run it where Otodus and the plugin folder are, without --environment."
     )
   }
 }
@@ -94,7 +94,7 @@ async function resolveFolder(
   const plugins = await callPlugins<PluginHostListEntry[]>(ctx, 'plugins.list')
   const entry = plugins.find((plugin) => plugin.pluginKey === target)
   if (!entry) {
-    throw refuse('plugin_not_found', `Orca has no plugin ${target}.`, [
+    throw refuse('plugin_not_found', `Otodus has no plugin ${target}.`, [
       'Pass the plugin folder instead: `orca plugin shot <dir> --scenario <name>`.'
     ])
   }
@@ -110,7 +110,7 @@ async function resolveFolder(
   if (!enclosing || !manifest || folderKey(manifest) !== target) {
     throw refuse(
       'invalid_argument',
-      `Run this inside ${target}'s folder, or pass the folder; Orca does not share where a development folder is.`,
+      `Run this inside ${target}'s folder, or pass the folder; Otodus does not share where a development folder is.`,
       [`orca plugin shot <dir> --scenario <name>`]
     )
   }
@@ -152,7 +152,7 @@ export function pluginScenarioFileStem(scenario: string): string {
 /**
  * `orca plugin shot --scenario`: renders the panel in the named `.check.ts` scenario on this
  * machine (as `orca plugin check` does, against a stand-in host and the plugin's worker mounted
- * here), then has Orca draw that tree apart from the plugin and capture it.
+ * here), then has Otodus draw that tree apart from the plugin and capture it.
  */
 export async function takePluginScenarioShot(
   ctx: HandlerContext,
@@ -208,7 +208,7 @@ export async function takePluginScenarioShot(
   if (reply.replay !== true) {
     throw refuse(
       'runtime_unsupported',
-      'This Orca does not draw shot --scenario previews; update Orca, then run it again.'
+      'This Otodus does not draw shot --scenario previews; update Otodus, then run it again.'
     )
   }
   const path =

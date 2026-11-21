@@ -70,24 +70,24 @@ const GUIDANCE_BY_ERROR_CLASS: Readonly<
   permission_denied: {
     key: 'runtimeRpc.startupFailure.guidance.permissionDenied',
     fallback:
-      "Orca couldn't write its runtime file. Check permissions on Orca's data folder, then restart."
+      "Otodus couldn't write its runtime file. Check permissions on Otodus's data folder, then restart."
   },
   storage_unavailable: {
     key: 'runtimeRpc.startupFailure.guidance.storageUnavailable',
-    fallback: 'Your disk may be full or read-only. Free up space, then restart Orca.'
+    fallback: 'Your disk may be full or read-only. Free up space, then restart Otodus.'
   },
   invalid_path: {
     key: 'runtimeRpc.startupFailure.guidance.invalidPath',
     fallback:
-      "Orca's data folder may be missing, moved, or at a path that is too long. Restore it or use a shorter path, then restart Orca."
+      "Otodus's data folder may be missing, moved, or at a path that is too long. Restore it or use a shorter path, then restart Otodus."
   },
   address_in_use: {
     key: 'runtimeRpc.startupFailure.guidance.addressInUse',
-    fallback: 'Another process may be holding the port. Restart Orca to try again.'
+    fallback: 'Another process may be holding the port. Restart Otodus to try again.'
   },
   unknown: {
     key: 'runtimeRpc.startupFailure.guidance.unknown',
-    fallback: 'Restart Orca to try again.'
+    fallback: 'Restart Otodus to try again.'
   }
 }
 
@@ -103,11 +103,11 @@ function createRuntimeRpcStartupFailureDialogOptions(error: unknown): MessageBox
     title: translateMain('runtimeRpc.startupFailure.title', 'Orca CLI unavailable'),
     message: translateMain(
       'runtimeRpc.startupFailure.message',
-      "Orca couldn't start its local command transport."
+      "Otodus couldn't start its local command transport."
     ),
     detail: translateMain(
       'runtimeRpc.startupFailure.detail',
-      'Orca will continue to work, but commands such as orca status, orca terminal, and orchestration are unavailable for this session.\n\n{{guidance}}\n\nCause: {{cause}}',
+      'Otodus will continue to work, but commands such as orca status, orca terminal, and orchestration are unavailable for this session.\n\n{{guidance}}\n\nCause: {{cause}}',
       { cause, guidance: translateMain(key, fallback) }
     )
   }

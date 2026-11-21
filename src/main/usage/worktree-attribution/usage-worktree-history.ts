@@ -14,7 +14,7 @@ const historyFileSchema = z.object({
   worktrees: z.array(z.tuple([z.string(), z.string()]))
 })
 
-/** Remembers every worktree Orca has had, so removing one keeps its sessions in the Orca usage scope. */
+/** Remembers every worktree Otodus has had, so removing one keeps its sessions in the Otodus usage scope. */
 export class UsageWorktreeHistory implements UsageWorktreeSource {
   private readonly displayNames = new Map<string, string>()
   private readonly writer: UsageCacheSnapshotWriter

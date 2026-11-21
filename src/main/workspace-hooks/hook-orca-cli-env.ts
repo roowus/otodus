@@ -4,7 +4,7 @@ import { prependOrcaCliDirToChildPath } from '../cli/launchers/orca-cli-child-pa
 import { getManagedWslCliDir, getWslCliCommandName } from '../cli/wsl/wsl-managed-cli'
 import { WSL_MANAGED_CLI_PATH_RESTORE } from '../wsl/execution/wsl-managed-cli-path-restore'
 
-// A hook isn't a pane: an Orca started from an Orca terminal must not lend that pane's identity.
+// A hook isn't a pane: an Otodus started from an Otodus terminal must not lend that pane's identity.
 const INHERITED_PANE_IDENTITY_KEYS = [
   'ORCA_TERMINAL_HANDLE',
   'ORCA_PANE_KEY',

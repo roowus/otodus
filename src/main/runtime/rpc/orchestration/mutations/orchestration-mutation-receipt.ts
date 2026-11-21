@@ -15,7 +15,7 @@ export type MutationReplayNudge =
   | { kind: 'federation'; runId?: string }
 
 const CALLER_ORCA_SESSION_ID_KEY = '__orcaCallerOrcaSessionId'
-// A paired Orca's address names its conversation, so one Run's receipt never answers another's.
+// A paired Otodus's address names its conversation, so one Run's receipt never answers another's.
 const PEER_CALLER_KEY = '__orcaPeerCaller'
 
 export function replayStableCallerParams(

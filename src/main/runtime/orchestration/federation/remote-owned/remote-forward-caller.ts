@@ -4,7 +4,7 @@ import { remoteForwardRequestId } from './remote-owned-calls'
 
 /**
  * Who is asking, as a retry of the same request must find it again: the caller's session, else
- * its terminal's pane, which survives a restart, else the person at this Orca outside any terminal.
+ * its terminal's pane, which survives a restart, else the person at this Otodus outside any terminal.
  * Never one shared identity for every terminal, so two callers reusing an ID never collide.
  */
 export function remoteForwardCallerNamespace(

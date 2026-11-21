@@ -3,7 +3,7 @@ import { join } from 'node:path'
 
 let orcaProfileDirectory: string | null = null
 
-/** Browser profile ids repeat across Orca profiles ("default"), so their extension data lives per Orca profile. */
+/** Browser profile ids repeat across Otodus profiles ("default"), so their extension data lives per Otodus profile. */
 export function configureBrowserExtensionProfileDataDirectory(profileDirectory: string): void {
   orcaProfileDirectory = profileDirectory
 }

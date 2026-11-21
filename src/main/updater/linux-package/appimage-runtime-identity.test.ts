@@ -29,7 +29,7 @@ function appImageHeader(machine: number): Buffer {
 
 function createFixture(appDirName = '.mount_Orca123', machine = 0x3e) {
   const root = mkdtempSync(join(tmpdir(), 'orca-appimage-identity-'))
-  const appImagePath = join(root, 'Applications', 'Orca.AppImage')
+  const appImagePath = join(root, 'Applications', 'Otodus.AppImage')
   const appDirPath = join(root, appDirName)
   const execPath = join(appDirPath, 'orca-ide')
   const resourcesPath = join(appDirPath, 'resources')

@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-/** Held updates the user asked to review, from anywhere in Orca; the app-level host shows them. */
+/** Held updates the user asked to review, from anywhere in Otodus; the app-level host shows them. */
 export const usePluginUpdateReviewDialogStore = create<{
   request: { pluginKeys: readonly string[]; id: number } | null
 }>(() => ({ request: null }))

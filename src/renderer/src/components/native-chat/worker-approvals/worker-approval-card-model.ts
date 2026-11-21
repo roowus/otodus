@@ -8,7 +8,7 @@ import type {
 import type { Translate } from '@/i18n/use-translate'
 import { normalizeToolInput } from '../../../../../shared/native-chat/tools/native-chat-tool-summary'
 
-/** The card a worker's open approval shows: its own words, and only the answers Orca can give. */
+/** The card a worker's open approval shows: its own words, and only the answers Otodus can give. */
 export function workerApprovalCard(approval: WorkerApprovalPayload, t: Translate): ChatApproval {
   const { title, detail, reason } = approval.summary
   return {

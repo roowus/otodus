@@ -267,7 +267,7 @@ function warnUncheckedSessions(count: number, previous: string): void {
   )
 }
 
-/** Why a toast: nothing else moved, so no dialog lists the Claude sessions Orca couldn't restart. */
+/** Why a toast: nothing else moved, so no dialog lists the Claude sessions Otodus couldn't restart. */
 function warnStrandedSessions(count: number, previous: string, review: () => void): void {
   toast.warning(
     count === 1

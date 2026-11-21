@@ -17,13 +17,13 @@ const PASTED_IMAGE_NAME = new RegExp(
   'i'
 )
 
-/** Use friendly UI labels for Orca clipboard-image temp filenames. */
+/** Use friendly UI labels for Otodus clipboard-image temp filenames. */
 export function isNativeChatPastedImagePath(path: string): boolean {
   const base = path.split(/[\\/]/).findLast(Boolean) ?? path
   return PASTED_IMAGE_NAME.test(base)
 }
 
-/** True for a long text paste Orca saved as a file (`orca-paste-<ts>-<uuid>.txt`). */
+/** True for a long text paste Otodus saved as a file (`orca-paste-<ts>-<uuid>.txt`). */
 export function isNativeChatPastedTextPath(path: string): boolean {
   const base = path.split(/[\\/]/).findLast(Boolean) ?? path
   return /^orca-paste-.+\.txt$/i.test(base)

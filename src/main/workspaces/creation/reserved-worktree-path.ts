@@ -5,7 +5,7 @@ import type { WorktreeMeta } from '../../../shared/worktree/meta-types'
 import { areWorktreePathsEqual } from '../../git/worktrees/catalog/worktree-path-comparison'
 import { findPendingWorktreeRemovalConflict } from '../removal/worktree-removal-table'
 
-/** Paths Orca still owns after Git deleted the checkout: a removal still settling, or an archived workspace. */
+/** Paths Otodus still owns after Git deleted the checkout: a removal still settling, or an archived workspace. */
 export function isWorktreePathReserved(
   store: { getAllWorktreeMeta?: () => Record<string, WorktreeMeta> } | undefined,
   repo: Pick<Repo, 'path'>,

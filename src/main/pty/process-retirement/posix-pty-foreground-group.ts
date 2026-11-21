@@ -106,7 +106,7 @@ export function getPosixPtyForegroundGroup(
   if (normalizeTty(root.tty) !== normalizeTty(ptsName)) {
     return null
   }
-  // A dev daemon may share the PTY; never group-signal Orca itself.
+  // A dev daemon may share the PTY; never group-signal Otodus itself.
   if (rows.some((row) => row.pid === currentPid && row.tty === root.tty)) {
     return null
   }

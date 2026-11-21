@@ -1,6 +1,6 @@
 import type { SleepingAgentLaunchConfig } from '../../../shared/agent-session/lifecycle/agent-session-resume'
 
-/** The Orca launch running in a session, kept by the daemon so it outlives a main restart. */
+/** The Otodus launch running in a session, kept by the daemon so it outlives a main restart. */
 export type DaemonLaunchNote = { launchToken: string; launchConfig: SleepingAgentLaunchConfig }
 
 /** Main arms the launch it admits and retires it by token, so a stale retire cannot clear a newer launch. */

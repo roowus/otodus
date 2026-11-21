@@ -12,7 +12,7 @@ import {
   type PressAndHoldHost
 } from './macos-press-and-hold-default'
 
-// Verify real defaults distinguishes absence from false using disposable Orca-prefixed domains.
+// Verify real defaults distinguishes absence from false using disposable Otodus-prefixed domains.
 
 const domains: string[] = []
 

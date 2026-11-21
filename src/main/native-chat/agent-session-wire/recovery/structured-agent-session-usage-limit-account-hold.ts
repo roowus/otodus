@@ -288,7 +288,7 @@ export class UsageLimitAccountHolds {
     }
   }
 
-  /** The day Orca may still continue a cut runs from the reset it actually waits for. */
+  /** The day Otodus may still continue a cut runs from the reset it actually waits for. */
   schedulable(
     id: string,
     cut: NativeChatUsageLimitCut,

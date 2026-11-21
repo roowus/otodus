@@ -19,7 +19,7 @@ export type OpenHttpLinkOptions = {
   allowClientBrowserFallback?: boolean
   /** Unconditional: always use the system browser regardless of settings. */
   forceSystemBrowser?: boolean
-  /** Unconditional for local sources: open inside Orca regardless of settings. */
+  /** Unconditional for local sources: open inside Otodus regardless of settings. */
   forceInApp?: boolean
   /** The Shift escape-hatch modifier was held; resolveModifierRouting decides what it means. */
   modifierHeld?: boolean
@@ -72,7 +72,7 @@ export function canSourceOwnerOpenInOrca(
 }
 
 /** Which destinations a clicked link offers, primary first; a remote source that
- *  cannot reach Orca's managed browser offers only the system browser. */
+ *  cannot reach Otodus's managed browser offers only the system browser. */
 export function httpLinkActionDestinationsFor(
   settings: { openLinksInApp?: boolean } | null | undefined,
   sourceOwner: HttpLinkSourceOwner,
@@ -98,7 +98,7 @@ export function httpLinkDestinationLabel(
   t: Translate = translate
 ): string {
   return destination === 'orca'
-    ? t('auto.components.terminal.pane.TerminalLinkActionPopover.orcaBrowser', 'Orca Browser')
+    ? t('auto.components.terminal.pane.TerminalLinkActionPopover.orcaBrowser', 'Otodus Browser')
     : t('auto.components.terminal.pane.TerminalLinkActionPopover.systemBrowser', 'System Browser')
 }
 

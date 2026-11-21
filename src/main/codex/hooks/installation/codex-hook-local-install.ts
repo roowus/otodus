@@ -45,7 +45,7 @@ export async function installCodexHooksExclusively(
 ): Promise<AgentHookInstallStatus> {
   const configPath = getConfigPath(runtimeHomePath)
   const scriptPath = getManagedScriptPath()
-  // Save in-Orca approvals before rewriting their runtime positions or cleaning stale trust.
+  // Save in-Otodus approvals before rewriting their runtime positions or cleaning stale trust.
   let complete = promoteCodexRuntimeHookApprovalsToSystem(runtimeHomePath)
   const config = readHooksJson(configPath)
   if (!config) {
@@ -107,7 +107,7 @@ export async function installCodexHooksExclusively(
     const cleaned = removeManagedCommands(current, isManagedCommand)
     const trustedHash = hashes[CODEX_EVENT_LABEL[eventName]]
     if (trustedHash === undefined) {
-      // Unlisted events cannot run Orca's hook without review, if at all.
+      // Unlisted events cannot run Otodus's hook without review, if at all.
       if (cleaned.length > 0) {
         nextHooks[eventName] = cleaned
       } else {
@@ -132,7 +132,7 @@ export async function installCodexHooksExclusively(
       timeoutSec: hook.timeout,
       statusMessage: hook.statusMessage,
       trustedHash,
-      // Orca's setting overrides Codex's /hooks off switch for this hook.
+      // Otodus's setting overrides Codex's /hooks off switch for this hook.
       enabled: true
     })
   }

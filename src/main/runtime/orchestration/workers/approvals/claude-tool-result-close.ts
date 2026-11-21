@@ -103,7 +103,7 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null
 }
 
-/** `ourDeny`: the message Orca's hook sent, so only that exact text is credited to Orca. */
+/** `ourDeny`: the message Otodus's hook sent, so only that exact text is credited to Otodus. */
 export function claudeToolClose(result: ClaudeToolResult, ourDeny: string | null): ClaudeToolClose {
   if (!result.isError) {
     return 'ran'
@@ -117,7 +117,7 @@ export function claudeToolClose(result: ClaudeToolResult, ourDeny: string | null
   return result.text.includes(AUTO_DENIED) ? 'auto-denied' : 'other'
 }
 
-/** Whether Claude took Orca's hook answer for this call. Its record of the hook decision says so
+/** Whether Claude took Otodus's hook answer for this call. Its record of the hook decision says so
  *  outright; without one (an older Claude), only a result that answer
  *  alone gives: our deny text, or, after an allow, anything but a person's No or the auto-block,
  *  since an allowed command that fails records an error result too. */
@@ -136,7 +136,7 @@ export function claudeTookHookAnswer(
   return decision === 'deny' ? close === 'hook-denied' : close === 'ran' || close === 'other'
 }
 
-// How each tool_result names a close Orca did not make; null says no more than "closed".
+// How each tool_result names a close Otodus did not make; null says no more than "closed".
 const CLOSE_HOW: Record<ClaudeToolClose, Pick<WorkerApprovalOutcome, 'by' | 'decision'> | null> = {
   ran: { by: 'worker-terminal', decision: 'allow' },
   'user-denied': { by: 'worker-terminal', decision: 'deny' },
@@ -145,7 +145,7 @@ const CLOSE_HOW: Record<ClaudeToolClose, Pick<WorkerApprovalOutcome, 'by' | 'dec
   other: null
 }
 
-/** Who closed a prompt Orca did not answer, from this call's result; null when it names no one. */
+/** Who closed a prompt Otodus did not answer, from this call's result; null when it names no one. */
 export function claudeToolCloseHow(
   result: ClaudeToolResult | null
 ): Pick<WorkerApprovalOutcome, 'by' | 'decision'> | null {

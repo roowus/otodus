@@ -166,7 +166,7 @@ describe('registerAutoUpdaterHandlers linux package artifact tracking', () => {
     const status = {
       state: 'error',
       message:
-        'The downloaded package metadata could not be verified. Quit Orca before downloading and installing the update from the official release page.',
+        'The downloaded package metadata could not be verified. Quit Otodus before downloading and installing the update from the official release page.',
       messageCode: 'linuxPackageMetadataUnusable',
       version: '1.0.61',
       retryable: false
@@ -190,7 +190,7 @@ describe('registerAutoUpdaterHandlers linux package artifact tracking', () => {
     expect(getArtifact()).toEqual(expect.objectContaining({ version: '1.0.61' }))
     expect(context.sendStatus).toHaveBeenLastCalledWith({
       state: 'error',
-      message: 'Quit Orca before running the system package install command.',
+      message: 'Quit Otodus before running the system package install command.',
       messageCode: 'linuxPackageManualInstall',
       recovery: {
         kind: 'linux-package-install',
@@ -268,7 +268,7 @@ describe('registerAutoUpdaterHandlers linux package artifact tracking', () => {
       await vi.waitFor(() =>
         expect(context.sendStatus).toHaveBeenLastCalledWith({
           state: 'error',
-          message: 'Quit Orca before running the system package install command.',
+          message: 'Quit Otodus before running the system package install command.',
           messageCode: 'linuxPackageManualInstall',
           recovery: {
             kind: 'linux-package-install',

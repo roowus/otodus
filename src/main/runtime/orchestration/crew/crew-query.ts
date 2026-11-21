@@ -99,7 +99,7 @@ const Traffic = z.object({
 })
 export type CrewTraffic = z.infer<typeof Traffic>
 
-// Only an agent's own words can be a row's latest line: Orca's failure notices (escalations), empty setup
+// Only an agent's own words can be a row's latest line: Otodus's failure notices (escalations), empty setup
 // receipts and rejected lifecycle rewrites carry IDs or nothing. Heartbeat stays its own term so the
 // partial message indexes still match; octet_length avoids reading long bodies.
 const ADMITTED_TRAFFIC = `type <> 'heartbeat'
@@ -147,7 +147,7 @@ const WORKER_ENDED = {
 const CREW_APPROVAL_ROWS = 100
 
 /** Each worker approval's newest report to this party, oldest first: receipts are the chat's
- *  history, so they stay. Only Orca's own stop reports count, never a payload a worker sent itself. */
+ *  history, so they stay. Only Otodus's own stop reports count, never a payload a worker sent itself. */
 export function readCrewApprovals(
   db: OrchestrationDb,
   aliases: string[]

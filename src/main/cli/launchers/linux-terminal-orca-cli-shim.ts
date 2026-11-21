@@ -36,7 +36,7 @@ export type LinuxTerminalOrcaCliShimOptions = {
   appImageCacheRootPath?: string
 }
 
-// Prepend only in managed PTYs so agents' bare `orca` calls reach the CLI instead of GNOME Orca.
+// Prepend only in managed PTYs so agents' bare `orca` calls reach the CLI instead of GNOME Otodus.
 export function ensureLinuxTerminalOrcaCliShimDir(
   options: LinuxTerminalOrcaCliShimOptions
 ): string | null {
@@ -157,7 +157,7 @@ launcher=${quotedLauncherPath}
 expected_runtime_identity=${expectedRuntimeIdentity}
 expected_launcher_identity=${expectedLauncherIdentity}
 fail() {
-  printf 'Orca CLI is unavailable; reopen Orca or register the CLI again.\\n' >&2
+  printf 'Orca CLI is unavailable; reopen Otodus or register the CLI again.\\n' >&2
   exit 1
 }
 runtime_identity="$(stat -Lc '%d:%i:%s:%Y:%Z' -- "$runtime_root" 2>/dev/null)" || fail

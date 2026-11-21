@@ -19,7 +19,7 @@ export function startBrowserExtensionDocument(frame: Electron.WebFrameMain): str
   return id
 }
 
-/** The frame's current document; a frame Orca never saw commit (initial about:blank) gets one now. */
+/** The frame's current document; a frame Otodus never saw commit (initial about:blank) gets one now. */
 export function getBrowserExtensionDocumentId(frame: Electron.WebFrameMain): string {
   return documentIdByFrame.get(frame) ?? startBrowserExtensionDocument(frame)
 }

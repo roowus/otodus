@@ -70,7 +70,7 @@ export async function withDeliveryHoldWarning<T>(
   return { ...sent, warnings: [...prior, held] }
 }
 
-/** A paired server's worker: this Orca sees only that the relay took the mail. */
+/** A paired server's worker: this Otodus sees only that the relay took the mail. */
 export function relayedDeliveryUnknownWarning(recipient: string): SendRecipientWarning {
   return {
     code: 'recipient_delivery_unknown',

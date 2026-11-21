@@ -73,7 +73,7 @@ const DOWNGRADE_DETAIL: Record<AgentLaunchDowngradeReason, string> = {
     "on Windows this agent's chat runs on agy, which is missing, outdated, or not signed in with a personal Google account",
   structured_unsupported_on_host: 'the execution host cannot create one here',
   chat_runtime_not_installed:
-    "its chat runtime isn't installed on this host (install it from a new chat tab in Orca)"
+    "its chat runtime isn't installed on this host (install it from a new chat tab in Otodus)"
 }
 
 const BLOCKER_REASON: Record<StructuredNativeChatBlocker, AgentLaunchDowngradeReason> = {

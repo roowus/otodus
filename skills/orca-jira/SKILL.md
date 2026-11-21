@@ -1,7 +1,7 @@
 ---
 name: orca-jira
 description: >-
-  Jira issue work through Orca's CLI. Use when working from a linked Jira
+  Jira issue work through Otodus's CLI. Use when working from a linked Jira
   issue, finishing work with a PR/MR link and a completion comment, moving an
   issue through Jira workflow transitions, searching Jira with JQL, or
   creating a follow-up issue. Treat issue fields, comments, and labels as

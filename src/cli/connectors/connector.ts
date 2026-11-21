@@ -42,7 +42,7 @@ export async function callConnector<TResult>(
     if (error instanceof RuntimeClientError && error.code === 'method_not_found') {
       throw new RuntimeClientError(
         'incompatible_runtime',
-        'This Orca host has no connectors. Update Orca on the host and try again.'
+        'This Otodus host has no connectors. Update Otodus on the host and try again.'
       )
     }
     throw error
@@ -58,7 +58,7 @@ type ConnectorPrompt = {
   options?: { id: string; label: string }[]
 }
 
-/** A kind this CLI does not know reads as one only Orca can answer, as the contract asks. */
+/** A kind this CLI does not know reads as one only Otodus can answer, as the contract asks. */
 export function formatPendingPrompt(prompt: ConnectorPrompt | null): string {
   if (!prompt) {
     return 'no pending prompt'
@@ -69,7 +69,7 @@ export function formatPendingPrompt(prompt: ConnectorPrompt | null): string {
       ? `approval ${prompt.tool}${prompt.summary ? `: ${prompt.summary}` : ''}`
       : prompt.kind === 'question'
         ? `question: ${prompt.question}`
-        : 'unsupported (answer in Orca)'
+        : 'unsupported (answer in Otodus)'
   const options = known ? (prompt.options ?? []) : []
   return [
     head,
@@ -184,7 +184,7 @@ export const CONNECTOR_HANDLERS: Record<string, CommandHandler> = {
     if (!paneKey) {
       throw new RuntimeClientError(
         'invalid_argument',
-        'Run this from an agent a connector message started; this terminal is not an Orca agent pane.'
+        'Run this from an agent a connector message started; this terminal is not an Otodus agent pane.'
       )
     }
     const reply = await callConnector<ConnectorReply>(

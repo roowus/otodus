@@ -50,7 +50,7 @@ function callingWindow(scope: PluginHostCallScope): BrowserWindow {
   return window
 }
 
-/** Where a host confirmation shows: the calling frame's window; for workers, Orca's focused
+/** Where a host confirmation shows: the calling frame's window; for workers, Otodus's focused
  *  main window, else the first one the person can see. */
 function confirmationWindow(scope: PluginHostCallScope): BrowserWindow | null {
   if (scope.callerWebContentsId !== undefined) {

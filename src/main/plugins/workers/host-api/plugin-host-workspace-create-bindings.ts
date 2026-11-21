@@ -59,7 +59,7 @@ async function projectWorktrees(call: PluginRuntimeRpc, project: PluginProjectTa
 const setupDecisionRequired = (): PluginHostCallError =>
   new PluginHostCallError(
     'action_failed',
-    "this project's setup script needs a decision; pass setup: 'skip' or create it in Orca"
+    "this project's setup script needs a decision; pass setup: 'skip' or create it in Otodus"
   )
 
 export const PLUGIN_WORKSPACE_CREATE_HANDLERS = {
@@ -135,7 +135,7 @@ export const PLUGIN_WORKSPACE_CREATE_HANDLERS = {
 } satisfies Record<string, BoundPluginHostMethod>
 
 /** Whether a worktree is the one a create named `name` makes: it shows that name, or its folder
- *  is that name, or that name with the `-N` Orca adds when the name is taken. */
+ *  is that name, or that name with the `-N` Otodus adds when the name is taken. */
 function madeFromName(worktree: { path: string; displayName?: string }, name: string): boolean {
   const folder = suggestionPathBasename(worktree.path)
   const suffix = folder.startsWith(`${name}-`) ? folder.slice(name.length + 1) : ''

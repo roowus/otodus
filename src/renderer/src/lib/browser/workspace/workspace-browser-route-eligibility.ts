@@ -134,7 +134,7 @@ export function isExpectedSshBrowserRoute(
 }
 
 /** Whether a runtime- or SSH-owned link can open in a workspace browser tab. Links that open in
- *  Orca may also use a desktop tab that browses from this device when the SSH host is set to
+ *  Otodus may also use a desktop tab that browses from this device when the SSH host is set to
  *  "This device". */
 export function canOpenRemoteLinkInWorkspaceBrowser(
   state: AppState,

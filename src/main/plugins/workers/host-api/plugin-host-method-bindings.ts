@@ -54,7 +54,7 @@ export type PluginWorktreeContext = {
 
 /** Desktop-only sinks for frame methods and host confirmations; absent in headless serve. */
 export type PluginDesktopFrameServices = {
-  /** Asks the person in the calling frame's window, else Orca's focused or first window. */
+  /** Asks the person in the calling frame's window, else Otodus's focused or first window. */
   confirm(
     pluginId: string,
     subject: PluginConfirmationSubject,
@@ -75,7 +75,7 @@ export type PluginDesktopFrameServices = {
 
 export type PluginHostServices = {
   appearance?: PluginAppearanceService | null
-  /** This Orca's own editor settings; absent where no profile is loaded (relay conformance). */
+  /** This Otodus's own editor settings; absent where no profile is loaded (relay conformance). */
   editorTypography?: PluginEditorTypographySource | null
   resolveActiveWorktreeContext(): Promise<PluginWorktreeContext | null>
   listWorktreeTerminals(worktreeId: string): Promise<PluginWorkspaceTerminal[]>
@@ -114,11 +114,11 @@ export type PluginHostServices = {
   desktop?: PluginDesktopFrameServices | null
   /** The plugin's open panels and its worker; absent where no panel host runs. */
   panels?: PluginPanelBridgeServices | null
-  /** Absent where no Orca window draws a status bar. */
+  /** Absent where no Otodus window draws a status bar. */
   statusBar?: PluginStatusBarServices | null
   /** The runtime methods the `orca` CLI calls, for workspace actions; absent without a runtime. */
   runtimeRpc?: PluginRuntimeRpc | null
-  /** Orca's window, for actions only it can take; absent in headless serve. */
+  /** Otodus's window, for actions only it can take; absent in headless serve. */
   renderer?: PluginHostRendererActions | null
   /** Asks the person before the plugin acts; absent where nobody can be asked (headless serve).
    *  Re-checks the plugin's approval once the person answers. */
@@ -283,7 +283,7 @@ const HANDLERS: Record<PluginHostMethodName, BoundPluginHostMethod> = {
 
 function requireDesktop(services: PluginHostServices): PluginDesktopFrameServices {
   if (!services.desktop) {
-    throw new Error('this method is only available in the Orca desktop app')
+    throw new Error('this method is only available in the Otodus desktop app')
   }
   return services.desktop
 }

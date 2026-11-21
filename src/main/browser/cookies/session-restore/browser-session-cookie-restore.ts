@@ -1,7 +1,7 @@
 /**
  * Electron never writes session cookies (no expiry) to a partition's cookie database, so sites
  * that sign in with one sign out on every restart. Chrome keeps them when it restores the last
- * session, and Orca always restores its tabs, so Orca saves them itself and puts them back.
+ * session, and Otodus always restores its tabs, so Otodus saves them itself and puts them back.
  */
 import { app, session, type Cookie, type Session } from 'electron'
 import { join } from 'node:path'
@@ -53,7 +53,7 @@ type SessionCookieTracker = {
 
 let profileDirectory: string | null = null
 let quitting = false
-// Why keyed by file path: the same browser profile id ('default') exists in every Orca profile.
+// Why keyed by file path: the same browser profile id ('default') exists in every Otodus profile.
 const trackers = new Map<string, SessionCookieTracker>()
 
 export function configureBrowserSessionCookieSnapshots(directory: string): void {

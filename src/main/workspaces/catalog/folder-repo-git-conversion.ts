@@ -92,7 +92,7 @@ export async function commitProvenRepoKindChange<T>(
     )
   if (!current || current.path !== repo.path || !isFolderRepo(current)) {
     throw new Error(
-      'The project changed while Orca was checking it, so its type was not changed. Try again.'
+      'The project changed while Otodus was checking it, so its type was not changed. Try again.'
     )
   }
   return commit(proven)

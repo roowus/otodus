@@ -17,7 +17,7 @@ const PLUGIN_SURFACE_TYPINGS = [
   { dir: 'orca-testing', file: 'orca-testing.d.ts' }
 ] as const
 
-// Why one tsconfig the plugin extends: the typings and JSX settings then track the Orca that wrote
+// Why one tsconfig the plugin extends: the typings and JSX settings then track the Otodus that wrote
 // them, and a plugin's own `include` cannot drop them (typeRoots resolve against this file).
 const TYPES_TSCONFIG = {
   compilerOptions: {

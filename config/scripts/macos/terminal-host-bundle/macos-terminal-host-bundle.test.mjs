@@ -19,7 +19,7 @@ describe.skipIf(process.platform !== 'darwin')('terminal host assembly', () => {
 
   beforeEach(() => {
     root = mkdtempSync(join(tmpdir(), 'orca-terminal-host-'))
-    appPath = join(root, 'Orca.app')
+    appPath = join(root, 'Otodus.app')
     const resources = join(appPath, 'Contents', 'Resources')
     const out = join(resources, 'app.asar.unpacked', 'out')
     mkdirSync(join(out, 'main', 'chunks'), { recursive: true })
@@ -54,7 +54,7 @@ describe.skipIf(process.platform !== 'darwin')('terminal host assembly', () => {
     })
     execFileSync(paths.executable)
     const uuids = execFileSync('dwarfdump', ['--uuid', paths.executable], { encoding: 'utf8' })
-    // Orca.app's main executable carries these (macos-executable-uuid.test.mjs).
+    // Otodus.app's main executable carries these (macos-executable-uuid.test.mjs).
     expect(uuids).toContain('016EE681-3DC3-81C7-A6DA-12DC23B89DD9 (x86_64)')
     expect(uuids).toContain('E6430410-3B22-8BD6-9677-B18884034A30 (arm64e)')
     assertMacTerminalHostUuid(appPath, INFO.CFBundleIdentifier)

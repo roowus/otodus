@@ -130,7 +130,7 @@ export async function dispatchClaudeMessage(
         // The turn can end during the wait; then this is a plain send with its own choices.
         steers = session.translator?.openTurnHasInputWork === true
       }
-      // Input joining a running turn, and Orca mail notices, run on the choices Claude already has;
+      // Input joining a running turn, and Otodus mail notices, run on the choices Claude already has;
       // new choices apply at the next new turn.
       const messageOptions =
         session.translator?.openTurnHasInputWork ||

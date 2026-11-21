@@ -3,7 +3,7 @@ import { federationRelayRetryDelayMs } from '../relay/federation-relay-scheduler
 // The server's cap on one pull's held-back list.
 const MAX_HELD_BACK = 50
 
-/** Conversations on one server whose next item this Orca could not read. Each waits out its own
+/** Conversations on one server whose next item this Otodus could not read. Each waits out its own
  *  backoff, held back from the server's pulls meanwhile, so the rest of its mail keeps its cadence. */
 export class HeldPeerConversations {
   private readonly held = new Map<string, { failures: number; retryAt: number }>()

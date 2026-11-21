@@ -1,4 +1,4 @@
-/** Approvals as Orca's own stop reports stored them. Only a row whose id is the report's stable id
+/** Approvals as Otodus's own stop reports stored them. Only a row whose id is the report's stable id
  *  for that approval counts: a worker's `send` can carry any payload, but cannot choose a message id. */
 import { z } from 'zod'
 import {
@@ -30,7 +30,7 @@ export function approvalReportId(
 
 const Carrier = z.object({ approval: WorkerApprovalPayloadSchema })
 
-/** The approval a stored row carries, when Orca's own report wrote it; null for anything else. */
+/** The approval a stored row carries, when Otodus's own report wrote it; null for anything else. */
 export function readApprovalReport(row: {
   id: string
   payload: string | null
@@ -49,7 +49,7 @@ export function readApprovalReport(row: {
 // Why a bound: older escalations are long past any worker's wait.
 const RECENT_ESCALATIONS = 200
 
-/** Recent approvals Orca reported open, with the Dispatch each belongs to; a later close may exist. */
+/** Recent approvals Otodus reported open, with the Dispatch each belongs to; a later close may exist. */
 export function recentOpenApprovalReports(
   db: OrchestrationDb
 ): { approval: WorkerApprovalPayload; dispatch: DispatchContextRow; from: string }[] {
@@ -58,7 +58,7 @@ export function recentOpenApprovalReports(
     .array()
     .parse(
       db.db
-        // Both sides read only Orca's stop reports through their partial index, never all mail.
+        // Both sides read only Otodus's stop reports through their partial index, never all mail.
         .prepare(`SELECT o.id, o.payload, o.from_handle
           FROM messages o INDEXED BY idx_messages_stop_reports
           WHERE o.type = 'escalation' AND o.id LIKE 'msg\\_stop\\_%' ESCAPE '\\'
@@ -79,8 +79,8 @@ export function recentOpenApprovalReports(
   })
 }
 
-/** Closes an approval Orca reported, from its stored escalation; a no-op once a close exists.
- *  True once a closing line is on record, or there is nothing Orca reported to close. */
+/** Closes an approval Otodus reported, from its stored escalation; a no-op once a close exists.
+ *  True once a closing line is on record, or there is nothing Otodus reported to close. */
 export function closeReportedApproval(
   db: OrchestrationDb,
   dispatch: DispatchContextRow,

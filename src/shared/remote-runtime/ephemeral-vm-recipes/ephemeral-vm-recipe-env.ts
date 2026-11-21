@@ -1,4 +1,4 @@
-// Recipe scripts run locally and inherit Orca's environment. These helpers let a recipe opt into a
+// Recipe scripts run locally and inherit Otodus's environment. These helpers let a recipe opt into a
 // narrower environment (`passEnv`) and let the UI name the credential-like variables a recipe sees.
 
 /** Variables every recipe keeps even with `passEnv`, so shells and provider CLIs still start. */

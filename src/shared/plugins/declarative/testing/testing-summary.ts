@@ -54,7 +54,7 @@ function summaryLine(element: TestElement, tabs: ReadonlyMap<string, string>): s
  */
 export function summarizeElements(
   elements: readonly TestElement[],
-  /** The selected tab's label per Tabs path, as Orca shows it. */
+  /** The selected tab's label per Tabs path, as Otodus shows it. */
   tabs: ReadonlyMap<string, string>
 ): string[] {
   const lines: string[] = []

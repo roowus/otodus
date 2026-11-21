@@ -292,7 +292,7 @@ describe('agent mail between paired Orca servers', () => {
     expect(b.db.getInbox(10).filter((message) => message.subject === 'Once')).toHaveLength(1)
   })
 
-  it('refuses mail to a worker another Orca coordinates', async () => {
+  it('refuses mail to a worker another Otodus coordinates', async () => {
     vi.spyOn(b.db, 'findActiveRemoteAttachmentForPane').mockImplementation((paneKey) =>
       // oxlint-disable-next-line typescript/consistent-type-assertions -- SAFETY: a test double carrying only the fields the code under test reads.
       paneKey === B_PANE ? ({ dispatch_id: 'ctx_remote' } as never) : undefined
@@ -339,7 +339,7 @@ describe('agent mail between paired Orca servers', () => {
     expect(mailFor(b, 'term_b').map((message) => message.subject)).toEqual(['Second', 'Re: First'])
   })
 
-  it('acknowledges a reply replayed after this Orca reset its mail', async () => {
+  it('acknowledges a reply replayed after this Otodus reset its mail', async () => {
     await mutation(a, 'orchestration.send', {
       from: 'term_a',
       on: 'devB',

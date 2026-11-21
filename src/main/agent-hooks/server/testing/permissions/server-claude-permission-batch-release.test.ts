@@ -35,7 +35,7 @@ async function replayToRow(events: readonly HookEvent[]): Promise<{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-Orca-Agent-Hook-Token': env.ORCA_AGENT_HOOK_TOKEN
+          'X-Otodus-Agent-Hook-Token': env.ORCA_AGENT_HOOK_TOKEN
         },
         body: JSON.stringify(buildBody(event))
       })
@@ -296,7 +296,7 @@ describe('Claude permission wait that Claude denies itself', () => {
     expect(states.at(-1)).toBe('PostToolBatch:working')
   })
 
-  describe('with a wait Orca cannot identify', () => {
+  describe('with a wait Otodus cannot identify', () => {
     const childB = { agent_id: 'agent-b', agent_type: 'general-purpose' }
     const commandB = { command: 'touch /private/tmp/orca-permcap-b' }
     const childBDenial = [

@@ -12,7 +12,7 @@ function isTerminalTab(state: AppState, tabId: string): boolean {
   return Object.values(state.tabsByWorktree).some((tabs) => tabs.some((tab) => tab.id === tabId))
 }
 
-// Why three sources: Orca-launched tabs, hook-reported agents (SSH too), and an agent typed in a local pane.
+// Why three sources: Otodus-launched tabs, hook-reported agents (SSH too), and an agent typed in a local pane.
 function hasAgentTerminal(state: AppState, agent: NoticeAgent): boolean {
   return (
     Object.values(state.tabsByWorktree).some((tabs) =>

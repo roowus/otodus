@@ -37,7 +37,7 @@ export function allowNativeBrowserPopup(input: {
   opener: WebContents
   options: Electron.BrowserWindowConstructorOptions
   background?: boolean
-  // An agent's input opened it, so it must not bring Orca forward.
+  // An agent's input opened it, so it must not bring Otodus forward.
   showWhenAppActive?: boolean
   canPresent?: () => boolean
   onCreated: (options: PopupChildWindowOptions) => WebContents

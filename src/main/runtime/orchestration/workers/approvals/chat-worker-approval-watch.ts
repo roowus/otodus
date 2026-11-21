@@ -1,5 +1,5 @@
-/** Chat approvals Orca reported open. Each closes as soon as its journal item settles: answered in
- *  the worker's own chat, or gone. Orca's own answers write their closing lines themselves. */
+/** Chat approvals Otodus reported open. Each closes as soon as its journal item settles: answered in
+ *  the worker's own chat, or gone. Otodus's own answers write their closing lines themselves. */
 import type { JournalPublication } from '../../../../native-chat/agent-session-wire/host/structured-agent-session-conversations'
 import { getStructuredAgentSessionHost } from '../../../../native-chat/agent-session-wire/host/structured-agent-session-registry'
 import { subscribeForRedrive } from '../../mailbox/structured-pointer/structured-session-journal-redrive'

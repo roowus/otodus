@@ -148,7 +148,7 @@ async function stagedUpdate(): Promise<Staged> {
   updater.downloadUpdate()
   autoUpdaterMock.emit('update-downloaded', {
     version: '1.0.61',
-    downloadedFile: join(tmpdir(), 'Orca-1.0.61.AppImage'),
+    downloadedFile: join(tmpdir(), 'Otodus-1.0.61.AppImage'),
     files: []
   })
   if (process.platform === 'darwin') {

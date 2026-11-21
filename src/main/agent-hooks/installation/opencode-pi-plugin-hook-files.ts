@@ -10,7 +10,7 @@ import { ORCA_PI_AGENT_STATUS_EXTENSION_FILE } from '../../pi/managed-extensions
 import { ORCA_PI_PREFILL_EXTENSION_FILE } from '../../pi/managed-extensions/prefill-extension-source'
 import { ORCA_PI_EXTENSION_FILE } from '../../pi/managed-extensions/titlebar-extension-source'
 
-/** OpenCode and Pi load Orca's status code as plugin files, outside the hook registry. */
+/** OpenCode and Pi load Otodus's status code as plugin files, outside the hook registry. */
 export type PluginHookAgent = 'opencode' | 'pi' | 'omp' | 'prime-agent'
 
 export type PluginHookFiles = { agent: PluginHookAgent; paths: string[] }
@@ -19,7 +19,7 @@ export type PluginHookRemoval = PluginHookFiles & { error: string | null }
 
 type Locations = { homeDir?: string; openCodeConfigDir?: string }
 
-// Every generated OpenCode plugin reads Orca's hook endpoint variables.
+// Every generated OpenCode plugin reads Otodus's hook endpoint variables.
 const OPENCODE_MARKER = 'ORCA_AGENT_HOOK_'
 const PI_MARKER = '@orca-managed-pi-extension'
 const OPENCODE_PLUGIN_FILES = [ORCA_OPENCODE_PLUGIN_FILE, 'orca-opencode2-status.js']
@@ -55,7 +55,7 @@ function openCodeCandidates(configDir: string): string[] {
   ])
 }
 
-/** Only files carrying Orca's marker; a user's file with the same name is never listed. */
+/** Only files carrying Otodus's marker; a user's file with the same name is never listed. */
 export async function findPluginHookFiles(locations: Locations = {}): Promise<PluginHookFiles[]> {
   const home = locations.homeDir ?? homedir()
   const configDir = locations.openCodeConfigDir ?? resolveOpenCodeConfigDirectory()

@@ -75,8 +75,8 @@ function removeCalls(exec: ExecMock): string[][] {
 }
 
 describe('reconcileOrphanedPrRemotesWithExec', () => {
-  it('leaves a remote alone when no worktree metadata ever proves Orca created it (user-created, ambiguous)', async () => {
-    // Remote naming alone does not establish Orca ownership.
+  it('leaves a remote alone when no worktree metadata ever proves Otodus created it (user-created, ambiguous)', async () => {
+    // Remote naming alone does not establish Otodus ownership.
     const exec = makeExec({ remotes: remoteLines([{ name: FORK_REMOTE, url: FORK_URL }]) })
     const reclaimed = await reconcileOrphanedPrRemotesWithExec(
       REPO_PATH,

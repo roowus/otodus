@@ -1,4 +1,4 @@
-/** A terminal worker's prompt is answerable only while Orca holds its hook, and holds live in
+/** A terminal worker's prompt is answerable only while Otodus holds its hook, and holds live in
  *  memory: after a restart, a prompt still open in the mailbox can no longer be answered here. */
 import type { OrchestrationDb } from '../../db/orchestration-db'
 import {

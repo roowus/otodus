@@ -36,7 +36,7 @@ export function codexMirrorSourceDeclaring(codexHome: string, server: string): s
   }
   const config = observeAgentStateFile(join(source, 'config.toml'))
   if (baseline.kind === 'indeterminate' || config.kind === 'indeterminate') {
-    throw new Error("Orca couldn't read your Codex settings. Try again.")
+    throw new Error("Otodus couldn't read your Codex settings. Try again.")
   }
   if (config.kind === 'absent') {
     return null

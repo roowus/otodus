@@ -74,7 +74,7 @@ export const COMPUTER_HANDLERS: Record<string, CommandHandler> = {
           ? `Next: ${value.nextStep}`
           : 'Computer Use permissions are already granted.',
         value.launchedHelper
-          ? 'Use the Allow buttons or drag "Orca Computer Use" into the macOS permission list.'
+          ? 'Use the Allow buttons or drag "Otodus Computer Use" into the macOS permission list.'
           : null
       ]
         .filter((line) => line !== null)
@@ -112,7 +112,7 @@ export const COMPUTER_HANDLERS: Record<string, CommandHandler> = {
     ) {
       throw new RuntimeClientError(
         'unsupported_capability',
-        'This Orca runtime cannot read one element subtree; update Orca, or run get-app-state without --element-index'
+        'This Orca runtime cannot read one element subtree; update Otodus, or run get-app-state without --element-index'
       )
     }
     if (query !== undefined || maxElements !== undefined) {
@@ -294,9 +294,9 @@ function permissionSetupHeadline(result: {
   launchQueued?: boolean
 }): string {
   if (result.launchQueued) {
-    return 'Queued Orca Computer Use permission setup; a newer request or a reset may replace it.'
+    return 'Queued Otodus Computer Use permission setup; a newer request or a reset may replace it.'
   }
   return result.launchedHelper
-    ? 'Opened Orca Computer Use permission setup.'
+    ? 'Opened Otodus Computer Use permission setup.'
     : 'Computer Use permissions checked.'
 }

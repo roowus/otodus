@@ -11,7 +11,7 @@ export type AgentJournalPlanApprovalSubject = {
   filePath?: string
 }
 
-/** A page the agent asks the person to open outside Orca, such as an MCP server's sign-in. Only
+/** A page the agent asks the person to open outside Otodus, such as an MCP server's sign-in. Only
  *  http(s) URLs are written. `completedAt` is set once the agent reports the page's work finished. */
 export type AgentJournalUrlApprovalSubject = {
   kind: 'url'
@@ -23,7 +23,7 @@ declare const agentJournalUnknownKind: unique symbol
 /** A kind tag this build does not know. Branded, so it never stands in for a known tag. */
 export type AgentJournalUnknownKind = string & { readonly [agentJournalUnknownKind]: true }
 
-/** A subject of a kind a newer Orca wrote: carried as it was, with whatever fields it holds, and
+/** A subject of a kind a newer Otodus wrote: carried as it was, with whatever fields it holds, and
  *  never drawn or approved here. */
 export type AgentJournalUnknownApprovalSubject = { readonly kind: AgentJournalUnknownKind }
 

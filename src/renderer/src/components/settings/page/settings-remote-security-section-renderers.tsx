@@ -29,7 +29,7 @@ export function renderServersSettingsSection(
               )
             : t(
                 'auto.components.settings.Settings.remoteServersDescription',
-                'Run Orca on another machine and work on it from here.'
+                'Run Otodus on another machine and work on it from here.'
               )
         }
         searchEntries={navigation.getSectionSearchEntries('servers')}

@@ -25,7 +25,7 @@ const COLLAPSED_INPUT_LABEL = new RegExp(
 export function planNativeChatTerminalDraftPickup(args: {
   tabId: string
   agent: TuiAgent
-  /** The tab's launch draft, unless one Orca typed still owns the input line. */
+  /** The tab's launch draft, unless one Otodus typed still owns the input line. */
   current: NativeChatLaunchDraft | null
   /** The user's text on the agent's input line: '' when it is empty, null when unreadable. */
   terminalText: string | null
@@ -102,13 +102,13 @@ export function useNativeChatTerminalDraftPickup(args: {
     }
     const orcaDraft = launchDraft && !launchDraft.fromTerminal ? launchDraft : null
     const orcaDraftResolved = orcaDraft !== null && launchDraftResolved
-    // Whether a draft Orca typed was already sent is only known from a ready transcript.
+    // Whether a draft Otodus typed was already sent is only known from a ready transcript.
     if (orcaDraft && !orcaDraftResolved && !transcriptReady) {
       waitedForOrcaDraftRef.current = true
       return
     }
     pickedUpRef.current = true
-    // An unresolved draft Orca typed owns the line, and one gone unresolved was taken by a chat send whose clear may not have landed.
+    // An unresolved draft Otodus typed owns the line, and one gone unresolved was taken by a chat send whose clear may not have landed.
     // The seed is keyed by tab, so only its owning pane may read one (#16695).
     if (
       (orcaDraft && !orcaDraftResolved) ||

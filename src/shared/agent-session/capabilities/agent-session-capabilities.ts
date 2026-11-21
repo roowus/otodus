@@ -10,7 +10,7 @@ export type AgentSessionCapabilities = {
   compactInstructions?: boolean
   /** `/compact` runs while background tasks keep running; absent, it waits for them to end. */
   compactBesideBackgroundTasks?: boolean
-  /** `/mcp` opens Orca's panel for the agent's MCP servers (`agentSession.mcp`). */
+  /** `/mcp` opens Otodus's panel for the agent's MCP servers (`agentSession.mcp`). */
   mcpServers?: boolean
   /** A goal the user can set and change on the thread. */
   threadGoal: boolean
@@ -19,7 +19,7 @@ export type AgentSessionCapabilities = {
   /** Prompts may carry images. */
   imagePrompts: boolean
   /** A message sent while a turn runs: handed to the running agent at once (`inject`), or held by
-   *  Orca and sent as the next prompt once the turn ends (`queue`). */
+   *  Otodus and sent as the next prompt once the turn ends (`queue`). */
   steering: 'inject' | 'queue'
   /** provider enforces its launch permission setting; orca answers emitted requests by the session setting. Provider settings still control when requests are emitted, so this is not sandboxing. */
   approvalEnforcement: 'provider' | 'orca'

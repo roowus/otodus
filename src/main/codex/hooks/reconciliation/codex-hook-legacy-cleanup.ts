@@ -105,7 +105,7 @@ async function sweepLegacySystemManagedHooks(): Promise<void> {
           resolveHooksJsonWritePath(legacyConfigPath) !== hooksWritePath
         ) {
           // Refuse to overwrite a concurrent save with this stale parse.
-          throw new Error('System Codex hooks changed since Orca read them')
+          throw new Error('System Codex hooks changed since Otodus read them')
         }
         writeHooksJson(hooksWritePath, { ...config, hooks: nextHooks }, { preserveMode: true })
       }

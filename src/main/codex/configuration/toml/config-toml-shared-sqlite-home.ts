@@ -6,10 +6,10 @@ import {
   updateTomlLineScanState
 } from './config-toml-line-scan'
 
-// An account home's databases live with the shared history store; the line is Orca's, per home.
+// An account home's databases live with the shared history store; the line is Otodus's, per home.
 export const CODEX_SHARED_SQLITE_HOME_MARKER = '# orca: Codex history shared across accounts'
 
-/** Remove Orca's line so it never reaches the user's own ~/.codex config. */
+/** Remove Otodus's line so it never reaches the user's own ~/.codex config. */
 export function stripCodexSharedSqliteHome(config: string): string {
   if (!config.includes(CODEX_SHARED_SQLITE_HOME_MARKER)) {
     return config
@@ -27,7 +27,7 @@ export function stripCodexSharedSqliteHome(config: string): string {
   return kept.join('\n')
 }
 
-/** The store path in Orca's own line, or null when the config has none. */
+/** The store path in Otodus's own line, or null when the config has none. */
 export function readCodexSharedSqliteHome(config: string): string | null {
   const line = findTopLevelSqliteHomeLine(config)
   if (line) {
@@ -44,7 +44,7 @@ export function readCodexSharedSqliteHome(config: string): string | null {
   return null
 }
 
-/** The top-level sqlite_home line (the user's or Orca's), or null when the config has none. */
+/** The top-level sqlite_home line (the user's or Otodus's), or null when the config has none. */
 function findTopLevelSqliteHomeLine(config: string): string | null {
   let scan = createTomlLineScanState()
   for (const line of config.split('\n')) {
@@ -73,7 +73,7 @@ export function readCodexConfiguredSqliteHome(config: string): string | null {
   return (line && parseTomlSingleLineStringValue(line, line.indexOf('=') + 1)?.value) || null
 }
 
-/** Points Codex's databases at `sqliteHome` unless the user's own config sets one; null removes Orca's line. */
+/** Points Codex's databases at `sqliteHome` unless the user's own config sets one; null removes Otodus's line. */
 export function applyCodexSharedSqliteHome(config: string, sqliteHome: string | null): string {
   const stripped = stripCodexSharedSqliteHome(config)
   if (sqliteHome === null || hasTopLevelSqliteHome(stripped)) {

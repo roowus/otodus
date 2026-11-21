@@ -2,7 +2,7 @@ import type { GlobalSettings } from '../../../../../shared/settings/global-setti
 import type { AgentDashboardMode } from '../../../../../shared/ui-chrome/ui-chrome-types'
 import { isPairedWebClientWindow } from '@/app-shell/chrome/desktop-window-chrome'
 
-/** A browser tab cannot open a second Orca window, so a web client only has the in-window board. */
+/** A browser tab cannot open a second Otodus window, so a web client only has the in-window board. */
 export function canOpenAgentDashboardPopout(): boolean {
   return !isPairedWebClientWindow()
 }

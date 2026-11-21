@@ -155,7 +155,7 @@ export type RpcContext = {
   replayedMutationReceipt?: unknown
   // Compare declared Run handles against request attestation.
   orchestrationCompatibilityEvidence?: OrchestrationCompatibilityEvidence
-  // Resolved once at dispatch from a session's environment or a paired Orca's pairing; it wins.
+  // Resolved once at dispatch from a session's environment or a paired Otodus's pairing; it wins.
   orchestrationCaller?: OrchestrationEntryCaller
   // Only the trusted compatibility router sets this; params cannot bypass Run consumer binding.
   legacyCoordinatorRunId?: string

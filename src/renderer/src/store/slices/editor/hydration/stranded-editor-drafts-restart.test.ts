@@ -6,7 +6,7 @@ import type { AppState } from '@/store/types'
 import type { WorkspaceSessionState } from '../../../../../../shared/workspace-session/workspace-session-state-types'
 import { buildWorkspaceSessionPayload } from '../../../../lib/workspace/persistence/workspace-session'
 
-describe('an unsaved draft whose workspace folder disappeared while Orca was closed', () => {
+describe('an unsaved draft whose workspace folder disappeared while Otodus was closed', () => {
   it('is still in the session the window saves after restoring', () => {
     useAppStore.setState(useAppStore.getInitialState(), true)
     useAppStore.setState(

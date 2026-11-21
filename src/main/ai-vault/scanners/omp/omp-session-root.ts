@@ -31,7 +31,7 @@ export function resolveOmpSessionsDir(
   const env = options.env ?? process.env
   const home = options.homeDir ?? homedir()
   const platform = options.platform ?? process.platform
-  // Orca's legacy override accepts a sessions root, agent root, or .omp root.
+  // Otodus's legacy override accepts a sessions root, agent root, or .omp root.
   if (env.OMP_CODING_AGENT_DIR?.trim()) {
     return safeRoot(normalizeAgentSessionsDir(env.OMP_CODING_AGENT_DIR, '.omp'))
   }
@@ -68,7 +68,7 @@ export function resolveOmpSessionsDir(
   return safeRoot(join(agentDir, 'sessions'))
 }
 
-/** Existing session dirs of named profiles: each OMP run picks its profile from its own env, not Orca's. */
+/** Existing session dirs of named profiles: each OMP run picks its profile from its own env, not Otodus's. */
 export function ompProfileSessionsDirs(
   options: {
     env?: NodeJS.ProcessEnv

@@ -7,12 +7,12 @@ import { selectPluginTestNode, type PluginTestNode } from './plugin-test-node'
 
 /** Plugin test files `orca plugin test` runs. */
 export const PLUGIN_TEST_FILE = /\.test\.(?:tsx?|mts|jsx?|mjs)$/i
-// Not plugin sources: dependencies, Orca's own generated files, VCS and build output.
+// Not plugin sources: dependencies, Otodus's own generated files, VCS and build output.
 const SKIPPED_DIRS = new Set(['node_modules', '.orca', '.git', 'dist', 'out', 'coverage'])
 
 const defaultAppRoot = (): string => join(__dirname, '..', '..', '..', '..')
 
-/** The files Orca ships for testing components panels, from the app this CLI belongs to. */
+/** The files Otodus ships for testing components panels, from the app this CLI belongs to. */
 export function pluginTestingFiles(appRoot = defaultAppRoot()) {
   const dir = join(appRoot, 'resources', 'plugins', 'declarative')
   return {
@@ -49,7 +49,7 @@ export function pluginTestRunner(dir: string): { runner: PluginTestRunner; entry
   return existsSync(vitest) ? { runner: 'vitest', entry: vitest } : { runner: 'node' }
 }
 
-/** A Vite config that resolves `orca` like the guest's import map and transpiles like Orca. */
+/** A Vite config that resolves `orca` like the guest's import map and transpiles like Otodus. */
 export function pluginVitestConfig(files: ReturnType<typeof pluginTestingFiles>): string {
   const url = (path: string): string => JSON.stringify(pathToFileURL(path).href)
   const path = (value: string): string => JSON.stringify(value)
@@ -106,7 +106,7 @@ export async function runPluginTests(options: {
   if (selected.runner === 'vitest' && selected.entry) {
     const configDir = join(options.dir, '.orca', 'test')
     await mkdir(configDir, { recursive: true })
-    // `.orca/` is Orca's generated folder; it keeps itself out of Git.
+    // `.orca/` is Otodus's generated folder; it keeps itself out of Git.
     if (!existsSync(join(options.dir, '.orca', '.gitignore'))) {
       await writeFile(join(options.dir, '.orca', '.gitignore'), '*\n')
     }

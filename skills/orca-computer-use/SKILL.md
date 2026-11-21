@@ -7,7 +7,7 @@ description: >-
   in native apps and external browser windows (Chrome, Edge, Safari) or webviews.
   Prefer a programmatic path (shell, filesystem, git, HTTP, existing CLIs) whenever
   it can complete the task. Use only when an app window needs GUI control those
-  cannot reach. Do not use for Orca's embedded browser (`orca-cli`).
+  cannot reach. Do not use for Otodus's embedded browser (`orca-cli`).
 ---
 
 # Orca Computer Use

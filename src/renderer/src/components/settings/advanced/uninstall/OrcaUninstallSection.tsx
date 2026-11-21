@@ -64,8 +64,8 @@ function OrcaUninstallSummary({
     return (
       <>
         {model.loadFailed
-          ? t('settings.uninstall.loadFailed', 'Orca could not check what it installed.')
-          : t('settings.uninstall.summary.loading', 'Checking what Orca installed…')}
+          ? t('settings.uninstall.loadFailed', 'Otodus could not check what it installed.')
+          : t('settings.uninstall.summary.loading', 'Checking what Otodus installed…')}
       </>
     )
   }
@@ -76,7 +76,7 @@ function OrcaUninstallSummary({
         <>
           {t(
             'settings.uninstall.summary.stillInUse',
-            'Some Orca files are still in use, so they stay for now.'
+            'Some Otodus files are still in use, so they stay for now.'
           )}
         </>
       )
@@ -110,7 +110,7 @@ export function OrcaUninstallPanel({ model }: { model: OrcaUninstallModel }): Re
   const t = useTranslate()
   return (
     <SettingsGroupDisclosure
-      label={t('settings.uninstall.title', 'Uninstall Orca')}
+      label={t('settings.uninstall.title', 'Uninstall Otodus')}
       summary={<OrcaUninstallSummary model={model} />}
     >
       <div className="divide-y divide-border border-t border-border">

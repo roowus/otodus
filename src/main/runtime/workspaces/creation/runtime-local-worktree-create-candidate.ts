@@ -136,7 +136,7 @@ export async function resolveRuntimeLocalWorktreeCreateCandidate(args: {
       computeWorktreePath(effectiveSanitizedName, args.repo.path, args.worktreePathSettings),
       args.workspaceRoot
     )
-    // Orca owns the path until background removal settles, and while it is archived.
+    // Otodus owns the path until background removal settles, and while it is archived.
     return (
       !isWorktreePathReserved(args.store, args.repo, worktreePath) &&
       !(await runtimePathExists(worktreePath)) &&

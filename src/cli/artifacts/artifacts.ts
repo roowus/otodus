@@ -150,7 +150,7 @@ function requireOperation<T>(operation: ArtifactCloudOperation<T>): T {
     return operation.value
   }
   if (operation.status === 'reconnect-required') {
-    throw new RuntimeClientError('authentication_required', 'Sign in to Orca and try again.')
+    throw new RuntimeClientError('authentication_required', 'Sign in to Otodus and try again.')
   }
   throw new RuntimeClientError('authentication_unconfigured', operation.message)
 }

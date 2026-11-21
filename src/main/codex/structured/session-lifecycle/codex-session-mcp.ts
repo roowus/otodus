@@ -156,7 +156,7 @@ export function manageCodexSessionMcp(
       }
       case 'toggle':
         if (!CODEX_MCP_TOML_KEY.test(operation.server)) {
-          throw new Error(`Orca can't turn ${operation.server} on or off.`)
+          throw new Error(`Otodus can't turn ${operation.server} on or off.`)
         }
         return ok(await toggle(record, live, operation.server, operation.enabled))
     }

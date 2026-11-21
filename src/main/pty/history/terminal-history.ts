@@ -205,7 +205,7 @@ export function injectHistoryEnv(
   cwd: string,
   options: { wslDistro?: string | null } = {}
 ): HistoryInjectionResult {
-  // Nested Orca launches inherit this value; clear it before any early return to prevent history leaks.
+  // Nested Otodus launches inherit this value; clear it before any early return to prevent history leaks.
   delete spawnEnv.ORCA_HISTFILE
   dropInheritedOrcaFishHistory(spawnEnv)
   dropInheritedOrcaHistFile(spawnEnv)
@@ -223,7 +223,7 @@ export function injectHistoryEnv(
     return result
   }
 
-  // Preserve caller-provided history settings after dropping inherited Orca values.
+  // Preserve caller-provided history settings after dropping inherited Otodus values.
   if (shell === 'fish' ? spawnEnv.fish_history : spawnEnv.HISTFILE) {
     return result
   }
@@ -267,7 +267,7 @@ export function injectWslFishHistoryEnv(
   worktreeId: string,
   wslDistro: string
 ): string | null {
-  // Drop inherited Orca sessions even when the caller did not run injectHistoryEnv first.
+  // Drop inherited Otodus sessions even when the caller did not run injectHistoryEnv first.
   dropInheritedOrcaFishHistory(spawnEnv)
   if (spawnEnv.fish_history) {
     return null

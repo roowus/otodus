@@ -268,7 +268,7 @@ function AgentCapabilitySetupControls(props: {
               (props.installAction?.kind === 'replace'
                 ? t(
                     'auto.components.settings.AgentSkillSetupPanel.replaceWithOrcaCopy',
-                    "Replace with Orca's copy"
+                    "Replace with Otodus's copy"
                   )
                 : props.installAction?.kind === 'run' && props.installAction.changes
                   ? bundledSkillSetupActionLabel(props.installAction.changes, t)

@@ -69,7 +69,7 @@ export function inetAtonIPv4(host: string): string | null {
   return [24, 16, 8, 0].map((shift) => Math.floor(packed / 2 ** shift) % 256).join('.')
 }
 
-// Unspecified addresses dial the host itself, so they count as self for Orca's own listeners.
+// Unspecified addresses dial the host itself, so they count as self for Otodus's own listeners.
 const SELF_RULES: readonly BlockRule[] = [
   ['127.0.0.0', 8, 'ipv4'],
   ['::ffff:127.0.0.0', 104, 'ipv6'],
@@ -125,7 +125,7 @@ function ownAddressList(interfaces: NodeJS.Dict<NetworkInterfaceInfo[]>): BlockL
 
 const orcaListenerPorts = new Map<number, number>()
 
-/** Marks a host port as an Orca control/proxy listener that paired browser tunnels must not reach. */
+/** Marks a host port as an Otodus control/proxy listener that paired browser tunnels must not reach. */
 export function reserveBrowserTunnelOrcaListenerPort(port: number): () => void {
   orcaListenerPorts.set(port, (orcaListenerPorts.get(port) ?? 0) + 1)
   let released = false

@@ -5,7 +5,7 @@ import type { BundledSkillFilesystem } from './bundled-skill-filesystem'
 const SHA256_HEX = /^[0-9a-f]{64}$/u
 
 /**
- * Why on the planned host's disk, not in userData: every Orca build on a host (installed app,
+ * Why on the planned host's disk, not in userData: every Otodus build on a host (installed app,
  * dev builds, a CLI, a paired server) shares one skills folder but has its own userData. A build
  * reads what the others wrote, so a copy a newer build installed is not mistaken for a user edit.
  */
@@ -13,7 +13,7 @@ function writtenDigestPath(homeDirectory: string, name: string, digest: string):
   return join(homeDirectory, '.agents', '.orca-skill-digests', name, digest)
 }
 
-/** Whether some Orca build on this host installed `SKILL.md` text with this digest. */
+/** Whether some Otodus build on this host installed `SKILL.md` text with this digest. */
 export async function wasBundledSkillDigestWritten(
   filesystem: BundledSkillFilesystem,
   homeDirectory: string,
@@ -43,7 +43,7 @@ export async function recordBundledSkillDigestWritten(
     .catch(() => undefined)
 }
 
-/** An unknown single-file copy whose bytes some Orca build on this host wrote: not a user edit. */
+/** An unknown single-file copy whose bytes some Otodus build on this host wrote: not a user edit. */
 export async function isOtherBuildCopy(
   filesystem: BundledSkillFilesystem,
   destination: { homeDirectory: string },

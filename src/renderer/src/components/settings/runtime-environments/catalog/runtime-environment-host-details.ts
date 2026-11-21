@@ -57,7 +57,7 @@ export function getHostDetailsSummary(details: RuntimeHostDetails | undefined): 
   if (details.runtimeStatus === null && details.compatibility === null) {
     return translate(
       'auto.components.settings.RuntimeEnvironmentsPane.serverRuntimeUnavailable',
-      'Orca unavailable'
+      'Otodus unavailable'
     )
   }
   if (details.compatibility?.kind === 'blocked') {
@@ -220,7 +220,7 @@ export function getRuntimeServerConnectionLabel(
     case 'runtime-unavailable':
       return t(
         'auto.components.settings.RuntimeEnvironmentsPane.serverRuntimeUnavailable',
-        'Orca unavailable'
+        'Otodus unavailable'
       )
     case 'workspace-window-closed':
       return t(

@@ -62,7 +62,7 @@ function sessionResponse(): Response {
   )
 }
 
-describe('Orca sign-in browser page', () => {
+describe('Otodus sign-in browser page', () => {
   beforeEach(() => {
     userDataPath = mkdtempSync(join(tmpdir(), 'orca-cloud-callback-outcome-'))
     vi.stubEnv('ORCA_CLOUD_API_URL', 'https://orca-cloud.example')
@@ -89,7 +89,7 @@ describe('Orca sign-in browser page', () => {
     expect(result.status).toBe('failed')
     expect(result.auth.state).toBe('local')
     expect(page.statusCode).toBe(500)
-    expect(page.body).not.toContain('Signed in to Orca')
+    expect(page.body).not.toContain('Signed in to Otodus')
     expect(page.body).toContain('orca_cloud_request_failed_503')
   })
 
@@ -105,7 +105,7 @@ describe('Orca sign-in browser page', () => {
 
     expect(result.status).toBe('connected')
     expect(page.statusCode).toBe(200)
-    expect(page.body).toContain('Signed in to Orca')
+    expect(page.body).toContain('Signed in to Otodus')
   })
 
   it('shows a neutral cancelled page when sign-out lands during the code exchange', async () => {
@@ -126,7 +126,7 @@ describe('Orca sign-in browser page', () => {
     expect(result.status).toBe('cancelled')
     expect(result.auth.state).toBe('local')
     expect(page.statusCode).toBe(200)
-    expect(page.body).toContain('<h1>Orca sign-in was cancelled</h1>')
+    expect(page.body).toContain('<h1>Otodus sign-in was cancelled</h1>')
     expect(page.body).toContain('class="mark neutral"')
   })
 
@@ -158,10 +158,10 @@ describe('Orca sign-in browser page', () => {
     const firstPage = await firstTab
 
     expect(secondResult.status).toBe('connected')
-    expect(secondPage.body).toContain('Signed in to Orca')
+    expect(secondPage.body).toContain('Signed in to Otodus')
     expect(firstResult.status).toBe('cancelled')
     expect(firstResult.auth.state).toBe('connected')
     expect(firstPage.statusCode).toBe(200)
-    expect(firstPage.body).toContain('Signed in to Orca')
+    expect(firstPage.body).toContain('Signed in to Otodus')
   })
 })

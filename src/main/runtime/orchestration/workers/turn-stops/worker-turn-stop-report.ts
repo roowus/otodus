@@ -28,7 +28,7 @@ export type WorkerTurnStop = {
   lastOutput: string | undefined
   /** For `needs-input`: the turn ended asking for a reply, which a message answers; else a prompt does. */
   awaitsReply?: boolean
-  /** A permission prompt Orca can answer; its id keys the report. */
+  /** A permission prompt Otodus can answer; its id keys the report. */
   approval?: WorkerApprovalPayload
   /** When the stopping turn began, on this host's clock; absent when unknown, which mutes nothing. */
   turnStartedAt?: number
@@ -139,7 +139,7 @@ function describeNextStep(
     ]
   }
   if (stop.settled === 'failed') {
-    // A Task Orca put back to ready starts afresh; --retry-of takes only a failed or blocked one.
+    // A Task Otodus put back to ready starts afresh; --retry-of takes only a failed or blocked one.
     const start = `orchestration worker-start --task ${taskId}${taskReady ? '' : ` --retry-of ${dispatchId}`}`
     return [
       `Its Dispatch is closed as failed. Start it again with your Orca CLI's \`${start}\` and the same placement and agent, or tell the user.`
@@ -166,10 +166,10 @@ function describeNextStep(
       ...given,
       `${
         chatCoordinator
-          ? `The user has been shown ${shown} in your chat in Orca.`
+          ? `The user has been shown ${shown} in your chat in Otodus.`
           : where === 'chat'
-            ? `Your chat has no approval card for it; only the worker's own chat in Orca shows it. Tell the user that worker ${stop.from} is waiting for permission in its chat.`
-            : `No one has been shown this prompt in Orca. Tell the user that worker ${stop.from} is waiting for permission in its terminal.`
+            ? `Your chat has no approval card for it; only the worker's own chat in Otodus shows it. Tell the user that worker ${stop.from} is waiting for permission in its chat.`
+            : `No one has been shown this prompt in Otodus. Tell the user that worker ${stop.from} is waiting for permission in its terminal.`
       } Don't block on it: carry on with other work. You'll get a message when it's answered. Don't message this worker until then.`,
       allowedActions.includes('deny')
         ? `If this is holding up the task, deny it with a reason so the worker continues another way: \`orchestration deny --dispatch ${dispatchId} --prompt ${approvalId} --reason "<what to do instead>"\`.`

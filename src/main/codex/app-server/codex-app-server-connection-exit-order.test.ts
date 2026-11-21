@@ -92,7 +92,7 @@ describe('Codex app-server exit order', () => {
         return
       }
       const { id } = asked
-      // The exit is seen first; the answer's last chunk reaches Orca only afterwards.
+      // The exit is seen first; the answer's last chunk reaches Otodus only afterwards.
       child.emit('exit', 1, null)
       setImmediate(() =>
         child.stdout.write(

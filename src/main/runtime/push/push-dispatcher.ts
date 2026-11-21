@@ -108,7 +108,7 @@ export class PushDispatcher {
           notificationEpoch: target.notificationEpoch,
           source: 'agent-task-complete',
           agentState: null,
-          title: 'Orca',
+          title: 'Otodus',
           body: '',
           sound: false
         }

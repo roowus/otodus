@@ -111,7 +111,7 @@ function fallbackQuestionRequest(params: unknown): AcpRequestPresentation | unde
   }
 }
 
-const TOO_MANY_QUESTIONS = `Orca shows at most ${MAX_JOURNAL_GROUPED_PROMPT_QUESTIONS} questions at once; ask again with at most ${MAX_JOURNAL_GROUPED_PROMPT_QUESTIONS}.`
+const TOO_MANY_QUESTIONS = `Otodus shows at most ${MAX_JOURNAL_GROUPED_PROMPT_QUESTIONS} questions at once; ask again with at most ${MAX_JOURNAL_GROUPED_PROMPT_QUESTIONS}.`
 
 function settleRequest(method: string, params: unknown): AcpRequestSettlement | undefined {
   if (REPORTS.includes(method)) {

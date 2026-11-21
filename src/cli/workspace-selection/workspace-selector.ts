@@ -70,7 +70,7 @@ export async function resolveCurrentWorktreeSelection(
   if (!selection) {
     throw new RuntimeClientError(
       'selector_not_found',
-      `No Orca workspace contains the current directory: ${resolvePath(cwd)}`
+      `No Otodus workspace contains the current directory: ${resolvePath(cwd)}`
     )
   }
   return selection
@@ -152,6 +152,6 @@ export async function getBrowserWorktreeSelector(
   if (enclosing || isLaunchedByAnotherRuntime(process.env, client.userDataPath)) {
     return enclosing?.selector
   }
-  // An Orca terminal knows its workspace; without this an unmanaged cwd lands in the focused one.
+  // An Otodus terminal knows its workspace; without this an unmanaged cwd lands in the focused one.
   return selectCallerTerminalWorkspace(catalog, hostId)
 }

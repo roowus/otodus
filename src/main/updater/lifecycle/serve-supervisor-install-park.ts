@@ -196,7 +196,7 @@ export async function commitServeSupervisorPark(
   if (now() + COMMIT_DEADLINE_MARGIN_MS >= activePark.record.parkDeadlineAt) {
     // Expired holds may have restarted servers that block ShipIt; abort installation.
     await releaseServeSupervisorPark()
-    throw new Error('Paused Orca serve services resumed before the install began.')
+    throw new Error('Paused Otodus serve services resumed before the install began.')
   }
   const record: ServeParkRecord = {
     ...activePark.record,
@@ -276,10 +276,10 @@ export function serveInstallRefusalMessage(
 ): string {
   const pids = result.pids.slice(0, 10).join(', ')
   if (result.reason === 'unresponsive') {
-    return `Background orca serve services (process IDs: ${pids}) did not pause for the update in time. Orca remains open; retry the update, or stop those services first.`
+    return `Background orca serve services (process IDs: ${pids}) did not pause for the update in time. Otodus remains open; retry the update, or stop those services first.`
   }
   if (result.reason === 'busy') {
-    return 'Another Orca window is already installing this update. Orca remains open; retry in a minute.'
+    return 'Another Otodus window is already installing this update. Otodus remains open; retry in a minute.'
   }
-  return `Close the other Orca instances (process IDs: ${pids}) before installing this update. Background orca serve instances also need to stop. Orca remains open; retry the update after closing them.`
+  return `Close the other Otodus instances (process IDs: ${pids}) before installing this update. Background orca serve instances also need to stop. Otodus remains open; retry the update after closing them.`
 }

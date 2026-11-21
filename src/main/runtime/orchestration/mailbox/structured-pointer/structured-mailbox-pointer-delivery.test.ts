@@ -201,7 +201,7 @@ function harness(options: { busy?: boolean; senderNames?: RuntimeOrchestrationSe
     get delivery() {
       return delivery
     },
-    /** Orca starting again over the same databases: nothing settled is remembered. */
+    /** Otodus starting again over the same databases: nothing settled is remembered. */
     restart: () => {
       delivery = start()
     },
@@ -345,7 +345,7 @@ describe('structured mailbox delivery across a real database close and reopen', 
       expect(db.getUnreadMessages(mailbox)).toMatchObject([
         {
           subject: 'Rejected worker_done: Done',
-          body: expect.stringContaining('Orca rejected this worker_done')
+          body: expect.stringContaining('Otodus rejected this worker_done')
         }
       ])
       expect(db.getStructuredMailSends(mailbox)).toEqual([])

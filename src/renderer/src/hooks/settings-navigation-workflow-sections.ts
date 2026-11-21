@@ -160,7 +160,7 @@ export function buildWorkflowSettingsSections(
             title: t('auto.hooks.useSettingsNavigationMetadata.1e761cff2b', 'Mobile Emulator'),
             description: t(
               'auto.hooks.useSettingsNavigationMetadata.3d65d3f1b9',
-              'Configure mobile emulator support for Orca and coding agents.'
+              'Configure mobile emulator support for Otodus and coding agents.'
             ),
             icon: TabletSmartphone,
             searchEntries: getMobileEmulatorSearchEntries(),

@@ -88,7 +88,7 @@ export function registerWorktreeHookCheckHandler(context: WorktreeIpcContext): v
 
       const has = hasHooksFile(repo.path)
       const hooks = scopeHooksToRepoKind(repo, has ? loadHooks(repo.path) : null)
-      // Well-formed unknown keys may come from a newer Orca; suggest updating instead of parse repair.
+      // Well-formed unknown keys may come from a newer Otodus; suggest updating instead of parse repair.
       const mayNeedUpdate = has && !hooks && hasUnrecognizedOrcaYamlKeys(repo.path)
       return {
         status: 'ok',

@@ -156,7 +156,7 @@ export function RemoteServerUpdateDialog(): React.JSX.Element {
           <DialogDescription>
             {t(
               'auto.components.settings.RemoteServerUpdateDialog.description',
-              'Review paired servers and update supported installs from this Orca client.'
+              'Review paired servers and update supported installs from this Otodus client.'
             )}
           </DialogDescription>
         </DialogHeader>

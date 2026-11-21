@@ -33,7 +33,7 @@ export type GuestShortcutForwardContext = {
   resolveWorkspaceId?: (browserTabId: string) => string | null
   forwardBrowserPageZoom: (event: Electron.Event, direction: BrowserPageZoomDirection) => void
   /** False for plugin frames: no address bar, history, find or page zoom, so zoom and the
-   *  sidebar chords go to Orca, and Close closes the active tab rather than a browser source. */
+   *  sidebar chords go to Otodus, and Close closes the active tab rather than a browser source. */
   browserPage?: boolean
 }
 
@@ -80,7 +80,7 @@ export function forwardGuestShortcutInput(
     })()
   if (action?.type === 'zoom') {
     if (!page) {
-      // Why: a plugin frame has no page zoom; Orca zooms what it would with focus outside a pane.
+      // Why: a plugin frame has no page zoom; Otodus zooms what it would with focus outside a pane.
       event.preventDefault()
       resolveRenderer(browserTabId)?.send('terminal:zoom', action.direction)
       return true
@@ -92,7 +92,7 @@ export function forwardGuestShortcutInput(
     if (
       forwardsDictation ||
       matchesPlugins ||
-      // Why: Orca claims a held tab chord on every repeat but acts once, so repeats never reach the page.
+      // Why: Otodus claims a held tab chord on every repeat but acts once, so repeats never reach the page.
       matchesGuestTabShortcut(
         input,
         process.platform,
@@ -246,7 +246,7 @@ export function forwardGuestShortcutInput(
       isMobileEmulatorEnabled?.() ?? true
     )
   ) {
-    // Why: replay into the renderer's own tab-shortcut handler so a page answers tab chords exactly as the rest of Orca does.
+    // Why: replay into the renderer's own tab-shortcut handler so a page answers tab chords exactly as the rest of Otodus does.
     const { key, code, alt, meta, control, shift, doubleTapModifier } = input
     const shortcut: BrowserPageTabShortcut = {
       key,

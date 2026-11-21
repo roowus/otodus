@@ -67,7 +67,7 @@ export function computerUseErrorRecoveryData(
     case 'provider_incompatible':
       return recoverWith(
         'Run `orca computer capabilities --json` and verify the local provider supports the requested operation.',
-        'Update Orca or use a supported platform/provider path before retrying.'
+        'Update Otodus or use a supported platform/provider path before retrying.'
       )
     case 'unsupported_capability':
       return recoverWith(
@@ -77,8 +77,8 @@ export function computerUseErrorRecoveryData(
     case 'permission_denied':
       if (message?.includes('target_elevated')) {
         return recoverWith(
-          'Do not retry: Windows blocks input from a non-administrator Orca to an app running as administrator.',
-          'Ask the user to handle this window, or to restart Orca as administrator if they want it to control elevated apps.'
+          'Do not retry: Windows blocks input from a non-administrator Otodus to an app running as administrator.',
+          'Ask the user to handle this window, or to restart Otodus as administrator if they want it to control elevated apps.'
         )
       }
       return recoverWith(

@@ -1,6 +1,6 @@
 import { originalPluginPosition } from './declarative-source-maps'
 
-/** Mirrors PLUGIN_FRAME_RESERVED_SEGMENT: Orca's own files (this runtime) are never the culprit. */
+/** Mirrors PLUGIN_FRAME_RESERVED_SEGMENT: Otodus's own files (this runtime) are never the culprit. */
 export const ORCA_RESERVED_PATH_PREFIX = '/__orca/'
 
 const STACK_FRAME_URL = /([a-z][a-z0-9+.-]*:\/\/[^\s()]+):(\d+):(\d+)\)?\s*$/i
@@ -13,7 +13,7 @@ function pageBase(): string | null {
 
 type PluginFrame = { path: string; line: number; column: number }
 
-/** The plugin file a stack line runs in, at its source position; null for Orca's or foreign code. */
+/** The plugin file a stack line runs in, at its source position; null for Otodus's or foreign code. */
 function pluginFrame(stackLine: string, base: string): PluginFrame | 'orca' | null {
   const match = STACK_FRAME_URL.exec(stackLine)
   const url = match?.[1]

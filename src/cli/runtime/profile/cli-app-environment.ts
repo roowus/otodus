@@ -9,7 +9,7 @@ import { createNodeServiceEnvironment } from '../../../main/backend/node-service
 import { readOrcaCliVersion } from '../../cli-version'
 import { getDefaultUserDataPath } from './metadata'
 
-/** Main hook code resolves Orca's userData (Claude profile homes) through this port. */
+/** Main hook code resolves Otodus's userData (Claude profile homes) through this port. */
 export function ensureCliAppEnvironment(scriptPath = process.argv[1] ?? ''): void {
   if (hasAppEnvironment()) {
     return

@@ -43,7 +43,7 @@ export function sshHostServerStatusLine(
       tone: 'warning',
       text: t(
         'auto.components.settings.sshHostServer.notServing',
-        'Orca couldn’t confirm that its server on {{host}} is answering.',
+        'Otodus couldn’t confirm that its server on {{host}} is answering.',
         { host: target.label }
       ),
       detail: status.serving.detail
@@ -121,7 +121,7 @@ function sourceChangedLine(t: Translate = translate): SshHostServerStatusLine {
     tone: 'warning',
     text: t(
       'auto.components.settings.sshHostServer.sourceChanged',
-      'This computer has projects or folders for this host that its Orca server doesn’t have yet, often added by an older version of Orca. Move them to this host’s Orca server, or keep the server’s version, to connect again.'
+      'This computer has projects or folders for this host that its Orca server doesn’t have yet, often added by an older version of Otodus. Move them to this host’s Orca server, or keep the server’s version, to connect again.'
     )
   }
 }
@@ -144,7 +144,7 @@ function unavailableLine(
       tone: 'destructive',
       text: t(
         'auto.components.settings.sshHostServer.unsupported',
-        'This host isn’t supported by this version of Orca ({{reason}}). To keep using it, install an older version of Orca.',
+        'This host isn’t supported by this version of Otodus ({{reason}}). To keep using it, install an older version of Otodus.',
         { reason: cause }
       )
     }
@@ -153,7 +153,7 @@ function unavailableLine(
     tone: 'destructive',
     text: t(
       'auto.components.settings.sshHostServer.unsupportedUnknown',
-      'This host isn’t supported by this version of Orca. To keep using it, install an older version of Orca.'
+      'This host isn’t supported by this version of Otodus. To keep using it, install an older version of Otodus.'
     ),
     ...(reason ? { detail: reason } : {})
   }
@@ -164,17 +164,17 @@ function unavailableCause(reason: string, t: Translate = translate): string | nu
     case 'unsupported_host':
       return t(
         'auto.components.settings.sshHostServer.cause.unsupportedHost',
-        'Orca has no server build for this system'
+        'Otodus has no server build for this system'
       )
     case 'artifacts_unavailable':
       return t(
         'auto.components.settings.sshHostServer.cause.artifactsUnavailable',
-        'this Orca build doesn’t include the server'
+        'this Otodus build doesn’t include the server'
       )
     case 'libc_unidentified':
       return t(
         'auto.components.settings.sshHostServer.cause.libcUnidentified',
-        'Orca couldn’t identify the host’s system libraries'
+        'Otodus couldn’t identify the host’s system libraries'
       )
     case 'runtime_self_test':
       return t(
@@ -201,7 +201,7 @@ function tunnelUnavailableLine(t: Translate = translate): SshHostServerStatusLin
     tone: 'destructive',
     text: t(
       'auto.components.settings.sshHostServer.tunnelUnsupported',
-      'This host isn’t supported by this version of Orca: its SSH server doesn’t allow port forwarding, and Orca couldn’t reach its server through the SSH session either. To keep using it, install an older version of Orca.'
+      'This host isn’t supported by this version of Otodus: its SSH server doesn’t allow port forwarding, and Otodus couldn’t reach its server through the SSH session either. To keep using it, install an older version of Otodus.'
     )
   }
 }
@@ -220,7 +220,7 @@ function contactLostLine(t: Translate = translate): SshHostServerStatusLine {
     tone: 'warning',
     text: t(
       'auto.components.settings.sshHostServer.setupContactLost',
-      'Orca lost contact with this host while setting up its server. Nothing on the host was stopped. Connect again to continue.'
+      'Otodus lost contact with this host while setting up its server. Nothing on the host was stopped. Connect again to continue.'
     )
   }
 }
@@ -230,7 +230,7 @@ function heldMoveLine(t: Translate = translate): SshHostServerStatusLine {
     tone: 'warning',
     text: t(
       'auto.components.settings.sshHostServer.moveHeld',
-      'Orca paused moving this host’s projects to its Orca server because it couldn’t confirm the server’s copy. Nothing is lost: the host keeps its projects and stays locked until the move finishes. Connect again to resume. If the server can’t come back, stop or forget it in Settings > Orca on your SSH hosts.'
+      'Otodus paused moving this host’s projects to its Orca server because it couldn’t confirm the server’s copy. Nothing is lost: the host keeps its projects and stays locked until the move finishes. Connect again to resume. If the server can’t come back, stop or forget it in Settings > Otodus on your SSH hosts.'
     )
   }
 }
@@ -277,16 +277,16 @@ function unservedLine(
         text: status.terminals
           ? t(
               'auto.components.settings.sshHostServer.olderTerminals',
-              '{{count}} terminals started by an older version of Orca are still running on this host, and they don’t stop on their own. Close them in that version of Orca or end them on the host, then reconnect.',
+              '{{count}} terminals started by an older version of Otodus are still running on this host, and they don’t stop on their own. Close them in that version of Otodus or end them on the host, then reconnect.',
               {
                 count: status.terminals,
                 defaultValue_one:
-                  '{{count}} terminal started by an older version of Orca is still running on this host, and it doesn’t stop on its own. Close it in that version of Orca or end it on the host, then reconnect.'
+                  '{{count}} terminal started by an older version of Otodus is still running on this host, and it doesn’t stop on its own. Close it in that version of Otodus or end it on the host, then reconnect.'
               }
             )
           : t(
               'auto.components.settings.sshHostServer.olderTerminalsUncounted',
-              'Terminals started by an older version of Orca are still running on this host, and they don’t stop on their own. Close them in that version of Orca or end them on the host, then reconnect.'
+              'Terminals started by an older version of Otodus are still running on this host, and they don’t stop on their own. Close them in that version of Otodus or end them on the host, then reconnect.'
             )
       }
     case 'relay_terminals_unverifiable':
@@ -294,7 +294,7 @@ function unservedLine(
         tone: 'warning',
         text: t(
           'auto.components.settings.sshHostServer.olderTerminalsUnverifiable',
-          'Orca couldn’t confirm that terminals started by an older version of Orca have exited. Reconnect to try again.'
+          'Otodus couldn’t confirm that terminals started by an older version of Otodus have exited. Reconnect to try again.'
         )
       }
     case 'orcad_unavailable':

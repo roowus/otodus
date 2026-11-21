@@ -36,7 +36,7 @@ export type BundledSkillInstallState =
       summary: BundledSkillResultSummary
       changes?: BundledSkillSetupChanges
     }
-  /** An older server ("Update Orca on the server"), or an SSH host no server serves yet. */
+  /** An older server ("Update Otodus on the server"), or an SSH host no server serves yet. */
   | { kind: 'unsupported'; reason: BundledSkillUnsupportedReason }
   /** The request itself failed; nothing says what reached the disk. */
   | { kind: 'failed'; message: string }

@@ -10,7 +10,7 @@ import { getBrowserExtensionSyncStorageStore } from '../profile-storage/browser-
 import type { BrowserExtensionProfileDocumentItems } from '../profile-storage/browser-extension-profile-document-store'
 
 /**
- * Electron disables chrome.storage.sync ("not available in this instance of Chrome"), so Orca
+ * Electron disables chrome.storage.sync ("not available in this instance of Chrome"), so Otodus
  * backs it here, on this machine, as Chrome does for a user who is not signed in. Main is the only
  * writer, so every change carries exact old values. A write returns its changes to the caller,
  * which fires its own listeners (a starting worker's write can reach main before its listen
@@ -19,7 +19,7 @@ import type { BrowserExtensionProfileDocumentItems } from '../profile-storage/br
  */
 const STORAGE_SYNC_NAMESPACE = 'orcaStorageSync'
 
-/** Chrome's sync limits Orca enforces; the preload exposes them (and the write rates) to extensions. */
+/** Chrome's sync limits Otodus enforces; the preload exposes them (and the write rates) to extensions. */
 export const STORAGE_SYNC_QUOTAS = {
   QUOTA_BYTES: 102_400,
   QUOTA_BYTES_PER_ITEM: 8192,

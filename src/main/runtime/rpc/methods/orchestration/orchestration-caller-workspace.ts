@@ -10,7 +10,7 @@ export async function resolveDispatchCallerWorktreeId(
   callerHandle: string,
   callerSession: OrchestrationEntryCaller | undefined
 ): Promise<string> {
-  // A paired Orca has no workspace here, so `current` and `new-child` refuse as for an unmanaged one.
+  // A paired Otodus has no workspace here, so `current` and `new-child` refuse as for an unmanaged one.
   if (callerSession?.kind === 'peer') {
     return PEER_COORDINATOR_HAS_NO_WORKSPACE
   }

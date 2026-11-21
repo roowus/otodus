@@ -31,7 +31,7 @@ import type { Worktree } from '../../worktree/types'
 import { getWorkspaceRowKindFacts } from '../../worktree/visibility/workspace-kinds'
 import { SMART_TIERS } from '../sorting/sort-stamps'
 
-/** A row's parent in another Orca store; a missing or unreadable record leaves the row standalone. */
+/** A row's parent in another Otodus store; a missing or unreadable record leaves the row standalone. */
 export const CrossStoreParentRecordSchema = z
   .custom<CrossStoreWorkspaceLineage>(isCrossStoreWorkspaceLineage)
   .optional()
@@ -69,7 +69,7 @@ export const WorkspaceRowSchema = z.object({
       parentWorktreeInstanceId: z.string()
     })
     .nullable(),
-  /** Saved parent in another Orca store; the reader resolves it (cross-store-lineage-resolution.ts). */
+  /** Saved parent in another Otodus store; the reader resolves it (cross-store-lineage-resolution.ts). */
   crossStoreParent: CrossStoreParentRecordSchema,
   /** Folder workspace parent in this store; null for none, absent from older hosts. */
   workspaceLineage: WorkspaceLineageEdgeSchema,

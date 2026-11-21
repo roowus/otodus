@@ -73,7 +73,7 @@ function buildStatus(configPath: string, config: HermesConfig): AgentHookInstall
   }
 }
 
-// Why: each named profile loads plugins and client_env_passthrough from its own home, so a copy there must track Orca's.
+// Why: each named profile loads plugins and client_env_passthrough from its own home, so a copy there must track Otodus's.
 function updateManagedProfiles(
   update: (content: string | null) => { content: string | null },
   onUpdated: (pluginDir: string) => void

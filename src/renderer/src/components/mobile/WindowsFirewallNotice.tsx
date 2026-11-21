@@ -95,7 +95,7 @@ export function WindowsFirewallNotice({
           toast.success(
             t(
               'auto.components.mobile.WindowsFirewallNotice.repair-success',
-              'Windows Firewall now allows Orca Mobile on private networks'
+              'Windows Firewall now allows Otodus Mobile on private networks'
             )
           )
           return
@@ -150,7 +150,7 @@ export function WindowsFirewallNotice({
                 : blockingRuleDetected
                   ? t(
                       'auto.components.mobile.WindowsFirewallNotice.blocked-title',
-                      'Windows may be blocking Orca Mobile'
+                      'Windows may be blocking Otodus Mobile'
                     )
                   : t(
                       'auto.components.mobile.WindowsFirewallNotice.missing-title',
@@ -161,17 +161,17 @@ export function WindowsFirewallNotice({
               {networkIsPublic
                 ? t(
                     'auto.components.mobile.WindowsFirewallNotice.public-description',
-                    'Change this trusted Wi-Fi network to Private before allowing Orca Mobile connections.'
+                    'Change this trusted Wi-Fi network to Private before allowing Otodus Mobile connections.'
                   )
                 : blockingRuleDetected
                   ? t(
                       'auto.components.mobile.WindowsFirewallNotice.blocked-description',
-                      'An existing inbound Block rule can override the pairing exception. Repair removes conflicting TCP rules for this Orca app, then allows port {{port}} on Private networks.',
+                      'An existing inbound Block rule can override the pairing exception. Repair removes conflicting TCP rules for this Otodus app, then allows port {{port}} on Private networks.',
                       { port: firewallStatus.port }
                     )
                   : t(
                       'auto.components.mobile.WindowsFirewallNotice.missing-description',
-                      'Windows may block the pairing server. Add a rule for this Orca app and TCP port {{port}} on Private networks.',
+                      'Windows may block the pairing server. Add a rule for this Otodus app and TCP port {{port}} on Private networks.',
                       { port: firewallStatus.port }
                     )}
             </p>

@@ -2,8 +2,8 @@ import type { OrcadPeerDesktopsResult } from '../../../../../shared/remote-runti
 import { sanitizeDeviceLabel } from '../../../../../shared/remote-runtime/pairing/device-key-proof'
 import type { DeviceEntry } from './device-entry'
 
-const UNNAMED_DESKTOP = 'another Orca'
-// Lost contact isn't proof an Orca left: a closed control socket still counts while it reconnects.
+const UNNAMED_DESKTOP = 'another Otodus'
+// Lost contact isn't proof an Otodus left: a closed control socket still counts while it reconnects.
 export const DECLARED_CLIENT_RECONNECT_GRACE_MS = 60_000
 
 type Declaration = { clientInstanceId: string; deviceId: string }

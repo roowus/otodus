@@ -120,7 +120,7 @@ export type CachedPluginAppTheme = {
   tokens: Record<string, string>
 }
 
-/** What an app theme paint needs: a plugin theme, or one Orca synthesizes (Match Terminal). */
+/** What an app theme paint needs: a plugin theme, or one Otodus synthesizes (Match Terminal). */
 export type AppThemePaint = Pick<PluginThemeRegistration, 'base' | 'tokens'> & {
   id: string
   revision: string

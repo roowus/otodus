@@ -82,7 +82,7 @@ export const ORCHESTRATION_CALLER_METHODS = [
               live: true
             }
           : null,
-      // An Orca-launched agent's own pane and launch secret prove it is one; no hook needs to have fired.
+      // An Otodus-launched agent's own pane and launch secret prove it is one; no hook needs to have fired.
       terminal:
         !orchestrationCaller &&
         runtime.verifyOrchestrationCompatibilityCaller(orchestrationCompatibilityEvidence, {
@@ -100,7 +100,7 @@ export const ORCHESTRATION_CALLER_METHODS = [
       if (!isOrcaSessionId(params.sessionId)) {
         throw new OrchestrationError(
           CODES.unknown,
-          `${params.sessionId} is not an Orca session ID.`,
+          `${params.sessionId} is not an Otodus session ID.`,
           { effectsApplied: false }
         )
       }
@@ -121,7 +121,7 @@ export const ORCHESTRATION_CALLER_METHODS = [
     access: { kind: 'localOnly', targets: { address: 'party', messageIds: 'message' } },
     permission: 'workspace',
     params: PartyLocationParams,
-    // The lookup, except that a terminal worker Orca closed resumes its conversation in a new terminal.
+    // The lookup, except that a terminal worker Otodus closed resumes its conversation in a new terminal.
     handler: async (params, ctx): Promise<OrchestrationPartyLocationResult> => {
       const located = await locateParty(params, ctx)
       const db = ctx.runtime.getOrchestrationDb()

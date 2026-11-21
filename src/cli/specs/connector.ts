@@ -47,7 +47,7 @@ export const CONNECTOR_COMMAND_SPECS: CommandSpec[] = [
     allowedFlags: [...GLOBAL_FLAGS, 'conversation'],
     notes: [
       CONNECTOR_NOTES[0],
-      'An approval or a one-question single choice can be answered here; anything else reads unsupported, to answer in Orca.'
+      'An approval or a one-question single choice can be answered here; anything else reads unsupported, to answer in Otodus.'
     ]
   },
   {
@@ -90,8 +90,8 @@ export const CONNECTOR_COMMAND_SPECS: CommandSpec[] = [
     usage: 'orca connector reply --text <text> [--json]',
     allowedFlags: [...GLOBAL_FLAGS, 'text'],
     notes: [
-      'Run it from an agent a Slack, Discord or Linear message started. Orca posts the text to that thread through Orca Cloud; this machine needs no token for the service.',
-      'Experimental: needs the experimentalConnectors setting and a desktop signed in to Orca.'
+      'Run it from an agent a Slack, Discord or Linear message started. Otodus posts the text to that thread through Orca Cloud; this machine needs no token for the service.',
+      'Experimental: needs the experimentalConnectors setting and a desktop signed in to Otodus.'
     ]
   }
 ]

@@ -90,7 +90,7 @@ export function rankWorktreeStatus(
   if (flags.hasLiveMonitoring || heuristic === 'monitoring') {
     return 'monitoring'
   }
-  // Why: an end Orca cannot prove is not a finish, and unlike a user's Stop it is news.
+  // Why: an end Otodus cannot prove is not a finish, and unlike a user's Stop it is news.
   if (flags.hasUnconfirmed) {
     return 'unconfirmed'
   }

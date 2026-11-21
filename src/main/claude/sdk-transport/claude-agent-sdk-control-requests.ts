@@ -68,7 +68,7 @@ export function claudeQuerySessionRenamer(
 
 export type ClaudeControlOptions = { timeoutMs?: number }
 
-// Orca owns the deadline; null disables it. Query closure remains a transport failure.
+// Otodus owns the deadline; null disables it. Query closure remains a transport failure.
 export function runClaudeControl<T>(
   subtype: string,
   run: () => Promise<T>,

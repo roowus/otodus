@@ -17,7 +17,7 @@ const NOTHING_DELIVERED = { effectsApplied: false } as const
 const MAX_PULL_WAIT_MS = 25_000
 const PULL_PAGE_SIZE = 50
 
-/** Mail between servers comes only from a paired computer's Orca, never a phone or this Orca's own clients. */
+/** Mail between servers comes only from a paired computer's Otodus, never a phone or this Otodus's own clients. */
 function requireRuntimePairing(
   ctx: Pick<RpcContext, 'clientKind' | 'pairedDeviceId' | 'authenticatedCallerFingerprint'>
 ): string {
@@ -38,7 +38,7 @@ function requireRuntimePairing(
 // Where each pairing's next page starts, per database, when more conversations are pending than a page holds.
 const pullRotations = new WeakMap<object, Map<string, number>>()
 
-/** Every conversation with pending items gets an equal share of the page, so an item the paired Orca
+/** Every conversation with pending items gets an equal share of the page, so an item the paired Otodus
  *  cannot import yet, which stays at its conversation's head, never starves another conversation. */
 function pendingReplies(
   db: OrchestrationDb,
@@ -80,7 +80,7 @@ export const ORCHESTRATION_PEER_MAIL_METHODS = [
       if (!isGeneratedId(params.messageId, 'msg')) {
         throw new OrchestrationError('invalid_argument', 'Mail between servers needs a message ID.')
       }
-      // Replies wait in the relay keyed by conversation; any other id could name another Orca's dispatch there.
+      // Replies wait in the relay keyed by conversation; any other id could name another Otodus's dispatch there.
       if (!isGeneratedId(params.conversationId, 'peerconv')) {
         throw new OrchestrationError(
           'invalid_argument',
@@ -144,7 +144,7 @@ export const ORCHESTRATION_PEER_MAIL_METHODS = [
         // Its mailbox is its Dispatch, which only its Run home writes to.
         throw new OrchestrationError(
           'invalid_argument',
-          `${to} is a worker for another Orca's Run; message it through that Run's coordinator. Nothing was delivered.`,
+          `${to} is a worker for another Otodus's Run; message it through that Run's coordinator. Nothing was delivered.`,
           NOTHING_DELIVERED
         )
       }
@@ -182,7 +182,7 @@ export const ORCHESTRATION_PEER_MAIL_METHODS = [
       let items = pendingReplies(db, peerFingerprint, holdBack)
       const waitMs = Math.min(Math.max(params.waitMs ?? 0, 0), MAX_PULL_WAIT_MS)
       const deadline = Date.now() + waitMs
-      // A wake is any queued change on this Orca, so one that queued nothing for this peer waits on.
+      // A wake is any queued change on this Otodus, so one that queued nothing for this peer waits on.
       while (items.length === 0 && Date.now() < deadline && !ctx.signal?.aborted) {
         await waitForPeerMail(db.db, deadline - Date.now(), ctx.signal)
         items = pendingReplies(ctx.runtime.getOrchestrationDb(), peerFingerprint, holdBack)

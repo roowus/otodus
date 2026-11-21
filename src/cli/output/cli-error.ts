@@ -134,7 +134,7 @@ function formatRuntimeUnavailableError(message: string, error: RuntimeClientErro
   }
   const command = resolveInvokedCliCommand()
   if (error instanceof RuntimeRpcFailureError) {
-    return `${message}\nOrca is running but not ready for this yet. Wait a few seconds and retry; do not run '${command} open'. If it keeps failing and '${command} status --json' shows app.desktopWindowStatus "openable", Orca's window is closed: ask the user to reopen it.`
+    return `${message}\nOrca is running but not ready for this yet. Wait a few seconds and retry; do not run '${command} open'. If it keeps failing and '${command} status --json' shows app.desktopWindowStatus "openable", Otodus's window is closed: ask the user to reopen it.`
   }
   return `${message}\nOrca is not running. Run '${command} open' first.`
 }

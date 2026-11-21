@@ -50,7 +50,7 @@ function parseNumber(value: string, min: number, max: number): number | null {
 // `font_family` is a bare name or Kitty 0.36's `family="Name" style=...` spec; `monospace` means "system default".
 function kittyFontFamily(value: string): string | null {
   const spec = /(?:^|\s)family=(?:"([^"]+)"|'([^']+)'|(\S+))/.exec(value)
-  // Other selectors (postscript_name=, full_name=) name a face Orca cannot look up.
+  // Other selectors (postscript_name=, full_name=) name a face Otodus cannot look up.
   if (!spec && /^\w+=/.test(value)) {
     return null
   }

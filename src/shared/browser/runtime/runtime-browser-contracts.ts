@@ -21,7 +21,7 @@ export type BrowserSnapshotDelta =
       treeChange?: { startLine: number; deleteCount: number; lines: string[] }
     }
 
-/** A passkey (WebAuthn) request the page is waiting on; Orca's browser has no UI to complete it. */
+/** A passkey (WebAuthn) request the page is waiting on; Otodus's browser has no UI to complete it. */
 export type BrowserPasskeyRequest = { origin: string }
 
 export type BrowserSnapshotResult = {
@@ -48,7 +48,7 @@ export type BrowserActionEffects = {
   consoleErrors?: string[]
   /** Still pending when the page settled. */
   passkeyRequest?: BrowserPasskeyRequest
-  /** The page asked for the system print dialog, which Orca refused so it would not take the user's screen. */
+  /** The page asked for the system print dialog, which Otodus refused so it would not take the user's screen. */
   blockedPrint?: { origin: string }
   /** Snapshot lines changed since the last reading; `full` is the whole new tree. Absent when unread. */
   page?: 'unchanged' | { lines: string[]; removedLines: number; full: boolean; truncated: boolean }

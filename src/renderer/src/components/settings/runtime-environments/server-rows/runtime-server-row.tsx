@@ -74,7 +74,7 @@ type RuntimeServerRowProps = {
   onChanged?: () => void
   /** Re-reads SSH hosts; the route dialog lists them. */
   onRefreshSshTargets?: () => void
-  /** Re-probes every server; offered when the host answered but Orca didn't. */
+  /** Re-probes every server; offered when the host answered but Otodus didn't. */
   onRecheck?: () => void
   rechecking?: boolean
 }

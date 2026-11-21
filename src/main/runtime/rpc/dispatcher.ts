@@ -233,7 +233,7 @@ export class RpcDispatcher {
       return desktopBrowser.result
     }
 
-    // A paired Orca is never a legacy caller, so its calls reach only the declared access check.
+    // A paired Otodus is never a legacy caller, so its calls reach only the declared access check.
     const compatibility =
       caller?.kind === 'peer'
         ? { handled: false as const }
@@ -246,7 +246,7 @@ export class RpcDispatcher {
       request,
       compatibility.legacyCoordinatorAuthority
     )
-    // Before this Orca's receipts: the server that owns the worker keeps the receipt, under the caller's scoped key.
+    // Before this Otodus's receipts: the server that owns the worker keeps the receipt, under the caller's scoped key.
     const remote = await routeRemoteOwnedCall(runtime, method, request, effectiveParams, {
       ...context,
       orchestrationCompatibilityEvidence: request.orchestrationCompatibilityEvidence

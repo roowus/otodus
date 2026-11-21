@@ -165,7 +165,7 @@ export function chatWorkerTurnStopReporter(
                     worker: { handle: from, dispatchId: dispatch.id, taskId: dispatch.task_id }
                   })
                 : undefined
-            // A prompt Orca can't answer either way is a plain prompt: only the worker's chat can.
+            // A prompt Otodus can't answer either way is a plain prompt: only the worker's chat can.
             const payload = candidate?.allowedActions.length ? candidate : undefined
             reportWorkerTurnStop(
               current,

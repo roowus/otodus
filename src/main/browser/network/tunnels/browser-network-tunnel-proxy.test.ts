@@ -101,7 +101,7 @@ describe('native browser tunnel upstream proxy (#29154)', () => {
     ])
   })
 
-  it("prefers Orca's proxy setting over the environment", async () => {
+  it("prefers Otodus's proxy setting over the environment", async () => {
     const proxy = await startConnectProxy(await startEchoServer())
     setNetworkProxySettingsSource(() => ({
       httpProxyUrl: `http://127.0.0.1:${proxy.port}`

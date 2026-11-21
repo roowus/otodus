@@ -6,7 +6,7 @@ import { removeOrcaCreatedProjectTrustEntries } from '../../../codex/trust/toml/
 import { removeOrcaCreatedAntigravityTrust } from '../../../agent-launch/trust/antigravity-workspace-trust-ownership'
 
 /**
- * Drops the workspace trust entries Orca's preflight wrote for a removed
+ * Drops the workspace trust entries Otodus's preflight wrote for a removed
  * worktree's path (Codex `[projects."<path>"]`, Antigravity `trustedWorkspaces`).
  *
  * Why: worktree IDs are path-derived and can be recreated, so a stale entry would
@@ -25,6 +25,6 @@ export function dropOrcaCreatedAgentTrustForRemovedWorktree(worktreeId: string):
   }
   removeOrcaCreatedAntigravityTrust(worktreePath)
   return removeOrcaCreatedProjectTrustEntries(worktreePath).catch((error) => {
-    console.warn('[codex-config] Failed to drop an Orca-created project trust entry:', error)
+    console.warn('[codex-config] Failed to drop an Otodus-created project trust entry:', error)
   })
 }

@@ -140,7 +140,7 @@ export async function prepareAiVaultSessionForFork(
 export function aiVaultCliForkHostTooOldMessage(): string {
   return translate(
     'auto.components.right.sidebar.AiVaultPanel.resumeInNewCliHostTooOld',
-    'Update Orca on the host that runs this chat to resume it in a new CLI.'
+    'Update Otodus on the host that runs this chat to resume it in a new CLI.'
   )
 }
 

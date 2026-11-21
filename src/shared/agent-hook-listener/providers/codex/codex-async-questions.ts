@@ -24,7 +24,7 @@ export type CodexPendingAsyncQuestion = { toolName: string; prompt: string }
 /**
  * Codex asks a non-blocking question mid-turn: its status stays working, PostToolUse lands ~20 ms
  * after PreToolUse, and each answer arrives as a UserPromptSubmit reply. Only the hooks show it,
- * so track it here. A skip (Ctrl+]) sends no hook; Orca infers it from the keystroke.
+ * so track it here. A skip (Ctrl+]) sends no hook; Otodus infers it from the keystroke.
  */
 export function trackCodexAsyncQuestions(
   state: HookListenerState,

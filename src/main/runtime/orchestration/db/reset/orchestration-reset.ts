@@ -74,7 +74,7 @@ export function resetAll(this: OrchestrationDb): void {
 }
 
 export function resetTasks(this: OrchestrationDb): ResetRemovedWork | undefined {
-  // Messages survive, and so do replies waiting for a paired Orca to pull them; close threads so orphaned questions cannot masquerade as generic replies.
+  // Messages survive, and so do replies waiting for a paired Otodus to pull them; close threads so orphaned questions cannot masquerade as generic replies.
   const watermark = this.runResetTransaction(
     `
     ${OWE_REMOTE_RUN_CANCELS_SQL}

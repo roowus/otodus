@@ -57,7 +57,7 @@ export function renderAccountsRemovalDialogs(
               </span>
               {t(
                 'settings.accounts.codexRemoveHome',
-                "Orca deletes this account's Codex folder on {{host}}, including its sign-in, MCP logins and any Codex history stored only in that folder. This cannot be undone. If it is selected, the next Codex you start uses System default.",
+                "Otodus deletes this account's Codex folder on {{host}}, including its sign-in, MCP logins and any Codex history stored only in that folder. This cannot be undone. If it is selected, the next Codex you start uses System default.",
                 { host: accountRuntimeSentenceLabel }
               )}
             </DialogDescription>
@@ -101,7 +101,7 @@ export function renderAccountsRemovalDialogs(
               </span>
               {t(
                 'settings.accounts.claudeRemoveProfile',
-                "Orca deletes this account's own Claude folder and the sign-in saved in it on {{host}}. Your System default login and chat history shared with it stay. If it is selected, the next Claude you start uses System default.",
+                "Otodus deletes this account's own Claude folder and the sign-in saved in it on {{host}}. Your System default login and chat history shared with it stay. If it is selected, the next Claude you start uses System default.",
                 { host: accountRuntimeSentenceLabel }
               )}
             </DialogDescription>

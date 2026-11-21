@@ -121,7 +121,7 @@ async function readManifestDir(
     return {
       pluginKey,
       rootDir,
-      error: `requires Orca ${manifest.engines.orca} (this is ${hostVersion})`,
+      error: `requires Otodus ${manifest.engines.orca} (this is ${hostVersion})`,
       isDev
     }
   }

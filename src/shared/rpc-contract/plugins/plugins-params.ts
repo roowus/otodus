@@ -153,14 +153,14 @@ export const PluginShotEditorParams = z.object({
   inPlace: z.boolean().optional()
 })
 
-/** `orca plugin shot --status-bar` / `--window`: Orca's own chrome, where plugins draw too. */
+/** `orca plugin shot --status-bar` / `--window`: Otodus's own chrome, where plugins draw too. */
 export const PluginShotChromeParams = z.object({
   pluginKey: pluginKeyParam,
   region: z.enum(['status-bar', 'window']),
   colorScheme: z.enum(['light', 'dark']).optional()
 })
 
-// Why the render lane's cap: the same bytes a live panel may send Orca for one tree.
+// Why the render lane's cap: the same bytes a live panel may send Otodus for one tree.
 export const PLUGIN_SHOT_REPLAY_MAX_TREE_BYTES = PLUGIN_DECLARATIVE_RENDER_LANE.maxBytes
 
 function jsonBytes(value: unknown): number {

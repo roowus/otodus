@@ -160,7 +160,7 @@ it.each(['local', 'relay', 'old-relay', 'old-relay-no-main'] as const)(
             headers: {
               'Content-Type': 'application/json',
               Connection: 'close',
-              'X-Orca-Agent-Hook-Token': coordinates.token
+              'X-Otodus-Agent-Hook-Token': coordinates.token
             },
             body: JSON.stringify(body)
           })

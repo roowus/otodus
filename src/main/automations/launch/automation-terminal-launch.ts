@@ -176,7 +176,7 @@ export async function launchAutomationTerminalAgent(
             ? settled.reason.message
             : String(settled.reason)
           : settled.value.prompt?.outcome === 'not-delivered'
-            ? `${tuiAgentDisplayName(agent)} started, but Orca could not send this run's prompt.`
+            ? `${tuiAgentDisplayName(agent)} started, but Otodus could not send this run's prompt.`
             : null
     }))
   }

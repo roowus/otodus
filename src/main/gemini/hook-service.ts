@@ -34,7 +34,7 @@ import {
 } from '../agent-hooks/installation/scripts/hook-stdin-contract'
 import { posixCurlCommand } from '../agent-hooks/installation/scripts/hook-post-command'
 
-// Gemini has no permission-prompt hook, so approvals cannot produce an Orca waiting state.
+// Gemini has no permission-prompt hook, so approvals cannot produce an Otodus waiting state.
 // Gemini uses BeforeTool; remove stale Claude-style PreToolUse registrations below.
 const GEMINI_EVENTS = ['BeforeAgent', 'AfterAgent', 'AfterTool', 'BeforeTool'] as const
 
@@ -63,7 +63,7 @@ function getManagedScript(target: 'local' | 'posix' = 'local'): string {
       'setlocal',
       // Reply before guards can exit so Gemini always receives valid hook JSON.
       'echo {}',
-      // Refresh endpoint credentials for PTYs that outlive an Orca restart.
+      // Refresh endpoint credentials for PTYs that outlive an Otodus restart.
       'if defined ORCA_AGENT_HOOK_ENDPOINT if exist "%ORCA_AGENT_HOOK_ENDPOINT%" call "%ORCA_AGENT_HOOK_ENDPOINT%" 2>nul',
       ...buildWindowsHookEnvironmentGuardLines(),
       buildWindowsAgentHookPostCommand('gemini'),
@@ -78,7 +78,7 @@ function getManagedScript(target: 'local' | 'posix' = 'local'): string {
     'printf "{}\\n"',
     ...buildPosixHookPayloadCapture(),
     ...buildPosixHookSpoolLines('gemini'),
-    // Refresh endpoint credentials for PTYs that outlive an Orca restart.
+    // Refresh endpoint credentials for PTYs that outlive an Otodus restart.
     'if [ -n "$ORCA_AGENT_HOOK_ENDPOINT" ] && [ -r "$ORCA_AGENT_HOOK_ENDPOINT" ]; then',
     '  . "$ORCA_AGENT_HOOK_ENDPOINT" 2>/dev/null || :',
     'fi',
@@ -90,7 +90,7 @@ function getManagedScript(target: 'local' | 'posix' = 'local'): string {
     `printf '%s' "$payload" | ${posixCurlCommand()} -sS -X POST "http://127.0.0.1:\${ORCA_AGENT_HOOK_PORT}/hook/gemini" \\`,
     '  --connect-timeout 0.5 --max-time 1.5 \\',
     '  -H "Content-Type: application/x-www-form-urlencoded" \\',
-    '  -H "X-Orca-Agent-Hook-Token: ${ORCA_AGENT_HOOK_TOKEN}" \\',
+    '  -H "X-Otodus-Agent-Hook-Token: ${ORCA_AGENT_HOOK_TOKEN}" \\',
     '  --data-urlencode "paneKey=${ORCA_PANE_KEY}" \\',
     '  --data-urlencode "tabId=${ORCA_TAB_ID}" \\',
     '  --data-urlencode "launchToken=${ORCA_AGENT_LAUNCH_TOKEN}" \\',

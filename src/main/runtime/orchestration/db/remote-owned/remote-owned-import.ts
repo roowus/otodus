@@ -60,7 +60,7 @@ export function importRemoteOwnedItem(
   return runLifecycleWriteTransaction(db.db, 'import_remote_owned_item', () => {
     const link = getRemoteRunLink(db, item.conversationId)
     if (!link || link.environment_id !== server.environment_id) {
-      throw unreadable(item, `it names no Run this Orca placed on ${server.environment_id}`)
+      throw unreadable(item, `it names no Run this Otodus placed on ${server.environment_id}`)
     }
     if (item.sequence <= link.last_imported_sequence) {
       return undefined
@@ -107,7 +107,7 @@ function parseRemoteOwnedItem(item: PulledRemoteOwnedItem): ParsedItem {
   }
   const parsed = parseKind(item.kind, json)
   if (!parsed) {
-    throw unreadable(item, `its kind ${item.kind ?? '(none)'} is not one this Orca reads`)
+    throw unreadable(item, `its kind ${item.kind ?? '(none)'} is not one this Otodus reads`)
   }
   if (!parsed.success) {
     throw unreadable(item, `its payload does not match ${item.kind}: ${parsed.error}`)
@@ -232,7 +232,7 @@ function importWorkerState(
     abandonRemoteDispatchStop(db, dispatch.id)
   }
   // The Task here follows the server's Task through the ordinary owner's Task half, unless this
-  // Orca already settled it for this attempt: the first result stands.
+  // Otodus already settled it for this attempt: the first result stands.
   // The server's restart recovery lost its worker and readied its Task: as the local rule does,
   // the Task here is ready for a fresh start. Ready is no result, so it applies even if settled here.
   if (

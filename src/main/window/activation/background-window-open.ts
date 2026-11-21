@@ -5,7 +5,7 @@ export function setBackgroundWindowOpener(opener: () => void): void {
   openWindowInBackground = opener
 }
 
-/** Shows Orca's window without taking the foreground; false when this host has no desktop. */
+/** Shows Otodus's window without taking the foreground; false when this host has no desktop. */
 export function requestBackgroundWindowOpen(): boolean {
   if (!openWindowInBackground) {
     return false

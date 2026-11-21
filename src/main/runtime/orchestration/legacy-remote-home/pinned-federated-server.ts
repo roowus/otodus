@@ -15,7 +15,7 @@ export async function resolvePinnedFederatedServer(
     if (error instanceof RuntimeEnvironmentStoreError && error.code === 'invalid_argument') {
       throw new OrchestrationError(
         'peer_changed',
-        `Saved environment ${federated.environment_name} is no longer a paired server here, so this Orca cannot reach this worker. Re-pairing adds the server as a new environment.`
+        `Saved environment ${federated.environment_name} is no longer a paired server here, so this Otodus cannot reach this worker. Re-pairing adds the server as a new environment.`
       )
     }
     throw error

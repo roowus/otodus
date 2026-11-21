@@ -88,7 +88,7 @@ function navigatingDocumentTarget(navigateOnLookup = 1) {
   return { chrome, delivered, listeners }
 }
 
-describe('Orca documentIds in native scripting targets', () => {
+describe('Otodus documentIds in native scripting targets', () => {
   it.each([1, 2])(
     'rejects script navigation at discovery snapshot %i before executing user code',
     async (snapshot) => {

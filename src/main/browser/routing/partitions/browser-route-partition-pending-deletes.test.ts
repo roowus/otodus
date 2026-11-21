@@ -95,16 +95,16 @@ it('never deletes a listed path that is not strictly inside Partitions', async (
 })
 
 it('compares Windows partition folders case-insensitively', async () => {
-  const winRoot = 'C:\\Users\\Me\\AppData\\Orca\\Partitions'
+  const winRoot = 'C:\\Users\\Me\\AppData\\Otodus\\Partitions'
   expect(browserRoutePartitionDirectoryKey(`${winRoot}\\Abc`, win32.resolve)).toBe(
     browserRoutePartitionDirectoryKey(
-      'c:\\users\\me\\appdata\\orca\\partitions\\abc',
+      'c:\\users\\me\\appdata\\otodus\\partitions\\abc',
       win32.resolve
     )
   )
   writeFileSync(
     listPath,
-    JSON.stringify(['c:\\USERS\\me\\appdata\\orca\\PARTITIONS\\abc', `${winRoot}\\..\\x`])
+    JSON.stringify(['c:\\USERS\\me\\appdata\\otodus\\PARTITIONS\\abc', `${winRoot}\\..\\x`])
   )
   const removed: string[] = []
   await deletePendingBrowserRoutePartitionDirectories({
@@ -116,7 +116,7 @@ it('compares Windows partition folders case-insensitively', async () => {
     },
     resolvePath: win32.resolve
   })
-  expect(removed).toEqual(['c:\\USERS\\me\\appdata\\orca\\PARTITIONS\\abc'])
+  expect(removed).toEqual(['c:\\USERS\\me\\appdata\\otodus\\PARTITIONS\\abc'])
 })
 
 it('keeps a folder queued while an earlier delete is in flight', async () => {

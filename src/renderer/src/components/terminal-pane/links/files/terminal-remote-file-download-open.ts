@@ -11,7 +11,7 @@ import type { RuntimeFileOperationArgs } from '@/runtime/files/runtime-file-clie
 /**
  * Remote counterpart of "Open with default app": the OS can only launch a local
  * file, so the workspace copy is downloaded to a user-chosen path first.
- * False, before any download, for a granted file this client or its host cannot page; it opens in Orca instead.
+ * False, before any download, for a granted file this client or its host cannot page; it opens in Otodus instead.
  * True without a download when a newer click superseded this one.
  */
 export async function downloadAndOpenRemoteTerminalFile(

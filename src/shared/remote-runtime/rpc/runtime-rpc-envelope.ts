@@ -78,7 +78,7 @@ export type RuntimeOrchestrationEnvelope = {
   orchestrationCapability?: string
   orchestrationContractVersion?: number
   orchestrationRequestId?: string
-  /** A paired Orca acting as the coordinator of one of its Runs on this server. */
+  /** A paired Otodus acting as the coordinator of one of its Runs on this server. */
   orchestrationPeerRun?: RemoteOwnedPeerRun
   compatibilityInvocationId?: string
   orchestrationCompatibilityEvidence?: OrchestrationCompatibilityEvidence

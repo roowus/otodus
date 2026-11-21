@@ -60,7 +60,7 @@ describe('app icon selection', () => {
   it('restores the bundle Dock icon only after the custom icon clear succeeds', async () => {
     const persistClassic = (clearError: Error | null): Promise<void> => {
       persistMacDockIcon('classic', {
-        appBundlePath: '/Applications/Orca.app',
+        appBundlePath: '/Applications/Otodus.app',
         execFile: (file, _args, _options, callback) =>
           callback?.(file === '/usr/bin/osascript' ? clearError : null),
         isDevApp: false,
@@ -94,7 +94,7 @@ describe('app icon selection', () => {
     )
 
     persistMacDockIcon('watercolor', {
-      appBundlePath: '/Applications/Orca.app',
+      appBundlePath: '/Applications/Otodus.app',
       execFile,
       isDevApp: false,
       platform: 'darwin'
@@ -102,13 +102,13 @@ describe('app icon selection', () => {
     await waitForQueuedPersistence()
 
     persistMacDockIcon('blue', {
-      appBundlePath: '/Applications/Orca.app',
+      appBundlePath: '/Applications/Otodus.app',
       execFile,
       isDevApp: false,
       platform: 'darwin'
     })
     persistMacDockIcon('classic', {
-      appBundlePath: '/Applications/Orca.app',
+      appBundlePath: '/Applications/Otodus.app',
       execFile,
       isDevApp: false,
       platform: 'darwin'
@@ -149,7 +149,7 @@ describe('app icon selection', () => {
       ]),
       expect.objectContaining({
         env: expect.objectContaining({
-          ORCA_APP_BUNDLE_PATH: '/Applications/Orca.app'
+          ORCA_APP_BUNDLE_PATH: '/Applications/Otodus.app'
         }),
         timeout: 10_000
       }),
@@ -162,7 +162,7 @@ describe('app icon selection', () => {
     expect(execFile).toHaveBeenNthCalledWith(
       3,
       '/usr/bin/xattr',
-      ['-d', 'com.apple.FinderInfo', '/Applications/Orca.app'],
+      ['-d', 'com.apple.FinderInfo', '/Applications/Otodus.app'],
       expect.objectContaining({
         timeout: 10_000
       }),
@@ -171,7 +171,7 @@ describe('app icon selection', () => {
     expect(execFile).toHaveBeenNthCalledWith(
       4,
       '/usr/bin/xattr',
-      ['-d', 'com.apple.ResourceFork', '/Applications/Orca.app'],
+      ['-d', 'com.apple.ResourceFork', '/Applications/Otodus.app'],
       expect.objectContaining({
         timeout: 10_000
       }),
@@ -208,7 +208,7 @@ describe('app icon selection', () => {
     )
 
     persistMacDockIcon('watercolor', {
-      appBundlePath: '/Applications/Orca.app',
+      appBundlePath: '/Applications/Otodus.app',
       execFile,
       isDevApp: false,
       platform: 'darwin'
@@ -216,7 +216,7 @@ describe('app icon selection', () => {
     await waitForQueuedPersistenceMicrotasks()
 
     persistMacDockIcon('blue', {
-      appBundlePath: '/Applications/Orca.app',
+      appBundlePath: '/Applications/Otodus.app',
       execFile,
       isDevApp: false,
       platform: 'darwin'

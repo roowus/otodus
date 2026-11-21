@@ -5,7 +5,7 @@ const FOLDER_UNAVAILABLE_PREFIX = 'folder_workspace_path_unavailable:'
 
 /**
  * A refusal over a WSL distro, named: older servers send the raw hold code, and a folder on a
- * distro Orca won't start in the background reads only as "path unavailable".
+ * distro Otodus won't start in the background reads only as "path unavailable".
  */
 export function readableWslDistroCliRefusal(message: string): string {
   const held = readableWslDistroHoldText(message)
@@ -18,5 +18,5 @@ export function readableWslDistroCliRefusal(message: string): string {
   if (!distro) {
     return message
   }
-  return `${message.slice(0, start)}Orca couldn't reach ${path}. The WSL distro ${distro} may be stopped, and Orca doesn't start a stopped distro for this. Start ${distro} (for example, open a terminal in it), then try again.`
+  return `${message.slice(0, start)}Otodus couldn't reach ${path}. The WSL distro ${distro} may be stopped, and Otodus doesn't start a stopped distro for this. Start ${distro} (for example, open a terminal in it), then try again.`
 }

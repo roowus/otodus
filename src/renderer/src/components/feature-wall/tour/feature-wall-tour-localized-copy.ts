@@ -18,7 +18,7 @@ const getWorkflowCopyById = createLocalizedCatalog(
       title: translate('featureWall.workflows.workspaces.title', 'Workspaces'),
       lede: translate(
         'featureWall.workflows.workspaces.lede',
-        'Orca splits each task into an isolated workspace so agents can run in parallel.'
+        'Otodus splits each task into an isolated workspace so agents can run in parallel.'
       )
     },
     tasks: {
@@ -32,14 +32,14 @@ const getWorkflowCopyById = createLocalizedCatalog(
       title: translate('featureWall.workflows.agents.title', 'Agents'),
       lede: translate(
         'featureWall.workflows.agents.lede',
-        'Run several agents at once, track their progress, and let automation drive Orca when it helps.'
+        'Run several agents at once, track their progress, and let automation drive Otodus when it helps.'
       )
     },
     workbench: {
       title: translate('featureWall.workflows.workbench.title', 'Workbench'),
       lede: translate(
         'featureWall.workflows.workbench.lede',
-        'Bring your terminal setup into Orca, then split panes to keep servers, tests, logs, and agents running side by side.'
+        'Bring your terminal setup into Otodus, then split panes to keep servers, tests, logs, and agents running side by side.'
       )
     },
     review: {
@@ -67,7 +67,7 @@ const getStepCopyById = createLocalizedCatalog(
       subtitle: translate('featureWall.steps.orchestration.name', 'Orchestration'),
       description: translate(
         'featureWall.steps.orchestration.description',
-        'Enable agents to manage and coordinate Orca workspaces to execute larger tasks.'
+        'Enable agents to manage and coordinate Otodus workspaces to execute larger tasks.'
       )
     },
     usage: {
@@ -91,7 +91,7 @@ const getStepCopyById = createLocalizedCatalog(
       subtitle: translate('featureWall.steps.editor.name', 'Editor'),
       description: translate(
         'featureWall.steps.editor.description',
-        'Use our Notion-style markdown editor to write notes without leaving Orca.'
+        'Use our Notion-style markdown editor to write notes without leaving Otodus.'
       )
     },
     browser: {
@@ -99,7 +99,7 @@ const getStepCopyById = createLocalizedCatalog(
       subtitle: translate('featureWall.steps.browser.name', 'Browser'),
       description: translate(
         'featureWall.steps.browser.description',
-        "Run your app in Orca's browser, send selected UI elements to agents, and let your agents interact with your webpage."
+        "Run your app in Otodus's browser, send selected UI elements to agents, and let your agents interact with your webpage."
       )
     },
     notes: {

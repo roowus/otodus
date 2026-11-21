@@ -12,7 +12,7 @@ import type { RuntimePtyController } from '../lifecycle/runtime-pty-controller-c
 const POLL_INTERVAL_MS = 2_000
 // Shell integration's prompt and command-start markers, then oh-my-zsh's preexec title for `claude`.
 const SHELL_RUNS_CLAUDE = '\x1b]133;A\x07~/repo % claude\r\n\x1b]133;C\x07\x1b]0;claude\x07'
-// A later preexec hook (zsh-you-should-use) prints after Orca's marker hook and before Claude runs.
+// A later preexec hook (zsh-you-should-use) prints after Otodus's marker hook and before Claude runs.
 const LATER_PREEXEC_HOOK_PRINTS =
   '\x1b[33mFound existing alias for "claude". You should use: "cc"\x1b[0m\r\n'
 // Claude's terminal-capability probe: output with nothing visible on screen.

@@ -1,7 +1,7 @@
 import { normalizeForgeWebHost } from '../../../shared/git/remotes/git-remote-host-alias'
 import { getPublicForgeProviderForHost } from '../../../shared/git/remotes/public-forge-host'
 
-// Scoped local fork of the hosted-git-info@9.0.3 behavior Orca used.
+// Scoped local fork of the hosted-git-info@9.0.3 behavior Otodus used.
 // Keep only the provider parsing and file/commit URL construction needed by source links.
 type HostedRemoteProvider = 'github' | 'gitlab' | 'bitbucket'
 

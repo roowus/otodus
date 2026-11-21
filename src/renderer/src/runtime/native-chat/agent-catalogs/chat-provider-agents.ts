@@ -24,7 +24,7 @@ export function chatProviderAgents(
   ]
 }
 
-/** The chat agents whose chat runs a program Orca downloads on that host, apart from their CLI. */
+/** The chat agents whose chat runs a program Otodus downloads on that host, apart from their CLI. */
 export function managedRuntimeChatAgents(
   executionHostId: string,
   statuses: HostStructuredAgentsStatuses

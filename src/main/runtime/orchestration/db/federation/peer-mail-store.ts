@@ -21,7 +21,7 @@ export type PeerMailMessageRow = {
   remote_party: string | null
 }
 
-/** The conversation this Orca opened for one local agent with one paired server's current pairing; reused for every send. */
+/** The conversation this Otodus opened for one local agent with one paired server's current pairing; reused for every send. */
 export function openHomePeerMailConversation(
   this: OrchestrationDb,
   params: {
@@ -75,7 +75,7 @@ export function listHomePeerMailEnvironments(this: OrchestrationDb): string[] {
   return rows.map((row) => row.environment_id)
 }
 
-/** Conversations a paired Orca opened here that hold replies it has not acknowledged yet. */
+/** Conversations a paired Otodus opened here that hold replies it has not acknowledged yet. */
 export function listPeerConversationIdsWithPendingReplies(
   this: OrchestrationDb,
   peerFingerprint: string
@@ -110,12 +110,12 @@ export function isPeerMailSenderLabel(this: OrchestrationDb, label: string): boo
   )
 }
 
-/** Stores mail that crossed from a paired Orca once; a replayed id is a duplicate, even after a reset removed its row. */
+/** Stores mail that crossed from a paired Otodus once; a replayed id is a duplicate, even after a reset removed its row. */
 export function insertPeerMailMessage(
   this: OrchestrationDb,
   params: {
     conversationId: string
-    /** Only a 'peer' conversation is created here, by the paired Orca that opened it. */
+    /** Only a 'peer' conversation is created here, by the paired Otodus that opened it. */
     peerFingerprint?: string
     remoteParty: string | null
     message: MessageInsert & { id: string; from: string }

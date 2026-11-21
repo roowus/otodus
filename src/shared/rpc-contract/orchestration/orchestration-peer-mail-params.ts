@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { OptionalFiniteNumber, OptionalString, requiredString } from '../rpc-param-primitives'
 
-/** Agent mail one Orca carries to an agent on a paired Orca, inside a conversation the sender's Orca opened. */
+/** Agent mail one Otodus carries to an agent on a paired Otodus, inside a conversation the sender's Otodus opened. */
 export const PeerMailDeliverParams = z.object({
   conversationId: requiredString('Missing conversation ID'),
   messageId: requiredString('Missing message ID'),
@@ -14,7 +14,7 @@ export const PeerMailDeliverParams = z.object({
   threadId: OptionalString
 })
 
-/** The opening Orca pulls replies queued for its conversations; waits up to waitMs for one. */
+/** The opening Otodus pulls replies queued for its conversations; waits up to waitMs for one. */
 export const PeerMailPullParams = z.object({
   waitMs: OptionalFiniteNumber,
   /** Conversations it could not read and is waiting to retry: their items neither return nor end the wait. */
@@ -32,10 +32,10 @@ export const PeerMailAckParams = z.object({
     .max(50)
 })
 
-/** One reply on the wire: the fields the opening Orca stores as mail for its agent. */
+/** One reply on the wire: the fields the opening Otodus stores as mail for its agent. */
 export const PeerMailRelayPayload = z.object({
   senderLabel: z.string().min(1),
-  /** The replier on the paired Orca, where a reply to this one goes. */
+  /** The replier on the paired Otodus, where a reply to this one goes. */
   fromAddress: z.string().min(1),
   subject: z.string(),
   body: z.string(),

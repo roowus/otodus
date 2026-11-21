@@ -83,7 +83,7 @@ function writeManifest(name: string, path: string, extensionId: string): void {
     join(folder, `${name}.json`),
     JSON.stringify({
       name,
-      description: 'Orca test host',
+      description: 'Otodus test host',
       type: 'stdio',
       path,
       allowed_origins: [`chrome-extension://${extensionId}/`]
@@ -103,7 +103,7 @@ async function run(): Promise<void> {
   app.on('web-contents-created', (_event, contents) => {
     contents.on('console-message', (details) => capture(details.message))
   })
-  // Orca's main window, hidden; the worker opens the extension page as a popout of it.
+  // Otodus's main window, hidden; the worker opens the extension page as a popout of it.
   const host = new BrowserWindow({ show: false })
   trackBrowserExtensionMainWindow(host)
   await host.loadURL('data:text/html,<title>orca</title>')

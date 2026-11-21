@@ -229,7 +229,7 @@ export function adoptRemoteAttempt(
     return record
   }
   if (known) {
-    // A Dispatch this Orca already knew predates the placement's attempt or reservation; only a new one is its answer.
+    // A Dispatch this Otodus already knew predates the placement's attempt or reservation; only a new one is its answer.
     return record
   }
   db.db

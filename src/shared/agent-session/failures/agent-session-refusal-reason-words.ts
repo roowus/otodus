@@ -23,7 +23,7 @@ export type AgentSessionRefusalAction =
   | 'updateOrca'
   /** What the write was for is over: the question it answered moved on. */
   | 'nothingLeft'
-  /** Orca's own state or fault; nothing the person does gets past it. */
+  /** Otodus's own state or fault; nothing the person does gets past it. */
   | 'hostFinding'
 
 export type AgentSessionRefusalReasonWords =

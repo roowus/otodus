@@ -146,7 +146,7 @@ export function WslHostsSection({
                 ? getWslHostsPausedLabel(t)
                 : t(
                     'auto.components.settings.wslHosts.description',
-                    'Orca runs a server inside each distro. Opening a project never starts a stopped distro: click Start, open a new terminal, or connect it here.'
+                    'Otodus runs a server inside each distro. Opening a project never starts a stopped distro: click Start, open a new terminal, or connect it here.'
                   ))}
           </p>
         </div>
@@ -213,7 +213,7 @@ export function WslHostsSection({
                 status={getWslHostRowStatus(status, unavailableLabel !== null, t)}
                 footer={moveLine ? <WslMoveOrchestratorStatusLine distro={distro} /> : undefined}
                 primaryAction={
-                  // A newer Orca's host refuses Update; Force stays in the menu.
+                  // A newer Otodus's host refuses Update; Force stays in the menu.
                   deferred && deferred.code !== ORCAD_HOST_NEWER_DEFERRAL_CODE ? (
                     <Button
                       type="button"

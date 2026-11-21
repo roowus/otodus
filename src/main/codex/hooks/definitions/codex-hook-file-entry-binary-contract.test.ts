@@ -139,7 +139,7 @@ describe.runIf(binary)('codex hook file-entry binary contract', { timeout: 180_0
     )
   }
 
-  it('lists every entry Orca wrote in a managed home as trusted and enabled, and writes nothing on a list', async () => {
+  it('lists every entry Otodus wrote in a managed home as trusted and enabled, and writes nothing on a list', async () => {
     await installManagedHome()
     const files = ['hooks.json', 'config.toml'].map((name) => join(accountHome(), name))
     const before = files.map((file) => readFileSync(file, 'utf-8'))
@@ -294,7 +294,7 @@ describe.runIf(binary)('codex hook file-entry binary contract', { timeout: 180_0
       )
     }
 
-    it('lists every entry Orca wrote as trusted and enabled, and a second check writes nothing', async () => {
+    it('lists every entry Otodus wrote as trusted and enabled, and a second check writes nothing', async () => {
       await freshRealHomeWithEntry('trusted')
       const files = ['hooks.json', 'config.toml'].map((name) => join(realCodexHome(), name))
       const before = files.map((file) => readFileSync(file, 'utf-8'))

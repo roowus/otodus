@@ -57,7 +57,7 @@ export function desktopConnectorTokenMint(
             },
             ConnectorTokenResponse
           )
-          // Refreshes the Orca session once, as every desktop cloud call does.
+          // Refreshes the Otodus session once, as every desktop cloud call does.
           if (!answer.ok && (answer.status === 401 || answer.status === 403)) {
             throw new OrcaCloudRequestError(answer.status, answer.error ?? undefined)
           }

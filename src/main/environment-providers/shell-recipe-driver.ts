@@ -121,7 +121,7 @@ export class ShellRecipeDriver implements EnvironmentProviderDriver {
     if (!start.ok) {
       const error = toProviderError(start)
       if (start.recipeResult) {
-        // The VM exists even though Orca rejected its result; release it rather than leak it.
+        // The VM exists even though Otodus rejected its result; release it rather than leak it.
         const cleanup = await this.runDestroy({
           context: start.context,
           recipeResult: start.recipeResult
@@ -274,7 +274,7 @@ function toProviderError(failure: RecipeStepFailure): EnvironmentProviderError {
     ? 'aborted'
     : failure.timedOut
       ? 'timeout'
-      : // The step exited cleanly but Orca rejected what it printed.
+      : // The step exited cleanly but Otodus rejected what it printed.
         failure.exitCode === 0
         ? 'invalid_response'
         : 'unavailable'

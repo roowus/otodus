@@ -5,11 +5,11 @@ import { writeFileAtomically } from '../../filesystem/atomic-file-publication'
 import { getOrcaUserDataPath } from '../../codex/configuration/homes/codex-home-paths'
 
 /**
- * Ownership records for the workspace trust entries Orca's preflight created in
+ * Ownership records for the workspace trust entries Otodus's preflight created in
  * an agent's config, so a removed worktree's entry can be deleted without ever
- * touching one the user (or an older Orca build) had at that path. Each record
+ * touching one the user (or an older Otodus build) had at that path. Each record
  * carries exactly what the grant wrote, so an entry replaced afterwards is no
- * longer Orca's to delete.
+ * longer Otodus's to delete.
  */
 
 type CreatedTrustEntry = {
@@ -20,7 +20,7 @@ type CreatedTrustEntry = {
 
 type CreatedTrustLedger = {
   version: 1
-  /** Config file path → the entries Orca's grant created there. */
+  /** Config file path → the entries Otodus's grant created there. */
   created: Record<string, CreatedTrustEntry[]>
 }
 

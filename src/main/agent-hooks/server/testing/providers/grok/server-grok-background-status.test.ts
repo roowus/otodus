@@ -34,7 +34,7 @@ async function postGrokHook(
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'X-Orca-Agent-Hook-Token': env.ORCA_AGENT_HOOK_TOKEN
+      'X-Otodus-Agent-Hook-Token': env.ORCA_AGENT_HOOK_TOKEN
     },
     body: JSON.stringify(buildBody(payload))
   })

@@ -8,7 +8,7 @@ import { CodexAppServerUnsupportedError } from './codex-app-server-session'
 
 const EXIT_DETAIL_MAX_CHARS = 400
 
-/** The transport ended. Protocol failures are Orca refusing what Codex wrote, so not an exit. */
+/** The transport ended. Protocol failures are Otodus refusing what Codex wrote, so not an exit. */
 export class CodexAppServerExitError extends Error {
   constructor(
     message: string,

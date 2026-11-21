@@ -71,7 +71,7 @@ export async function createMarkdownTokensProvider(
   // Why: frontmatter embeds YAML at the document start, with no fence label to trigger a lazy load.
   await editorCore.core.loadLanguage(...markdownGrammars, ...yamlGrammars)
 
-  // Why: Orca's editors all use the built-in theme names; redefining them keeps every setTheme caller unchanged.
+  // Why: Otodus's editors all use the built-in theme names; redefining them keeps every setTheme caller unchanged.
   monaco.editor.defineTheme('vs-dark', {
     base: 'vs-dark',
     inherit: true,

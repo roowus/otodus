@@ -49,7 +49,7 @@ export type PluginMarketplaceListing = {
    *  official plugins and undated releases; catalogs carry no listing date of their own. */
   addedAt?: string
   /** The release offered to this host: the newest it can install, else the one needing the least
-   *  newer Orca. Absent for v1 catalogs. */
+   *  newer Otodus. Absent for v1 catalogs. */
   release?: PluginCatalogRelease
   /** Every release the catalog lists for this plugin, newest first. */
   releases?: PluginCatalogRelease[]

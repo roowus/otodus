@@ -29,7 +29,7 @@ function transcriptOf(data: string, cols = 40): Promise<string | null> {
 
 describe('readTerminalContextText', () => {
   it.each([
-    ['cursor-forward gaps', 'hello\x1b[1Cworld\x1b[2Cfrom Orca', 'hello world  from Orca'],
+    ['cursor-forward gaps', 'hello\x1b[1Cworld\x1b[2Cfrom Otodus', 'hello world  from Otodus'],
     [
       'Korean gaps',
       '안녕하세요\x1b[1C오르카\x1b[2C사용자입니다',

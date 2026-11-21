@@ -10,7 +10,7 @@ function optionsPagePath(extension: Electron.Extension): string | null {
   return typeof page === 'string' && page.length > 0 ? page : null
 }
 
-/** Opens the extension's options page as an Orca tab in the given browser profile. */
+/** Opens the extension's options page as an Otodus tab in the given browser profile. */
 export async function openBrowserExtensionOptionsPage(
   browserProfileId: string,
   extension: Electron.Extension,

@@ -62,7 +62,7 @@ export function createCrewPartyRegistry(deps: CrewReadDependencies) {
         heads[0],
         [...component].sort().map((id) => {
           if (!isOrcaSessionId(id)) {
-            throw new Error(`Not an Orca session id: ${id}`)
+            throw new Error(`Not an Otodus session id: ${id}`)
           }
           return formatOrcaSessionAddress(id)
         })

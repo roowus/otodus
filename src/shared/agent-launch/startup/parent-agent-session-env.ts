@@ -24,7 +24,7 @@ export const PARENT_AGENT_SESSION_STAMP_ENV_KEYS = [
   'CODEX_PERMISSION_PROFILE',
   'CODEX_APPLY_PATCH_PRESERVE_LINE_ENDINGS',
   'CODEX_PLUGIN_METRICS_OUTPUT',
-  // Registered Core needs Codex Desktop's package identity, which no Orca-launched process has (#39272).
+  // Registered Core needs Codex Desktop's package identity, which no Otodus-launched process has (#39272).
   'CODEX_WINDOWS_REGISTERED_CORE'
 ] as const
 
@@ -68,7 +68,7 @@ export function stripInheritedAgentSessionEnv(
   }
 }
 
-/** Orca's own environment as an independent child's base, without the agent session that launched Orca. */
+/** Otodus's own environment as an independent child's base, without the agent session that launched Otodus. */
 export function processEnvWithoutAgentSession(
   platform: NodeJS.Platform = process.platform
 ): NodeJS.ProcessEnv {

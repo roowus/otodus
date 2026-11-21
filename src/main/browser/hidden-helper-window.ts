@@ -4,7 +4,7 @@ const helperContents = new WeakSet<Electron.WebContents>()
 // Why: web-contents-created and browser-window-created fire inside the BrowserWindow constructor, before helperContents.add.
 let creatingHelperWindow = false
 
-/** Hidden windows Orca opens for its own work in a session: never tabs, popouts or the app window. */
+/** Hidden windows Otodus opens for its own work in a session: never tabs, popouts or the app window. */
 export function isHiddenHelperContents(contents: Electron.WebContents): boolean {
   return creatingHelperWindow || helperContents.has(contents)
 }

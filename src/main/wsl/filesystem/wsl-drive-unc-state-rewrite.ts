@@ -206,7 +206,7 @@ function worktreePathOf(worktreeId: string): string[] {
 }
 
 /**
- * The projects of the converted repos run Orca's Git on Windows. Terminals stay where they ran:
+ * The projects of the converted repos run Otodus's Git on Windows. Terminals stay where they ran:
  * a project inferred its distro from the UNC path, which the drive path no longer carries.
  */
 function withWindowsGit(
@@ -231,7 +231,7 @@ function windowsGitPreference(
   distro: string
 ): LocalWindowsRuntimePreference | null {
   if (current?.kind === 'windows-host') {
-    // Windows shells already; Orca's Git runs on Windows with them.
+    // Windows shells already; Otodus's Git runs on Windows with them.
     return null
   }
   if (current?.kind === 'wsl') {

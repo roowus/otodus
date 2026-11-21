@@ -93,7 +93,7 @@ export class StructuredAgentSessionUsageLimitContinue {
     id: string,
     cut: HostUsageLimitCut | null
   ): AgentSessionStatusSummary['usageLimitContinue'] => {
-    // A cut Orca can never continue shows only the manual actions, whatever the setting.
+    // A cut Otodus can never continue shows only the manual actions, whatever the setting.
     if (!cut || !this.holds.schedulable(id, cut, this.deps.now())) {
       return undefined
     }

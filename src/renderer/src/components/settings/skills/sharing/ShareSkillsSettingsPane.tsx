@@ -64,7 +64,7 @@ export function ShareSkillsSettingsPane(): React.JSX.Element {
         title={t('auto.components.settings.shareSkills.linkTitle', 'Unlisted skill links')}
         description={t(
           'auto.components.settings.shareSkills.linkDescription',
-          'Shared bundles are not searchable or listed in Orca. The link is the credential, so send it only to people you trust.'
+          'Shared bundles are not searchable or listed in Otodus. The link is the credential, so send it only to people you trust.'
         )}
       >
         <SettingsSwitchRow
@@ -110,7 +110,7 @@ export function ShareSkillsSettingsPane(): React.JSX.Element {
                 {isWebClient
                   ? t(
                       'auto.components.settings.shareSkills.signInWebDescription',
-                      'Publishing and link management are available in the Orca desktop app.'
+                      'Publishing and link management are available in the Otodus desktop app.'
                     )
                   : t(
                       'auto.components.settings.shareSkills.signInDescription',
@@ -122,7 +122,7 @@ export function ShareSkillsSettingsPane(): React.JSX.Element {
               <OrcaSignInButton size="sm" disabled={authStatus?.configured !== true}>
                 {authStatus?.state === 'reconnect-required'
                   ? t('auto.components.settings.shareSkills.signInAgain', 'Sign in again')
-                  : t('auto.components.settings.shareSkills.signIn', 'Sign in to Orca')}
+                  : t('auto.components.settings.shareSkills.signIn', 'Sign in to Otodus')}
               </OrcaSignInButton>
             ) : null}
             {!isWebClient ? <OrcaSignInWaitNotice className="basis-full" /> : null}

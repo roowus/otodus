@@ -4,13 +4,13 @@ import { CLI_GLOBAL_FLAGS as GLOBAL_FLAGS } from '../../shared/cli/cli-argument-
 export const REPO_COMMAND_SPECS: CommandSpec[] = [
   {
     path: ['repo', 'list'],
-    summary: 'List repos registered in Orca',
+    summary: 'List repos registered in Otodus',
     usage: 'orca repo list [--json]',
     allowedFlags: [...GLOBAL_FLAGS]
   },
   {
     path: ['repo', 'add'],
-    summary: 'Add a project to Orca by filesystem path',
+    summary: 'Add a project to Otodus by filesystem path',
     usage: 'orca repo add --path <path> [--kind git|folder] [--json]',
     allowedFlags: [...GLOBAL_FLAGS, 'path', 'kind'],
     notes: [
@@ -27,12 +27,12 @@ export const REPO_COMMAND_SPECS: CommandSpec[] = [
   },
   {
     path: ['repo', 'set'],
-    summary: "Set a repo's non-Orca worktree visibility or browser profile",
+    summary: "Set a repo's non-Otodus worktree visibility or browser profile",
     usage:
       'orca repo set --repo <selector> [--external-worktree-visibility show|hide|inherit] [--browser-profile <id>|inherit] [--json]',
     allowedFlags: [...GLOBAL_FLAGS, 'repo', 'external-worktree-visibility', 'browser-profile'],
     notes: [
-      'show and hide override the global non-Orca worktree visibility default for this repo; inherit clears the override.',
+      'show and hide override the global non-Otodus worktree visibility default for this repo; inherit clears the override.',
       'Per-worktree visibility rules still apply.',
       "--browser-profile picks the profile new browser tabs in this repo use, overriding the Browser setting's profile for new tabs; inherit clears it. Ids come from `orca tab profile list`; `default` is the Default profile."
     ],
@@ -43,7 +43,7 @@ export const REPO_COMMAND_SPECS: CommandSpec[] = [
   },
   {
     path: ['repo', 'hide'],
-    summary: "Hide a project from Orca's sidebar",
+    summary: "Hide a project from Otodus's sidebar",
     usage: 'orca repo hide --repo <selector> [--host <host>] [--json]',
     allowedFlags: [...GLOBAL_FLAGS, 'repo', 'host'],
     notes: [
@@ -55,7 +55,7 @@ export const REPO_COMMAND_SPECS: CommandSpec[] = [
   },
   {
     path: ['repo', 'unhide'],
-    summary: "Show a hidden project in Orca's sidebar again",
+    summary: "Show a hidden project in Otodus's sidebar again",
     usage: 'orca repo unhide --repo <selector> [--host <host>] [--json]',
     allowedFlags: [...GLOBAL_FLAGS, 'repo', 'host'],
     notes: ["Shows one host's copy again; on a paired Orca server, for everyone connected to it."]

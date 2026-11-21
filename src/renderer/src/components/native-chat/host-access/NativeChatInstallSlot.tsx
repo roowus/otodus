@@ -58,7 +58,7 @@ export function useNativeChatInstallSlot(
     props.isVisible && !hostProgram
   )
   const slot = nativeChatInstallSlotState(observation, layout, hostProgram)
-  // Once Orca's own runtime is ready, chats still need its sign-in; the host's agy signs itself in.
+  // Once Otodus's own runtime is ready, chats still need its sign-in; the host's agy signs itself in.
   const signsIn =
     props.agent === 'antigravity' &&
     props.isVisible &&

@@ -139,7 +139,7 @@ describe('worker-stop on a structured worker', () => {
             claimStatus: attached ? 'live' : 'released',
             deathEvidence: attached
               ? null
-              : { kind: 'exit-observed', detail: 'closed by Orca', observedAt: 1 }
+              : { kind: 'exit-observed', detail: 'closed by Otodus', observedAt: 1 }
           })
         )
       )

@@ -56,7 +56,7 @@ export async function main(
   if (argv.length === 1 && (argv[0] === '--version' || argv[0] === '-v')) {
     const version = readOrcaCliVersion()
     if (!version) {
-      process.stderr.write('Could not determine the Orca version for this build.\n')
+      process.stderr.write('Could not determine the Otodus version for this build.\n')
       process.exitCode = 1
       return
     }
@@ -117,7 +117,7 @@ export async function main(
     refuseConflictingSessionCallerFlags(commandSpec, parsed.flags)
     await refuseLocalManagementSelector(parsed.commandPath, parsed.flags)
     const RuntimeClientClass = await loadRuntimeClientClass()
-    // `--on` runs on the caller's own Orca, which reaches that server; an inherited selection never reroutes it.
+    // `--on` runs on the caller's own Otodus, which reaches that server; an inherited selection never reroutes it.
     const onCallersOrca = runsOnCallersOrca(parsed.commandPath, parsed.flags)
     if (
       onCallersOrca &&
@@ -127,7 +127,7 @@ export async function main(
     ) {
       throw new RuntimeClientError(
         'invalid_argument',
-        '--on already names the server; drop --environment. Your own Orca reaches it.'
+        '--on already names the server; drop --environment. Your own Otodus reaches it.'
       )
     }
     const ignoreRemoteSelection = onCallersOrca || ignoresRemoteSelection(parsed.commandPath)
@@ -232,7 +232,7 @@ function runsOnCallersOrca(
 
 async function runClaudeTeams(argv: string[], cwd: string): Promise<void> {
   try {
-    // Forward Claude Code arguments verbatim so new flags work without Orca changes.
+    // Forward Claude Code arguments verbatim so new flags work without Otodus changes.
     const client = new (await loadRuntimeClientClass())(undefined, undefined, null, null)
     await dispatch(['claude-teams'], {
       flags: new Map(),

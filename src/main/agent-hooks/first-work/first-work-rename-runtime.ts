@@ -70,7 +70,7 @@ export function firstWorkRenameDeps(
       const meta =
         store.getWorktreeMetaForHost?.(worktreeId, LOCAL_EXECUTION_HOST_ID) ??
         store.getWorktreeMeta(worktreeId)
-      // A creature-like name alone cannot prove Orca owns the branch.
+      // A creature-like name alone cannot prove Otodus owns the branch.
       return (
         !!meta?.orcaCreationSource &&
         meta.preserveBranchOnDelete !== true &&

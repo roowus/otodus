@@ -17,7 +17,7 @@ import { RuntimeClientError } from '../runtime/connection/types'
 import { attachCliErrorData } from '../workspaces/worktree-setup-decision-recovery'
 import { resolveHostFlagTarget } from '../hosts/execution-host-flag'
 
-/** `inherit` clears the pick; anything else must name a profile on the repo's Orca host. */
+/** `inherit` clears the pick; anything else must name a profile on the repo's Otodus host. */
 async function resolveBrowserProfileFlag(
   client: HandlerContext['client'],
   value: string
@@ -126,8 +126,8 @@ export const REPO_HANDLERS: Record<string, CommandHandler> = {
       throw new RuntimeClientError(
         'incompatible_runtime',
         visibility === undefined
-          ? 'This Orca host does not support per-repo browser profiles. Update Orca on that host.'
-          : 'This Orca host does not support per-repo browser profiles, so only the worktree visibility was saved. Update Orca on that host.'
+          ? 'This Otodus host does not support per-repo browser profiles. Update Otodus on that host.'
+          : 'This Otodus host does not support per-repo browser profiles, so only the worktree visibility was saved. Update Otodus on that host.'
       )
     }
     printResult(result, json, formatRepoShow)

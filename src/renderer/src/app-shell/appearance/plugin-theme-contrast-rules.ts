@@ -136,7 +136,7 @@ export const CONTRAST_RULES = CONTRAST_RULE_DEFINITIONS.map((rule) => ({
   ...rule,
   dropped: rule.drop ?? [rule.surface, rule.text]
 }))
-// Why 2:1, not WCAG's 3:1: Orca's own light ring is 2.6:1; the goal is a ring that never vanishes.
+// Why 2:1, not WCAG's 3:1: Otodus's own light ring is 2.6:1; the goal is a ring that never vanishes.
 export const RINGS: readonly (readonly [string, string])[] = [
   ['--ring', '--background'],
   ['--sidebar-ring', '--sidebar'],
@@ -146,7 +146,7 @@ export const RINGS: readonly (readonly [string, string])[] = [
   ['--tab-active-indicator', '--sidebar']
 ]
 export const MIN_RING_CONTRAST = 2
-// Why a floor, not opaque: Orca's own dark borders are 7% white; 0 or near-0 alpha hides them.
+// Why a floor, not opaque: Otodus's own dark borders are 7% white; 0 or near-0 alpha hides them.
 export const BORDERS = [
   '--border',
   '--input',
