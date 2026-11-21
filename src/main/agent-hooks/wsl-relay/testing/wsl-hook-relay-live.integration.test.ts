@@ -179,7 +179,7 @@ describe.skipIf(process.platform === 'win32')(
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'X-Otodus-Agent-Hook-Token': token ?? ''
+            'X-Orca-Agent-Hook-Token': token ?? ''
           },
           body: JSON.stringify({
             paneKey,

@@ -3,7 +3,7 @@ import path from 'node:path'
 import type { AppIdentity } from '../../../shared/app-lifecycle/identity/app-identity'
 
 const BASE_APP_NAME = 'Otodus'
-const BASE_APP_USER_MODEL_ID = 'com.stablyai.orca'
+const BASE_APP_USER_MODEL_ID = 'com.roowus.otodus'
 const MAX_LABEL_LENGTH = 80
 
 export type DevInstanceIdentity = AppIdentity & {

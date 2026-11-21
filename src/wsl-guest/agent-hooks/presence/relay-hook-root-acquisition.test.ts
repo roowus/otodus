@@ -57,7 +57,7 @@ async function relay(request: (paneKey: string) => Promise<unknown>) {
   const post = async (pid: number | null, payload: Record<string, unknown>, pane = paneKey) => {
     const response = await fetch(`http://127.0.0.1:${port}/hook/claude`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'X-Otodus-Agent-Hook-Token': token },
+      headers: { 'Content-Type': 'application/json', 'X-Orca-Agent-Hook-Token': token },
       body: JSON.stringify({
         paneKey: pane,
         tabId: pane.split(':')[0],

@@ -177,7 +177,7 @@ def _post_to_orca(payload: dict[str, Any]) -> None:
         method="POST",
         headers={
             "Content-Type": "application/json",
-            "X-Otodus-Agent-Hook-Token": token,
+            "X-Orca-Agent-Hook-Token": token,
         },
     )
     try:

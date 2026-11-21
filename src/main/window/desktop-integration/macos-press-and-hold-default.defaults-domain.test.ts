@@ -17,7 +17,7 @@ import {
 const domains: string[] = []
 
 function throwawayDomain(): string {
-  const domain = `com.stablyai.orca.defaults-domain-test.${randomUUID()}`
+  const domain = `com.roowus.otodus.defaults-domain-test.${randomUUID()}`
   domains.push(domain)
   return domain
 }

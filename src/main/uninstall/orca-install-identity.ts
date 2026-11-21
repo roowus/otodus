@@ -24,7 +24,7 @@ export type OrcaInstallIdentityInput = {
 }
 
 // Every channel (stable, RC, dev builds) ships this bundle id; see config/electron-builder.config.cjs.
-const ORCA_BUNDLE_ID = 'com.stablyai.orca'
+const ORCA_BUNDLE_ID = 'com.roowus.otodus'
 // Cask tokens from Casks/orca.rb and Casks/orca@rc.rb.
 const ORCA_CASKS = ['orca', 'orca@rc']
 const CASKROOMS = ['/opt/homebrew/Caskroom', '/usr/local/Caskroom']

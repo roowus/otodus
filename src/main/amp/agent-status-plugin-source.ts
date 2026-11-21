@@ -100,7 +100,7 @@ export function getAmpPluginSource(): string {
     '      signal: controller.signal,',
     '      headers: {',
     '        "Content-Type": "application/json",',
-    '        "X-Otodus-Agent-Hook-Token": coords.token',
+    '        "X-Orca-Agent-Hook-Token": coords.token',
     '      },',
     '      body: JSON.stringify({',
     '        paneKey,',
