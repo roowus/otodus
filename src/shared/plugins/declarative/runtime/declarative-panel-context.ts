@@ -3,8 +3,8 @@ import { readHostMessage, readStoredValues } from './declarative-host-messages'
 import type { OrcaPanelContext } from './declarative-runtime-types'
 
 /**
- * The `setup(ctx)` context, and hydration: panel id, visibility and persisted atoms from Orca.
- * `onRetain` runs when Orca asks for keyed memory atoms, to hand them to a dev hot reload.
+ * The `setup(ctx)` context, and hydration: panel id, visibility and persisted atoms from Otodus.
+ * `onRetain` runs when Otodus asks for keyed memory atoms, to hand them to a dev hot reload.
  */
 export function createPanelContext(onRetain?: () => void) {
   const visibility = hostAtom(true)

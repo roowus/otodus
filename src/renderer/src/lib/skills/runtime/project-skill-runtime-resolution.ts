@@ -32,7 +32,7 @@ export type ProjectSkillRuntime = {
   terminalShellOverride?: string
   installDisabledReason: string | null
   canUseSkillFreshness: boolean
-  /** Where Update skills plans Orca's skills; null while that host is unknown. */
+  /** Where Update skills plans Otodus's skills; null while that host is unknown. */
   bundledSkillTarget: BundledSkillTarget | null
 }
 

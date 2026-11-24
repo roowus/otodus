@@ -58,7 +58,7 @@ function addLedgerRecognizedHashes(
   }
 }
 
-/** Read Codex's recorded hashes only for matching Orca hook signatures. */
+/** Read Codex's recorded hashes only for matching Otodus hook signatures. */
 export function readLedgerOrcaHashes(
   runtimeHomePath: string,
   command: string,

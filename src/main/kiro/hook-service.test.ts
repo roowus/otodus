@@ -7,7 +7,7 @@ import { isPlainObject } from '../agent-hooks/installation/configuration/hooks-j
 import { KiroHookService } from './hook-service'
 import { getKiroManagedCommandMatcher, KIRO_HOOK_EVENTS } from './hook-settings'
 
-// Isolate HOME and USERPROFILE so tests cannot write real Kiro or Orca configs on any OS.
+// Isolate HOME and USERPROFILE so tests cannot write real Kiro or Otodus configs on any OS.
 let home: string
 let originalHome: string | undefined
 let originalUserProfile: string | undefined

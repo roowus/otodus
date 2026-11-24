@@ -6,14 +6,14 @@ export type OrcaInstallIdentity = {
   installKind: OrcaUninstallInstallKind
   appPath: string | null
   removeAppCommand: string | null
-  /** Another Orca build that runs the same ~/.orca hook scripts. */
+  /** Another Otodus build that runs the same ~/.orca hook scripts. */
   otherOrcaBuildName: string | null
 }
 
 export type OrcaInstallIdentityInput = {
   platform: NodeJS.Platform
   isPackaged: boolean
-  /** The running Orca executable (Electron's `exe` path). */
+  /** The running Otodus executable (Electron's `exe` path). */
   exePath: string
   homeDir: string
   env: NodeJS.ProcessEnv
@@ -24,12 +24,12 @@ export type OrcaInstallIdentityInput = {
 }
 
 // Every channel (stable, RC, dev builds) ships this bundle id; see config/electron-builder.config.cjs.
-const ORCA_BUNDLE_ID = 'com.stablyai.orca'
+const ORCA_BUNDLE_ID = 'com.roowus.otodus'
 // Cask tokens from Casks/orca.rb and Casks/orca@rc.rb.
 const ORCA_CASKS = ['orca', 'orca@rc']
 const CASKROOMS = ['/opt/homebrew/Caskroom', '/usr/local/Caskroom']
 const LINUX_PACKAGE_NAME = 'orca-ide'
-const LINUX_PACKAGE_EXECUTABLE = '/opt/Orca/orca-ide'
+const LINUX_PACKAGE_EXECUTABLE = '/opt/Otodus/orca-ide'
 
 function pathExists(path: string): Promise<boolean> {
   return access(path).then(
@@ -72,8 +72,8 @@ async function otherMacBuild(
 
 function windowsInstallDirs(env: NodeJS.ProcessEnv): string[] {
   return [
-    env.LOCALAPPDATA ? win32.join(env.LOCALAPPDATA, 'Programs', 'Orca') : null,
-    env.ProgramFiles ? win32.join(env.ProgramFiles, 'Orca') : null
+    env.LOCALAPPDATA ? win32.join(env.LOCALAPPDATA, 'Programs', 'Otodus') : null,
+    env.ProgramFiles ? win32.join(env.ProgramFiles, 'Otodus') : null
   ].filter((dir): dir is string => dir !== null)
 }
 
@@ -85,9 +85,9 @@ async function otherWindowsBuild(
   for (const dir of windowsInstallDirs(input.env)) {
     if (
       dir.toLowerCase() !== own?.toLowerCase() &&
-      (await input.exists(win32.join(dir, 'Orca.exe')))
+      (await input.exists(win32.join(dir, 'Otodus.exe')))
     ) {
-      return `Orca in ${dir}`
+      return `Otodus in ${dir}`
     }
   }
   return null
@@ -105,7 +105,7 @@ async function homebrewCask(input: Required<OrcaInstallIdentityInput>): Promise<
 }
 
 async function hasLinuxPackage(input: Required<OrcaInstallIdentityInput>): Promise<string | null> {
-  return (await input.exists(LINUX_PACKAGE_EXECUTABLE)) ? 'Orca (system package)' : null
+  return (await input.exists(LINUX_PACKAGE_EXECUTABLE)) ? 'Otodus (system package)' : null
 }
 
 export async function resolveOrcaInstallIdentity(

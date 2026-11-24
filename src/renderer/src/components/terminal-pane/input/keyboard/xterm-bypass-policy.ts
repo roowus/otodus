@@ -275,7 +275,7 @@ export function shouldBypassXtermKeyboardEvent(
   }
 
   if (isMac) {
-    // Orca's own Cmd chords are claimed earlier; web paste still needs Chromium’s native event.
+    // Otodus's own Cmd chords are claimed earlier; web paste still needs Chromium’s native event.
     return (
       matchesClipboardBinding('Mod+C', event, 'darwin') ||
       matchesClipboardBinding('Mod+V', event, 'darwin') ||

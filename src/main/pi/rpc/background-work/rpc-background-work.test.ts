@@ -27,7 +27,7 @@ function probeFolder(): string {
   return folder
 }
 
-/** Answer Orca's pending request with a recorded reply, carrying the nonce Orca chose. */
+/** Answer Otodus's pending request with a recorded reply, carrying the nonce Otodus chose. */
 async function answer(work: PiRpcBackgroundWork, folder: string, recorded: JsonlRpcRecord) {
   await vi.waitFor(() =>
     expect(readdirSync(folder).some((name) => name.endsWith('.probe'))).toBe(true)

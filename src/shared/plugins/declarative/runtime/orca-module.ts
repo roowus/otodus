@@ -1,7 +1,7 @@
 /**
  * Entry of the guest `orca` module (also `orca/jsx-runtime` and `orca/jsx-dev-runtime`). Bundled
  * to resources/plugins/declarative/orca-runtime.mjs by config/scripts/build-plugin-declarative-runtime.mjs.
- * Orca's host page installs the runtime, imports the panel module and boots it.
+ * Otodus's host page installs the runtime, imports the panel module and boots it.
  */
 import { installPluginSourceMapHook } from './declarative-source-maps'
 import { read, resetAtoms } from './declarative-atoms'
@@ -108,7 +108,7 @@ export const Spinner = 'Spinner'
 export const EmptyState = 'EmptyState'
 export const Link = 'Link'
 export const Code = 'Code'
-// Catalog 2 (Orca 1.4.247).
+// Catalog 2 (Otodus 1.4.247).
 export const Textarea = 'Textarea'
 export const Checkbox = 'Checkbox'
 export const RadioGroup = 'RadioGroup'
@@ -128,5 +128,5 @@ export const KeyValue = 'KeyValue'
 export const Callout = 'Callout'
 export const Skeleton = 'Skeleton'
 export const RelativeTime = 'RelativeTime'
-// Catalog 4 (Orca 1.4.248).
+// Catalog 4 (Otodus 1.4.248).
 export const Box = 'Box'

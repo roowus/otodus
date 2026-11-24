@@ -1,4 +1,4 @@
-/** A terminal worker Orca closed keeps its conversation; resume it in a terminal of the user's so any client can open it. */
+/** A terminal worker Otodus closed keeps its conversation; resume it in a terminal of the user's so any client can open it. */
 
 import { randomUUID } from 'node:crypto'
 import { isResumableTuiAgent } from '../../../../../../../shared/agent-session/lifecycle/agent-session-resume'

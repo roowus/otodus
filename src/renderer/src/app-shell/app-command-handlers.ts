@@ -73,7 +73,7 @@ export function createAppCommandHandlers(
   state: AppShortcutState,
   input?: ShortcutDispatchInput,
   keybindingContext: KeybindingContext = 'app',
-  /** A plugin's `commands.run`: Orca's own action, never a plugin replacement (no loops). */
+  /** A plugin's `commands.run`: Otodus's own action, never a plugin replacement (no loops). */
   builtInOnly = false
 ): Map<KeybindingActionId, () => boolean> {
   const {

@@ -5,8 +5,8 @@ import { z } from 'zod'
 export const WorkerApprovalDecisionSchema = z.enum(['allow', 'deny'])
 export type WorkerApprovalDecision = z.infer<typeof WorkerApprovalDecisionSchema>
 
-/** Who settled it: a person (in Orca), the coordinator agent, someone in the worker's own chat or
- *  terminal, the agent's own timeout, or no one Orca can name. `terminal-only`: closed for Orca while
+/** Who settled it: a person (in Otodus), the coordinator agent, someone in the worker's own chat or
+ *  terminal, the agent's own timeout, or no one Otodus can name. `terminal-only`: closed for Otodus while
  *  the prompt is still up; only a person at the worker's terminal can answer it. `worker-ended`: its
  *  Dispatch stopped running, so nothing is left to answer. */
 export const WorkerApprovalAnswererSchema = z.enum([
@@ -42,9 +42,9 @@ export const WorkerApprovalPayloadSchema = z.object({
     detail: z.string().nullable(),
     reason: z.string().nullable()
   }),
-  /** The decisions Orca can apply to this prompt now; empty once it is closed. */
+  /** The decisions Otodus can apply to this prompt now; empty once it is closed. */
   allowedActions: z.array(WorkerApprovalDecisionSchema),
-  /** The worker's agent lets only a person allow it: Orca refuses an agent's allow. */
+  /** The worker's agent lets only a person allow it: Otodus refuses an agent's allow. */
   personOnly: z.literal(true).optional(),
   /** When the agent decides on its own, read from its screen; only while that countdown is shown. */
   expiresAt: z.string().optional(),

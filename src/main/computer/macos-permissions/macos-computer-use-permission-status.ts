@@ -44,7 +44,7 @@ async function getComputerUsePermissionStatusAsync(
   const unavailableReason = resolveComputerUseHelperUnavailableReason()
   if (!helperAppPath || !executablePath || unavailableReason) {
     return createUnavailablePermissionStatus(
-      unavailableReason ?? 'Orca Computer Use.app was not found',
+      unavailableReason ?? 'Otodus Computer Use.app was not found',
       helperAppPath
     )
   }
@@ -67,7 +67,7 @@ async function getComputerUsePermissionStatusAsync(
 export function resolveComputerUseHelperUnavailableReason(): string | null {
   const helperAppPath = resolveMacOSComputerUseAppPath()
   if (!helperAppPath) {
-    return 'Orca Computer Use.app was not found'
+    return 'Otodus Computer Use.app was not found'
   }
   if (!resolveMacOSComputerUseExecutablePath()) {
     return `${helperAppPath}/Contents/MacOS/orca-computer-use-macos was not found`
@@ -94,7 +94,7 @@ async function readPermissionStatusFromHelper(
   executablePath: string,
   onHelperSpawn: () => void
 ): Promise<HelperPermissionStatus> {
-  // A direct child, so a timeout stops this probe by PID; the helper disclaims Orca so TCC checks its own grant.
+  // A direct child, so a timeout stops this probe by PID; the helper disclaims Otodus so TCC checks its own grant.
   const probe = runProcess({
     program: executablePath,
     args: ['--permission-status'],

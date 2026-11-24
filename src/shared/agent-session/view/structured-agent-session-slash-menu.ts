@@ -14,7 +14,7 @@ export const CONVERSATION_COMMANDS: readonly SlashCommandSuggestion[] = [
   { name: 'compact', description: 'Compact conversation context' }
 ]
 
-/** Orca's MCP panel, offered where the host manages this agent's servers. */
+/** Otodus's MCP panel, offered where the host manages this agent's servers. */
 export const STRUCTURED_AGENT_SESSION_MCP_COMMAND: SlashCommandSuggestion = {
   name: 'mcp',
   description: 'Manage MCP servers',

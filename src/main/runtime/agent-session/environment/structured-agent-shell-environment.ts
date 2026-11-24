@@ -52,7 +52,7 @@ function pickShellVariables(
 
 /**
  * The env every structured chat child starts from, before its provider pins an account.
- * Inheriting everything is the login-shell snapshot as-is; otherwise Orca's own env plus
+ * Inheriting everything is the login-shell snapshot as-is; otherwise Otodus's own env plus
  * the baseline and listed shell variables.
  */
 export function structuredAgentBaseEnvironment(input: {

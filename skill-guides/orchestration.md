@@ -1,11 +1,11 @@
 ---
 name: orchestration
 description: >-
-  Run work in separate Orca worker agents and get their results back. Use when
-  the user asks for Orca workers or supervision (monitor, task DAGs, ask/reply,
+  Run work in separate Otodus worker agents and get their results back. Use when
+  the user asks for Otodus workers or supervision (monitor, task DAGs, ask/reply,
   decision gates), or when the work needs something your own subagents cannot
-  give: a different agent (such as Codex from Claude) or its own Orca workspace.
-  "Have Codex (or Claude) review this and report back" means an Orca worker of
+  give: a different agent (such as Codex from Claude) or its own Otodus workspace.
+  "Have Codex (or Claude) review this and report back" means an Otodus worker of
   that agent, even when you have your own model subagents.
   Also use when you are a dispatched worker (a prompt with Task and Dispatch
   IDs: ask, worker_done). Otherwise prefer your own subagents,
@@ -15,11 +15,11 @@ description: >-
   management, and reading or waiting on terminals.
 ---
 
-# Orca orchestration
+# Otodus orchestration
 
 If your prompt has a preamble with Task and Dispatch IDs, you are a worker:
 follow the preamble. To ask your coordinator, run `ask`, then end your turn;
-Orca wakes you with the answer. To hand work off with nothing back, use `orca-cli`.
+Otodus wakes you with the answer. To hand work off with nothing back, use `orca-cli`.
 When you report your effort, take it from the dispatch's `--effort` or your process
 argv, not from a numeric `reasoning_effort`: that number is not on a 0–100 scale
 (claude-opus-5-5: low=5, medium=10, high=15, xhigh=40).
@@ -33,15 +33,15 @@ place and use it for every command.
 ORCA orchestration worker-start --spec "<task>" --worktree current --agent <agent>
 ```
 
-`<agent>` is an Orca agent id: one the user named, else the agent you are
+`<agent>` is an Otodus agent id: one the user named, else the agent you are
 running as when the worker shares your execution host. Otherwise, such as a
 different SSH/WSL host or `--on`, ask the user. `worker-start` does not check
 that the CLI is installed; a missing one fails as an `agent_readiness` timeout.
 
 - Start every independent worker, then **end your turn**. "Report back" and
-  "tell me when it's done" still mean end your turn; Orca wakes you and you
+  "tell me when it's done" still mean end your turn; Otodus wakes you and you
   report then.
-- If a receipt has `next`, follow it. When Orca has nothing for you, end your
+- If a receipt has `next`, follow it. When Otodus has nothing for you, end your
   turn.
 - `--worktree current` uses your workspace. Use a new one only when the user
   asks or sharing would conflict: `--worktree new-child --name <short-name>`
@@ -66,11 +66,11 @@ that the CLI is installed; a missing one fails as an `agent_readiness` timeout.
 Never:
 
 - Poll or run watch scripts: a script's plain `check` takes your mail, so it is
-  hidden from you and Orca has nothing to wake you with. Orca wakes you.
+  hidden from you and Otodus has nothing to wake you with. Otodus wakes you.
 - Steer through a worker's terminal; use `send`.
 - Make checkouts yourself; let `worker-start` create a worker's workspace.
 
-## When Orca wakes you
+## When Otodus wakes you
 
 - In a chat, each message arrives whole as its own message: act on it. A wake
   that names a `check` command (a terminal, or one message too large for a chat

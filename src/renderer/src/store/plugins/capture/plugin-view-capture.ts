@@ -4,9 +4,9 @@ import { create } from 'zustand'
 type PluginViewCaptureState = {
   /** Right-sidebar panel width in CSS pixels, or null for the user's own. */
   panelWidth: number | null
-  /** Paint Orca dark (true) or light (false), or null for the Appearance setting. */
+  /** Paint Otodus dark (true) or light (false), or null for the Appearance setting. */
   dark: boolean | null
-  /** A capture is running: Orca's floating controls stay out of the picture. */
+  /** A capture is running: Otodus's floating controls stay out of the picture. */
   capturing: boolean
   /** `shot --editor`: the open file whose editor is sized to `editorSize` for the capture. */
   editorFileId: string | null

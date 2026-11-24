@@ -1,11 +1,11 @@
 ---
 name: orchestration
 description: >-
-  Run work in separate Orca worker agents and get their results back. Use when
-  the user asks for Orca workers or supervision (monitor, task DAGs, ask/reply,
+  Run work in separate Otodus worker agents and get their results back. Use when
+  the user asks for Otodus workers or supervision (monitor, task DAGs, ask/reply,
   decision gates), or when the work needs something your own subagents cannot
-  give: a different agent (such as Codex from Claude) or its own Orca workspace.
-  "Have Codex (or Claude) review this and report back" means an Orca worker of
+  give: a different agent (such as Codex from Claude) or its own Otodus workspace.
+  "Have Codex (or Claude) review this and report back" means an Otodus worker of
   that agent, even when you have your own model subagents.
   Also use when you are a dispatched worker (a prompt with Task and Dispatch
   IDs: ask, worker_done). Otherwise prefer your own subagents,

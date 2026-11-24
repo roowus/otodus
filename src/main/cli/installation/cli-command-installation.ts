@@ -40,7 +40,7 @@ export class CliCommandInstallation extends CliCommandInspection {
     const inspected = await this.inspectStableSymlink(commandPath, launcherPath)
     if (inspected.status.state === 'conflict') {
       throw new Error(
-        `Refusing to replace non-Orca command at ${commandPath}. Remove it and register again if it is no longer needed.`
+        `Refusing to replace non-Otodus command at ${commandPath}. Remove it and register again if it is no longer needed.`
       )
     }
     if (inspected.status.state === 'installed') {
@@ -52,7 +52,7 @@ export class CliCommandInstallation extends CliCommandInspection {
       await this.runPrivilegedSymlinkTransaction('install', commandPath, launcherPath, inspected)
       const installed = await this.inspectStableSymlink(commandPath, launcherPath)
       if (installed.status.state !== 'installed') {
-        throw new Error(`Could not register the Orca command at ${commandPath}.`)
+        throw new Error(`Could not register the Otodus command at ${commandPath}.`)
       }
       return
     }
@@ -60,7 +60,7 @@ export class CliCommandInstallation extends CliCommandInspection {
     if (!(await capturedExpectedEntry(quarantine, inspected))) {
       await this.restoreQuarantinedCommand(quarantine, commandPath)
       throw new Error(
-        `Refusing to replace non-Orca command at ${commandPath}. Remove it and register again if it is no longer needed.`
+        `Refusing to replace non-Otodus command at ${commandPath}. Remove it and register again if it is no longer needed.`
       )
     }
 
@@ -83,7 +83,7 @@ export class CliCommandInstallation extends CliCommandInspection {
       return
     }
     if (inspected.status.state === 'conflict') {
-      throw new Error(`Refusing to remove non-Orca command at ${commandPath}.`)
+      throw new Error(`Refusing to remove non-Otodus command at ${commandPath}.`)
     }
 
     const quarantine = await this.quarantineUnlessPrivileged(commandPath)
@@ -93,7 +93,7 @@ export class CliCommandInstallation extends CliCommandInspection {
     }
     if (!(await capturedExpectedEntry(quarantine, inspected))) {
       await this.restoreQuarantinedCommand(quarantine, commandPath)
-      throw new Error(`Refusing to remove non-Orca command at ${commandPath}.`)
+      throw new Error(`Refusing to remove non-Otodus command at ${commandPath}.`)
     }
     await this.discardQuarantinedCommand(quarantine)
   }
@@ -173,7 +173,7 @@ export class CliCommandInstallation extends CliCommandInspection {
     const extractedRoot = await ensureAppImageExtractedRoot(extractionOptions)
     if (!extractedRoot) {
       throw new Error(
-        `Could not extract the Orca AppImage at ${this.appImagePath}. Check that it is executable and that ${this.appImageCacheRootPath} has free space.`
+        `Could not extract the Otodus AppImage at ${this.appImagePath}. Check that it is executable and that ${this.appImageCacheRootPath} has free space.`
       )
     }
     return extractedRoot

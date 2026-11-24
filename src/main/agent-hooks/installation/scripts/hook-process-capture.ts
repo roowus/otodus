@@ -1,4 +1,4 @@
-/** Capture before Orca inserts its managed-script shell. */
+/** Capture before Otodus inserts its managed-script shell. */
 export const HOOK_PARENT_CAPTURE = 'ORCA_HOOK_AGENT_PID="${PPID:-}"; export ORCA_HOOK_AGENT_PID; '
 
 // Uncached, as no builtin tells a reused PID from its old process: Linux reads /proc, macOS runs only ps.

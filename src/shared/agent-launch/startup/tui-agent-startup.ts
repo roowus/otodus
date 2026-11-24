@@ -46,7 +46,7 @@ export function buildAgentStartupPlan(args: {
   sessionOptionsOverrideAgentArgs?: boolean
   /** Remote Linux deploys orca, so skip the local-only orca-ide rename. */
   isRemote?: boolean
-  /** Orca types into this launch after start, so a startup update prompt would take that input. */
+  /** Otodus types into this launch after start, so a startup update prompt would take that input. */
   suppressStartupUpdatePrompt?: boolean
 }): AgentStartupPlan | null {
   const { agent, prompt, cmdOverrides, platform, allowEmptyPromptLaunch = false } = args
@@ -152,7 +152,7 @@ export function buildAgentStartupPlan(args: {
     }
     return {
       agent,
-      // Hermes chat --query owns readiness/submission; Orca only bounds and quotes its native invocation.
+      // Hermes chat --query owns readiness/submission; Otodus only bounds and quotes its native invocation.
       launchCommand: queryPlan.command,
       expectedProcess: config.expectedProcess,
       followupPrompt: null,

@@ -129,7 +129,7 @@ export abstract class BrowserManagerGuestPopupPolicy extends BrowserManagerNavig
     }
   }
 
-  /** Answers a new-tab request as an Orca tab; false leaves opener-dependent requests to a child window. */
+  /** Answers a new-tab request as an Otodus tab; false leaves opener-dependent requests to a child window. */
   openNewTabPopup(
     guest: Electron.WebContents,
     request: NewBrowserTabPopupRequest,

@@ -37,7 +37,7 @@ export function withNativeChatSideChatRows(
 
 export type NativeChatSideChatCommand = {
   matchesDraft: (draft: string) => boolean
-  /** Starts a side chat for a `/side` or `/btw` draft; false means the draft is not Orca's. */
+  /** Starts a side chat for a `/side` or `/btw` draft; false means the draft is not Otodus's. */
   consume: (draft: string) => boolean
   /** Choosing the row completes `/btw ` for the question; only Send runs it. */
   interceptPick: <TItem extends NativeChatPickerItem>(

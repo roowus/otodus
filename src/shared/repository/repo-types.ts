@@ -69,13 +69,13 @@ export type Repo = {
   defaultJiraProject?: JiraProjectReference | null
   /** Bind host/login only; resolve a short-lived gh token at spawn and inject into that child’s environment. */
   ghAccount?: GhAccountBinding
-  /** Controls Orca's fork-default-branch sync offer for repos with upstream metadata. */
+  /** Controls Otodus's fork-default-branch sync offer for repos with upstream metadata. */
   forkSyncMode?: ForkSyncMode
-  /** Whether Orca pre-trusts this repo's worktrees for agents. Absent means undecided: desktop launches ask once. */
+  /** Whether Otodus pre-trusts this repo's worktrees for agents. Absent means undecided: desktop launches ask once. */
   agentWorkspaceTrust?: AgentWorkspaceTrustDecision
-  /** Canonical identity for the repo remote Orca should use for provider-level grouping. */
+  /** Canonical identity for the repo remote Otodus should use for provider-level grouping. */
   gitRemoteIdentity?: GitRemoteIdentity | null
-  /** Controls whether worktrees Orca did not create appear in the sidebar. */
+  /** Controls whether worktrees Otodus did not create appear in the sidebar. */
   externalWorktreeVisibility?: ExternalWorktreeVisibility
   /** True when the repo predates hidden-by-default external worktrees. */
   externalWorktreeVisibilityLegacy?: boolean
@@ -109,7 +109,7 @@ export type Repo = {
   projectHostSetupMethod?: RepoProjectHostSetupMethod
   /** Local row a WSL host now owns, kept for a downgrade; set only by the mover's retention pass. */
   orcadRetained?: OrcadRetainedMarker
-  /** Dictation terms used only in this repo, kept in Orca (on the repo's host), never in the checkout. */
+  /** Dictation terms used only in this repo, kept in Otodus (on the repo's host), never in the checkout. */
   dictationTerms?: DictationTerm[]
   /** Browser profile new tabs in this repo use, on the repo's own host. Absent follows the Browser setting. */
   browserProfileId?: string

@@ -56,7 +56,7 @@ async function assertUniqueIdMutationSupported(client: RuntimeClient): Promise<R
   ) {
     throw new RuntimeClientError(
       'incompatible_runtime',
-      'This Orca cannot change folder workspaces from the CLI safely. Update Orca on the computer that owns the folder workspace. Nothing was changed.'
+      'This Otodus cannot change folder workspaces from the CLI safely. Update Otodus on the computer that owns the folder workspace. Nothing was changed.'
     )
   }
   return status.result
@@ -125,7 +125,7 @@ async function setFolderWorkspace(
   return showFolderWorkspace(client, folderId)
 }
 
-/** `worktree rm` on a folder workspace: Orca forgets it; the folder stays on disk. False for any other selector. */
+/** `worktree rm` on a folder workspace: Otodus forgets it; the folder stays on disk. False for any other selector. */
 export async function removeIfFolderWorkspace(
   client: RuntimeClient,
   flags: Flags,
@@ -165,7 +165,7 @@ async function removeFolderWorkspace(
     if (!status.capabilities?.includes(PROJECT_GROUP_FOLDER_ARCHIVE_RUNTIME_CAPABILITY)) {
       throw new RuntimeClientError(
         'incompatible_runtime',
-        'Update Orca on the computer that owns this folder workspace to run its Archive script. Nothing was changed.'
+        'Update Otodus on the computer that owns this folder workspace to run its Archive script. Nothing was changed.'
       )
     }
   }
@@ -198,6 +198,6 @@ async function removeFolderWorkspace(
 export function refuseFolderWorkspaceActivation(folderId: string): never {
   throw new RuntimeClientError(
     'invalid_argument',
-    `Activating a folder workspace from the CLI is not supported yet. Open it from the Orca sidebar, or inspect it with orca worktree show --worktree ${folderWorkspaceKey(folderId)} --json.`
+    `Activating a folder workspace from the CLI is not supported yet. Open it from the Otodus sidebar, or inspect it with orca worktree show --worktree ${folderWorkspaceKey(folderId)} --json.`
   )
 }

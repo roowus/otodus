@@ -169,7 +169,7 @@ function OpenRecoverServerDialog({
             <Label htmlFor="ssh-host-recover-server-confirm">
               {t(
                 'auto.components.settings.recoverServer.confirmCheck',
-                'No other machine sharing this home is running Orca'
+                'No other machine sharing this home is running Otodus'
               )}
             </Label>
           </div>
@@ -213,7 +213,7 @@ function EligibleLock({
       <p>
         {t(
           'auto.components.settings.recoverServer.eligible',
-          'Nothing answers on this machine at its old address, but Orca can’t rule out another machine with the same name that shares this home folder.'
+          'Nothing answers on this machine at its old address, but Otodus can’t rule out another machine with the same name that shares this home folder.'
         )}
       </p>
       {evidence ? (
@@ -239,7 +239,7 @@ function EligibleLock({
       <p className="font-medium text-status-warning">
         {t(
           'auto.components.settings.recoverServer.warning',
-          'Only continue if no other machine sharing this home runs Orca for this profile.'
+          'Only continue if no other machine sharing this home runs Otodus for this profile.'
         )}
       </p>
     </div>
@@ -338,7 +338,7 @@ function ManualLockDelete({ lockPath }: { lockPath: string | undefined }): React
       <p className="font-medium text-status-warning">
         {t(
           'auto.components.settings.recoverServer.manualDeleteWarning',
-          'Only do this if no other machine sharing this home runs Orca for this profile.'
+          'Only do this if no other machine sharing this home runs Otodus for this profile.'
         )}
       </p>
     </div>

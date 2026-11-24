@@ -65,7 +65,7 @@ const runtimePlatformUpdate = (): string =>
 const hostUnresolvedWithheld = (): string =>
   translate(
     'auto.lib.executionHostFacts.hostUnresolvedWithheld',
-    'Orca cannot tell which host owns this workspace yet.'
+    'Otodus cannot tell which host owns this workspace yet.'
   )
 
 function resolveLocalPlatform(

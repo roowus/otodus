@@ -57,7 +57,7 @@ export type BrowserClientPageCaller = {
 export const DEFAULT_BROWSER_PROFILE_ID = 'default'
 
 export const BROWSER_HOST_UNAVAILABLE_MESSAGE =
-  'No paired Orca desktop is hosting browser pages for this server. Keep an Orca desktop paired with this server connected, then retry. If it renders remote pages on the server, set Settings › Browser › Remote server workspaces to "This device". Older desktops host only after you open a browser tab in one of this server\'s workspaces.'
+  'No paired Otodus desktop is hosting browser pages for this server. Keep an Otodus desktop paired with this server connected, then retry. If it renders remote pages on the server, set Settings › Browser › Remote server workspaces to "This device". Older desktops host only after you open a browser tab in one of this server\'s workspaces.'
 
 export async function createBrowserClientPage(
   host: BrowserClientPageOpeningHost,
@@ -308,7 +308,7 @@ function chooseAmongHosts(
 }
 
 function unresponsiveHostMessage(deviceName: string | null | undefined): string {
-  const desktop = deviceName ? `The Orca desktop "${deviceName}"` : 'The paired Orca desktop'
+  const desktop = deviceName ? `The Otodus desktop "${deviceName}"` : 'The paired Otodus desktop'
   return `${desktop} didn't respond when this server asked it to host browser pages; it may be asleep or disconnected. Wake it and retry, or open a browser tab in one of this server's workspaces on the desktop you want to use.`
 }
 

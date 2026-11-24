@@ -184,7 +184,7 @@ export class StructuredAgentSessionStartupAttempts {
     return this.tracking(sessionId, child)?.rootExit.promise ?? new Promise(() => {})
   }
 
-  /** Orca ending the child decides the start: a failure Orca recorded is final, any other close
+  /** Otodus ending the child decides the start: a failure Otodus recorded is final, any other close
    *  cancels it. An exit of its own leaves an open still settling the start, and its clock, until
    *  that open gives the outcome. */
   childEnded(
@@ -196,7 +196,7 @@ export class StructuredAgentSessionStartupAttempts {
   ): void {
     const tracked = this.tracking(sessionId, child)
     if (ended.failure) {
-      const cause = new Error(ended.reason ?? 'Orca stopped the agent while it started')
+      const cause = new Error(ended.reason ?? 'Otodus stopped the agent while it started')
       this.failed(sessionId, child, new AgentSessionStartFailure(cause, 'never', ended.failure))
     } else if (tracked && (ended.byOrca || !this.ownsOpen(sessionId, child))) {
       this.settle(sessionId, tracked, 'ended')

@@ -1,7 +1,7 @@
 import { queryWindowsProcessLinksFresh } from '../../providers/foreground/windows/process-rows'
 import { readOrcaChromiumProcessPids } from './orca-chromium-process-pids'
 
-/** `own` proves ancestry, not PTY identity: a recycled PID under another Orca child still qualifies. */
+/** `own` proves ancestry, not PTY identity: a recycled PID under another Otodus child still qualifies. */
 export type WindowsTreeKillTarget = 'own' | 'absent' | 'foreign' | 'unknown'
 
 export const WINDOWS_ROOT_IDENTITY_TIMEOUT_MS = 3_000
@@ -19,7 +19,7 @@ export function classifyWindowsTreeKillTarget(
   ownerPid: number,
   ownChromiumPids: ReadonlySet<number> = readOrcaChromiumProcessPids()
 ): WindowsTreeKillTarget {
-  // Never let a corrupt root PID authorize killing Orca itself.
+  // Never let a corrupt root PID authorize killing Otodus itself.
   if (!Number.isInteger(rootPid) || rootPid <= 0 || rootPid === ownerPid) {
     return 'foreign'
   }

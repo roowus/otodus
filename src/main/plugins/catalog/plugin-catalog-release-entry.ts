@@ -36,7 +36,7 @@ export type PluginCatalogReleaseReport = {
   sourcePath?: string
   /** Why there is no entry, or that uncommitted changes are left out of it. */
   note?: string
-  /** The `origin` owner Orca lists the plugin under differs from the declared publisher. */
+  /** The `origin` owner Otodus lists the plugin under differs from the declared publisher. */
   ownerWarning?: string
 }
 
@@ -164,7 +164,7 @@ async function committedReleaseEntry(
   }
 }
 
-// Why a warning: Orca derives the publisher from the owner; older Orca refuses a declared one that differs.
+// Why a warning: Otodus derives the publisher from the owner; older Otodus refuses a declared one that differs.
 async function publisherOwnerWarning(pluginDir: string): Promise<string | undefined> {
   const remote = await gitText(pluginDir, ['remote', 'get-url', 'origin']).catch(() => '')
   const owner = parseGitRepositoryIdentity(remote)?.owner?.toLowerCase()
@@ -176,7 +176,7 @@ async function publisherOwnerWarning(pluginDir: string): Promise<string | undefi
       ? manifest.publisher
       : undefined
   return owner && typeof publisher === 'string' && owner !== publisher.toLowerCase()
-    ? `Orca lists this plugin under the repository owner "${owner}", and older Orca refuses it because publisher is "${publisher}"; remove publisher or set it to "${owner}"`
+    ? `Otodus lists this plugin under the repository owner "${owner}", and older Otodus refuses it because publisher is "${publisher}"; remove publisher or set it to "${owner}"`
     : undefined
 }
 

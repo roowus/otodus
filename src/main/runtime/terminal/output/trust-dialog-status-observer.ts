@@ -106,7 +106,7 @@ export class TrustDialogStatusObserver {
     if (this.choiceAt.get(ptyId) === outputSequence) {
       return false
     }
-    // A card restored after an Orca restart has no owner here until new output arrives.
+    // A card restored after an Otodus restart has no owner here until new output arrives.
     const agent = this.panes.get(ptyId)?.owned?.agent ?? this.deps.getPaneAgent(ptyId)
     const emulator = this.deps.getEmulator(ptyId)
     if (

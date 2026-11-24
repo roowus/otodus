@@ -30,7 +30,7 @@ afterEach(removeSkillHomes)
 
 const digest = (text: string) => createHash('sha256').update(text).digest('hex')
 const NEWER_TEXT = `---\nname: ${NAME}\ndescription: Newer\n---\n\nNewer body\n`
-/** A newer Orca build on the same host: it knows every older text, but no older build knows its text. */
+/** A newer Otodus build on the same host: it knows every older text, but no older build knows its text. */
 const NEWER_SOURCE: BundledSkillSource = {
   name: NAME,
   text: NEWER_TEXT,
@@ -57,7 +57,7 @@ const hasMarker = (home: SkillHome, text: string) =>
     () => false
   )
 
-describe("another Orca build's copy on the same host", () => {
+describe("another Otodus build's copy on the same host", () => {
   it('links a newly selected agent to a recognized shared copy', async () => {
     const home = await makeSkillHome()
     await writeCopy(home.shared, NEWER_TEXT)
@@ -104,7 +104,7 @@ describe("another Orca build's copy on the same host", () => {
     await autoUpdateInstalledBundledSkills({ ...asBuild(home, NEW_SOURCE), names: [NAME] })
     expect(await readFile(join(home.shared, 'SKILL.md'), 'utf8')).toBe(NEWER_TEXT)
 
-    // The record lives on the planned host's home: the same bytes no Orca wrote elsewhere still count as an edit.
+    // The record lives on the planned host's home: the same bytes no Otodus wrote elsewhere still count as an edit.
     const elsewhere = await makeSkillHome()
     await writeCopy(elsewhere.shared, NEWER_TEXT)
     const elsewherePlan = await previewBundledSkillInstall(asBuild(elsewhere, NEW_SOURCE))

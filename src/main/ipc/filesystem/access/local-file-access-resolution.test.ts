@@ -229,7 +229,7 @@ describe('project-folder-link listings', () => {
     await symlink(outside, join(project, 'linked'), 'dir')
   })
 
-  it('refuse links in Orca floating folder, which is not a project', async () => {
+  it('refuse links in Otodus floating folder, which is not a project', async () => {
     const floatingLink = join(userData.path, 'floating-workspace', 'linked')
     await symlink(outside, floatingLink, 'dir')
 

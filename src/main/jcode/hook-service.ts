@@ -45,9 +45,9 @@ function getManagedScript(target: 'local' | 'posix' = 'local'): string {
       '@echo off',
       // Delayed expansion keeps JSON quotes and & out of cmd parsing.
       'setlocal EnableDelayedExpansion',
-      // Refresh endpoint credentials for PTYs surviving an Orca restart.
+      // Refresh endpoint credentials for PTYs surviving an Otodus restart.
       'if defined ORCA_AGENT_HOOK_ENDPOINT if exist "%ORCA_AGENT_HOOK_ENDPOINT%" call "%ORCA_AGENT_HOOK_ENDPOINT%" 2>nul',
-      // Guard before reading: abandoned Windows stdin can hang forever outside Orca (#11549).
+      // Guard before reading: abandoned Windows stdin can hang forever outside Otodus (#11549).
       ...buildWindowsHookEnvironmentGuardLines(),
       // Drain pre_tool input before POST so jcode cannot block writing a payload larger than the pipe.
       `if "%JCODE_HOOK_EVENT%"=="pre_tool" ${WINDOWS_HOOK_STDIN_DRAIN_COMMAND}`,
@@ -126,7 +126,7 @@ export class JcodeHookService {
       } else if (typeof value === 'string') {
         userOwned.push(event)
       } else {
-        // Install appends Orca to user arrays, so they count as missing rather than user-owned.
+        // Install appends Otodus to user arrays, so they count as missing rather than user-owned.
         missing.push(event)
       }
     }

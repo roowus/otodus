@@ -126,7 +126,10 @@ export default function OnboardingFlow({
         <section
           ref={flow.setLifecycleRootRef}
           role="dialog"
-          aria-label={t('auto.components.onboarding.OnboardingFlow.277ba45540', 'Orca onboarding')}
+          aria-label={t(
+            'auto.components.onboarding.OnboardingFlow.277ba45540',
+            'Otodus onboarding'
+          )}
           aria-modal="true"
           data-onboarding-modal
           className={cn(
@@ -143,7 +146,7 @@ export default function OnboardingFlow({
                   aria-hidden="true"
                   className="h-7 w-auto shrink-0 invert dark:invert-0"
                 />
-                <span>{t('auto.components.onboarding.OnboardingFlow.a249f81538', 'Orca')}</span>
+                <span>{t('auto.components.onboarding.OnboardingFlow.a249f81538', 'Otodus')}</span>
               </div>
               <OnboardingLanguageSwitcher
                 offer={languageOffer}
@@ -198,7 +201,7 @@ export default function OnboardingFlow({
             <div className="mt-8 shrink-0">
               {stepIndex === 0 && (
                 <div className="mb-2 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
-                  {t('auto.components.onboarding.OnboardingFlow.1b5e182e9f', 'Welcome to Orca')}
+                  {t('auto.components.onboarding.OnboardingFlow.1b5e182e9f', 'Welcome to Otodus')}
                 </div>
               )}
               <h1 className="text-[34px] font-semibold leading-[1.15] tracking-tight text-foreground">

@@ -165,7 +165,7 @@ it('joins successful removal metadata and journal before profile ownership is re
   )
   const stopping = handle.stop()
   await transport
-  expect(() => worktreeRemovalLifetime.acquirePreparation()).toThrow('Orca is stopping')
+  expect(() => worktreeRemovalLifetime.acquirePreparation()).toThrow('Otodus is stopping')
   expect(existsSync(join(root, ORCAD_LOCK_FILE_NAME))).toBe(true)
   expect(await readWorktreeRemovalRecords(root)).toHaveLength(1)
   await checkpointing

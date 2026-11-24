@@ -191,7 +191,7 @@ async function startJourney(
   }
 }
 
-const offerTitle = 'Match Claude Code to your Orca theme?'
+const offerTitle = 'Match Claude Code to your Otodus theme?'
 
 test('an existing user accepts the offer, then Claude Code follows the Orca theme live and restores', async ({
   electronApp,

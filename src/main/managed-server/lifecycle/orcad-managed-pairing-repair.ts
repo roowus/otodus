@@ -273,7 +273,7 @@ function publishedPairingCode(
   if (!readiness) {
     throw fail(
       new OrcadManagedPairingRepairFailedError(
-        "the server hasn't published a pairing Orca can read"
+        "the server hasn't published a pairing Otodus can read"
       )
     )
   }

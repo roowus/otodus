@@ -15,12 +15,12 @@ export const ORCHESTRATION_PEER_RUN_METHODS = [
     access: { kind: 'writes', targets: {} },
     permission: 'workspace',
     params: PeerRunCancelParams,
-    /** The paired Orca reset its Run: close it here, then run the ordinary stop on each live worker. */
+    /** The paired Otodus reset its Run: close it here, then run the ordinary stop on each live worker. */
     handler: async (_params, { runtime, orchestrationCaller }) => {
       if (orchestrationCaller?.kind !== 'peer') {
         throw new OrchestrationError(
           'forbidden',
-          'Only the paired Orca that coordinates a Run cancels it. No effects were applied.',
+          'Only the paired Otodus that coordinates a Run cancels it. No effects were applied.',
           { effectsApplied: false }
         )
       }
@@ -40,7 +40,7 @@ export const ORCHESTRATION_PEER_RUN_METHODS = [
   })
 ]
 
-/** Workers in the Run not yet proven settled; a Run this Orca never had work in has none. */
+/** Workers in the Run not yet proven settled; a Run this Otodus never had work in has none. */
 function liveWorkerDispatchIds(db: OrchestrationDb, runId: string): string[] {
   const settled = WORKER_SETTLED_STATES.map(() => '?').join(', ')
   // oxlint-disable-next-line typescript/consistent-type-assertions -- SAFETY: SELECT of one column returns exactly that column.

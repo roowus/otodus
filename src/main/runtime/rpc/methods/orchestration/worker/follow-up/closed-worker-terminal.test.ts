@@ -10,10 +10,10 @@ import { watchMovedWorkerResumeSessions } from './worker-resume-session-capture'
 const CONVERSATION = { key: 'session_id', id: 'fixture-conversation' } as const
 const REOPENED_PANE = 'tab_reopened:leaf'
 
-describe('opening a terminal worker Orca closed', () => {
+describe('opening a terminal worker Otodus closed', () => {
   const { h, panes, pair, success } = useHelperFollowUpCli()
 
-  /** A finished helper whose pane recorded `conversation`, then closed by Orca. */
+  /** A finished helper whose pane recorded `conversation`, then closed by Otodus. */
   async function closedHelper(recorded = true) {
     const { helper } = await pair()
     if (recorded) {

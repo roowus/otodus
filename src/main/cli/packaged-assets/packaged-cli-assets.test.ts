@@ -17,7 +17,7 @@ const unixLauncherFixtures = [
   {
     name: 'Linux',
     asset: linuxLauncherAsset,
-    appDir: ['Orca'],
+    appDir: ['Otodus'],
     launcher: ['resources', 'bin', 'orca-ide'],
     executable: ['orca-ide'],
     cli: ['resources', 'app.asar.unpacked', 'out', 'cli', 'index.js']
@@ -25,9 +25,9 @@ const unixLauncherFixtures = [
   {
     name: 'macOS',
     asset: darwinLauncherAsset,
-    appDir: ['Orca.app'],
+    appDir: ['Otodus.app'],
     launcher: ['Contents', 'Resources', 'bin', 'orca'],
-    executable: ['Contents', 'MacOS', 'Orca'],
+    executable: ['Contents', 'MacOS', 'Otodus'],
     cli: ['Contents', 'Resources', 'app.asar.unpacked', 'out', 'cli', 'index.js']
   }
 ] as const

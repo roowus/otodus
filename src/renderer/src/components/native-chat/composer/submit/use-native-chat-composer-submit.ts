@@ -59,7 +59,7 @@ export function useNativeChatComposerSubmit(args: {
   submitEmpty?: () => void
   sendPty: () => void
   sendStructured: NativeChatStructuredComposerSend
-  /** Runs a command Orca owns, like `/resume`; true means the draft never reaches the agent. */
+  /** Runs a command Otodus owns, like `/resume`; true means the draft never reaches the agent. */
   consumeOrcaCommand?: (draft: string) => boolean
   matchesOrcaCommand?: (draft: string) => boolean
   setDraft: (value: string) => void

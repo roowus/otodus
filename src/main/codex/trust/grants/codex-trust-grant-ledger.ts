@@ -29,7 +29,7 @@ type CodexTrustGrantLedgerFile = {
   homes: Record<string, CodexTrustGrantLedgerHome>
 }
 
-// Reading grants must not create Orca's managed home.
+// Reading grants must not create Otodus's managed home.
 export function getCodexTrustGrantLedgerPath(): string {
   return join(dirname(resolveOrcaManagedCodexHomePath()), 'trust-grant-ledger.json')
 }

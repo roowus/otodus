@@ -25,7 +25,7 @@ export function readMetadata(userDataPath: string): RuntimeMetadata {
     }
     throw new RuntimeClientError(
       'runtime_unavailable',
-      `Could not read Orca runtime metadata at ${metadataPath}. Start the Orca app first.`
+      `Could not read Orca runtime metadata at ${metadataPath}. Start the Otodus app first.`
     )
   }
 }

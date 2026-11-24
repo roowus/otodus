@@ -167,7 +167,7 @@ function McpTrayStatus({ state }: McpTrayViewProps): React.JSX.Element | null {
       : state.result.status === 'unsupported'
         ? t(
             'components.native-chat.mcp.unsupported',
-            'Update Orca on this chat’s host to manage them here'
+            'Update Otodus on this chat’s host to manage them here'
           )
         : state.result.status === 'failed'
           ? (state.result.message ?? t('components.native-chat.mcp.readFailed', 'Couldn’t load'))

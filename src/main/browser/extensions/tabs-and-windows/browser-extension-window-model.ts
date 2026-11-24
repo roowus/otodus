@@ -18,7 +18,7 @@ export const WINDOW_ID_CURRENT = -2
 export type BrowserExtensionWindowEntry = {
   window: BrowserWindow
   type: 'normal' | 'popup'
-  /** Orca's own window: every browser tab lives here and extensions may not close it. */
+  /** Otodus's own window: every browser tab lives here and extensions may not close it. */
   isMain: boolean
 }
 
@@ -39,7 +39,7 @@ function isOrcaWindowFocused(): boolean {
   )
 }
 
-// Why one closed listener per window: Orca's core already puts ~9 on the main window, so extras trip Node's leak warning.
+// Why one closed listener per window: Otodus's core already puts ~9 on the main window, so extras trip Node's leak warning.
 function watchWindowEvents(
   window: BrowserWindow,
   /** A popout's events reach only its profile; the main window's reach every profile. */
@@ -84,7 +84,7 @@ function watchWindowEvents(
 }
 
 /**
- * Called when Orca creates its main window; tabs.* and windows.* answer relative to it. Tracked
+ * Called when Otodus creates its main window; tabs.* and windows.* answer relative to it. Tracked
  * even with extensions off, since turning them on later does not recreate the window.
  */
 export function trackBrowserExtensionMainWindow(window: BrowserWindow): void {
@@ -112,7 +112,7 @@ function findWindow(windowId: number): BrowserExtensionWindowEntry | null {
     : null
 }
 
-/** A window an extension in `sess` may see: Orca's main window, or one of its own profile's popouts. */
+/** A window an extension in `sess` may see: Otodus's main window, or one of its own profile's popouts. */
 export function getBrowserExtensionWindow(
   windowId: number,
   sess: Electron.Session
@@ -189,10 +189,10 @@ export function describeBrowserExtensionWindow(
   }
 }
 
-/** `whenAppActive`: an agent's window, shown without focus once the user is in Orca. */
+/** `whenAppActive`: an agent's window, shown without focus once the user is in Otodus. */
 export type BrowserExtensionWindowPresentation = 'focused' | 'unfocused' | 'whenAppActive'
 
-/** Focus or reveal per Orca's launch policy; automated (background) runs never take the foreground. */
+/** Focus or reveal per Otodus's launch policy; automated (background) runs never take the foreground. */
 export function presentBrowserExtensionWindow(
   window: BrowserWindow,
   presentation: BrowserExtensionWindowPresentation
@@ -237,7 +237,7 @@ export function createBrowserExtensionPopout(
       sandbox: true,
       contextIsolation: true,
       nodeIntegration: false,
-      // Why: framed extension pages need Orca's preload (safety: main-window-webview-security.ts).
+      // Why: framed extension pages need Otodus's preload (safety: main-window-webview-security.ts).
       nodeIntegrationInSubFrames: true,
       webSecurity: true
     }
@@ -250,7 +250,7 @@ export function createBrowserExtensionPopout(
   })
   recordBrowserSessionInput(window.webContents)
   window.webContents.setWindowOpenHandler(() => ({ action: 'deny' }))
-  // Why: the popout gets no Orca guest policies, so it may only move within its extension or to web URLs.
+  // Why: the popout gets no Otodus guest policies, so it may only move within its extension or to web URLs.
   window.webContents.on('will-navigate', (event, url) => {
     const isWeb = /^https?:/i.test(url) && normalizeBrowserNavigationUrl(url) !== null
     if (!isWeb && !isSameExtensionNavigation(window.webContents.getURL(), url)) {

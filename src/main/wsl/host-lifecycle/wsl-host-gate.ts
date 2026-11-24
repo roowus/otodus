@@ -15,7 +15,7 @@ import type {
   WslHostsPolicyState
 } from '../../../shared/remote-runtime/wsl-hosts/wsl-hosts-policy'
 
-export const WSL_HOSTS_GATED_OFF_MESSAGE = 'WSL hosts are turned off for this launch of Orca.'
+export const WSL_HOSTS_GATED_OFF_MESSAGE = 'WSL hosts are turned off for this launch of Otodus.'
 
 // Fixed for the run once main reads the disk; nothing can create a host or a move while not open.
 let promoted: { hasSavedWslHost: boolean; hasWslMoveCutover: boolean } | null = null

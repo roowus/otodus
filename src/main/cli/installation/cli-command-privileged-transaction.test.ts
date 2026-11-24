@@ -56,7 +56,7 @@ function fixtureInstallerOptions(fixture: Awaited<ReturnType<typeof createPrivil
     isPackaged: false,
     userDataPath: fixture.userDataPath,
     appPath: fixture.appPath,
-    execPath: '/Applications/Orca.app/Contents/MacOS/Orca',
+    execPath: '/Applications/Otodus.app/Contents/MacOS/Otodus',
     commandPathOverride: fixture.commandPath,
     processPathEnv: fixture.protectedDirectory
   }
@@ -70,7 +70,7 @@ describe.skipIf(process.platform !== 'darwin' || process.getuid?.() === 0)(
       const oldCliPath = join(fixture.root, 'old', 'out', 'cli', 'index.js')
       await writeFile(
         fixture.commandPath,
-        buildUnixCliLauncher('/Applications/Old.app/Contents/MacOS/Orca', oldCliPath, 'user-data')
+        buildUnixCliLauncher('/Applications/Old.app/Contents/MacOS/Otodus', oldCliPath, 'user-data')
       )
       const foreignContent = 'foreign command written into the inspected inode'
       let raced = false

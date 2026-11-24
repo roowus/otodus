@@ -69,7 +69,7 @@ function getManagedScript(target: 'local' | 'posix' = 'local'): string {
     ...buildPosixScrubSafeEnvRestoreLines(),
     ...buildPosixHookPayloadCapture(),
     ...buildPosixHookSpoolLines('dsh'),
-    // Refresh endpoint credentials for PTYs that outlive an Orca restart.
+    // Refresh endpoint credentials for PTYs that outlive an Otodus restart.
     'if [ -n "$ORCA_AGENT_HOOK_ENDPOINT" ] && [ -r "$ORCA_AGENT_HOOK_ENDPOINT" ]; then',
     '  . "$ORCA_AGENT_HOOK_ENDPOINT" 2>/dev/null || :',
     'fi',
@@ -109,7 +109,7 @@ function writePatchText(configPath: string, text: string): void {
 }
 
 const FLOW_STYLE_DETAIL =
-  'The DSH home patch is a flow-style sequence ([…]); rewrite it as a block sequence (one `- ` entry per line) so Orca can add its hooks without breaking it'
+  'The DSH home patch is a flow-style sequence ([…]); rewrite it as a block sequence (one `- ` entry per line) so Otodus can add its hooks without breaking it'
 
 function status(
   configPath: string,
@@ -127,7 +127,7 @@ function buildStatus(
   configPath: string
 ): AgentHookInstallStatus {
   if (managedText === null) {
-    return status(configPath, 'error', 'Could not read Orca managed hooks file')
+    return status(configPath, 'error', 'Could not read Otodus managed hooks file')
   }
   // Check refusal first: an absent managed pointer would otherwise hide the actionable error.
   if (isDshPatchFileUnappendable(patchText)) {
@@ -140,7 +140,7 @@ function buildStatus(
       'not_installed',
       pointer === undefined
         ? null
-        : `The Orca patch block points at ${pointer}, not the Orca managed hooks file`
+        : `The Otodus patch block points at ${pointer}, not the Otodus managed hooks file`
     )
   }
   const present = readManagedDshHookEvents(
@@ -149,7 +149,7 @@ function buildStatus(
   )
   const missing = DSH_HOOK_EVENTS.filter((event) => !present.has(event))
   if (missing.length === 0) {
-    // Orca's files alone do not activate the row: DSH must also load the package it names.
+    // Otodus's files alone do not activate the row: DSH must also load the package it names.
     const packagesDetail = describeDshProfilesMissingHookPackages(getDshHome())
     return status(
       configPath,

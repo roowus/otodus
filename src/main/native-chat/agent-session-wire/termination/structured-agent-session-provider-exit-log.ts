@@ -22,7 +22,7 @@ export function logProviderChildExit(
     scope: 'provider-exit',
     sessionId,
     generation: child.generation,
-    // A close Orca made after its own failure still reads as unexpected to the turn.
+    // A close Otodus made after its own failure still reads as unexpected to the turn.
     endedBy:
       end.expected || close || end.exit.closedByOrca || end.failure?.kind === 'hostFault'
         ? 'orca'
@@ -44,7 +44,7 @@ export function logProviderChildExit(
   // A requested end is normal; record it without a failed span.
   try {
     startSpan('agentSession.provider-exit', { attributes: fields }).end()
-    console.info('[agent-session] provider-exit: agent process ended by Orca', fields)
+    console.info('[agent-session] provider-exit: agent process ended by Otodus', fields)
   } catch {
     // Diagnostics never fail the exit they describe.
   }

@@ -21,7 +21,7 @@ export type AutomationListResponseValidation =
 
 const UNSUPPORTED_HOST_SCOPE_MESSAGE =
   'This host does not support per-host automation lists. Update the Orca server to filter by host.'
-const INVALID_RESPONSE_MESSAGE = 'This host returned an automation list Orca could not read.'
+const INVALID_RESPONSE_MESSAGE = 'This host returned an automation list Otodus could not read.'
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null

@@ -53,7 +53,7 @@ export function spawnCodexBackfillRecoveryProcess(
     return { child, supervised: false }
   }
   const command = resolveCommand()
-  // The POSIX watcher stops this long-lived child even if Orca crashes.
+  // The POSIX watcher stops this long-lived child even if Otodus crashes.
   const spawnSpec = createProviderSpawnSpec(
     { command, args: [...CODEX_READ_ONLY_APP_SERVER_ARGS], cwd: codexHomePath },
     withCliRuntimeOnPath(command, {

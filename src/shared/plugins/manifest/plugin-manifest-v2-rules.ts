@@ -44,8 +44,8 @@ export function validatePluginManifestV2Rules(manifest: V2RuleSubject, ctx: Refi
   })
 }
 
-/** Why authoring only: Orca before PLUGIN_DERIVED_PUBLISHER_SINCE requires `publisher`, so a
- *  manifest without it must say "requires Orca X" there instead of failing to parse. */
+/** Why authoring only: Otodus before PLUGIN_DERIVED_PUBLISHER_SINCE requires `publisher`, so a
+ *  manifest without it must say "requires Otodus X" there instead of failing to parse. */
 export function validateOmittedPublisherFloor(
   manifest: { publisher?: string; engines: { orca: string } },
   ctx: RefinementCtx
@@ -60,7 +60,7 @@ export function validateOmittedPublisherFloor(
   ctx.addIssue({
     code: 'custom',
     path: ['engines', 'orca'],
-    message: `must be at least >=${PLUGIN_DERIVED_PUBLISHER_SINCE} when publisher is left out, because older Orca requires publisher`
+    message: `must be at least >=${PLUGIN_DERIVED_PUBLISHER_SINCE} when publisher is left out, because older Otodus requires publisher`
   })
 }
 
@@ -68,7 +68,7 @@ const engineBelow = (range: string, version: string): boolean =>
   orcaEngineRangeSchema.safeParse(range).success &&
   !satisfiesOrcaEngineRange(range.slice(2), `>=${version}`)
 
-/** Why authoring only: older Orca serves a `.tsx` entry as raw bytes, so it must not install it. */
+/** Why authoring only: older Otodus serves a `.tsx` entry as raw bytes, so it must not install it. */
 export function validateSourceModuleEntryFloor(
   manifest: {
     engines: { orca: string }
@@ -88,7 +88,7 @@ export function validateSourceModuleEntryFloor(
     ctx.addIssue({
       code: 'custom',
       path: ['engines', 'orca'],
-      message: `must be at least >=${PLUGIN_SOURCE_MODULES_SINCE} when a panel or editor entry is a .ts, .tsx, .mts or .jsx file, because older Orca does not transpile it`
+      message: `must be at least >=${PLUGIN_SOURCE_MODULES_SINCE} when a panel or editor entry is a .ts, .tsx, .mts or .jsx file, because older Otodus does not transpile it`
     })
   }
   const main = manifest.main?.toLowerCase()
@@ -105,7 +105,7 @@ export function validateSourceModuleEntryFloor(
     ctx.addIssue({
       code: 'custom',
       path: ['engines', 'orca'],
-      message: `must be at least >=${PLUGIN_SOURCE_MODULES_SINCE} when main is a .ts or .mts file, because older Orca does not transpile it`
+      message: `must be at least >=${PLUGIN_SOURCE_MODULES_SINCE} when main is a .ts or .mts file, because older Otodus does not transpile it`
     })
   }
 }

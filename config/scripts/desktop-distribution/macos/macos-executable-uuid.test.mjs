@@ -74,7 +74,7 @@ describe('rewriteMachOUuids', () => {
   it('refuses an executable without LC_UUID', () => {
     const slice = thinSlice(ARM64)
     slice.writeUInt32LE(0x1a, 48)
-    expect(() => rewriteMachOUuids(slice, 'com.stablyai.orca', 'Orca')).toThrow('has no LC_UUID')
+    expect(() => rewriteMachOUuids(slice, 'com.stablyai.orca', 'Otodus')).toThrow('has no LC_UUID')
   })
 })
 
@@ -82,7 +82,7 @@ describe.runIf(process.platform === 'darwin')('giveMacExecutableUniqueUuid', () 
   it('leaves a signed, runnable universal executable that passes the release check', () => {
     const dir = mkdtempSync(join(tmpdir(), 'orca-exe-uuid-'))
     try {
-      const executable = join(dir, 'Orca')
+      const executable = join(dir, 'Otodus')
       // A real platform-signed fat binary: rewriting it without re-signing gets it killed at exec.
       copyFileSync('/usr/bin/true', executable)
       expect(() => assertMacExecutableUuid(executable, 'com.stablyai.orca')).toThrow(

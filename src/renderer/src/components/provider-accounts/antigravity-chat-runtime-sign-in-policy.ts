@@ -32,7 +32,7 @@ export function antigravityProviderSignInShown(
   return source !== null && !(operation && CHANGING_PHASES.has(operation.phase))
 }
 
-/** Orca's own copy runs the chat, so Orca's sign-in applies; the host's agy keeps its own login. */
+/** Otodus's own copy runs the chat, so Orca's sign-in applies; the host's agy keeps its own login. */
 export function antigravityOrcaRuntimeSignsIn(
   install: Extract<ManagedRuntimeInstallObservation, { kind: 'active' }>
 ): boolean {

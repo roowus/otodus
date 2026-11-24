@@ -2,7 +2,7 @@ import { FLOATING_TERMINAL_WORKTREE_ID } from '../../workspace/identity/floating
 import { getRepoIdFromWorktreeId } from '../../worktree/id'
 import { parseWorkspaceKey } from '../../workspace/identity/workspace-scope'
 
-/** Which browser profile new tabs in a workspace use: the shared Default, or one Orca manages per repo or per workspace. */
+/** Which browser profile new tabs in a workspace use: the shared Default, or one Otodus manages per repo or per workspace. */
 export type BrowserProfileScope = 'shared' | 'repo' | 'worktree'
 
 export type ManagedBrowserProfileOwner = { kind: 'repo' | 'worktree'; id: string }

@@ -19,7 +19,7 @@ function pageOfGuest(guestWebContentsId: number): AgentPage {
 /**
  * The agent's page this call acts for, or null when the user set it off. An extension reacts to
  * its profile's pages (a wallet popup, an OAuth tab) without saying which input started it, so
- * the newest recent click, key or Orca-delivered gesture decides, then whether an agent leads.
+ * the newest recent click, key or Otodus-delivered gesture decides, then whether an agent leads.
  */
 export function findBrowserExtensionCallerAgentPage(
   caller: BrowserExtensionCaller

@@ -29,7 +29,7 @@ async function supportsSelectedNames(
   )
 }
 
-/** `unsupported`: the host answered its status and predates the capability ("Update Orca on
+/** `unsupported`: the host answered its status and predates the capability ("Update Otodus on
  *  the server"). A failed probe is not this; it rejects like any other error. */
 export type BundledSkillPlanResult =
   | { kind: 'plan'; plan: BundledSkillPlan }
@@ -87,7 +87,7 @@ export async function executeBundledSkillsOnTarget(
     })
   }
   if (!(await supportsSelectedNames(target.environmentId, request.names))) {
-    throw new Error('Update Orca on the server to install renamed Orca skills.')
+    throw new Error('Update Otodus on the server to install renamed Otodus skills.')
   }
   return callRuntimeRpc<BundledSkillInstallResult>(
     { kind: 'environment', environmentId: target.environmentId },

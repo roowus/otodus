@@ -49,7 +49,7 @@ export async function resumeEphemeralVmWorkspace(
   if (!runtime) {
     return null
   }
-  // A VM recorded as up whose host Orca gave up reaching may have been stopped or reclaimed by its
+  // A VM recorded as up whose host Otodus gave up reaching may have been stopped or reclaimed by its
   // provider (#34089): its recipe's resume brings it back. A failure there keeps the record as it
   // was, so a VM that was only out of reach is still reconnected as before.
   const lostContact =
@@ -67,7 +67,7 @@ export async function resumeEphemeralVmWorkspace(
       updateEphemeralVmRuntimeStatus(userDataPath, runtime.id, { status: runtime.status })
     }
   }
-  // After the recipe marked the VM running, an SSH host Orca cannot reach again is still a failed
+  // After the recipe marked the VM running, an SSH host Otodus cannot reach again is still a failed
   // resume, saved with its reason so the row can explain it after a restart.
   const failAfterResume = (error: unknown): void => {
     if (lostContact) {
@@ -169,10 +169,10 @@ export async function resumeEphemeralVmWorkspace(
 }
 
 export const RECIPE_VM_UNREACHABLE_WITHOUT_RESUME_MESSAGE =
-  "Orca hasn't reached this workspace's VM for several minutes, and its recipe has no resume " +
+  "Otodus hasn't reached this workspace's VM for several minutes, and its recipe has no resume " +
   'step to restart it. If the VM is gone, delete this workspace and create it again.'
 
-/** A paired VM server Orca could not reach for minutes, that is not ready now and that the user
+/** A paired VM server Otodus could not reach for minutes, that is not ready now and that the user
  *  did not disconnect. */
 function isPairedServerContactLost(environmentId: string): boolean {
   return (

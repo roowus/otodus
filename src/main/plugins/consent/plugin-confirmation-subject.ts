@@ -6,7 +6,7 @@ export type PluginConfirmationAutomation = {
   id: string
   /** As the person sees it in Automations. */
   name: string
-  /** Its project's name; null when Orca no longer has the project. */
+  /** Its project's name; null when Otodus no longer has the project. */
   project: string | null
   /** The workspace folder each run uses; null when each run creates a workspace. */
   workspace: string | null
@@ -14,7 +14,7 @@ export type PluginConfirmationAutomation = {
   schedule: string
 }
 
-/** What a plugin asks the person to allow; Orca writes the question, so a plugin cannot word it. */
+/** What a plugin asks the person to allow; Otodus writes the question, so a plugin cannot word it. */
 export type PluginConfirmationSubject =
   | {
       kind: 'automation.update'

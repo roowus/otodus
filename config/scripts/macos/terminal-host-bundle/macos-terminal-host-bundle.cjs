@@ -28,7 +28,7 @@ const NODE_PTY_FILES = [
   join('build', 'Release', 'pty.node'),
   join('build', 'Release', 'spawn-helper')
 ]
-// A helper that claimed any of these could take `orca:` links or documents from Orca.app.
+// A helper that claimed any of these could take `orca:` links or documents from Otodus.app.
 const FORBIDDEN_INFO_KEYS = [
   'CFBundleURLTypes',
   'CFBundleDocumentTypes',
@@ -218,7 +218,7 @@ function buildMacTerminalHostInfo({ appInfo, usageDescriptions, minimumOs }) {
     CFBundlePackageType: 'APPL',
     CFBundleInfoDictionaryVersion: '6.0',
     CFBundleIconFile: 'icon.icns',
-    // Lower than the app's so LaunchServices ranks the helper below Orca.app among duplicates.
+    // Lower than the app's so LaunchServices ranks the helper below Otodus.app among duplicates.
     CFBundleVersion: '0',
     CFBundleShortVersionString: appInfo.CFBundleShortVersionString,
     LSMinimumSystemVersion: minimumOs,

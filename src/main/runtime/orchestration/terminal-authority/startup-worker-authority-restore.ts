@@ -6,7 +6,7 @@ export const STARTUP_IDENTITY_WAIT_MS = 30_000
 const STARTUP_RESTORE_CAP_MS = 120_000
 
 /**
- * The first restore of worker terminal authority after Orca starts. Until it finishes, a terminal's
+ * The first restore of worker terminal authority after Otodus starts. Until it finishes, a terminal's
  * pane and process read as unknown, which must not be scored as a changed worker identity.
  */
 export class StartupWorkerAuthorityRestore {

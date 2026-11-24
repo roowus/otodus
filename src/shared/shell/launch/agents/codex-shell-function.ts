@@ -3,14 +3,14 @@ import {
   REMOTE_VIEWER_CLIPBOARD_ENV
 } from '../../../clipboard/remote-viewer-clipboard-env'
 
-// Embed launch-prep/--no-daemon wrappers on all hosts. Codex 0.156+ otherwise shares CODEX_HOME servers with the first tab’s Orca hooks/env and lifetime (#22873). agents/queue/--remote require sharing; any -c opts out.
+// Embed launch-prep/--no-daemon wrappers on all hosts. Codex 0.156+ otherwise shares CODEX_HOME servers with the first tab’s Otodus hooks/env and lifetime (#22873). agents/queue/--remote require sharing; any -c opts out.
 const CODEX_SHARED_SERVER_ARGS = ['agents', 'queue', '--remote'] as const
 export const CODEX_NO_DAEMON_SKIP_ARGS = [...CODEX_SHARED_SERVER_ARGS, '--no-daemon'] as const
 const argPattern = (args: readonly string[]): string => `^(${args.join('|')}|--remote=.*)$`
 const CODEX_SHARED_SERVER_ARG_PATTERN = argPattern(CODEX_SHARED_SERVER_ARGS)
 const CODEX_NO_DAEMON_SKIP_ARG_PATTERN = argPattern(CODEX_NO_DAEMON_SKIP_ARGS)
 
-/** Restore nonsecret Orca caller identity stripped by inherit=core (#25775). set overrides inherit/exclude but include_only still wins; never send tokens through locally readable argv. */
+/** Restore nonsecret Otodus caller identity stripped by inherit=core (#25775). set overrides inherit/exclude but include_only still wins; never send tokens through locally readable argv. */
 export const CODEX_COMMAND_IDENTITY_ENV_KEYS = [
   'ORCA_TERMINAL_HANDLE',
   'ORCA_PANE_KEY',
@@ -19,7 +19,7 @@ export const CODEX_COMMAND_IDENTITY_ENV_KEYS = [
   'ORCA_USER_DATA_PATH'
 ] as const
 
-// Blank Orca's clipboard marker for commands Codex runs: agy reads SSH_CONNECTION as a remote host and ignores its local login (#37723).
+// Blank Otodus's clipboard marker for commands Codex runs: agy reads SSH_CONNECTION as a remote host and ignores its local login (#37723).
 // Why set, not exclude: -c exclude would replace the user's own exclude list. Real SSH never reports port 0.
 const CLEAR_SSH_MARKER_ARG = "shell_environment_policy.set.SSH_CONNECTION=''"
 

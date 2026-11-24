@@ -43,7 +43,7 @@ export function createCwdContainment(
   }
 }
 
-/** Unstamped rows belong to the answering Orca, as the caller-host rule treats them. */
+/** Unstamped rows belong to the answering Otodus, as the caller-host rule treats them. */
 export function isOnCallerFilesystem(row: {
   hostId?: string | null
   hostUnresolved?: true

@@ -58,6 +58,8 @@ for (const [agent, config] of Object.entries(TUI_AGENT_CONFIG)) {
   for (const candidate of [
     config.expectedProcess,
     ...getTuiAgentDetectCommands(config),
+    // A packaged macOS `orca` command runs on the app executable, so its foreground reports the app binary name.
+    ...(config.launchCmd.startsWith('orca ') ? ['otodus'] : []),
     getFirstCommandToken(config.launchCmd)
   ]) {
     const normalized = normalizeProcessName(candidate)

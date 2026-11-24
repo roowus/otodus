@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-// What a paired server and the Orca that coordinates a Run on it exchange about that Run's workers
+// What a paired server and the Otodus that coordinates a Run on it exchange about that Run's workers
 // (contract-b1-b3). The server owns the workers; these carry its facts home, in its order.
 
 /** The coordinator's Run a call is about, and the conversation its queue items come home under. */

@@ -28,9 +28,9 @@ function buildManifest(tag: string): string {
   return [
     `version: ${version}`,
     'files:',
-    `  - url: Orca-${version}-arm64-mac.zip`,
+    `  - url: Otodus-${version}-arm64-mac.zip`,
     '    sha512: test',
-    `path: Orca-${version}-arm64-mac.zip`
+    `path: Otodus-${version}-arm64-mac.zip`
   ].join('\n')
 }
 

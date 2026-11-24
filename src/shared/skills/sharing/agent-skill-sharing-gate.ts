@@ -6,7 +6,7 @@ export const AGENT_SKILL_SHARING_DISABLED_MESSAGE =
   'Publishing skill links from agents and the Orca CLI is off for this device.'
 
 export const AGENT_SKILL_SHARING_DISABLED_NEXT_STEPS: readonly string[] = [
-  'Open Settings → Share Skills in the Orca desktop app on this device.',
+  'Open Settings → Share Skills in the Otodus desktop app on this device.',
   'Turn on "Allow agents and the Orca CLI to publish skill links".',
   'Run the share command again.'
 ]

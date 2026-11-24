@@ -61,7 +61,7 @@ export function getResourceCommitMetricCopy(
   }
 }
 
-/** Tint Orca’s tracked commit share of physical RAM; missing host commit charge/limit prevents predicting system-wide paging. */
+/** Tint Otodus’s tracked commit share of physical RAM; missing host commit charge/limit prevents predicting system-wide paging. */
 export function getCommitPressureToneClass(args: {
   privateMemory: number | undefined
   hostTotalMemory: number

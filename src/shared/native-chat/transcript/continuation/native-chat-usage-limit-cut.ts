@@ -34,7 +34,7 @@ export type NativeChatUsageLimitCut = {
 /** How long after its reset a cut can still be continued automatically; older cuts stay manual. */
 export const NATIVE_CHAT_USAGE_LIMIT_MAX_OVERDUE_MS = 24 * 60 * 60 * 1000
 
-/** Whether Orca could ever continue this cut by itself: a known reset after its turn ended, at most a day ago. */
+/** Whether Otodus could ever continue this cut by itself: a known reset after its turn ended, at most a day ago. */
 export function isNativeChatUsageLimitCutSchedulable(
   cut: NativeChatUsageLimitCut,
   now: number

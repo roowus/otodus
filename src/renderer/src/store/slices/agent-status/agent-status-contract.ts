@@ -93,7 +93,7 @@ export type AgentStatusMetadata = {
   structuredHostOwned?: true
   providerSession?: AgentProviderSessionMetadata
   orcaSessionId?: string | null
-  /** Null is a host statement that no Orca launch runs; absent says nothing. */
+  /** Null is a host statement that no Otodus launch runs; absent says nothing. */
   launchConfig?: SleepingAgentLaunchConfig | null
   launchToken?: string
   terminalResumeEligible?: false

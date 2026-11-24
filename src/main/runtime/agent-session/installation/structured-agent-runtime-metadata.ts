@@ -38,7 +38,7 @@ export type StructuredAgentRuntimeCatalogEntry =
   | { kind: 'pi' | 'codex' | 'claude'; metadata: StructuredAgentRuntimeMetadata }
   | { kind: 'acp'; metadata: StructuredAgentRuntimeMetadata; spec: AcpLaunchSpec }
 
-// Why the host's data folder: a start runs Orca's installed release before PATH.
+// Why the host's data folder: a start runs Otodus's installed release before PATH.
 function acpChatProgram(spec: AcpLaunchSpec): StructuredAgentChatProgram {
   const { managedRuntime } = spec
   return {
@@ -92,7 +92,7 @@ function acpMetadata(spec: AcpLaunchSpec): StructuredAgentRuntimeMetadata {
         }
       : {}),
     // New chats prefer a compatible host program, which their account home then pins; reads such
-    // as Orca's own sign-in keep the agent's account.
+    // as Otodus's own sign-in keep the agent's account.
     resolveAccountHome: async (
       { launchEnv, purpose, permissionMode },
       { stateDirectory, hostLaunchEnvironment, hostSettings }

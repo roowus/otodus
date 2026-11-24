@@ -21,8 +21,8 @@ export const NATIVE_CHAT_RESUME_COMMAND = 'resume'
 const FORK_DRAFT = /^\/fork(?:\s+([\s\S]*))?$/i
 const MCP_DRAFT = /^\/mcp\s*$/i
 
-/** Replace the agent’s /resume catalog entry with Orca’s Session History command, and its /usage
- *  and /fork with Orca’s where this chat runs them. */
+/** Replace the agent’s /resume catalog entry with Otodus’s Session History command, and its /usage
+ *  and /fork with Otodus’s where this chat runs them. */
 export function withNativeChatResumeCommand(
   commands: readonly SlashCommandSuggestion[],
   accountUsage = false,
@@ -81,9 +81,9 @@ export function parseNativeChatResumeDraft(draft: string): string | null {
 
 export type NativeChatResumeCommand = {
   matchesDraft: (draft: string) => boolean
-  /** Opens Session History for a `/resume` draft; false means the draft is not Orca's. */
+  /** Opens Session History for a `/resume` draft; false means the draft is not Otodus's. */
   consume: (draft: string) => boolean
-  /** Choosing the draft-leading Orca row runs it; mid-prompt it stays an ordinary completion. */
+  /** Choosing the draft-leading Otodus row runs it; mid-prompt it stays an ordinary completion. */
   interceptPick: <TItem extends NativeChatPickerItem>(
     pick: (item: TItem) => void
   ) => (item: TItem) => void
@@ -245,7 +245,7 @@ export function useNativeChatResumeCommand(args: {
     <TItem extends NativeChatPickerItem>(pick: (item: TItem) => void) =>
       (item: TItem) => {
         const leading = autocomplete.mode === 'slash' && autocomplete.dispatchable
-        // An explicit Orca command pick overrides an earlier same-named skill pick.
+        // An explicit Otodus command pick overrides an earlier same-named skill pick.
         if (leading && item.kind === 'command' && item.orcaOwned) {
           if (
             item.name !== 'resume' &&

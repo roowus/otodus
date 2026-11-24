@@ -22,7 +22,7 @@ async function writeProgram(path: string, output: string): Promise<void> {
   await chmod(path, 0o755)
 }
 
-/** A home with Orca's dispatcher installed, and a second `orca` (as GNOME's screen reader). */
+/** A home with Otodus's dispatcher installed, and a second `orca` (as GNOME's screen reader). */
 async function makeFixture(): Promise<{
   root: string
   homePath: string
@@ -76,7 +76,7 @@ function runOrca(
 }
 
 describe.runIf(process.platform !== 'win32')('the bare orca dispatcher as a shell runs it', () => {
-  it("leaves another `orca` on PATH (GNOME's screen reader) to everyone but Orca's children", async () => {
+  it("leaves another `orca` on PATH (GNOME's screen reader) to everyone but Otodus's children", async () => {
     const fixture = await makeFixture()
     const binDir = join(fixture.homePath, '.local', 'bin')
 

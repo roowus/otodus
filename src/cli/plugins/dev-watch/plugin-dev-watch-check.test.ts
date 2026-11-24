@@ -89,7 +89,7 @@ async function watch(
 }
 
 describe('plugin dev watch --check', () => {
-  it('fails a check that renders while Orca does not run the plugin', async () => {
+  it('fails a check that renders while Otodus does not run the plugin', async () => {
     const pending = entry(1, 'pending')
     const events = await watch(vi.fn().mockResolvedValue(passed), [[entry(0)], [pending]])
     const checks = events.filter((event) => event.type === 'check')

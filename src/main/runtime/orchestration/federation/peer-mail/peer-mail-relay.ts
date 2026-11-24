@@ -39,7 +39,7 @@ const PulledPeerMail = z.object({
   )
 })
 
-/** What this Orca's pull loop last heard from a paired server; nothing until its first pull settles. */
+/** What this Otodus's pull loop last heard from a paired server; nothing until its first pull settles. */
 export type PeerServerAnswerStatus = {
   /** When the server last answered a pull (an idle pull answers after its wait). */
   answeredAt?: number
@@ -54,9 +54,9 @@ type Loop = {
   held: HeldPeerConversations
 }
 
-/** One pull loop per paired server this Orca opened conversations with or coordinates Runs on. The
+/** One pull loop per paired server this Otodus opened conversations with or coordinates Runs on. The
  *  server never dials back: each pull waits there for queued items, imports them, then acknowledges
- *  them. Stops and cancels this Orca owes the server go out on the same loop. */
+ *  them. Stops and cancels this Otodus owes the server go out on the same loop. */
 export class PeerMailRelay {
   private readonly loops = new Map<string, Loop>()
   private readonly answers = new Map<string, PeerServerAnswerStatus>()
@@ -110,7 +110,7 @@ export class PeerMailRelay {
       try {
         await this.pullOnce(environmentId, loop)
         if (failures > 0) {
-          // The server answers again: what this Orca owes it goes out now, not after its backoff.
+          // The server answers again: what this Otodus owes it goes out now, not after its backoff.
           dueRemoteResendsNow(loop.db, environmentId)
           this.resendOwed(environmentId, loop)
         }
@@ -122,7 +122,7 @@ export class PeerMailRelay {
             closeRemoteRunLinksOfRemovedServer(
               loop.db,
               environmentId,
-              `${serverName} was removed from this Orca's paired servers.`,
+              `${serverName} was removed from this Otodus's paired servers.`,
               (handle, type) => this.runtime.notifyMessageArrived(handle, type)
             )
           } catch (error) {
@@ -265,7 +265,7 @@ export class PeerMailRelay {
       })
   }
 
-  /** A Run this Orca coordinates there owns its conversation's items; any other is a peer-mail reply. */
+  /** A Run this Otodus coordinates there owns its conversation's items; any other is a peer-mail reply. */
   private async importItem(
     db: OrchestrationDb,
     environmentId: string,
@@ -302,7 +302,7 @@ export class PeerMailRelay {
       return undefined
     }
     const handle = peerMailLocalRecipient(this.runtime, conversation)
-    // Peer-mail replies come home to this Orca's own sender handle, never a terminal agent's id.
+    // Peer-mail replies come home to this Otodus's own sender handle, never a terminal agent's id.
     const recipient = resolveBareOrchestrationRecipient({ runtime: this.runtime, db, handle })
     const presented = presentImportedPeerItem({
       kind: 'peer_mail',

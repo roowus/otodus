@@ -10,7 +10,7 @@ import { getRecipeVmWaker } from '../runtime/workspaces/sleep/recipe-vm-waker-re
 import { getRuntimeOwnedSshTargetId } from '../ssh/targets/ssh-target-runtime-ownership'
 
 /**
- * The one answer to "may Orca dial this VM in the background?" (#36363). A VM is asleep while its
+ * The one answer to "may Otodus dial this VM in the background?" (#36363). A VM is asleep while its
  * record says suspended (or its resume failed) and no wake is under way. Background reconnects,
  * health probes and polling must not dial it then: a provider that resumes on a new SSH login or
  * connection would wake it, and the sleep would save nothing. A wake (opening the workspace,
@@ -76,7 +76,7 @@ export async function prepareRecipeVmServerSleepCheck(
   return prepareRecipeVmEnvironmentSleepCheck(root, environmentId)
 }
 
-/** Whether this Orca-owned SSH host is the host of a recipe VM that is asleep. */
+/** Whether this Otodus-owned SSH host is the host of a recipe VM that is asleep. */
 export function isRecipeVmSshTargetAsleep(userDataPath: string, targetId: string): boolean {
   // Why first: every other SSH host skips the VM store read.
   if (!isRuntimeOwnedSshTargetId(targetId)) {

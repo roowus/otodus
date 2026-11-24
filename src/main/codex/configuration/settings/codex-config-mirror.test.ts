@@ -96,7 +96,7 @@ describe('syncSystemConfigIntoManagedCodexHome', () => {
     expect(readFileSync(getSystemConfigPath(), 'utf-8')).toBe(systemConfig)
   })
 
-  it("drops Orca's sqlite_home once the user's own config sets one", () => {
+  it("drops Otodus's sqlite_home once the user's own config sets one", () => {
     const accountHome = join(userDataDir, 'codex-accounts', 'a', 'home')
     mkdirSync(accountHome, { recursive: true })
     writeFileSync(

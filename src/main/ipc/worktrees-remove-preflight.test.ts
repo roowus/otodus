@@ -305,7 +305,7 @@ it.each(['ipc', 'runtime'] as const)(
             publish: () => {}
           })
     const request = invoke()
-    const refused = expect(request).rejects.toThrow('Orca is stopping')
+    const refused = expect(request).rejects.toThrow('Otodus is stopping')
     await entered.promise
     await worktreeRemovalLifetime.close()
     preflight.resolve()

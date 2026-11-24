@@ -39,7 +39,10 @@ export function ArtifactsPageAuthState({
       <div className="space-y-1">
         <h2 className="text-sm font-semibold">
           {needsReconnect
-            ? t('auto.components.artifacts.ArtifactsPage.reconnectHeading', 'Sign in to Orca again')
+            ? t(
+                'auto.components.artifacts.ArtifactsPage.reconnectHeading',
+                'Sign in to Otodus again'
+              )
             : t(
                 'auto.components.artifacts.ArtifactsPage.shareSignInHeading',
                 'Sign in to share artifacts'
@@ -62,7 +65,7 @@ export function ArtifactsPageAuthState({
           <OrcaSignInButton size="sm">
             {needsReconnect
               ? t('auto.components.artifacts.ArtifactsPage.signInAgainAction', 'Sign in again')
-              : t('auto.components.artifacts.ArtifactsPage.signIn', 'Sign in to Orca')}
+              : t('auto.components.artifacts.ArtifactsPage.signIn', 'Sign in to Otodus')}
           </OrcaSignInButton>
           <OrcaSignInWaitNotice className="justify-center" />
         </>

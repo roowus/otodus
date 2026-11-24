@@ -226,7 +226,7 @@ export class ExternalChromiumBrowserSession {
     options: {
       timeoutMs?: number
       signal?: AbortSignal
-      /** Raw CLI tokens: global options apply, so only for Orca-authored or passthrough lines. */
+      /** Raw CLI tokens: global options apply, so only for Otodus-authored or passthrough lines. */
       cliArgv?: boolean
     } = {}
   ): Promise<unknown> {

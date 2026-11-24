@@ -11,7 +11,7 @@ import {
 import type { ProjectExecutionRuntimeResolution } from '../../../../../shared/execution-host/project-execution-runtime'
 import type { RuntimeClientTarget } from '../../../../../shared/remote-runtime/host-catalog/runtime-client-target'
 
-/** The host whose Orca skills the Update dialog, badge and nudge plan and update. */
+/** The host whose Otodus skills the Update dialog, badge and nudge plan and update. */
 export type BundledSkillTarget =
   | { kind: 'local'; agent?: SkillInstallProviderId }
   /** A paired server or the managed server on an SSH host; it plans its own disk. */

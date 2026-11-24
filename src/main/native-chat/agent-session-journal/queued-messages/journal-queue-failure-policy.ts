@@ -30,7 +30,7 @@ const NOT_REPORTS: ReadonlySet<string> = new Set([
 ])
 
 /** The turn a root failure row reports for, unless it is a command's own verdict: one of the kinds
- * above, or anything Orca wrote on a command's result identity (its refusals). */
+ * above, or anything Otodus wrote on a command's result identity (its refusals). */
 export function reportedTurnItemId(item: AgentJournalRenderItem): string | null {
   const { body, turnScope } = item
   if (

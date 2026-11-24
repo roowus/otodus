@@ -36,13 +36,13 @@ const OP_PLAN_STATE: Readonly<Record<BundledSkillOpKind, BundledSkillPlanState>>
 }
 
 export const BUNDLED_SKILL_LEAVE_REASON_TEXT: Readonly<Record<BundledSkillLeaveReason, string>> = {
-  edited: 'Skill edited outside Orca',
-  'other-build': 'Installed by another Orca version',
+  edited: 'Skill edited outside Otodus',
+  'other-build': 'Installed by another Otodus version',
   other: 'A different skill uses this name',
-  unwritable: "Orca can't write to this folder",
-  unreadable: "Orca can't read every file",
+  unwritable: "Otodus can't write to this folder",
+  unreadable: "Otodus can't read every file",
   busy: 'Another install is still running',
-  'shared-not-current': "The shared copy isn't Orca's"
+  'shared-not-current': "The shared copy isn't Otodus's"
 }
 
 /** What Update does at one location, for plain-text surfaces; the app translates its own. */
@@ -62,7 +62,7 @@ export const BUNDLED_SKILL_PLAN_OP_TEXT: Readonly<
 function opPlanState(
   op: Pick<BundledSkillOp, 'kind' | 'reason' | 'previous'>
 ): BundledSkillPlanState {
-  // Other owners’ same-named skills, and another Orca build's copy, are listed without flagging them.
+  // Other owners’ same-named skills, and another Otodus build's copy, are listed without flagging them.
   if (op.kind === 'leave' && (op.reason === 'other' || op.reason === 'other-build')) {
     return 'current'
   }
@@ -137,7 +137,7 @@ export function bundledSkillInstallAction(plan: BundledSkillPlan): BundledSkillI
   if (paths.length > 0) {
     return { kind: 'replace', paths }
   }
-  // Another Orca build's copy is kept on purpose: an installed skill, not one to fix.
+  // Another Otodus build's copy is kept on purpose: an installed skill, not one to fix.
   const current =
     plan.skills.length > 0 &&
     plan.skills.every(
@@ -162,7 +162,7 @@ export function bundledSkillInstallAgents(
   return [...new Set(agents)].sort()
 }
 
-/** Replaces a copy whose hash matches a shipped Orca release; deletes only Orca's own swap leftovers. */
+/** Replaces a copy whose hash matches a shipped Otodus release; deletes only Otodus's own swap leftovers. */
 export function isBundledSkillAutoUpdateOp(
   op: Pick<BundledSkillOp, 'kind' | 'cleanup' | 'previous'>
 ): boolean {
@@ -173,7 +173,7 @@ export function isBundledSkillAutoUpdateOp(
   )
 }
 
-/** A location already holds exactly this build's bytes; executing records it as Orca's copy. */
+/** A location already holds exactly this build's bytes; executing records it as Otodus's copy. */
 export function holdsCurrentBundledSkillCopy(entry: BundledSkillPlanEntry): boolean {
   return entry.ops.some(
     (op) =>
@@ -184,7 +184,7 @@ export function holdsCurrentBundledSkillCopy(entry: BundledSkillPlanEntry): bool
 }
 
 function opNeedsConsent(op: BundledSkillOp, autoUpdating: boolean): boolean {
-  // An old copy holding edits Orca has not yet backed up waits on the user, never on deletion.
+  // An old copy holding edits Otodus has not yet backed up waits on the user, never on deletion.
   if (op.cleanup.some((item) => item.action === 'backup')) {
     return true
   }
@@ -199,7 +199,7 @@ function opNeedsConsent(op: BundledSkillOp, autoUpdating: boolean): boolean {
 
 /**
  * Skills the nudge asks about: stale, broken or hand-edited copies.
- * `autoUpdating` names skills whose hash-verified locations Orca is updating silently.
+ * `autoUpdating` names skills whose hash-verified locations Otodus is updating silently.
  */
 export function bundledSkillNudgeEntries(
   plan: BundledSkillPlan,
@@ -279,7 +279,7 @@ export type BundledSkillOutcomeSummary = {
   text: BundledSkillOutcomeText
   /** Printed as warnings; never part of the exit code. */
   leftAlone: BundledSkillLeftAlone[]
-  /** e.g. "Updated - 1 skipped: Skill edited outside Orca". */
+  /** e.g. "Updated - 1 skipped: Skill edited outside Otodus". */
   line: string
 }
 

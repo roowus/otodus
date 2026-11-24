@@ -206,7 +206,7 @@ function useSecondClock(active: boolean): number {
   return now
 }
 
-/** The chat's address its workers report to, when it can coordinate: a local Orca session (v1). */
+/** The chat's address its workers report to, when it can coordinate: a local Otodus session (v1). */
 export function nativeChatWorkerApprovalParty(pane: {
   target: RuntimeClientTarget
   sessionId: string

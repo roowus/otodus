@@ -123,7 +123,7 @@ export function LanguageBrowser({
         ]
       : []),
     ...SUPPORTED_UI_LOCALES.flatMap((locale) => {
-      // Why: built-ins keep Orca's curated names ("中文（简体）", "Português (Brasil)") so variants stay distinct.
+      // Why: built-ins keep Otodus's curated names ("中文（简体）", "Português (Brasil)") so variants stay distinct.
       const names = { ...languageNames(locale), native: getUiLanguageNativeLabel(locale) }
       if (!matches(names.native, names.english, locale)) {
         return []

@@ -25,7 +25,7 @@ export function focusGuardUnavailableError(
   const waited = elapsedMs === undefined ? '' : ` after ${Math.round(elapsedMs)} ms`
   return new BrowserError(
     'browser_focus_guard_unavailable',
-    `Orca could not protect the user's keyboard focus for this page, so the input was not sent. Retry, or show the page first. (${phase}${waited})`,
+    `Otodus could not protect the user's keyboard focus for this page, so the input was not sent. Retry, or show the page first. (${phase}${waited})`,
     elapsedMs === undefined
       ? { phase }
       : { phase, elapsedMs: Math.round(elapsedMs), timeoutMs: PANE_READY_TIMEOUT_MS }
@@ -36,7 +36,7 @@ export function focusGuardUnavailableError(
 function userComposingError(): BrowserError {
   return new BrowserError(
     'browser_user_composing',
-    'The user is typing with an input method in Orca, so the input was not sent to keep their unfinished text. Retry in a moment.'
+    'The user is typing with an input method in Otodus, so the input was not sent to keep their unfinished text. Retry in a moment.'
   )
 }
 

@@ -9,7 +9,7 @@ import { ROOTED_PATH_START_PATTERN } from '../../terminal/links/terminal-file-li
 import { preferLongestNonOverlappingMatches } from '../../text/longest-non-overlapping-matches'
 
 /**
- * A chat link's mdast `data` says where it came from: Orca found the path in plain text, or the
+ * A chat link's mdast `data` says where it came from: Otodus found the path in plain text, or the
  * author wrote the link and `nativeChatAuthoredUrl` is the destination they wrote before it was
  * re-encoded. `data` stays `unknown` here so any mdast tree (desktop or mobile) can be passed in.
  */
@@ -17,13 +17,13 @@ function linkData(node: { data?: unknown }): object | null {
   return typeof node.data === 'object' && node.data !== null ? node.data : null
 }
 
-/** Whether Orca, not the author, made this link from a plain-text path. */
+/** Whether Otodus, not the author, made this link from a plain-text path. */
 export function isDetectedNativeChatPathLink(node: { data?: unknown }): boolean {
   const data = linkData(node)
   return data !== null && 'nativeChatDetectedPath' in data && data.nativeChatDetectedPath === true
 }
 
-/** The destination the author wrote, when Orca has since re-encoded the link. */
+/** The destination the author wrote, when Otodus has since re-encoded the link. */
 export function authoredNativeChatLinkUrl(node: { data?: unknown }): string | undefined {
   const data = linkData(node)
   return data && 'nativeChatAuthoredUrl' in data && typeof data.nativeChatAuthoredUrl === 'string'

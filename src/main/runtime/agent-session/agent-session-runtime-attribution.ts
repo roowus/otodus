@@ -40,7 +40,7 @@ export function attributeAgentSessionRuntimeRecord(
     deathEvidence.runtimeEnd !== undefined ||
     !heldBy ||
     heldBy === runtime ||
-    // Terminal-owned agents never depended on Orca's pipes.
+    // Terminal-owned agents never depended on Otodus's pipes.
     before?.lease.claimStatus === 'conflicted' ||
     !runtimeEnds
   ) {

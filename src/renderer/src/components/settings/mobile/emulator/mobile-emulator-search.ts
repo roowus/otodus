@@ -16,7 +16,7 @@ export const getMobileEmulatorSearchEntries = createLocalizedCatalog(() => [
     ),
     description: translate(
       'auto.components.settings.mobile.emulator.search.9595354cff',
-      'Configure mobile emulator support for Orca and coding agents.'
+      'Configure mobile emulator support for Otodus and coding agents.'
     ),
     keywords: [
       ...translateSearchKeyword(
@@ -81,7 +81,7 @@ export const getMobileEmulatorSearchEntries = createLocalizedCatalog(() => [
     ),
     description: translate(
       'auto.components.settings.mobile.emulator.search.2348045036',
-      'Choose which emulator device Orca opens by default.'
+      'Choose which emulator device Otodus opens by default.'
     ),
     keywords: [
       ...translateSearchKeyword(

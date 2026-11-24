@@ -15,11 +15,11 @@ export function errorData(error: unknown): Record<string, unknown> | undefined {
     : undefined
 }
 
-/** What the server's answer says that this Orca says otherwise. */
+/** What the server's answer says that this Otodus says otherwise. */
 export type ServerTerms = {
   server: string
   forward?: RemoteForwardKey
-  /** The link the call went under: the server's Run for it is this Orca's Run here. */
+  /** The link the call went under: the server's Run for it is this Otodus's Run here. */
   link?: { peer_run_id: string | null; run_id: string }
 }
 

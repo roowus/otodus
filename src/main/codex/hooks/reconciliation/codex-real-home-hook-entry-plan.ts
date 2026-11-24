@@ -17,7 +17,7 @@ import type { CodexEventLabel, CodexTrustEntry } from '../../trust/toml/config-t
 
 type HooksByEvent = Record<string, HookDefinition[]>
 
-// Codex hashes group matchers, so Orca needs a dedicated matcher-free group to match its approval.
+// Codex hashes group matchers, so Otodus needs a dedicated matcher-free group to match its approval.
 export type RealHomeCodexHookEntryPlan =
   /** Pruning can shift user hooks and their positional approval keys. */
   | { kind: 'prune'; hooks: HooksByEvent }
@@ -65,7 +65,7 @@ function isOrcaOnlyGroup(
   )
 }
 
-// Match every field Codex hashes so modified hooks cannot reuse Orca's approval.
+// Match every field Codex hashes so modified hooks cannot reuse Otodus's approval.
 function isSameHook(left: HookCommandConfig, right: HookCommandConfig): boolean {
   const keys = new Set([...Object.keys(left), ...Object.keys(right)])
   return [...keys].every((key) => JSON.stringify(left[key]) === JSON.stringify(right[key]))

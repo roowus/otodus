@@ -104,7 +104,7 @@ export function listWorkerTerminalResources(
   pendingApproval: boolean
   terminationReason: TerminalExitCause['kind'] | null
   resource: WorkerTerminalResourceRow | null
-  /** The paired Orca's name when its Run here coordinates this worker. */
+  /** The paired Otodus's name when its Run here coordinates this worker. */
   coordinatedFrom: string | null
   createdAt: string
   databaseId: number

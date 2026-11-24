@@ -65,7 +65,7 @@ export const getAdvancedSearchEntry = createLocalizedCatalog(
         ]
       },
       uninstall: {
-        title: translate('settings.uninstall.title', 'Uninstall Orca'),
+        title: translate('settings.uninstall.title', 'Uninstall Otodus'),
         description: translate(
           'settings.uninstall.searchDescription',
           'Remove agent hooks, the orca command, the background service and SSH host files.'

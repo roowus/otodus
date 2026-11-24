@@ -89,7 +89,7 @@ export function serveWithOrcad(
       // The desktop's profile: its instance lock makes the two refuse each other.
       ORCA_USER_DATA: userDataPath,
       ORCA_VERSION: selection.version,
-      // Always set: a value inherited from an Orca terminal would name another install's copy.
+      // Always set: a value inherited from an Otodus terminal would name another install's copy.
       [SPEECH_RECOGNIZER_DIR_ENV]: speechRecognizerDir ?? '',
       // A service manager restarts this server, so it must not run terminals that die with it.
       [ORCA_SERVE_SUPERVISED_ENV]: args.supervise === true ? '1' : ''

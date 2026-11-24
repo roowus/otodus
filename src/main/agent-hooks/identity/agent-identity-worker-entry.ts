@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS provider_links(
 const SELECT_LINK = `SELECT orca_session_id FROM provider_links
   WHERE execution_host = ? AND wsl_distro = ? AND agent = ? AND provider_session_id = ? AND locator = ?`
 
-/** Orca ids for provider conversations, which nothing can rebuild: the file is never deleted, and
+/** Otodus ids for provider conversations, which nothing can rebuild: the file is never deleted, and
  *  an unreadable one throws so ids stay unavailable. A linked key is never relinked. Runs only in
  *  this worker, off the hook server's thread. */
 export class AgentIdentityStore {

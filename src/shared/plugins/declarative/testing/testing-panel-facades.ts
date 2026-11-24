@@ -5,7 +5,7 @@ type Listener = (payload: unknown) => void
 /**
  * The frame shell's `plugin`, `storage`, `settings` and `secrets` for a mounted test panel, over
  * the mock host's calls: what plugin-panel-shell-facades.ts gives a real guest. `post` stands in
- * for the worker's `orca.panels.post`; `changed` for Orca telling the panel a key changed.
+ * for the worker's `orca.panels.post`; `changed` for Otodus telling the panel a key changed.
  */
 export function createTestingPanelFacades(
   call: (method: string, params?: unknown) => Promise<unknown>

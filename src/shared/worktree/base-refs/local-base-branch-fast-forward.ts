@@ -26,7 +26,7 @@ export type LocalBaseBranchRefs = {
 type LocalBaseRefRefreshStatus = LocalBaseRefRefreshResult['status']
 
 export type LocalBaseBranchInspection =
-  /** Nothing Orca may move: local matches, does not exist yet (#15331), or its checkout or a rebase/bisect owns it. */
+  /** Nothing Otodus may move: local matches, does not exist yet (#15331), or its checkout or a rebase/bisect owns it. */
   | { status: 'nothing_to_do' }
   | {
       status: 'behind'
@@ -155,7 +155,7 @@ export async function fastForwardLocalBaseBranch(
     )
     return moved ? { status: 'updated' } : { status: 'nothing_to_do' }
   } catch {
-    // A concurrent pull/Orca update may already have moved local; a user commit leaves it diverged.
+    // A concurrent pull/Otodus update may already have moved local; a user commit leaves it diverged.
     try {
       if (await isAncestor(git, repoPath, remoteOid, fullRef)) {
         return { status: 'updated' }

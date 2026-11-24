@@ -46,7 +46,7 @@ export function nativeChatComposerSendState(
     editSession: { canSave: boolean } | undefined
     isWorking: boolean
     canStop: boolean
-    /** The draft is an Orca command such as /resume, which runs without the agent. */
+    /** The draft is an Otodus command such as /resume, which runs without the agent. */
     orcaCommand?: boolean
     /** Goal mode submits the draft as an objective, which starts work. */
     goalMode?: boolean

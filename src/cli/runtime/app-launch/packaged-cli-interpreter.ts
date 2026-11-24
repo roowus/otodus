@@ -20,7 +20,7 @@ export function reenterPackagedElectron(): void {
   if (!execve) {
     throw new RuntimeClientError(
       'unsupported_runtime',
-      'The installed Orca runtime is unavailable. Reinstall Orca and try again.'
+      'The installed Orca runtime is unavailable. Reinstall Otodus and try again.'
     )
   }
   try {
@@ -29,7 +29,7 @@ export function reenterPackagedElectron(): void {
   } catch {
     throw new RuntimeClientError(
       'app_not_found',
-      'The installed Orca app is unavailable. Reinstall Orca and try again.'
+      'The installed Otodus app is unavailable. Reinstall Otodus and try again.'
     )
   }
   execve.call(process, packagedElectron, [packagedElectron, ...process.argv.slice(1)], {

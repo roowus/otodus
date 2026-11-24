@@ -27,7 +27,7 @@ export async function removeInstalledPlugin(input: PluginRemovalInput): Promise<
   })
 }
 
-/** Removes a bundled install this Orca release no longer ships; any other source is left alone. */
+/** Removes a bundled install this Otodus release no longer ships; any other source is left alone. */
 export async function retireBundledPlugin(input: PluginRemovalInput): Promise<boolean> {
   return serializePluginMutation(input.pluginsDir, async () => {
     if (!isQualifiedPluginKey(input.pluginKey)) {

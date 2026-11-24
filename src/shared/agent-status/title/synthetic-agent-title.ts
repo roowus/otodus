@@ -50,7 +50,7 @@ export const SYNTHETIC_AGENT_TITLE_PROFILES: Record<string, SyntheticAgentTitleP
     permissionLabel: 'Pi - action required',
     idleLabel: 'Pi ready',
     titleIdentityGroup: 'pi-compatible',
-    // Pi and Orca's titlebar extension own session titles, including idle and permission states.
+    // Pi and Otodus's titlebar extension own session titles, including idle and permission states.
     synthesizeTerminalTitle: false
   },
   omp: {
@@ -58,7 +58,7 @@ export const SYNTHETIC_AGENT_TITLE_PROFILES: Record<string, SyntheticAgentTitleP
     permissionLabel: 'OMP - action required',
     idleLabel: 'OMP ready',
     titleIdentityGroup: 'pi-compatible',
-    // OMP and Orca’s titlebar extension (main/pi/titlebar-extension-source.ts) title the session; synthesis would erase its name.
+    // OMP and Otodus’s titlebar extension (main/pi/titlebar-extension-source.ts) title the session; synthesis would erase its name.
     synthesizeTerminalTitle: false
   },
   droid: {

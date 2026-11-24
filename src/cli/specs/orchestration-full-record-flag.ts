@@ -1,6 +1,6 @@
 import type { CommandSpec } from '../discovery/command-spec'
 
-// Output is the concise agent view by default; --full prints the whole record Orca returned.
+// Output is the concise agent view by default; --full prints the whole record Otodus returned.
 export function withFullRecordFlag(spec: CommandSpec): CommandSpec {
   if (spec.allowedFlags.includes('full')) {
     return spec

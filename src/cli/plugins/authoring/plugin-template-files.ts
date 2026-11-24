@@ -3,7 +3,7 @@
 import { localPluginPublisher } from '../../../shared/plugins/installation/plugin-publisher-derivation'
 import { PLUGIN_DERIVED_PUBLISHER_SINCE } from '../../../shared/plugins/manifest/plugin-schema-field-docs'
 
-/** `publisher` is deprecated: set only for authors who still support Orca that requires it. */
+/** `publisher` is deprecated: set only for authors who still support Otodus that requires it. */
 export type PluginTemplateInput = { publisher?: string; id: string; name: string }
 
 export type PluginTemplate = {
@@ -51,10 +51,10 @@ ${body}
 
 \`\`\`sh
 orca plugin validate .
-orca plugin dev watch .    # loads this folder into Orca and prints its logs and reloads; Ctrl-C unloads it
+orca plugin dev watch .    # loads this folder into Otodus and prints its logs and reloads; Ctrl-C unloads it
 \`\`\`
 
-Orca names the publisher after where the plugin is installed from: the GitHub or GitLab owner of
+Otodus names the publisher after where the plugin is installed from: the GitHub or GitLab owner of
 its repository, or \`local\` for a folder. See
 https://github.com/stablyai/orca/blob/main/docs/reference/plugin-authoring.md.
 `

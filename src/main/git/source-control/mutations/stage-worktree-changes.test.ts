@@ -118,7 +118,7 @@ describe('stageWorktreeChanges', () => {
     expect(names(repo, ['diff', '--name-only'])).toEqual(['outside.txt'])
   })
 
-  describe('Orca shared symlinks', () => {
+  describe('Otodus shared symlinks', () => {
     async function createSharedLinkWorktree(): Promise<{ repo: string; owner: string }> {
       const repo = await createRepo()
       const owner = await mkdtemp(path.join(tmpdir(), 'orca-stage-owner-'))

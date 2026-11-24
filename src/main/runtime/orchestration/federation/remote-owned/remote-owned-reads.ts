@@ -14,7 +14,7 @@ type ReadsRuntime = Pick<
 >
 
 /**
- * A remote worker's server as this Orca names it. `asOf` is when this Orca recorded the server's
+ * A remote worker's server as this Otodus names it. `asOf` is when this Otodus recorded the server's
  * latest state for the worker; `repaired` means the pairing was re-made since, so the server no
  * longer reports this worker here.
  */
@@ -38,7 +38,7 @@ async function remoteWorkerServer(
   }
 }
 
-/** The paired server's name; one removed from this Orca since keeps the name a link recorded, else its environment ID. */
+/** The paired server's name; one removed from this Otodus since keeps the name a link recorded, else its environment ID. */
 export async function remoteServerName(
   runtime: ReadsRuntime,
   environmentId: string,
@@ -52,7 +52,7 @@ export async function remoteServerName(
 }
 
 /**
- * worker-show for a worker a paired server runs: always this Orca's record, never a call there, so
+ * worker-show for a worker a paired server runs: always this Otodus's record, never a call there, so
  * it answers at once whether the server is awake, asleep or off, and agrees with worker-list. The
  * note says when the record is from and what the pull loop last heard from the server. Metadata
  * only: the worker's output stays on its server (worker-read), and a prompt wait arrives as mail.
@@ -70,7 +70,7 @@ export async function remoteWorkerShow(runtime: ReadsRuntime, record: RemoteDisp
   const reachable = heard?.unreachableSince ? false : heard?.answeredAt ? true : undefined
   const closedBecause = link?.state === 'closed' ? link.last_error : null
   const owedStop = record.stop_owed
-    ? ` A stop is owed; this Orca sends it when ${server.name} answers.`
+    ? ` A stop is owed; this Otodus sends it when ${server.name} answers.`
     : ''
   return {
     dispatch: {
@@ -159,10 +159,10 @@ type WorkerListPage = {
 }
 
 /**
- * Workers paired servers run for the listed Runs join the first page after this Orca's own, newest
+ * Workers paired servers run for the listed Runs join the first page after this Otodus's own, newest
  * first, at most `maxRows` of them and as each server last reported them; no server is asked. So
  * the first page can hold up to twice its limit, and nothing is pushed past it. Every page's `total` counts
- * them. Later pages follow this Orca's own cursor, and a terminal-state filter leaves them out,
+ * them. Later pages follow this Otodus's own cursor, and a terminal-state filter leaves them out,
  * since only their server knows their terminals.
  */
 export async function withRemoteWorkerRows<Page extends WorkerListPage>(

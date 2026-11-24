@@ -1,4 +1,4 @@
-/** How this copy of Orca was installed; decides the last step the user takes to delete the app. */
+/** How this copy of Otodus was installed; decides the last step the user takes to delete the app. */
 export type OrcaUninstallInstallKind =
   | 'mac-app'
   | 'mac-homebrew'
@@ -24,14 +24,14 @@ export const ORCA_UNINSTALL_STEPS: readonly OrcaUninstallStep[] = [
 ]
 
 /**
- * `kept-shared`: another Orca build still uses it, so it stays.
- * `needs-user`: Orca can't do it from here (an offline SSH host); the entry names what to run.
+ * `kept-shared`: another Otodus build still uses it, so it stays.
+ * `needs-user`: Otodus can't do it from here (an offline SSH host); the entry names what to run.
  */
 export type OrcaUninstallEntryState = 'present' | 'removed' | 'kept-shared' | 'needs-user' | 'error'
 
 export type OrcaUninstallAgentEntry = {
   agent: string
-  /** Every file Orca changes or deletes for this agent. */
+  /** Every file Otodus changes or deletes for this agent. */
   paths: string[]
   state: OrcaUninstallEntryState
   /** One short line, e.g. "Permission denied". */
@@ -63,7 +63,7 @@ export type OrcaUninstallPlan = {
   backgroundService: OrcaUninstallSimpleEntry | null
   hookScripts: OrcaUninstallSimpleEntry | null
   hosts: OrcaUninstallHostEntry[]
-  /** Set when another Orca build (stable, RC or dev) still uses the shared hooks. */
+  /** Set when another Otodus build (stable, RC or dev) still uses the shared hooks. */
   otherOrcaBuildName: string | null
   /** The app bundle, AppImage or install folder to reveal, when there is one. */
   appPath: string | null

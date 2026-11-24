@@ -10,18 +10,18 @@ List each in `contributes.events` (`{ "on": "<event>" }`), with `main`, the `tru
   `{ workspaceId: string; workspaceListId?: string; kind: "worktree" | "folder"; path: string; branch: string }`
 - `workspace.removed` (capability `workspace:read`; since 1.4.245): A worktree workspace was removed; `workspaceListId` (host API 1.7) is the id `workspace.list` gave it.
   `{ workspaceId: string; workspaceListId?: string; kind: "worktree" | "folder"; path: string }`
-- `agent.status.changed` (capability `agent:read`; since 1.4.160): An agent in a terminal pane changed status; `workspaceId` is null when Orca cannot tie the pane to a workspace, `workspaceListId` (host API 1.7) is the id `workspace.list` gives that workspace, `terminalId` names its terminal when Orca lists it, and `sessionId` (host API 1.8) is what `agent.resume` takes.
+- `agent.status.changed` (capability `agent:read`; since 1.4.160): An agent in a terminal pane changed status; `workspaceId` is null when Otodus cannot tie the pane to a workspace, `workspaceListId` (host API 1.7) is the id `workspace.list` gives that workspace, `terminalId` names its terminal when Otodus lists it, and `sessionId` (host API 1.8) is what `agent.resume` takes.
   `{ workspaceId: string | null; workspaceListId?: string; paneKey: string; terminalId?: string; title?: string; state: "working" | "blocked" | "waiting" | "done"; receivedAt: number; mainAgent?: { state: "working" | "blocked" | "waiting" | "done"; outcome?: "success" | "failure" | "cancellation" | "superseded" | "interruption" | "unconfirmed"; stateStartedAt: number }; sessionId?: string }`
 - `workspace.changed` (capability `workspace:read`; since 1.4.246): The focused workspace changed, or its terminals were opened, closed or renamed; `context` is what `workspace.readContext` now answers, its `workspaceId` included. Each new subscriber first gets the current context.
   `{ context: { workspaceId?: string; branch: string; displayName: string; terminals: { id: string; title?: string }[] } | null }`
-- `editor.typography.changed` (no capability; since 1.4.257): What Orca's file editor uses changed (a setting or the editor zoom); the payload is what `editor.readTypography` now answers. Needs no capability.
+- `editor.typography.changed` (no capability; since 1.4.257): What Otodus's file editor uses changed (a setting or the editor zoom); the payload is what `editor.readTypography` now answers. Needs no capability.
   `{ fontFamily: string; cssFontFamily: string; fontSize: number; fontWeight: string; lineHeight: number; fontLigatures: boolean; wordWrap: "on" | "off"; minimap: boolean }`
 
 ## Frame events (`orca.on(event, handler)` in HTML panels and custom editors)
 
 - `theme: FrameTheme`: The `--orca-*` variables and the `light`/`dark` class on `<html>` already changed.
 - `'editor.document': EditorDocument`: Custom editors: a new document; `orca.document.onDidChange` is the usual way to listen.
-- `'editor.flush': undefined`: Custom editors: post pending edits before a save; Orca waits for a returned promise.
+- `'editor.flush': undefined`: Custom editors: post pending edits before a save; Otodus waits for a returned promise.
 
 ## Components panel events (`on(event, handler)` from `orca`)
 

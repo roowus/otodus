@@ -32,7 +32,7 @@ export function readRuntimeSourceStamp(
   return profilePath ? { sourceId, incarnation, profilePath } : { sourceId, incarnation }
 }
 
-/** Replaces any inherited stamp, so a nested Orca never passes on its parent's source. */
+/** Replaces any inherited stamp, so a nested Otodus never passes on its parent's source. */
 export function stampRuntimeSourceEnv(
   env: Record<string, string | undefined>,
   stamp: RuntimeSourceStamp | null

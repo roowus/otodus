@@ -58,7 +58,7 @@ async function openWindowsUninstaller(appPath: string | null): Promise<void> {
   const uninstaller =
     process.platform === 'win32' && appPath ? await findWindowsUninstaller(appPath) : null
   if (!appPath || !uninstaller) {
-    throw new Error('The Orca uninstaller was not found.')
+    throw new Error('The Otodus uninstaller was not found.')
   }
   spawnDetachedWithoutInheritance({ program: uninstaller, args: [], cwd: appPath }).unref()
 }

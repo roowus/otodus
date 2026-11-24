@@ -13,7 +13,7 @@ export type HostIdentityResetResult =
   | { status: 'running'; message: string }
   /** Nothing changed on disk. */
   | { status: 'failed'; message: string }
-  /** The next Orca start finishes the rotation before it serves pairing. */
+  /** The next Otodus start finishes the rotation before it serves pairing. */
   | { status: 'incomplete'; message: string }
 
 const RUNNING_LOCK_CODES: ReadonlySet<string> = new Set([
@@ -21,7 +21,7 @@ const RUNNING_LOCK_CODES: ReadonlySet<string> = new Set([
   'orcad_instance_lock_holder_unverifiable'
 ])
 
-/** Holds the profile lock so no running Orca reads or rewrites the files mid-rotation. */
+/** Holds the profile lock so no running Otodus reads or rewrites the files mid-rotation. */
 export function resetHostIdentityUnderLock(userDataPath: string): HostIdentityResetResult {
   if (!existsSync(userDataPath)) {
     return { status: 'missing' }

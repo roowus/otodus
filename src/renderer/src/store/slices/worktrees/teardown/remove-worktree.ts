@@ -110,7 +110,7 @@ export function createRemoveWorktree(
       if (!policy.forgetLocalOnly) {
         removalGenerationGuard?.assertCurrent()
       }
-      // Why: forget-local clears Orca's records via local IPC regardless of host — the remote is gone or unreachable.
+      // Why: forget-local clears Otodus's records via local IPC regardless of host — the remote is gone or unreachable.
       const target = runtimeTargetForOwnerEnvironment(removalRoute?.runtimeEnvironmentId ?? null)
       const unprovableRemoteRouting = policy.forgetLocalOnly
         ? null

@@ -241,7 +241,7 @@ function hardenPluginFrameGuestPreferences(
     plugins: false,
     navigateOnDragDrop: false,
     spellcheck: false,
-    // Plugins have Orca's own UI for prompts; alert/confirm would block the guest silently.
+    // Plugins have Otodus's own UI for prompts; alert/confirm would block the guest silently.
     disableDialogs: true,
     enableBlinkFeatures: '',
     disableBlinkFeatures: ''

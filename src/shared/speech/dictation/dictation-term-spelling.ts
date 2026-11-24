@@ -51,7 +51,7 @@ export function createDictationDictionary(
   // The repo name is a guess, not something the user typed, so it never takes a near miss.
   const typedTerms: [key: string, spelling: Spelling][] = []
   for (const { term, hint } of terms ?? []) {
-    // A one-word repo name like "orca" would recase every "Orca"; only a name of several words joins.
+    // A one-word repo name like "orca" would recase every "Otodus"; only a name of several words joins.
     if (!hint || (term.match(WORD_RE)?.length ?? 0) > 1) {
       add(wordKey(term), term)
     }

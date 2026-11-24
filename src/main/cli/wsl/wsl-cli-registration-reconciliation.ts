@@ -50,7 +50,7 @@ type WslCliRegistrationReconciliationOptions = {
   createInstaller?: (distro: string) => ManagedWslCliInstaller
   getHostLauncherTarget?: () => Promise<string | null>
   registry?: WslCliRegistrationRegistry
-  /** Distros Orca deployed a WSL host into; only those may be inspected for an unrecorded registration. */
+  /** Distros Otodus deployed a WSL host into; only those may be inspected for an unrecorded registration. */
   listOrcaHostDistros?: () => string[]
   listRunningDistros?: () => Promise<string[]>
   /** Settled read taken right before each repair spawns. */

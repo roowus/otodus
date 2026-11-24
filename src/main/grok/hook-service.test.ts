@@ -317,7 +317,7 @@ describe('GrokHookService', () => {
     expect(service.getStatus().managedHooksPresent).toBe(false)
   })
 
-  // Identify Orca's prior emptying separately from a deliberate user opt-out after restart.
+  // Identify Otodus's prior emptying separately from a deliberate user opt-out after restart.
   it('reinstalls into a symlinked config on the launch after a quit', async () => {
     const service = new GrokHookService()
     const configPath = join(homeDir, '.grok', 'hooks', 'orca-status.json')
@@ -337,7 +337,7 @@ describe('GrokHookService', () => {
     expect(service.getStatus().managedHooksPresent).toBe(true)
   })
 
-  it('preserves user-authored hook entries in the Orca Grok config file', () => {
+  it('preserves user-authored hook entries in the Otodus Grok config file', () => {
     const configPath = join(homeDir, '.grok', 'hooks', 'orca-status.json')
     mkdirSync(dirname(configPath), { recursive: true })
     writeFileSync(

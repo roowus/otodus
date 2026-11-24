@@ -92,7 +92,7 @@ function preview(
 ): PluginMarketplaceHostInstallPreview {
   return {
     marketplaceSourceId: 'official',
-    marketplaceName: 'Orca Plugins',
+    marketplaceName: 'Otodus Plugins',
     marketplaceOwner: 'stablyai',
     marketplaceCommit: 'c',
     pluginKey: official ? entry.pluginKey : mermaidEntry.pluginKey,

@@ -16,11 +16,11 @@ export const SERVE_INSTALL_HOLD_REASON_TEXT: Record<
   Extract<ServeInstallEvidence, { kind: 'hold' }>['reason'],
   string
 > = {
-  'bundle-missing': 'the Orca executable is missing, likely mid-install',
-  'installer-running': "macOS's updater (ShipIt) is replacing this Orca app",
+  'bundle-missing': 'the Otodus executable is missing, likely mid-install',
+  'installer-running': "macOS's updater (ShipIt) is replacing this Otodus app",
   'installer-unknown':
-    "could not check whether macOS's updater (ShipIt) is replacing this Orca app",
-  'install-park': 'the Orca desktop app paused this server to install an update'
+    "could not check whether macOS's updater (ShipIt) is replacing this Otodus app",
+  'install-park': 'the Otodus desktop app paused this server to install an update'
 }
 
 type ListProcesses = () => Promise<string | null>

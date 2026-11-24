@@ -93,7 +93,7 @@ export type RuntimePtyWorktreeRecord = RuntimeTerminalTailState & {
   launchToken: string | null
   launchIncarnationId: PtyIncarnationId | null
   launchAgent: TuiAgent | null
-  /** Whether the process still runs an Orca launch; missing when main can't tell. */
+  /** Whether the process still runs an Otodus launch; missing when main can't tell. */
   launchEvidence?: LaunchEvidence
   /** Identify flagged unmanaged --command panes before foreground reads; null for adopted/restored panes. */
   launchCommandAgent: TuiAgent | null

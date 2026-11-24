@@ -16,7 +16,7 @@ export type ManagedRuntimeInstallView = {
   menuAction: ManagedRuntimeInstallAction | null
   /** Settings draws this action as a button instead of inline text. */
   prominent: boolean
-  /** Settings may offer to delete the copy Orca installed: one is there and nothing runs. */
+  /** Settings may offer to delete the copy Otodus installed: one is there and nothing runs. */
   removable: boolean
   removing: boolean
   note: string | null
@@ -104,13 +104,15 @@ function settledView(
     note
   })
   const install = t('components.managed-runtime.installShort', 'Install')
-  // A copy found outside Orca already runs; Orca's own, once installed, runs first.
+  // A copy found outside Otodus already runs; Otodus's own, once installed, runs first.
   if (state.source === 'external') {
     return view(
       t('components.managed-runtime.external', 'Uses the copy of {{agent}} found on this host.', {
         agent
       }),
-      state.available ? t('components.managed-runtime.installManaged', "Install Orca's copy") : null
+      state.available
+        ? t('components.managed-runtime.installManaged', "Install Otodus's copy")
+        : null
     )
   }
   if (state.installedVersion !== null) {
@@ -192,7 +194,7 @@ export function managedRuntimeInstallView(
   )
 }
 
-/** Whether Orca's copy still needs the user: missing, outdated, damaged, failed, installing, or unreadable. */
+/** Whether Otodus's copy still needs the user: missing, outdated, damaged, failed, installing, or unreadable. */
 export function managedRuntimeInstallPending(snapshot: ManagedRuntimeInstallSnapshot): boolean {
   if (snapshot.kind === 'readFailed') {
     return true
@@ -201,7 +203,7 @@ export function managedRuntimeInstallPending(snapshot: ManagedRuntimeInstallSnap
     return false
   }
   const view = managedRuntimeInstallView(snapshot, '')
-  // A working external copy needs nothing unless Orca's own install is running or failed.
+  // A working external copy needs nothing unless Otodus's own install is running or failed.
   if (snapshot.state.source === 'external') {
     return view.action?.kind === 'cancel' || view.removing || view.error !== null
   }

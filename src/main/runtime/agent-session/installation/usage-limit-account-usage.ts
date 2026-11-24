@@ -22,7 +22,7 @@ const CLAUDE_NON_SUBSCRIPTION_ENV = [
   'CLAUDE_CODE_USE_VERTEX'
 ]
 
-/** Orca's managed account behind a reading; a different login in the same home changes it. Null
+/** Otodus's managed account behind a reading; a different login in the same home changes it. Null
  *  for System Default, where nothing on main names the login a reading saw. */
 function readingIdentity(
   provider: 'claude' | 'codex',

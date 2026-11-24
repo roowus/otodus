@@ -4,7 +4,7 @@ import { sameAgentIdentity } from '../../../../shared/agent-status/title/agent-t
 import type { PtyIncarnationId } from '../../../../shared/terminal/pty/lifecycle/pty-incarnation'
 import type { DaemonLaunchNote } from '../../../daemon/protocol/daemon-launch-note-protocol'
 
-/** Main's word on whether a PTY's process still runs an Orca launch. Always replaced whole, so its
+/** Main's word on whether a PTY's process still runs an Otodus launch. Always replaced whole, so its
  *  identity fences an async check; never persisted, so a main restart starts unknown. */
 export type LaunchEvidence =
   | { readonly kind: 'unknown' }
@@ -25,7 +25,7 @@ export type PtyLaunchFacts = {
 
 type HeldLaunch = { agent: TuiAgent; token: string; config: SleepingAgentLaunchConfig }
 
-/** The recipe of the Orca launch running in this PTY's process as `agent`; a typed agent gets none.
+/** The recipe of the Otodus launch running in this PTY's process as `agent`; a typed agent gets none.
  *  A wrapper launch (Claude agent teams) reports its wrapped agent, which is still that launch. */
 export function heldLaunchConfig(
   pty: PtyLaunchFacts | null | undefined,

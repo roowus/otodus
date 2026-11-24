@@ -78,7 +78,7 @@ export function ChatUnavailableOnWindowsNote({ label }: { label: string }): Reac
   )
 }
 
-/** This computer's install of the program Orca downloads for an agent's chats. */
+/** This computer's install of the program Otodus downloads for an agent's chats. */
 export function useAgentChatRuntimeInstall(agent: TuiAgent): {
   runtime: ManagedRuntimeInstallObservation
   signInRunning: boolean
@@ -91,7 +91,7 @@ export function useAgentChatRuntimeInstall(agent: TuiAgent): {
   return { runtime, signInRunning: antigravityChatSignInRunning(signIn.flow) }
 }
 
-/** The program Orca downloads for an agent's chats, apart from its CLI; mounted only while its row is open. */
+/** The program Otodus downloads for an agent's chats, apart from its CLI; mounted only while its row is open. */
 export function AgentChatRuntimeArea({
   agent,
   label

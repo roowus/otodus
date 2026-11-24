@@ -12,7 +12,7 @@ export function useSettingsDarkTheme(): boolean {
   return captureDark ?? (theme === 'system' ? systemPrefersDark : theme === 'dark')
 }
 
-/** The mode Orca is painted in: the requested one, unless Match Terminal follows a terminal
+/** The mode Otodus is painted in: the requested one, unless Match Terminal follows a terminal
  *  theme of the other mode. */
 export function useDocumentDarkTheme(): boolean {
   const requestedDark = useSettingsDarkTheme()

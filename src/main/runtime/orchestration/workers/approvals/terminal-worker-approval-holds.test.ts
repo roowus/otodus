@@ -177,7 +177,7 @@ async function answeredAllow(ctx: ReturnType<typeof setup>, approvalId: string) 
   return answered
 }
 
-/** The dialog leaves without Orca's answer, then the lead's turn ends with `result` written. */
+/** The dialog leaves without Otodus's answer, then the lead's turn ends with `result` written. */
 async function closedInTerminal(ctx: ReturnType<typeof setup>, result: ClaudeToolResult) {
   const approvalId = await opened(ctx, hook('tool-1'))
   ctx.screen.lines = AFTER
@@ -209,7 +209,7 @@ describe('terminal worker approval holds', () => {
     expect(await deny(ctx, approvalId)).toMatchObject({ ok: false, code: 'approval_not_open' })
   })
 
-  it("takes Orca's allow once the dialog leaves, though Claude records it only with a slow tool's result", async () => {
+  it("takes Otodus's allow once the dialog leaves, though Claude records it only with a slow tool's result", async () => {
     const ctx = setup()
     const approvalId = await opened(
       ctx,
@@ -267,7 +267,7 @@ describe('terminal worker approval holds', () => {
 
     // The card closed when the dialog left; the late result only names how.
     expect(ctx.closing()).toEqual([
-      expect.stringContaining('Closed without an answer Orca can name'),
+      expect.stringContaining('Closed without an answer Otodus can name'),
       expect.stringContaining("Denied in the worker's terminal")
     ])
     // Not an expiry: only the agent's own timeout is one.
@@ -332,7 +332,7 @@ describe('terminal worker approval holds', () => {
     ])
   })
 
-  it("doesn't take Orca's allow when the person's No won the race", async () => {
+  it("doesn't take Otodus's allow when the person's No won the race", async () => {
     const ctx = setup()
     const approvalId = await opened(
       ctx,
@@ -381,14 +381,14 @@ describe('terminal worker approval holds', () => {
         runId: ctx.dispatch.run_id
       })
     escalate(approvalReportId(ctx.dispatch.id, approval.approvalId, 'open'), approval)
-    // A worker's own escalation carrying an approval is not Orca's, so the sweep leaves it alone.
+    // A worker's own escalation carrying an approval is not Otodus's, so the sweep leaves it alone.
     escalate(undefined, { ...approval, approvalId: 'apr_forged' })
 
     closeOrphanedTerminalApprovals(ctx.db)
     closeOrphanedTerminalApprovals(ctx.db)
     expect(ctx.closing()).toEqual([
       expect.stringContaining(
-        `Closed without an answer Orca can name: approval ${approval.approvalId}`
+        `Closed without an answer Otodus can name: approval ${approval.approvalId}`
       )
     ])
   })

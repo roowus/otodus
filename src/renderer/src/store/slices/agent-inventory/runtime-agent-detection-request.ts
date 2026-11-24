@@ -4,7 +4,7 @@ import { PREFLIGHT_WORKSPACE_SCOPED_RUNTIME_CAPABILITY } from '../../../../../sh
 
 export class RuntimeAgentDetectionNeedsServerUpdateError extends Error {
   constructor() {
-    super("Update Orca on this server to list this workspace's agents.")
+    super("Update Otodus on this server to list this workspace's agents.")
     this.name = 'RuntimeAgentDetectionNeedsServerUpdateError'
   }
 }

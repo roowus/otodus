@@ -78,7 +78,7 @@ type UseNativeChatContextMenuArgs = {
   splitShortcutLabels?: { right: string; down: string }
   chatPane?: { tabId: string; worktreeId: string; groupId: string; sessionId: string }
   chatSession?: NativeChatSessionMenuSource
-  /** A structured chat tab's Orca session ID; a chat in a terminal pane is that terminal's agent. */
+  /** A structured chat tab's Otodus session ID; a chat in a terminal pane is that terminal's agent. */
   resolveOrcaSessionId?: () => Promise<string | null>
 } & NativeChatContextMenuTargetArgs
 

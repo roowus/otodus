@@ -27,7 +27,7 @@ export function renderOrcaAccountSettingsSection(
       title={t('auto.components.settings.orcaAccount.title', 'Orca Account')}
       description={t(
         'auto.components.settings.orcaAccount.description',
-        'Share work instantly and reach your desktop from Orca Mobile wherever you are.'
+        'Share work instantly and reach your desktop from Otodus Mobile wherever you are.'
       )}
       searchEntries={navigation.getSectionSearchEntries('orca-account')}
     >
@@ -51,7 +51,7 @@ export function renderSetupGuideSettingsSection(
       title={t('auto.components.settings.Settings.6d119427ef', 'Onboarding checklist')}
       description={t(
         'auto.components.settings.Settings.6855b0f77d',
-        'Finish the core workflows that make Orca useful for parallel agent work.'
+        'Finish the core workflows that make Otodus useful for parallel agent work.'
       )}
       searchEntries={navigation.getSectionSearchEntries('setup-guide')}
       bodyClassName="overflow-hidden"
@@ -251,7 +251,7 @@ export function renderWorkspaceCleanupSettingsSection(
       title={t('components.settings.workspaceCleanup.title', 'Workspace Cleanup')}
       description={t(
         'components.settings.workspaceCleanup.description',
-        "Remove workspaces you're done with. Before removing anything, Orca checks again for unsaved work."
+        "Remove workspaces you're done with. Before removing anything, Otodus checks again for unsaved work."
       )}
       searchEntries={navigation.getSectionSearchEntries('workspace-cleanup')}
     >

@@ -1,7 +1,7 @@
 /**
  * Node module hooks for running a plugin's own tests in plain Node: `orca` and `orca/testing`
- * resolve to the files Orca ships beside this one, and plugin sources (.ts, .tsx, .mts, .jsx) are
- * transpiled and resolved exactly as Orca's build-less loader does, so a test runs the code Orca
+ * resolve to the files Otodus ships beside this one, and plugin sources (.ts, .tsx, .mts, .jsx) are
+ * transpiled and resolved exactly as Otodus's build-less loader does, so a test runs the code Otodus
  * runs. Bundled to resources/plugins/declarative/orca-test-hooks.mjs (see orca-test-register.mjs).
  */
 import { existsSync, readFileSync, realpathSync, statSync } from 'node:fs'
@@ -73,7 +73,7 @@ function workerEntryUrl(): string | null {
   }
 }
 
-/** The worker's module graph: its files load and resolve as Orca's worker host does, not as
+/** The worker's module graph: its files load and resolve as Otodus's worker host does, not as
  *  frame modules (Node resolution, packages allowed, `.ts`/`.mts` only, no `orca` at run time). */
 const workerModules = new Set<string>()
 const workerEntry = workerEntryUrl()
@@ -124,11 +124,11 @@ export async function resolve(
     return resolveWorkerImport(specifier, context, nextResolve)
   }
   const parent = context.parentURL ? pluginRelativePath(context.parentURL) : null
-  // Only a plugin's own module imports by Orca's rules; the entry point's parent is a folder.
+  // Only a plugin's own module imports by Otodus's rules; the entry point's parent is a folder.
   const from = parent !== null && SCRIPT_FILE.test(parent) ? parent : null
   const relativeImport = specifier.startsWith('.') || specifier.startsWith('/')
-  // Tests may import any package Node can; plugin sources get Orca's rules, so a test fails where
-  // Orca would refuse the import.
+  // Tests may import any package Node can; plugin sources get Otodus's rules, so a test fails where
+  // Otodus would refuse the import.
   if (from === null || specifier.startsWith('node:') || (TEST_FILE.test(from) && !relativeImport)) {
     return nextResolve(specifier, context)
   }
@@ -151,7 +151,7 @@ export async function resolve(
 export async function load(url: string, context: unknown, nextLoad: NextLoad): Promise<LoadResult> {
   const path = pluginRelativePath(url)
   if (path !== null && workerModules.has(url)) {
-    // Why ESM: Orca's worker host loads `.ts` as a module whatever package.json says.
+    // Why ESM: Otodus's worker host loads `.ts` as a module whatever package.json says.
     return isPluginWorkerSourcePath(path)
       ? {
           format: 'module',

@@ -29,11 +29,11 @@ export type AcpLaunchSpec = {
   launchesWithModel?: true
   /** Applied after the account and user environment. */
   env: Readonly<Record<string, string>>
-  /** Scrubs inherited Orca plumbing and returns keys to omit entirely. */
+  /** Scrubs inherited Otodus plumbing and returns keys to omit entirely. */
   scrubEnvironment?(env: Record<string, string>, inherited: NodeJS.ProcessEnv): string[]
   dialect: AcpDialect
   /** Initialize's identity for the launched version (null when unknown), for agents that grant
-   *  features by client name; absent sends Orca's. */
+   *  features by client name; absent sends Otodus's. */
   clientInfo?(version: string | null): Implementation
   loginCommand: readonly string[]
   /** Selects authentication from the execution host's resolved launch inputs. */
@@ -52,7 +52,7 @@ export type AcpLaunchSpec = {
   installDirectories(input: { env: Readonly<Record<string, string>>; homePath: string }): string[]
   /** Installed only on request; takes precedence over PATH and excludes `minimumVersions`. */
   managedRuntime?: ManagedRuntime
-  /** Agent-enforced modes; Orca does not answer its permission requests. */
+  /** Agent-enforced modes; Otodus does not answer its permission requests. */
   permissionModeConfig?: {
     values: { ask: string } & Partial<Record<AgentChatPermissionMode, string>>
     /** `args` grants full access; its session mode can equal another mode's. */
@@ -100,9 +100,9 @@ export type AcpHostBackend = {
     env: Record<string, string>
     envToDelete: string[]
     homePath: string
-    /** Orca's data folder on this host, where the agent's own account lives. */
+    /** Otodus's data folder on this host, where the agent's own account lives. */
     stateDirectory: string
-    /** The account type Orca's own Chat signs in with, saved on this host. */
+    /** The account type Otodus's own Chat signs in with, saved on this host. */
     settings: AcpHostBackendSettings
   }): Promise<AgentSessionAccountHome | null>
 }

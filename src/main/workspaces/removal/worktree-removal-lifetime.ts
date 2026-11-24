@@ -16,13 +16,15 @@ class WorktreeRemovalLifetime {
 
   prepare(load: () => Promise<void>, stop: () => void, drain: () => Promise<void>): Promise<void> {
     if (this.closing) {
-      throw new Error('Orca is stopping. Reconnect or restart Orca, then retry deletion.')
+      throw new Error('Otodus is stopping. Reconnect or restart Otodus, then retry deletion.')
     }
     this.stop = stop
     this.drain = drain
     this.ready = load().then(() => {
       if (this.closing) {
-        throw new Error('Orca stopped while preparing workspace deletion. Restart Orca and retry.')
+        throw new Error(
+          'Otodus stopped while preparing workspace deletion. Restart Otodus and retry.'
+        )
       }
     })
     return this.ready
@@ -30,7 +32,7 @@ class WorktreeRemovalLifetime {
 
   acquirePreparation(): () => void {
     if (this.closing) {
-      throw new Error('Orca is stopping. Reconnect or restart Orca, then retry deletion.')
+      throw new Error('Otodus is stopping. Reconnect or restart Otodus, then retry deletion.')
     }
     let release!: () => void
     const preparation = new Promise<void>((resolve) => {

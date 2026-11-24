@@ -40,7 +40,7 @@ export type OrcaVmRecipe = {
   destroyDisabled?: boolean
   // Per-mode wall-clock limits; orca.yaml accepts one number for every mode or a per-mode map.
   timeoutSeconds?: OrcaVmRecipeTimeoutSeconds
-  // Opt-in allowlist of Orca's environment variables the scripts receive (plus a safe base set).
+  // Opt-in allowlist of Otodus's environment variables the scripts receive (plus a safe base set).
   // Omitted means scripts inherit the full environment.
   passEnv?: string[]
 }

@@ -46,7 +46,7 @@ function findCommand(
   return null
 }
 
-/** Shortcut keys typed into a tab or popout in an extension session; Orca's shortcuts win. */
+/** Shortcut keys typed into a tab or popout in an extension session; Otodus's shortcuts win. */
 export function observeBrowserExtensionCommands(contents: Electron.WebContents): void {
   contents.on('before-input-event', (event, input) => {
     if (

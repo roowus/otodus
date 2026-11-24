@@ -8,12 +8,12 @@ import { useAppStore } from '@/store'
 import { Switch } from '../../ui/switch'
 import { DetailRow } from './PluginDetailSections'
 
-/** Orca's own name for a built-in action. */
+/** Otodus's own name for a built-in action. */
 export function builtInActionTitle(actionId: string): string {
   return (isKeybindingActionId(actionId) && getKeybindingDefinition(actionId)?.title) || actionId
 }
 
-/** A command that runs in place of a built-in action, with the switch that keeps Orca's own. */
+/** A command that runs in place of a built-in action, with the switch that keeps Otodus's own. */
 export function PluginCommandReplacementRow({
   command
 }: {
@@ -33,7 +33,7 @@ export function PluginCommandReplacementRow({
       icon={<Replace />}
       title={t(
         'auto.components.plugins.PluginCommandReplacementRow.title',
-        '{{value0}} runs instead of Orca’s {{value1}}',
+        '{{value0}} runs instead of Otodus’s {{value1}}',
         { value0: command.title, value1: action }
       )}
       wrap
@@ -47,7 +47,7 @@ export function PluginCommandReplacementRow({
             )
           : t(
               'auto.components.plugins.PluginCommandReplacementRow.detail',
-              'From its shortcut, the palette and menus. If the plugin fails, Orca’s own runs.'
+              'From its shortcut, the palette and menus. If the plugin fails, Otodus’s own runs.'
             )
       }
       trailing={
@@ -57,7 +57,7 @@ export function PluginCommandReplacementRow({
             onCheckedChange={setOn}
             aria-label={t(
               'auto.components.plugins.PluginCommandReplacementRow.switch',
-              'Use {{value0}} instead of Orca’s {{value1}}',
+              'Use {{value0}} instead of Otodus’s {{value1}}',
               { value0: command.title, value1: action }
             )}
           />

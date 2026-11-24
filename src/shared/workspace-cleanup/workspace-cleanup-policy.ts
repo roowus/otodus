@@ -32,7 +32,7 @@ export type RepoWorkspaceCleanupPolicy =
 export type ResolvedWorkspaceCleanupPolicy = {
   source: 'global' | 'project-off' | 'project-custom'
   rules: WorkspaceCleanupRules
-  /** False while Orca cannot archive a workspace; the runner must skip an inactive rule set to archive. */
+  /** False while Otodus cannot archive a workspace; the runner must skip an inactive rule set to archive. */
   inactiveActionSupported: boolean
 }
 

@@ -27,7 +27,7 @@ export async function loadUpdate(pluginKey: string): Promise<LoadedUpdate> {
   return { preview, installedManifest }
 }
 
-/** The update's minimum Orca when this Orca can't run it; null when it can or either is unknown. */
+/** The update's minimum Otodus when this Otodus can't run it; null when it can or either is unknown. */
 export function requiredNewerOrca(
   preview: PluginMarketplaceHostInstallPreview,
   orcaVersion: string | null | undefined

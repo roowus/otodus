@@ -176,7 +176,7 @@ export abstract class OrcaRuntimeWithResolveExitWaiters extends OrcaRuntimeWithB
     const draft = !!state && this.hasComposerDraft(ptyId, state.emulator.getCursorLineContext())
     const drivingInputAt = facts.readLastDrivingInputAt(ptyId)
     const unattributed = drivingInputAt === null && facts.readProcessStartedAt(ptyId) === null
-    // Why: main saw every input to a process it started, so with no typing there the draft is Orca's
+    // Why: main saw every input to a process it started, so with no typing there the draft is Otodus's
     // launch text; a process it attached to, as after a restart, may hold one typed before, which a
     // screen still restoring cannot rule out yet.
     const restoring = !state && this.headlessHydrationState.get(ptyId) === 'pending'

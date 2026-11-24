@@ -1,4 +1,4 @@
-/** Host-resolved Orca session identity comes from the injected environment, never flags. Terminal agents lack it;
+/** Host-resolved Otodus session identity comes from the injected environment, never flags. Terminal agents lack it;
  * orca status --json publishes it as caller. */
 export type OrchestrationCallerSession = {
   orcaSessionId: string
@@ -14,14 +14,14 @@ export type OrchestrationCallerRefusal = {
 /** Absent for non-session callers, unreachable runtimes or hosts predating orchestration.callerShow. */
 export type CliStatusCaller = OrchestrationCallerSession | OrchestrationCallerRefusal
 
-/** `null`: the caller is not an Orca session. */
+/** `null`: the caller is not an Otodus session. */
 export type OrchestrationCallerShowResult = {
   caller: OrchestrationCallerSession | null
-  /** True when this Orca verified the calling terminal agent's launch. Absent from older Orcas. */
+  /** True when this Otodus verified the calling terminal agent's launch. Absent from older Orcas. */
   terminal?: boolean
 }
 
-/** `orchestration.sessionAddress`: a session's Orca session ID, its `/clear` root's. */
+/** `orchestration.sessionAddress`: a session's Otodus session ID, its `/clear` root's. */
 export type OrchestrationSessionAddressResult = { orcaSessionId: string }
 
 /** Where a party is now: a chat at its `/clear` lineage's live session, or a terminal. */

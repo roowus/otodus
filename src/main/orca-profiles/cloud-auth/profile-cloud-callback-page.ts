@@ -26,20 +26,20 @@ const CROSS_MARK = '<path d="M18 6 6 18"></path><path d="m6 6 12 12"></path>'
 
 const CALLBACK_COPY = {
   connected: {
-    title: 'Signed in to Orca',
+    title: 'Signed in to Otodus',
     message: 'You can close this tab and return to the app.',
     tone: 'success',
     markPath: CHECK_MARK
   },
   cancelled: {
-    title: 'Orca sign-in was cancelled',
-    message: 'Orca stopped waiting for this sign-in. Return to Orca to sign in again.',
+    title: 'Otodus sign-in was cancelled',
+    message: 'Otodus stopped waiting for this sign-in. Return to Otodus to sign in again.',
     tone: 'neutral',
     markPath: CROSS_MARK
   },
   failed: {
-    title: 'Orca could not finish signing in',
-    message: 'Return to Orca and try again.',
+    title: 'Otodus could not finish signing in',
+    message: 'Return to Otodus and try again.',
     tone: 'error',
     markPath: CROSS_MARK
   }

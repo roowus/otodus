@@ -56,7 +56,7 @@ function getPosixManagedCommand(scriptPath: string, event: AntigravityEvent): st
   const command = wrapPosixHookCommand(
     scriptPath,
     { ORCA_ANTIGRAVITY_EVENT: event.eventName },
-    // Outside an Orca pane, skip the script's shell and python3 start on every agy event.
+    // Outside an Otodus pane, skip the script's shell and python3 start on every agy event.
     {
       fallbackStdout: getAntigravityNoOpStdout(event.eventName),
       requiredEnvVar: 'ORCA_PANE_KEY',

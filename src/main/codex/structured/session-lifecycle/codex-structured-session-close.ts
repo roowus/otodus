@@ -20,7 +20,7 @@ export function handleCodexSessionExit(input: {
   sessionId: string
   connection: CodexAppServerConnection | null
   error: Error
-  /** Includes root exits reported during or after an Orca close attempt. */
+  /** Includes root exits reported during or after an Otodus close attempt. */
   closedByOrca?: true
   prompts?: CodexSession['prompts']
   onEvent?: (event: CodexStructuredSessionEvent) => void
@@ -39,7 +39,7 @@ export function handleCodexSessionExit(input: {
     sessionId: input.sessionId,
     // Preserve the initiating close reason when its exit arrives.
     reason: ((input.closedByOrca && session.orcaClose?.reason) || input.error).message,
-    // Orca-initiated closes are host faults, regardless of the exit report. No spawn ENOENT reaches
+    // Otodus-initiated closes are host faults, regardless of the exit report. No spawn ENOENT reaches
     // here: a session registers only after the CLI answered thread/start, so the acquire path owns it.
     failure:
       input.closedByOrca || providerOutcomeLost(input.error)

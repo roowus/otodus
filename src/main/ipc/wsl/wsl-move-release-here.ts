@@ -178,7 +178,7 @@ async function releaseWslMovesHereNow(
   }
 }
 
-/** R39: removed here but kept running for another Orca; only re-adding the host reaches it again. */
+/** R39: removed here but kept running for another Otodus; only re-adding the host reaches it again. */
 async function wslMoveHostKeptForPeers(
   userDataPath: string,
   move: WslMoveCutover

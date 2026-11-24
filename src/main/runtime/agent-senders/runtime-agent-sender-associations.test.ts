@@ -128,7 +128,7 @@ function harness(n = 1, records: AgentSessionRecordReader | null = null) {
     return senders
   }
   let projection = start()
-  /** A worker Dispatch in tab-i whose terminal Orca holds on that very process. */
+  /** A worker Dispatch in tab-i whose terminal Otodus holds on that very process. */
   const worker = (i: number, incarnation: string | null = `pty-${i}:inc-1`) => {
     const dispatch = createRootDispatch(
       db,

@@ -121,7 +121,7 @@ afterEach(() => {
 })
 
 describe('carrying plain-Codex hook trust into the managed Codex home', () => {
-  // Why: Codex >=0.145 adds session_end and >=0.150 interrupt, which Orca's own parser rejects.
+  // Why: Codex >=0.145 adds session_end and >=0.150 interrupt, which Otodus's own parser rejects.
 
   it.each([
     ['bare parent', 'fully quoted', bareParent, fullyQuoted],

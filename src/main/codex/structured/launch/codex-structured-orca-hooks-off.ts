@@ -9,8 +9,8 @@ import { getInPlaceCodexHookHome } from '../../trust/hooks/codex-hook-orca-appro
 import { computeCodexTrustKey } from '../../trust/identity/codex-trust-identity'
 
 /**
- * Chat strips pane env, so Orca's status hooks only cost a spawn per event, and under Store
- * PowerShell every spawn fails (openai/codex#47810). Disable Orca's entries, including older
+ * Chat strips pane env, so Otodus's status hooks only cost a spawn per event, and under Store
+ * PowerShell every spawn fails (openai/codex#47810). Disable Otodus's entries, including older
  * forms the installer keeps, for this launch. One inline table because Codex splits `-c` keys
  * on every dot, including the one in hooks.json.
  */

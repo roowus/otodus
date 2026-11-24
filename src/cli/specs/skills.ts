@@ -22,7 +22,7 @@ export const SKILL_COMMAND_SPECS: CommandSpec[] = [
     allowedFlags: [...GLOBAL_FLAGS, 'skill', 'bundle-name', 'release-notes'],
     notes: [
       'Requires the default-off permission in Settings → Share Skills.',
-      'The bundle name may be human-readable; Orca converts it to a portable lowercase package name.',
+      'The bundle name may be human-readable; Otodus converts it to a portable lowercase package name.',
       'Selectors are exact discovery IDs or unambiguous names from `orca skills installed`.',
       'Only discovered skill directories can be selected; arbitrary paths and --all are not supported.',
       'The resulting link is unlisted. Anyone with it can inspect and install the bundle.'
@@ -66,7 +66,7 @@ export const SKILL_COMMAND_SPECS: CommandSpec[] = [
   },
   {
     path: ['skills', 'install'],
-    summary: 'Install bundled Orca skills on this machine',
+    summary: 'Install bundled Otodus skills on this machine',
     usage:
       'orca skills install [--skill <name>]... [--all] [--agent <name>[,<name>]] ' +
       '[--local] [--force] [--dry-run] [--json]',
@@ -74,15 +74,15 @@ export const SKILL_COMMAND_SPECS: CommandSpec[] = [
     notes: [
       'Reads the bundled skill registry locally without contacting the Orca runtime, ' +
         'and needs no network, Node, Git or npx.',
-      'Writes the copy this Orca build ships into the shared .agents/skills folder and ' +
+      'Writes the copy this Otodus build ships into the shared .agents/skills folder and ' +
         'links it into each detected agent\u2019s skills folder, the same way the app\u2019s ' +
         'Update skills does.',
-      'Only copies Orca wrote and nobody changed are updated. A copy you changed, or a ' +
+      'Only copies Otodus wrote and nobody changed are updated. A copy you changed, or a ' +
         'different skill with the same name, is skipped and is reported; --force replaces ' +
         'it after moving it to a backup under ~/.agents/.orca-skill-backups.',
       'Installs globally (all projects) by default. Use --local to install into the ' +
         'current project; it links only into agent folders the project already has.',
-      'Targets the coding agents Orca detects on this host. Use --agent <name>[,<name>...] ' +
+      'Targets the coding agents Otodus detects on this host. Use --agent <name>[,<name>...] ' +
         'to choose them yourself, or --agent universal for the shared folder alone.',
       'Use --dry-run to print what would change and the plan digest without writing; a ' +
         'real run plans again and writes only if the plan still matches.',
@@ -98,7 +98,7 @@ export const SKILL_COMMAND_SPECS: CommandSpec[] = [
   },
   {
     path: ['skills', 'update'],
-    summary: 'Update Orca skills to the version this Orca build ships',
+    summary: 'Update Otodus skills to the version this Otodus build ships',
     usage:
       'orca skills update [--skill <name>]... [--all] [--agent <name>[,<name>]] ' +
       '[--local] [--force] [--dry-run] [--json]',

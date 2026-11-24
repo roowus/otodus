@@ -1,6 +1,6 @@
 /**
  * `orca/testing`: mount a components panel in plain Node (node:test, vitest, bun) against a
- * stand-in Orca, with the real runtime and the real tree validator. Bundled to
+ * stand-in Otodus, with the real runtime and the real tree validator. Bundled to
  * resources/plugins/declarative/orca-testing.mjs, which imports the runtime from its own folder so
  * the panel and the kit share one `orca` module.
  */
@@ -79,7 +79,7 @@ function contributes(manifest: Record<string, unknown> | null): Record<string, u
   return manifest && isRecord(manifest.contributes) ? manifest.contributes : {}
 }
 
-/** A stand-in Orca host; capabilities default to the plugin manifest's. */
+/** A stand-in Otodus host; capabilities default to the plugin manifest's. */
 export function mockHost(options: MockHostOptions = {}): MockHost {
   return createMockHost(options, fieldsOf(nearestManifest()?.capabilities, 'kind'))
 }

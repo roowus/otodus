@@ -29,7 +29,7 @@ export type RemoteRunLinkRow = {
   created_at: string
 }
 
-/** The pairing a link was made under: the server's host key, this Orca's credential there, and the re-pair generation. */
+/** The pairing a link was made under: the server's host key, this Otodus's credential there, and the re-pair generation. */
 export type RemoteServerPin = Pick<
   RemoteRunLinkRow,
   'environment_id' | 'peer_fingerprint' | 'home_fingerprint' | 'pairing_revision'
@@ -91,7 +91,7 @@ export function openRemoteRunLink(
       .get(runId, pin.environment_id) as RemoteRunLinkRow | undefined
     let link = open
     if (open && !remoteRunLinkPinMatches(open, pin)) {
-      // Nothing can reach that link's work any more: the server knows this Orca by another pairing now.
+      // Nothing can reach that link's work any more: the server knows this Otodus by another pairing now.
       closeRemoteRunLink(
         db,
         open.conversation_id,
@@ -261,7 +261,7 @@ export function closeRemoteRunLinksOfChangedPairing(
   }
 }
 
-/** Every link to a server this Orca no longer pairs with: none of their work can be reached again. */
+/** Every link to a server this Otodus no longer pairs with: none of their work can be reached again. */
 export function closeRemoteRunLinksOfRemovedServer(
   db: OrchestrationDb,
   environmentId: string,

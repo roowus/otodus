@@ -116,7 +116,7 @@ export function readMemoizedVersionAnswer(
     : { kind: 'refused', codexVersion, failure: record.failure }
 }
 
-/** Retain old versions' hashes to recognize earlier Orca approvals. */
+/** Retain old versions' hashes to recognize earlier Otodus approvals. */
 export function readEveryMemoizedCodexHookHashes(): CodexHookHashes[] {
   return Object.values(readMemo().versions).flatMap((record) =>
     'hashes' in record ? [record.hashes] : []

@@ -17,20 +17,20 @@ import { getLatestPendingReport } from '../ipc/crash-reporting/crash-reporting-s
 import { collectBundle } from '../observability/bundle'
 
 const sample = `Sampling process 123 for 1 second with 10 milliseconds of run time between samples
-Process: Orca [123]
-Path: /Users/Test User/Secret Project/Orca.app/Contents/MacOS/Orca
+Process: Otodus [123]
+Path: /Users/Test User/Secret Project/Otodus.app/Contents/MacOS/Otodus
 Analysis Tool: /Users/Test User/Private Tools/sample
 OS Version: macOS 26.1 (25B78)
 Call graph:
     100 Thread_1 DispatchQueue_1: com.apple.main-thread (serial)
-    + 100 nativeWait (in Orca) + 12 [0x10000000c]
+    + 100 nativeWait (in Otodus) + 12 [0x10000000c]
     100 Thread_42 background-worker
     + 100 backgroundWork (in /Users/Test User/Private (Client List)/Worker) + 8 [0x100100008]
 Total number in stack (recursive counted multiple, when >=5):
     100 nativeWait
 password=fixture-private-value
 Binary Images:
-0x100000000 - 0x1000fffff Orca (1.2.3) <AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA> /Users/Test User/Secret Project/Orca.app/Contents/MacOS/Orca
+0x100000000 - 0x1000fffff Otodus (1.2.3) <AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA> /Users/Test User/Secret Project/Otodus.app/Contents/MacOS/Otodus
 0x100100000 - 0x1001fffff Worker (4.5.6) <BBBBBBBB-BBBB-BBBB-BBBB-BBBBBBBBBBBB> /Users/Test User/Private Project/Worker
 `
 
@@ -174,7 +174,7 @@ it('enriches only the matching freeze event with captured safe frames, build and
   const marker = { detectedAt: 1, parentPid: 123, unresponsiveMs: 50000, selfRecovered: false }
   const details = await readPreviousNativeHangTelemetry(directory, marker)
   expect(details).toEqual({
-    native_top_frames: ['nativeWait [Orca]'],
+    native_top_frames: ['nativeWait [Otodus]'],
     macos_build: 'macOS 26.1 (25B78)',
     menu_bar_icon: false
   })
@@ -219,8 +219,8 @@ it('keeps an intact large capture with both log sources inside the attachment li
   const base = { type: 'native-hang-capture', status: 'complete', ...artifact(1), report: clean }
   const escapedPadding = Math.floor((3_145_600 - Buffer.byteLength(JSON.stringify(base))) / 2)
   const report = clean.replace(
-    'nativeWait (in Orca)',
-    `${'\\'.repeat(escapedPadding)}nativeWait (in Orca)`
+    'nativeWait (in Otodus)',
+    `${'\\'.repeat(escapedPadding)}nativeWait (in Otodus)`
   )
 
   const bundle = collectBundle({

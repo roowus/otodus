@@ -118,7 +118,7 @@ export abstract class AgentBrowserBridgeQueue extends AgentBrowserBridgeActionEf
     const inThisCall = captureActiveRpcCall()
     // Decided at enqueue: a queued command runs under the caller of the command ahead of it.
     const reportEffects = options.reportEffects === true && agentCommand.agent
-    // A desktop picker would activate Orca over the user's work.
+    // A desktop picker would activate Otodus over the user's work.
     const blockFileChooser = options.blockFileChooser === true
     const expectedUrl = getRequestedPageUrl()
 

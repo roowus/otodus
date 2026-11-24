@@ -60,6 +60,6 @@ export function canonicalOrcaSessionFromEdges(
     root = prior
     prior = clearedFrom.get(root)
   }
-  // Record ids are minted as Orca session ids; one that is not cannot name the conversation.
+  // Record ids are minted as Otodus session ids; one that is not cannot name the conversation.
   return isOrcaSessionId(root) ? root : orcaSessionId
 }

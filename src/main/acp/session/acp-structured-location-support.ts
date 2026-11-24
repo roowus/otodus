@@ -14,7 +14,7 @@ export function supportsAcpStructuredLocation(
 ): boolean {
   return (
     supportsSupervisedProviderChildLocation(location, hasWindowsProcessStartTimeProof) &&
-    // Without a release Orca can install here, only the host's own program can serve the chat.
+    // Without a release Otodus can install here, only the host's own program can serve the chat.
     (!spec.managedRuntime || spec.managedRuntime.pin() !== null || spec.hostBackend !== undefined)
   )
 }

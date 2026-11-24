@@ -68,7 +68,7 @@ export function createHostEnvironmentDoctorDeps(
     runSetupScript: async ({ worktreePath, rootPath, script }) => {
       const dir = await mkdtemp(join(tmpdir(), 'orca-env-doctor-'))
       try {
-        // Like Orca's runner: Windows uses cmd unless the script's shebang asks for a POSIX shell.
+        // Like Otodus's runner: Windows uses cmd unless the script's shebang asks for a POSIX shell.
         const bash =
           process.platform !== 'win32'
             ? 'bash'
@@ -81,7 +81,7 @@ export function createHostEnvironmentDoctorDeps(
           bash ? buildPosixRunnerScript(script) : buildWindowsRunnerScript(script),
           'utf8'
         )
-        // Unattended like Orca's setup run: no credential prompt can wait on a terminal.
+        // Unattended like Otodus's setup run: no credential prompt can wait on a terminal.
         const env = gitCredentialPromptGuardEnv({
           ...baseEnv(),
           ...getSetupEnvVars({ path: rootPath }, worktreePath)

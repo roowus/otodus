@@ -7,7 +7,7 @@ import { getIntegrationsPaneSearchEntries } from '@/components/settings/integrat
 import { getLinearAgentSkillPaneSearchEntries } from '@/components/settings/skills/linear/linear-agent-skill-search'
 import { getMobileSettingsPaneSearchEntries } from '@/components/settings/mobile/mobile-settings-search'
 import { getOrcaAccountSettingsSearchEntries } from '@/components/settings/accounts/orca/orca-account-settings-search'
-import { OrcaLogoSettingsIcon } from '@/components/settings/page/orca-logo-settings-icon'
+import { OtodusLogoSettingsIcon } from '@/components/settings/page/otodus-logo-settings-icon'
 import { getOrchestrationPaneSearchEntries } from '@/components/settings/orchestration/orchestration-search'
 import { getVoicePaneSearchEntries } from '@/components/settings/voice/voice-pane-search'
 import { getWorkspaceCleanupSettingsSearchEntries } from '@/components/settings/workspace-cleanup/workspace-cleanup-settings-search'
@@ -68,7 +68,7 @@ export function buildCapabilitySettingsSections(
       title: t('auto.hooks.useSettingsNavigationMetadata.58a868e8e4', 'Orchestration'),
       description: t(
         'auto.hooks.useSettingsNavigationMetadata.cd50cec5d7',
-        'Coordinate multiple coding agents through Orca.'
+        'Coordinate multiple coding agents through Otodus.'
       ),
       icon: Network,
       searchEntries: getOrchestrationPaneSearchEntries({
@@ -84,7 +84,7 @@ export function buildCapabilitySettingsSections(
             title: t('auto.hooks.useSettingsNavigationMetadata.linearTitle', 'Linear'),
             description: t(
               'auto.hooks.useSettingsNavigationMetadata.linearDescription',
-              'How Linear works in Orca, setup checklist, agent skill, and example prompts.'
+              'How Linear works in Otodus, setup checklist, agent skill, and example prompts.'
             ),
             icon: LinearIcon,
             searchEntries: getLinearAgentSkillPaneSearchEntries(),
@@ -134,7 +134,7 @@ export function buildSetupSettingsSections(
             title: t('auto.components.settings.orcaAccount.title', 'Orca Account'),
             description: t(
               'auto.components.settings.orcaAccount.description',
-              'Share work instantly and reach your desktop from Orca Mobile wherever you are.'
+              'Share work instantly and reach your desktop from Otodus Mobile wherever you are.'
             ),
             icon: CircleUserRound,
             searchEntries: getOrcaAccountSettingsSearchEntries(),
@@ -147,9 +147,9 @@ export function buildSetupSettingsSections(
       title: t('auto.hooks.useSettingsNavigationMetadata.ded9e9032f', 'Onboarding checklist'),
       description: t(
         'auto.hooks.useSettingsNavigationMetadata.5f32ac08f3',
-        'Finish the onboarding checklist for core Orca workflows.'
+        'Finish the onboarding checklist for core Otodus workflows.'
       ),
-      icon: OrcaLogoSettingsIcon,
+      icon: OtodusLogoSettingsIcon,
       searchEntries: [
         {
           title: t('auto.hooks.useSettingsNavigationMetadata.ded9e9032f', 'Onboarding checklist'),
@@ -159,7 +159,7 @@ export function buildSetupSettingsSections(
           ),
           keywords: [
             t('auto.hooks.useSettingsNavigationMetadata.ea0b1bc7b8', 'setup guide'),
-            t('auto.hooks.useSettingsNavigationMetadata.0505d0df29', 'get started with Orca'),
+            t('auto.hooks.useSettingsNavigationMetadata.0505d0df29', 'get started with Otodus'),
             t('auto.hooks.useSettingsNavigationMetadata.724c440e72', 'getting started')
           ]
         }
@@ -184,7 +184,7 @@ export function buildSetupSettingsSections(
             title: t('components.settings.workspaceCleanup.title', 'Workspace Cleanup'),
             description: t(
               'components.settings.workspaceCleanup.description',
-              "Remove workspaces you're done with. Before removing anything, Orca checks again for unsaved work."
+              "Remove workspaces you're done with. Before removing anything, Otodus checks again for unsaved work."
             ),
             icon: BrushCleaning,
             searchEntries: getWorkspaceCleanupSettingsSearchEntries(),

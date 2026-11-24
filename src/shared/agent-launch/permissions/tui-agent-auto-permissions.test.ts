@@ -7,7 +7,7 @@ import { tokenizeStartupCommand } from '../startup/tui-agent-startup-shell'
 
 describe('codex resume permissions', () => {
   it.each(['posix', 'powershell', 'cmd'] as const)(
-    "drops Orca's full-access flag from a recorded %s launch but keeps the user's args",
+    "drops Otodus's full-access flag from a recorded %s launch but keeps the user's args",
     (shell) => {
       const platform = shell === 'posix' ? 'linux' : 'win32'
       const startup = buildAgentStartupPlan({

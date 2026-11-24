@@ -34,7 +34,7 @@ export type BundledSkillPlanInput = BundledSkillTargetRequest & {
   names?: readonly string[]
   /** Target paths the user chose to Replace; `all` is `--force`, every replaceable one. */
   force?: readonly string[] | 'all'
-  /** Update existing locations only; never spread the skill to another agent. Skip skills with no Orca copy. */
+  /** Update existing locations only; never spread the skill to another agent. Skip skills with no Otodus copy. */
   installedOnly?: boolean
   /** `<userData>/skill-installs`, where cloud installs keep receipts and journals. */
   stateDirectory: string
@@ -55,7 +55,7 @@ type SkillContext = {
   sharedRoot?: BundledSkillTargetRoot
 }
 
-// `otherBuild`: the shared folder holds another Orca build's copy, so links to it are already right.
+// `otherBuild`: the shared folder holds another Otodus build's copy, so links to it are already right.
 type SharedTarget = { path: string; realPath: string; current: boolean; otherBuild?: boolean }
 
 const WRITES_SHARED_CURRENT = new Set<BundledSkillOp['kind']>([
@@ -210,7 +210,7 @@ async function planTarget(
             : {})
         }
       : decided
-  // Beside a current copy, a former-name folder Orca doesn't own is the user's own skill, not a blocker.
+  // Beside a current copy, a former-name folder Otodus doesn't own is the user's own skill, not a blocker.
   const leaves =
     op.kind === 'keep'
       ? former.leaves.filter((stale) => stale.reason !== 'edited' && stale.reason !== 'other')

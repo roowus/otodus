@@ -30,7 +30,7 @@ export const ORCHESTRATION_WORKER_OBSERVATION_HANDLERS: Record<string, CommandHa
       if (value.dispatch?.followUpOf) {
         lines.push(`Follow-up of: dispatch:${value.dispatch.followUpOf}`)
       }
-      // This Orca's record of a worker on a server that did not answer.
+      // This Otodus's record of a worker on a server that did not answer.
       if (value.server) {
         lines.push(
           `Server: ${value.server.name} (record as of ${value.server.asOf})`,

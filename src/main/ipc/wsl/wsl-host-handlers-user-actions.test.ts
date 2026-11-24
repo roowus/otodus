@@ -95,7 +95,7 @@ describe('WSL host IPC: the user Add and Remove (D3a)', () => {
     service.add.mockClear()
   })
 
-  // A block published while Orca runs must stop new hosts now, not at the next launch.
+  // A block published while Otodus runs must stop new hosts now, not at the next launch.
   it('a live policy block refuses an Add at once, tells the window, and keeps the saved host served', async () => {
     vi.stubEnv('ORCA_INTERNAL_WSL_HOSTS', '1')
     await configureWslHostsGate({ hasSavedWslHost: () => true, hasWslMoveCutover: () => false })

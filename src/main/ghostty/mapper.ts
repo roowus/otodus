@@ -183,7 +183,7 @@ export function mapGhosttyToOrca(
       return { key: 'terminalPaddingY', value: num }
     },
 
-    // Pixel offsets need rendered cell height; accept percentages only within Orca's [1, 3] line-height range.
+    // Pixel offsets need rendered cell height; accept percentages only within Otodus's [1, 3] line-height range.
     'adjust-cell-height': (v) => {
       const match = /^\+?(\d+(?:\.\d+)?)%$/.exec(v.trim())
       if (!match) {
@@ -302,7 +302,7 @@ export function mapGhosttyToOrca(
       continue
     }
 
-    // Orca preserves only whether blur is enabled; report radius loss only for nonzero values.
+    // Otodus preserves only whether blur is enabled; report radius loss only for nonzero values.
     if (
       (key === 'background-blur' || key === 'background-blur-radius') &&
       (parseStrictInt(value) ?? 0) > 0
@@ -310,7 +310,7 @@ export function mapGhosttyToOrca(
       unsupportedKeys.push(`${key} (radius value not preserved)`)
     }
 
-    // Orca stores one terminal font, so Ghostty's fallback fonts are dropped.
+    // Otodus stores one terminal font, so Ghostty's fallback fonts are dropped.
     if (key === 'font-family' && activeGhosttyFontFamilies(rawValue).length > 1) {
       unsupportedKeys.push(`${key} (fallback fonts not preserved)`)
     }

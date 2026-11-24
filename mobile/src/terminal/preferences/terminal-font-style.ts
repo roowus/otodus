@@ -72,13 +72,13 @@ export function sameTerminalFontStyle(a: TerminalFontStyle, b: TerminalFontStyle
 
 // iOS WebKit may resolve "SF Mono" to a proportional face, so it leads with ui-monospace.
 const MONO_FALLBACKS =
-  '"Menlo", "Monaco", "Cascadia Mono", "Consolas", "DejaVu Sans Mono", "Liberation Mono", "Orca Nerd Font Symbols", "Symbols Nerd Font Mono", monospace'
+  '"Menlo", "Monaco", "Cascadia Mono", "Consolas", "DejaVu Sans Mono", "Liberation Mono", "Otodus Nerd Font Symbols", "Symbols Nerd Font Mono", monospace'
 
 function systemMonoStack(ios: boolean): string {
   // iOS already draws ⏴⏵⏶⏷ from system fonts; Android has none.
   return ios
     ? `ui-monospace, ${MONO_FALLBACKS}`
-    : `"SF Mono", ${MONO_FALLBACKS}, "Orca Terminal Symbols"`
+    : `"SF Mono", ${MONO_FALLBACKS}, "Otodus Terminal Symbols"`
 }
 
 /** The CSS face a bundled font must load before it can be measured, or null for system fonts. */

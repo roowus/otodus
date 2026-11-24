@@ -72,7 +72,7 @@ export function subscribeWorkerApprovals(
       }
       mailed = true
     } else if (facets.has('topology') || facets.has('traffic')) {
-      // Runs, Dispatches or routing moved: Orca's approval reports are only ever inserted, addressed.
+      // Runs, Dispatches or routing moved: Otodus's approval reports are only ever inserted, addressed.
       mailboxes = undefined
     } else {
       return

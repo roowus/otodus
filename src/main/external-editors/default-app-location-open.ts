@@ -34,7 +34,7 @@ async function openInMacDefaultAppAtLocation(
     }
     // Same `open -n -g` hand-off as the editor's CLI, minus its Node startup and `--env` forwarding.
     // The editor sees a desktop (non-Dock) open, so it reuses the file's window like a CLI open, and
-    // the empty env keeps Orca's variables out while a cold start resolves the login-shell env.
+    // the empty env keeps Otodus's variables out while a cold start resolves the login-shell env.
     const result = await runProcess({
       program: '/usr/bin/open',
       args: [

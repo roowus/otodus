@@ -218,7 +218,7 @@ export type GitLabProjectSettings = {
   recent: { host: string; path: string; lastOpenedAt: string }[]
 }
 
-// Why: only the four Todo target types Orca renders meaningfully; others (e.g. DesignManagement::Design) fall back to a generic "open URL".
+// Why: only the four Todo target types Otodus renders meaningfully; others (e.g. DesignManagement::Design) fall back to a generic "open URL".
 export type GitLabTodoTargetType = 'MergeRequest' | 'Issue' | 'Commit' | 'Note'
 
 export type GitLabTodo = {
@@ -275,7 +275,7 @@ export type GitLabPipeline = {
 
 // Flatten discussions into the work-item details comment list.
 export type GitLabWorkItemDetails = {
-  /** repoId is stamped by the renderer's caller — the main process doesn't know Orca's Repo.id. */
+  /** repoId is stamped by the renderer's caller — the main process doesn't know Otodus's Repo.id. */
   item: Omit<GitLabWorkItem, 'repoId'>
   body: string
   comments: MRComment[]

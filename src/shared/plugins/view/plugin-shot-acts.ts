@@ -115,7 +115,7 @@ function issueOf(index: number, value: unknown): string {
   return `${where} (${verb})${path}: ${first?.message ?? 'invalid'}`
 }
 
-/** `--act`'s JSON: a list (or one act) checked here, so a typo fails before Orca opens anything. */
+/** `--act`'s JSON: a list (or one act) checked here, so a typo fails before Otodus opens anything. */
 export function parsePluginShotActs(
   json: string
 ): { ok: true; acts: PluginShotAct[] } | { ok: false; error: string } {

@@ -173,7 +173,7 @@ export async function registerSshHandlers(
   registerSshConnectionHandlers(handle)
   registerSshPortForwardHandlers(handle)
   registerPlainSshTerminalHandlers(handle)
-  // COMPAT(legacy-relay-bridge): terminals an older Orca's relay still runs.
+  // COMPAT(legacy-relay-bridge): terminals an older Otodus's relay still runs.
   registerLegacyRelayBridgeIpc({
     store,
     getMainWindow: getCurrentMainWindow,

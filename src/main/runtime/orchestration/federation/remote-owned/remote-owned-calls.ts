@@ -23,7 +23,7 @@ export type RemoteOwnedRuntime = Pick<
 >
 
 /**
- * Every call this Orca makes about a Run it coordinates on a paired server: as that Run's
+ * Every call this Otodus makes about a Run it coordinates on a paired server: as that Run's
  * coordinator, only under the pairing the link was made with, and only while the link is still in
  * one of `whileLink` when the request reaches the socket, so nothing leaves after a reset.
  */
@@ -50,7 +50,7 @@ export async function callRemoteOwnedServer(
     if (runtime.getOrchestrationDb() !== db) {
       throw new OrchestrationError(
         'remote_link_closed',
-        'This Run was reset on this Orca. No effects were applied.',
+        'This Run was reset on this Otodus. No effects were applied.',
         { effectsApplied: false }
       )
     }
@@ -69,7 +69,7 @@ export async function callRemoteOwnedServer(
       const why =
         current?.state === 'closed'
           ? `The pairing with ${server.name} was re-made, so it no longer runs Run ${link.run_id}'s workers.`
-          : `Run ${link.run_id} was reset on this Orca, so nothing more goes to ${server.name} for it.`
+          : `Run ${link.run_id} was reset on this Otodus, so nothing more goes to ${server.name} for it.`
       throw new OrchestrationError('remote_link_closed', `${why} No effects were applied.`, {
         effectsApplied: false
       })

@@ -257,7 +257,7 @@ export function AddProjectHostSubmenu({
                     <span className="text-[11px] text-muted-foreground">
                       {t(
                         'auto.components.sidebar.AddRepoHostSelector.addRemoteServerDetail',
-                        'Pair with Orca running on another computer.'
+                        'Pair with Otodus running on another computer.'
                       )}
                     </span>
                   </span>

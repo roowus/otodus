@@ -271,7 +271,7 @@ test.describe('Terminal hidden view parking', () => {
       expect(content).toContain('╭')
       expect(content).toContain('├')
       expect(content).toContain('█')
-      expect(content).not.toContain('Orca skipped hidden terminal output')
+      expect(content).not.toContain('Otodus skipped hidden terminal output')
 
       // Interrupt the fixture TUI and wait for shell ownership before probing input.
       await sendToTerminal(orcaPage, tabAPtyId, '\x03')

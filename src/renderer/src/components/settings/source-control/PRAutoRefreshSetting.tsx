@@ -33,7 +33,7 @@ function usePRAutoRefreshHostCadence(
   t: Translate
 ): {
   cadence: PRAutoRefreshCadence | null
-  /** The paired host is an older Orca without the setting: it polls at Default and cannot be set. */
+  /** The paired host is an older Otodus without the setting: it polls at Default and cannot be set. */
   unsupported: boolean
   update: (cadence: PRAutoRefreshCadence) => Promise<void>
 } {

@@ -232,10 +232,10 @@ describe('findMovableClaudeSessions', () => {
       }
     })
     vi.mocked(inspectRuntimeTerminalProcess).mockResolvedValue({
-      foregroundProcess: 'Orca',
+      foregroundProcess: 'Otodus',
       hasChildProcesses: true
     })
-    vi.mocked(confirmRuntimeTerminalForegroundProcess).mockResolvedValue('Orca')
+    vi.mocked(confirmRuntimeTerminalForegroundProcess).mockResolvedValue('Otodus')
 
     // Pane 2 is a Claude pane now running another `orca` command, such as `orca status`.
     expect(await movable()).toEqual([ptyId(1)])

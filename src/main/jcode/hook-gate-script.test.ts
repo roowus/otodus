@@ -32,13 +32,13 @@ function installManagedScript(): { scriptPath: string; cleanup: () => void } {
 }
 
 describe.runIf(process.platform !== 'win32')('jcode managed hook as jcode runs it', () => {
-  it('drains the gate stdin before exiting on a missing Orca environment', () => {
+  it('drains the gate stdin before exiting on a missing Otodus environment', () => {
     const { scriptPath, cleanup } = installManagedScript()
     try {
       // Returning proves the gate drained input larger than the pipe buffer before exiting.
       execFileSync('/bin/sh', [scriptPath], {
         input: JSON.stringify({ content: 'y'.repeat(512 * 1024) }),
-        // Outside Orca, POSIX must still drain stdin before exiting.
+        // Outside Otodus, POSIX must still drain stdin before exiting.
         env: { ...process.env, JCODE_HOOK_EVENT: 'pre_tool', ORCA_PANE_KEY: '' },
         // This checks completion, not latency; allow slow CI hosts.
         timeout: 60_000,

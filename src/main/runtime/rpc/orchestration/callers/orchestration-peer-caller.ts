@@ -12,7 +12,7 @@ import {
 const NO_EFFECTS = { effectsApplied: false } as const
 
 /**
- * A call a paired Orca makes as the coordinator of one of its Runs here. Admitted from the
+ * A call a paired Otodus makes as the coordinator of one of its Runs here. Admitted from the
  * authenticated runtime pairing, never from a param, and synchronously: its Run is written in the
  * frame's first turn, so a later frame of the same conversation (a cancel) always finds it.
  * The declared caller field then names the peer, as a session's names the session.

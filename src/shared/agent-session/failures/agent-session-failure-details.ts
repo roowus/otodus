@@ -2,7 +2,7 @@
 
 import { isValidAppVersion } from '../../app-lifecycle/identity/app-version'
 
-/** Which of Orca's checks an image failed. A new one needs a sentence before it compiles. */
+/** Which of Otodus's checks an image failed. A new one needs a sentence before it compiles. */
 export const AGENT_SESSION_ATTACHMENT_PROBLEM_REASONS = [
   'empty',
   'tooLarge',

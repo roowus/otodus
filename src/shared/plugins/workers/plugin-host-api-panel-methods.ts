@@ -41,18 +41,18 @@ const agentsListResult = z.object({
     .array(
       z.object({
         /** Its terminal, as `workspace.readContext` and `terminal.sendText` name it; null when
-         *  Orca cannot tie the agent's pane to a terminal it lists. */
+         *  Otodus cannot tie the agent's pane to a terminal it lists. */
         terminalId: z.string().min(1).max(1024).nullable(),
         title: z.string().max(512).nullable(),
-        /** Which agent runs there (`claude`, `codex`, ...), when Orca knows. */
+        /** Which agent runs there (`claude`, `codex`, ...), when Otodus knows. */
         agent: z.string().max(128).nullable(),
         state: z.enum(AGENT_STATUS_STATES),
         /** When it entered `state`, in ms since the epoch. */
         stateStartedAt: z.number().finite(),
-        /** The agent's own session id, which `agent.resume` takes; null when Orca has none.
+        /** The agent's own session id, which `agent.resume` takes; null when Otodus has none.
          *  Absent before host API 1.8. */
         sessionId: pluginAgentSessionIdSchema.nullable().optional(),
-        /** The orchestration task Orca dispatched to this agent and that is still open, with its
+        /** The orchestration task Otodus dispatched to this agent and that is still open, with its
          *  title (`''` when the task has none); null when it runs none, including once its task
          *  completed or failed. Absent before host API 1.9. */
         task: z

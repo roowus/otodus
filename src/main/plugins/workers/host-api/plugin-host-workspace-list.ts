@@ -41,7 +41,7 @@ const repoRow = z.object({
 const repoListAnswer = z.object({ repos: z.array(repoRow) })
 const projectListAnswer = z.object({
   repos: z.array(
-    // A malformed `hiddenAt` reads as shown, as Orca's sidebar reads it, not as a failed list.
+    // A malformed `hiddenAt` reads as shown, as Otodus's sidebar reads it, not as a failed list.
     repoRow.extend({ path: z.string(), hiddenAt: z.number().optional().catch(undefined) })
   )
 })
@@ -165,7 +165,7 @@ function fitsBounds(row: {
 
 /**
  * `workspace.list`: Git worktrees (and folder projects), then project-group folders. With
- * `includeStatus`, each row Orca has a status for carries it. `statusSource` keys the shared
+ * `includeStatus`, each row Otodus has a status for carries it. `statusSource` keys the shared
  * status listing (the runtime RPC the call came through).
  */
 export async function listPluginWorkspaces(

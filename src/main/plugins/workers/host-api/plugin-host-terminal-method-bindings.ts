@@ -72,14 +72,14 @@ export const PLUGIN_TERMINAL_ACTION_HANDLERS = {
     }
   }),
   'terminal.focus': bind(api['terminal.focus'], async ({ terminalId }, ctx) => {
-    // Focus means Orca's window; headless serve has none to show.
+    // Focus means Otodus's window; headless serve has none to show.
     renderer(ctx.services)
     const answer = await effect(ctx, 'terminal.focus', {
       terminal: terminalId,
       // This window only: paired phones and other clients are not steered by a plugin.
       navigation: 'host'
     })
-    // `navigated: false`: a newer focus request won, or Orca's window did not move to it.
+    // `navigated: false`: a newer focus request won, or Otodus's window did not move to it.
     return { focused: terminalFocusAnswer.parse(answer).focus.navigated !== false }
   }),
   'terminal.close': bind(api['terminal.close'], async ({ terminalId }, ctx) => {
@@ -93,7 +93,7 @@ export const PLUGIN_TERMINAL_ACTION_HANDLERS = {
     }
     await effect(ctx, 'terminal.close', { terminal: terminalId })
     forgetPluginOpenedTerminal(ctx.pluginId, terminalId)
-    // Why no exit report: a local close answers before Orca knows whether the process stopped.
+    // Why no exit report: a local close answers before Otodus knows whether the process stopped.
     return { closed: true as const }
   })
 } satisfies Record<string, BoundPluginHostMethod>

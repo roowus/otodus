@@ -199,7 +199,7 @@ export class AcpStructuredChildren {
   }
 
   /** Taken when the process exit is first seen, so a start settling meanwhile cannot miss it. A
-   *  connection Orca closed first keeps that cause; only a bare exit is the agent's own. */
+   *  connection Otodus closed first keeps that cause; only a bare exit is the agent's own. */
   recordExit(
     sessionId: string,
     generation: string,
@@ -233,7 +233,7 @@ export class AcpStructuredChildren {
     ) {
       return
     }
-    // Orca refusing what the agent wrote outranks the exit its cleanup then causes.
+    // Otodus refusing what the agent wrote outranks the exit its cleanup then causes.
     this.recordEnding(session, error)
     if (!isAcpReadySession(session)) {
       session.historyCatchUp?.abort()

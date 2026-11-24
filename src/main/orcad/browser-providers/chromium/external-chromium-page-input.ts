@@ -24,7 +24,7 @@ const ElementCallResult = z.object({
 // Bounds how long one helper process runs while typing.
 const MAX_KEY_COMMANDS_PER_RUN = 256
 
-// agent-browser owns the only CDP connection, so Orca reaches the element behind a ref through the
+// agent-browser owns the only CDP connection, so Otodus reaches the element behind a ref through the
 // helper's own `get attr` call on it: getAttribute is wrapped to record `this` for one unique name.
 function captureScript(key: string): string {
   return `(() => {

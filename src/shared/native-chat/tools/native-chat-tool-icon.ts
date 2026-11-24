@@ -15,7 +15,7 @@ export type NativeChatToolCategory =
   | 'unknown'
   | 'fileChange'
   | 'webSearch'
-  /** A shell command that drove Orca's browser through its CLI. */
+  /** A shell command that drove Otodus's browser through its CLI. */
   | 'browser'
   | 'mcpToolCall'
   | 'subAgentActivity'

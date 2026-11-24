@@ -124,7 +124,7 @@ function assertArtifactCloudCleanupReady(
     marker?.phase === 'prepared' &&
     marker.targetIdentity === artifactCloudIdentity(currentCloud)
   ) {
-    throw new Error('The Orca profile transition must be retried before publishing artifacts.')
+    throw new Error('The Otodus profile transition must be retried before publishing artifacts.')
   }
 }
 

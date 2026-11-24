@@ -9,7 +9,7 @@ import type { TaskPageJiraBoardSection } from './task-page-jira-board-sections'
 import type { TaskPageJiraProjectScope } from '../listing/task-page-jira-status-order'
 
 // Device-local, like the Jira list columns: Jira's Agile API exposes board column
-// order as read-only, so a reorder here is an Orca view preference, not a Jira edit.
+// order as read-only, so a reorder here is an Otodus view preference, not a Jira edit.
 const STORAGE_KEY = 'orca.jira.board-column-order.v1'
 // Each Jira project reached from this device keeps its own lane order; cap the record
 // so a long tail of one-off project scopes cannot grow the key without bound.

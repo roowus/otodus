@@ -108,7 +108,7 @@ export type AgentStatusEntry = {
   /** Retain the last completed non-boundary output across working: batched done→working publication may already clear lastAssistantMessage. */
   lastCompletedAssistantMessage?: string
   /** True when this `done` was reached via interrupt, not normal completion
-   *  (agent-reported or Orca's guarded fallback). Undefined otherwise. */
+   *  (agent-reported or Otodus's guarded fallback). Undefined otherwise. */
   interrupted?: boolean
   /** True when this `done` is a session boundary, not a completed turn. See AgentStatusPayload. */
   sessionBoundary?: boolean
@@ -124,9 +124,9 @@ export type AgentStatusEntry = {
    *  these instead of `subagents`. Absent from older hosts. */
   children?: AgentChildWorkView[]
   /** Provider-owned conversation/session id captured from hook payloads.
-   *  Used only for exact CLI resume; Orca terminal ids are not agent-session ids. */
+   *  Used only for exact CLI resume; Otodus terminal ids are not agent-session ids. */
   providerSession?: AgentProviderSessionMetadata
-  /** The execution host's Orca id for this terminal agent's conversation; null while that host
+  /** The execution host's Otodus id for this terminal agent's conversation; null while that host
    *  has not named it yet; absent from older hosts. */
   orcaSessionId?: string | null
   /** The launch owner's last word: its admitted launch runs (true) or none (false); absent from older hosts. */

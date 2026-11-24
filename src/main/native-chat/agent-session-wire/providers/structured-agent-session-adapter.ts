@@ -115,7 +115,7 @@ export type StructuredAgentSessionEndedEvent = {
   /** Absent means provider exit without extra detail; host faults retain their own classification. */
   failure?: SubmissionRejectionFact
   cause: 'unexpected-exit' | 'requested-close'
-  /** An unexpected exit Orca caused by stopping the agent after its own failure; log only. */
+  /** An unexpected exit Otodus caused by stopping the agent after its own failure; log only. */
   closedByOrca?: true
   deathEvidenceKind?: 'kill-delivered'
   /** Execution-host observations from a requested provider close, when available. */

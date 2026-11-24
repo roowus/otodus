@@ -10,7 +10,7 @@ export type CodexAutoReviewDenial = {
   summary: string
   rationale: string | null
   threadId: string
-  /** The review as Codex's `thread/approveGuardianDeniedAction` takes it; null when Orca cannot rebuild it. */
+  /** The review as Codex's `thread/approveGuardianDeniedAction` takes it; null when Otodus cannot rebuild it. */
   event: Record<string, unknown> | null
 }
 

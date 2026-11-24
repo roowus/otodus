@@ -15,7 +15,7 @@ async function readConfig(configPath: string): Promise<string> {
   }
 }
 
-/** Orca's sqlite_home line in the home's own config; never the user's ~/.codex config. */
+/** Otodus's sqlite_home line in the home's own config; never the user's ~/.codex config. */
 export async function writeSharedSqliteHome(
   accountHome: string,
   sqliteHome: string | null

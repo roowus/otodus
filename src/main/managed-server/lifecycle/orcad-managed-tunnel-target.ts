@@ -113,7 +113,7 @@ export async function environmentForwardChecks(
       if (identity.verdict !== 'foreign' || !targeting.readPublishedKey) {
         return identity
       }
-      // A refusal from the slot's own new server is a replaced pairing, not a port another Orca took.
+      // A refusal from the slot's own new server is a replaced pairing, not a port another Otodus took.
       const publishedKey = await targeting.readPublishedKey(input)
       return publishedKey &&
         publishedKey !== getPreferredPairingOffer(input.environment).publicKeyB64
@@ -181,7 +181,7 @@ async function addCurrentForward(
   )
   if (args.localPort !== 0 && forward.localPort !== args.localPort) {
     await args.forwards.removeForwardAndWait(forward.id)
-    throw new Error('Managed Orca tunnel bound an unexpected local port.')
+    throw new Error('Managed Otodus tunnel bound an unexpected local port.')
   }
   if (!(await prepareCurrentTunnelCheck(args.stillCurrent))()) {
     await args.forwards.removeForwardAndWait(forward.id)

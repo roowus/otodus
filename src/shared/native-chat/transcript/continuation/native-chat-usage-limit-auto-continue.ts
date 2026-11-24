@@ -25,7 +25,7 @@ export function usageLimitContinueStateForCut(
   return publishedForCut(published, cut)?.state
 }
 
-/** When Orca continues this cut: a later reset the account still shows spent, or earlier after a switch. */
+/** When Otodus continues this cut: a later reset the account still shows spent, or earlier after a switch. */
 export function usageLimitContinueAtForCut(
   published: PublishedUsageLimitContinue,
   cut: CutKey

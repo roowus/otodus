@@ -6,7 +6,7 @@ import {
 } from './plugin-host-api-workspace-methods'
 import { spec, WORKER_ONLY } from './plugin-host-method-spec'
 
-/** Host API 1.9: the agent sessions Orca's Agent Session History lists on this computer. */
+/** Host API 1.9: the agent sessions Otodus's Agent Session History lists on this computer. */
 
 export const PLUGIN_AGENT_SESSION_LIST_LIMIT = 200
 export const PLUGIN_AGENT_SESSION_LIST_DEFAULT = 50
@@ -32,7 +32,7 @@ const agentListSessionsResult = z.object({
         title: z.string().max(PLUGIN_AGENT_SESSION_TITLE_MAX),
         /** The workspace it ran in, as `workspace.list` gives its id; null when none of this
          *  computer's workspaces holds the folder it ran in. Workspaces on SSH hosts, and on WSL
-         *  or paired hosts Orca reaches through its runtime (`runtime:` hosts), never match. */
+         *  or paired hosts Otodus reaches through its runtime (`runtime:` hosts), never match. */
         workspaceId: pluginWorkspaceIdSchema.nullable(),
         /** The host whose history lists it; always `local` (this computer) for now: paired
          *  runtime hosts' history is not listed. */
@@ -44,7 +44,7 @@ const agentListSessionsResult = z.object({
         updatedAt: z.number().finite(),
         messageCount: z.number().int().nonnegative(),
         totalTokens: z.number().int().nonnegative(),
-        /** An Orca terminal runs it now. */
+        /** An Otodus terminal runs it now. */
         running: z.boolean()
       })
     )
@@ -57,7 +57,7 @@ const agentListSessionsResult = z.object({
 export const PLUGIN_AGENT_HISTORY_API = {
   'agent.listSessions': spec({
     summary:
-      "Past agent sessions in Orca's Agent Session History on this computer (WSL distributions included on Windows), newest first: title, agent, workspace, branch, times, message and token counts, and whether an Orca terminal here runs it. Leaves out Antigravity IDE conversations and subagent transcripts, and never gives the conversation or file paths, though a title can be the start of its first message. `agent.resume` resumes one by its `sessionId`, for agents that resume by id.",
+      "Past agent sessions in Otodus's Agent Session History on this computer (WSL distributions included on Windows), newest first: title, agent, workspace, branch, times, message and token counts, and whether an Otodus terminal here runs it. Leaves out Antigravity IDE conversations and subagent transcripts, and never gives the conversation or file paths, though a title can be the start of its first message. `agent.resume` resumes one by its `sessionId`, for agents that resume by id.",
     since: 9,
     scope: 'any-workspace',
     capability: 'history:read',

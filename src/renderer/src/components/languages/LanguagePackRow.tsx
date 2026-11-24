@@ -31,7 +31,7 @@ export type LanguageRowModel = {
   unavailable?: boolean
   /** The saved language whose catalog failed to load. */
   failed?: boolean
-  /** What Orca shows while the saved language failed: checked, but still selectable to keep it. */
+  /** What Otodus shows while the saved language failed: checked, but still selectable to keep it. */
   effective?: boolean
   /** What the picker focuses when it opens. */
   autoFocusTarget?: boolean

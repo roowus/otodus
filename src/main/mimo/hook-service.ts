@@ -61,7 +61,7 @@ function mirrorConfigDir(sourceConfigDir: string, targetConfigDir: string): void
   }
   for (const entry of readdirSync(sourceConfigDir, { withFileTypes: true })) {
     const sourcePath = join(sourceConfigDir, entry.name)
-    // A linked plugins dir must not be linked through, or Orca's plugin lands in the user's folder.
+    // A linked plugins dir must not be linked through, or Otodus's plugin lands in the user's folder.
     if (entry.name === 'plugins' && isDirectoryFollowingLinks(sourcePath)) {
       const overlayPlugins = join(targetConfigDir, 'plugins')
       if (!ensureRealDirectory(overlayPlugins)) {
@@ -117,7 +117,7 @@ export class MimoCodeHookService {
     return { MIMOCODE_CONFIG_DIR: overlay }
   }
 
-  /** Older builds kept MiMo data under Orca's MIMOCODE_HOME; move a login made there over once, then mark it migrated. */
+  /** Older builds kept MiMo data under Otodus's MIMOCODE_HOME; move a login made there over once, then mark it migrated. */
   carryOverLegacyAuth(env: Record<string, string | undefined>): void {
     const legacyAuth = join(
       getAppEnvironment().getPath('userData'),
@@ -126,7 +126,7 @@ export class MimoCodeHookService {
       'data',
       'auth.json'
     )
-    // MiMo rejects a relative MIMOCODE_HOME; Orca would otherwise write relative to its own cwd.
+    // MiMo rejects a relative MIMOCODE_HOME; Otodus would otherwise write relative to its own cwd.
     if (env.MIMOCODE_HOME && !isAbsolute(env.MIMOCODE_HOME)) {
       return
     }
@@ -144,7 +144,7 @@ export class MimoCodeHookService {
         copyFileSync(legacyAuth, auth, constants.COPYFILE_EXCL)
         chmodSync(auth, 0o600)
       }
-      // Never restore the Orca-only login later, e.g. after the user deletes the canonical one.
+      // Never restore the Otodus-only login later, e.g. after the user deletes the canonical one.
       renameSync(legacyAuth, `${legacyAuth}.migrated`)
     } catch {
       // A failed carry-over leaves MiMo logged out, as before; never block the launch.

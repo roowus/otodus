@@ -45,7 +45,7 @@ export function refusedLine(
       tone: 'destructive',
       text: t(
         'auto.components.settings.sshHostServer.refusedBlocked',
-        'Orca isn’t set up on this host yet: something on the host stops the move.'
+        'Otodus isn’t set up on this host yet: something on the host stops the move.'
       )
     }
   }
@@ -54,7 +54,7 @@ export function refusedLine(
     tone: 'destructive',
     text: t(
       'auto.components.settings.sshHostServer.refusedBlockedReason',
-      'Orca isn’t set up on this host yet. {{reason}}',
+      'Otodus isn’t set up on this host yet. {{reason}}',
       { reason: inline }
     ),
     detail: reason

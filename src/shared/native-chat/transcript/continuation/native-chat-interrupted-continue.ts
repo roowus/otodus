@@ -1,4 +1,4 @@
-// Continue an Orca-stopped turn: which cut is offered, and when a failed attempt still shows.
+// Continue an Otodus-stopped turn: which cut is offered, and when a failed attempt still shows.
 
 import type { StructuredAgentSessionHostCapabilityState } from '../../../agent-session/capabilities/structured-agent-session-host-capability'
 import type { NativeChatOrcaStopCut } from './native-chat-orca-stop-cut'

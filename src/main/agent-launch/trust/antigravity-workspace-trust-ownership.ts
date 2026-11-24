@@ -9,7 +9,7 @@ const antigravityTrustOwnership = createAgentTrustOwnershipLedger(
   (projectPath) => resolve(projectPath)
 )
 
-/** Records the `trustedWorkspaces` entry Orca appended for `workspacePath`. */
+/** Records the `trustedWorkspaces` entry Otodus appended for `workspacePath`. */
 export function recordOrcaCreatedAntigravityTrust(
   settingsPath: string,
   workspacePath: string,
@@ -23,14 +23,14 @@ export function recordOrcaCreatedAntigravityTrust(
   }
 }
 
-/** Removes the `trustedWorkspaces` entries Orca appended for `workspacePath`; never throws. */
+/** Removes the `trustedWorkspaces` entries Otodus appended for `workspacePath`; never throws. */
 export function removeOrcaCreatedAntigravityTrust(workspacePath: string): void {
   for (const settingsPath of antigravityTrustOwnership.listConfigFiles(workspacePath)) {
     try {
       removeRecordedEntry(settingsPath, workspacePath)
     } catch (error) {
       // Why: keep the record so a later removal can retry an unreadable settings file.
-      console.warn('[antigravity-trust] Failed to remove an Orca-created trust entry:', error)
+      console.warn('[antigravity-trust] Failed to remove an Otodus-created trust entry:', error)
     }
   }
 }

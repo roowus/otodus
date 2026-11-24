@@ -47,7 +47,7 @@ describe('relaunchApp', () => {
   it('does not replay native administrator restart arguments before or after consumption', async () => {
     vi.spyOn(process, 'platform', 'get').mockReturnValue('win32')
     const flag = '--orca-restart-local-terminals-as-administrator'
-    const nativeArgv = ['Orca.exe', '--user-data-dir=C:\\Orca profile', flag]
+    const nativeArgv = ['Otodus.exe', '--user-data-dir=C:\\Otodus profile', flag]
     process.argv = [...nativeArgv]
     hasSwitchMock.mockImplementation((name: string) => nativeArgv.includes(`--${name}`))
     let nextArgs: string[] | undefined
@@ -56,12 +56,12 @@ describe('relaunchApp', () => {
     })
 
     relaunchApp('renderer-request')
-    expect(nextArgs).toEqual(['--user-data-dir=C:\\Orca profile'])
+    expect(nextArgs).toEqual(['--user-data-dir=C:\\Otodus profile'])
     await restartLocalTerminalsAfterElevation(new AbortController().signal)
     expect(process.argv).not.toContain(flag)
     expect(nativeArgv).toContain(flag)
     relaunchApp('profile-switch')
-    expect(nextArgs).toEqual(['--user-data-dir=C:\\Orca profile'])
+    expect(nextArgs).toEqual(['--user-data-dir=C:\\Otodus profile'])
 
     const custom = { execPath: 'administrator-launcher.exe', args: ['restart', flag] }
     relaunchApp('windows-administrator', undefined, custom)

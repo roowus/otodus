@@ -16,7 +16,7 @@ export type CustomEditorBinaryDocument = { bytes: Uint8Array<ArrayBuffer>; fileT
 
 export type CustomEditorHostOptions = {
   getFrameWindow: () => PluginFrameWindow | null
-  /** The buffer as Orca holds it now. */
+  /** The buffer as Otodus holds it now. */
   getDocument: () => { text: string; readOnly: boolean }
   /** Binary editors only: the document's bytes, or null while they load. */
   getBinaryDocument?: () => CustomEditorBinaryDocument | null

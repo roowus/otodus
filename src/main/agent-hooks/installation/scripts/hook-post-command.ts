@@ -16,7 +16,7 @@ export function buildPosixHookMetadataCacheLines(): string[] {
     // Length prefixes keep different inputs from forming the same key.
     '  orca_hook_meta_key="${#ORCA_PANE_KEY}:$ORCA_PANE_KEY ${#ORCA_TAB_ID}:$ORCA_TAB_ID ${#ORCA_AGENT_LAUNCH_TOKEN}:$ORCA_AGENT_LAUNCH_TOKEN ${#ORCA_WORKTREE_ID}:$ORCA_WORKTREE_ID ${#ORCA_AGENT_HOOK_ENV}:$ORCA_AGENT_HOOK_ENV ${#ORCA_AGENT_HOOK_VERSION}:$ORCA_AGENT_HOOK_VERSION"',
     '  orca_hook_meta_file=',
-    // A stale variable must not create state for an absent Orca installation.
+    // A stale variable must not create state for an absent Otodus installation.
     '  if [ -r "${ORCA_AGENT_HOOK_ENDPOINT:-}" ]; then',
     '    orca_hook_meta_id=$ORCA_PANE_KEY',
     // Name it like the spool file, which may sit on a Windows drive under WSL.
@@ -53,7 +53,7 @@ export function buildPosixAgentHookPostCommand(
   const indent = options.indent ?? '  '
   // Only Claude's capture sets this; the host checks the attachment itself before trusting it.
   const tmux = source === 'claude'
-  // Names the decision format the script prints; absent, Orca never waits on plugins.
+  // Names the decision format the script prints; absent, Otodus never waits on plugins.
   const decision = options.decisionHeaderVar
     ? [`  ${indent}-H "X-Orca-Hook-Decision: \${${options.decisionHeaderVar}:-}" \\`]
     : []

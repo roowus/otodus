@@ -25,12 +25,12 @@ export type MountWorkerOptions = {
   events: readonly string[]
   /** Command ids it may register, as listed in `contributes.commands`; null skips the check. */
   commands: readonly string[] | null
-  /** Hooks Orca runs through it, as listed in `contributes.hooks` (a name, or `{ event, onError }`);
+  /** Hooks Otodus runs through it, as listed in `contributes.hooks` (a name, or `{ event, onError }`);
    *  defaults to the manifest's. */
   hooks: readonly (string | { event: string; onError?: 'pass' | 'deny' })[]
 }
 
-/** What a hook chain of this one worker decided: Orca goes on with `event`, or it was refused. */
+/** What a hook chain of this one worker decided: Otodus goes on with `event`, or it was refused. */
 export type HookDecision = { kind: 'continue'; event: unknown } | { kind: 'deny'; reason: string }
 
 /** The caller a test's `request` names when it does not pass one. */
@@ -45,9 +45,9 @@ function messageOf(error: unknown): string {
 }
 
 /**
- * Runs a worker's `activate(orca)` with the same `orca` object Orca builds, over the mock host:
- * events arrive only when listed, payloads are checked against Orca's schemas, and commands and
- * panel requests run with an abort signal as Orca runs them.
+ * Runs a worker's `activate(orca)` with the same `orca` object Otodus builds, over the mock host:
+ * events arrive only when listed, payloads are checked against Otodus's schemas, and commands and
+ * panel requests run with an abort signal as Otodus runs them.
  */
 export async function mountWorker(module: WorkerModule, options: MountWorkerOptions) {
   const { host } = options
@@ -68,7 +68,7 @@ export async function mountWorker(module: WorkerModule, options: MountWorkerOpti
   if (typeof activate !== 'function') {
     throw new TypeError(
       typeof module.activate === 'function'
-        ? 'mountWorker: the module exports activate by name, but Orca calls the default export: write `export default function activate(orca)`'
+        ? 'mountWorker: the module exports activate by name, but Otodus calls the default export: write `export default function activate(orca)`'
         : 'mountWorker: the module has no default-exported activate(orca) function'
     )
   }
@@ -84,7 +84,7 @@ export async function mountWorker(module: WorkerModule, options: MountWorkerOpti
     log: (message) => void logs.push(message),
     grantedCapabilities: host.capabilities
   })
-  // A panel's storage or settings write reaches the worker's `onDidChange`, as in Orca.
+  // A panel's storage or settings write reaches the worker's `onDidChange`, as in Otodus.
   const stopListening = host.onDataChange((area, key) => {
     for (const listener of tables.dataListeners[area]) {
       listener({ key })
@@ -116,14 +116,14 @@ export async function mountWorker(module: WorkerModule, options: MountWorkerOpti
     logs,
     /** What the worker sent with `orca.panels.post`, in order. */
     posts,
-    /** Calls Orca would refuse, even ones the worker caught. */
+    /** Calls Otodus would refuse, even ones the worker caught. */
     get refusals() {
       return host.refusals
     },
-    /** Delivers an event as Orca would, and resolves once every handler has finished. */
+    /** Delivers an event as Otodus would, and resolves once every handler has finished. */
     async emit(event: string, payload: unknown): Promise<void> {
       if (!isEventName(event)) {
-        throw new Error(`emit: "${event}" is not an event Orca sends to workers`)
+        throw new Error(`emit: "${event}" is not an event Otodus sends to workers`)
       }
       if (!subscribed.has(event)) {
         throw new Error(`emit: "${event}" never arrives: it is not in contributes.events`)
@@ -131,7 +131,7 @@ export async function mountWorker(module: WorkerModule, options: MountWorkerOpti
       const parsed = PLUGIN_EVENT_PAYLOAD_SCHEMAS[event].safeParse(payload)
       if (!parsed.success) {
         throw new TypeError(
-          `emit: that ${event} payload is not one Orca sends: ${parsed.error.issues[0]?.message ?? ''}`
+          `emit: that ${event} payload is not one Otodus sends: ${parsed.error.issues[0]?.message ?? ''}`
         )
       }
       const handlers = tables.events.get(PLUGIN_V1_EVENT_ALIASES.get(event) ?? event) ?? []
@@ -139,11 +139,11 @@ export async function mountWorker(module: WorkerModule, options: MountWorkerOpti
       await host.idle()
     },
     hooks: {
-      /** Runs a hook as Orca would, with this worker as the only plugin: the same deadline, the
+      /** Runs a hook as Otodus would, with this worker as the only plugin: the same deadline, the
        *  same fields `next` may change, and the same checks on what it returns. */
       async fire(event: string, payload: unknown): Promise<HookDecision> {
         if (!isPluginHookName(event)) {
-          throw new Error(`hooks.fire: "${event}" is not a hook Orca runs`)
+          throw new Error(`hooks.fire: "${event}" is not a hook Otodus runs`)
         }
         if (!hooked.has(event)) {
           throw new Error(`hooks.fire: "${event}" never runs: it is not in contributes.hooks`)
@@ -151,7 +151,7 @@ export async function mountWorker(module: WorkerModule, options: MountWorkerOpti
         const parsed = PLUGIN_HOOK_SPECS[event].payload.safeParse(payload)
         if (!parsed.success) {
           throw new TypeError(
-            `hooks.fire: that ${event} event is not one Orca sends: ${parsed.error.issues[0]?.message ?? ''}`
+            `hooks.fire: that ${event} event is not one Otodus sends: ${parsed.error.issues[0]?.message ?? ''}`
           )
         }
         const outcome = await runPluginHookChain({
@@ -190,7 +190,7 @@ export async function mountWorker(module: WorkerModule, options: MountWorkerOpti
       await host.idle()
       return output
     },
-    /** Runs the module's `deactivate`, as Orca does before stopping the worker. */
+    /** Runs the module's `deactivate`, as Otodus does before stopping the worker. */
     async deactivate(): Promise<void> {
       if (!active) {
         return

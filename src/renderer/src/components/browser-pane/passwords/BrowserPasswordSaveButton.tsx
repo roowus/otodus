@@ -22,7 +22,7 @@ function hostOf(origin: string): string {
   }
 }
 
-/** A chip in the address field, opening Orca's offer to save or update a login that worked. */
+/** A chip in the address field, opening Otodus's offer to save or update a login that worked. */
 export function BrowserPasswordSaveButton({
   browserPageId,
   isActive

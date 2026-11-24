@@ -10,7 +10,7 @@ import { useMountedRef } from '@/hooks/useMountedRef'
 import { translate } from '@/i18n/i18n'
 import { formatCliUserFacingDetail } from '@/lib/cli/cli-user-facing-detail'
 
-// Why: Orca terminals already provide the `orca` command, so agent control only needs the skill.
+// Why: Otodus terminals already provide the `orca` command, so agent control only needs the skill.
 export function useMobileEmulatorAgentSetupState(enabled = true): {
   skillRuntime: ReturnType<typeof useActiveProjectSkillRuntime>
   cliSkillError: string | null

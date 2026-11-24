@@ -14,7 +14,7 @@ export function useNotCheckedDescription(): string {
   return t('auto.components.status.bar.tooltip.claude.waiting.label', 'Updates when Claude runs')
 }
 
-/** Muted placeholder for an account Orca has not read yet; the reason is a tooltip, not visible text. */
+/** Muted placeholder for an account Otodus has not read yet; the reason is a tooltip, not visible text. */
 export function AccountUsageNotChecked(): React.JSX.Element {
   const t = useTranslate()
   const description = useNotCheckedDescription()

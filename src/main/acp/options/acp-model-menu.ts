@@ -52,7 +52,7 @@ export function acpModelMenuModels(input: {
   })
 }
 
-/** The agent's Fast option as Orca's toggle, for the running model only. */
+/** The agent's Fast option as Otodus's toggle, for the running model only. */
 export function withFastModeOption<T extends Pick<AgentSessionOptionsResult, 'models' | 'current'>>(
   menu: T,
   fast: { currentValue: string } | null

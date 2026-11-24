@@ -18,7 +18,7 @@ export class BrowserManager extends BrowserManagerEventForwarding {
   ): boolean {
     const renderer = this.resolveRendererForBrowserTab(browserTabId)
     const open: OpenLinkInTab | null = renderer
-      ? // The renderer owns Orca's tab model; forward the validated URL for materialization.
+      ? // The renderer owns Otodus's tab model; forward the validated URL for materialization.
         (url, activateTab) =>
           renderer.send('browser:open-link-in-orca-tab', {
             browserPageId: browserTabId,

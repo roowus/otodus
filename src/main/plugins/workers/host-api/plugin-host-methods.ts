@@ -139,7 +139,7 @@ export async function executePluginHostCall(
   } catch (error) {
     await auditMutation('error').catch(() => undefined)
     if (error instanceof ZodError) {
-      // A runtime answer Orca's own binding did not expect; its shape is internal.
+      // A runtime answer Otodus's own binding did not expect; its shape is internal.
       scope.log?.(`${input.method}: unexpected runtime answer: ${error.message}`)
       return {
         ok: false,

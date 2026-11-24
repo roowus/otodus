@@ -18,13 +18,13 @@ import { pluginAgentSessionIdSchema } from '../workers/plugin-host-api-panel-met
  * own, remotes, credentials) can leak through the event stream.
  */
 
-/** Plugins see `main`, not the `refs/heads/main` Orca tracks internally. */
+/** Plugins see `main`, not the `refs/heads/main` Otodus tracks internally. */
 export function shortPluginBranchName(branch: string): string {
   return branch.replace(/^refs\/heads\//, '')
 }
 
 /** The id `workspace.list` gives the workspace, which every workspace method takes; `workspaceId`
- *  is Orca's raw id, which they take too but which differs from it for most worktrees. Absent
+ *  is Otodus's raw id, which they take too but which differs from it for most worktrees. Absent
  *  before host API 1.7. */
 const workspaceListId = pluginWorkspaceIdSchema.optional()
 
@@ -58,7 +58,7 @@ export const agentStatusChangedPayloadSchema = z.object({
   workspaceListId,
   paneKey: z.string().min(1).max(2048),
   /** The pane's terminal, as `workspace.readContext` and `terminal.sendText` name it; absent when
-   *  Orca cannot tie the pane to a terminal it lists. */
+   *  Otodus cannot tie the pane to a terminal it lists. */
   terminalId: z.string().min(1).max(PLUGIN_TERMINAL_ID_MAX_LENGTH).optional(),
   /** The pane's name, or its terminal title. */
   title: z.string().max(PLUGIN_WORKSPACE_LABEL_MAX_LENGTH).optional(),
@@ -77,7 +77,7 @@ export const agentStatusChangedPayloadSchema = z.object({
       stateStartedAt: z.number().finite()
     })
     .optional(),
-  /** The agent's own session id, which `agent.resume` takes; absent when Orca has none, and
+  /** The agent's own session id, which `agent.resume` takes; absent when Otodus has none, and
    *  before host API 1.8. */
   sessionId: pluginAgentSessionIdSchema.optional()
 })
@@ -102,11 +102,11 @@ export const PLUGIN_EVENT_SUMMARIES: Record<PluginEventName, string> = {
   'workspace.removed':
     'A worktree workspace was removed; `workspaceListId` (host API 1.7) is the id `workspace.list` gave it.',
   'agent.status.changed':
-    'An agent in a terminal pane changed status; `workspaceId` is null when Orca cannot tie the pane to a workspace, `workspaceListId` (host API 1.7) is the id `workspace.list` gives that workspace, `terminalId` names its terminal when Orca lists it, and `sessionId` (host API 1.8) is what `agent.resume` takes.',
+    'An agent in a terminal pane changed status; `workspaceId` is null when Otodus cannot tie the pane to a workspace, `workspaceListId` (host API 1.7) is the id `workspace.list` gives that workspace, `terminalId` names its terminal when Otodus lists it, and `sessionId` (host API 1.8) is what `agent.resume` takes.',
   'workspace.changed':
     'The focused workspace changed, or its terminals were opened, closed or renamed; `context` is what `workspace.readContext` now answers, its `workspaceId` included. Each new subscriber first gets the current context.',
   'editor.typography.changed':
-    "What Orca's file editor uses changed (a setting or the editor zoom); the payload is what `editor.readTypography` now answers. Needs no capability."
+    "What Otodus's file editor uses changed (a setting or the editor zoom); the payload is what `editor.readTypography` now answers. Needs no capability."
 }
 
 export type PluginEventPayload<E extends PluginEventName> = z.infer<

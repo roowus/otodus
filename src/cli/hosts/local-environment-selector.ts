@@ -3,7 +3,7 @@ import type { RuntimeClient } from '../runtime/client'
 import { RuntimeClientError } from '../runtime/connection/types'
 import { quoteCliCommandArgument } from '../arguments/shell-command-quote'
 
-/** `--environment local`: the caller's own Orca, even over an ambient ORCA_ENVIRONMENT or pairing code. */
+/** `--environment local`: the caller's own Otodus, even over an ambient ORCA_ENVIRONMENT or pairing code. */
 export const LOCAL_ENVIRONMENT = 'local'
 
 export function isLocalEnvironmentSelector(value: unknown): value is string {
@@ -32,7 +32,7 @@ export async function refuseLocalManagementSelector(
   const named = await savedEnvironmentNamedLocal()
   throw new RuntimeClientError(
     'invalid_argument',
-    `--environment local names this machine's own Orca, not a saved environment, so \`orca ${commandPath.join(' ')}\` cannot act on it.`,
+    `--environment local names this machine's own Otodus, not a saved environment, so \`orca ${commandPath.join(' ')}\` cannot act on it.`,
     {
       nextSteps: [
         ...(named
@@ -48,12 +48,12 @@ export function refuseReservedEnvironmentName(name: string): void {
   if (isLocalEnvironmentSelector(name)) {
     throw new RuntimeClientError(
       'invalid_argument',
-      '`local` is reserved: --environment local always means this machine’s own Orca. Save the environment under another name.'
+      '`local` is reserved: --environment local always means this machine’s own Otodus. Save the environment under another name.'
     )
   }
 }
 
-/** cwd shortcuts (current, active) resolve only on the caller's own Orca. */
+/** cwd shortcuts (current, active) resolve only on the caller's own Otodus. */
 export function assertLocalCwdWorktreeSelector(selector: string, client: RuntimeClient): void {
   if (!client.isRemote) {
     return

@@ -68,7 +68,7 @@ export function updateSettings(
   }
   const windowMaterial = updates.windowMaterial
   if (windowMaterial === 'off' || windowMaterial === 'translucent' || windowMaterial === 'blur') {
-    // Every writer (settings, Ghostty import) mirrors the legacy switch an older Orca reads after rollback.
+    // Every writer (settings, Ghostty import) mirrors the legacy switch an older Otodus reads after rollback.
     sanitizedUpdates.windowBackgroundBlur = windowMaterial !== 'off'
   }
   // Normalize at the store boundary so every writer rejects truthy non-booleans.

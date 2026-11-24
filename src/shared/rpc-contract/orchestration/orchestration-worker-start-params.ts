@@ -32,7 +32,7 @@ export const WorkerStartParams = z
     retryOf: OptionalString,
     timeoutMs: OptionalFiniteNumber,
     devMode: z.boolean().optional(),
-    /** Only from the paired Orca coordinating this Run: its own ID for the Task this start creates or reopens. */
+    /** Only from the paired Otodus coordinating this Run: its own ID for the Task this start creates or reopens. */
     adoptTaskId: OptionalString
   })
   .superRefine((params, ctx) => {

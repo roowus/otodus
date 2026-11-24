@@ -27,7 +27,7 @@ function reports(output: string): Report[] {
     }))
 }
 
-// Separate Orca's localhost reports and the foreign report from fish's own hostname.
+// Separate Otodus's localhost reports and the foreign report from fish's own hostname.
 const hostless = (output: string): string[] =>
   reports(output)
     .filter((report) => !report.hosted)

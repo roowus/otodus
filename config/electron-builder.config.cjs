@@ -127,7 +127,7 @@ const devChannelRepo = isHourlyChannel
     : isAdhocChannel
       ? 'orca-adhoc'
       : null
-const appId = 'com.stablyai.orca'
+const appId = 'com.roowus.otodus'
 const featureWallResources = {
   from: 'resources/onboarding/feature-wall',
   to: 'onboarding/feature-wall'
@@ -255,8 +255,8 @@ const ORCA_MAC_TEAM_ID = '6CX3WHS9HZ'
 /** @type {import('electron-builder').Configuration} */
 module.exports = {
   appId,
-  productName: 'Orca',
-  protocols: [{ name: 'Orca', schemes: ['orca'] }],
+  productName: 'Otodus',
+  protocols: [{ name: 'Otodus', schemes: ['orca'] }],
   toolsets: { appimage: '1.0.3' },
   ...(devChannelBuildVersion
     ? { extraMetadata: { version: devChannelBuildVersion } }
@@ -577,7 +577,7 @@ module.exports = {
     }
   },
   win: {
-    executableName: 'Orca',
+    executableName: 'Otodus',
     // SignPath signs Windows installers after packaging, so set release publisherName explicitly.
     // Unsigned dev channels omit it or updater signature checks reject dev updates and return to stable.
     // Sign hook signs nothing: it relays transient NSIS uninstaller files to CI SignPath; unset relay env leaves local/dev builds inert.
@@ -864,7 +864,7 @@ async function signMacComputerUseHelper(helperAppPath, packager) {
     throw new Error('Missing signing identity for Orca Computer Use helper app')
   }
   // Why: TCC grants attach to this nested app's code identity. Sign it before
-  // the outer Orca.app is sealed so production builds preserve that identity.
+  // the outer Otodus.app is sealed so production builds preserve that identity.
   execFileSync('codesign', codesignArgs(identity, helperAppPath), { stdio: 'inherit' })
   execFileSync('codesign', ['--verify', '--deep', '--strict', helperAppPath], {
     stdio: 'inherit'

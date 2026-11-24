@@ -10,7 +10,7 @@ export type StructuredAgentSessionChildExit = {
   failure?: SubmissionRejectionFact
   observedAt?: number
   startupUnanswered?: true
-  /** Orca stopped the agent after its own failure; the exit stays unexpected for the turn. */
+  /** Otodus stopped the agent after its own failure; the exit stays unexpected for the turn. */
   closedByOrca?: true
 }
 

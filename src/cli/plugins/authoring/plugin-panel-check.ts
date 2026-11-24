@@ -29,7 +29,7 @@ export type PluginPanelCheck = {
   summary: string[]
   /** The drawn tree as plain data (handlers as `[handler]`); `orca plugin check --json` only. */
   tree?: unknown
-  /** With `drawnTree`: the validated tree exactly as Orca draws it, handlers as `{ $callback }`. */
+  /** With `drawnTree`: the validated tree exactly as Otodus draws it, handlers as `{ $callback }`. */
   drawnTree?: PluginDeclarativeNode | null
   issues: PluginPanelCheckIssue[]
   warnings: string[]
@@ -70,7 +70,7 @@ export function pluginStackLocation(dir: string, stack: string | undefined): str
   return undefined
 }
 
-// `src/panel.tsx:4:7: Unexpected token`, as Orca's loaders word transpile and import errors.
+// `src/panel.tsx:4:7: Unexpected token`, as Otodus's loaders word transpile and import errors.
 const LOCATED_MESSAGE = /^([^\n:]+\.[a-z]+:\d+:\d+): ([\s\S]*)$/i
 
 /** One issue per distinct problem, located from its message or else its first plugin frame. */
@@ -109,7 +109,7 @@ export type CheckPluginPanelsOptions = {
   panel?: string
   /** Only this scenario of its `.check` file; an unknown name is reported as an issue. */
   scenario?: string
-  /** Also return each render's validated tree as Orca draws it (`drawnTree`), for replay. */
+  /** Also return each render's validated tree as Otodus draws it (`drawnTree`), for replay. */
   drawnTree?: boolean
 }
 
@@ -287,7 +287,7 @@ export function formatPluginPanelCheck(check: PluginPanelCheck): string[] {
     `${head}failed`,
     ...check.issues.map(
       (issue) =>
-        `  ${issue.location ?? check.entry}: ${issue.kind === 'refused' ? 'Orca would refuse this render: ' : ''}${issue.message}`
+        `  ${issue.location ?? check.entry}: ${issue.kind === 'refused' ? 'Otodus would refuse this render: ' : ''}${issue.message}`
     ),
     ...check.warnings.map((warning) => `  warning: ${warning}`)
   ]

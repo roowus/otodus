@@ -23,8 +23,8 @@ import { daemonSocketDirIsTrusted } from '../../../main/daemon/endpoint/publicat
 
 // Agents read these; a blip must not send them to `orca open`, which raises the window.
 const TRANSIENT_DISCONNECT_NEXT_STEPS = [
-  'Orca is usually busy or restarting: wait a few seconds, then retry. If the command changes something, first check whether it already took effect, and retry with the request ID this error names, if any.',
-  "Do not run 'orca open' to recover. Run it only if the user asks, or if 'orca status --json' reports Orca is not running or still cannot connect after about 30 seconds of retries."
+  'Otodus is usually busy or restarting: wait a few seconds, then retry. If the command changes something, first check whether it already took effect, and retry with the request ID this error names, if any.',
+  "Do not run 'orca open' to recover. Run it only if the user asks, or if 'orca status --json' reports Otodus is not running or still cannot connect after about 30 seconds of retries."
 ]
 
 export async function sendRequest<TResult>(
@@ -117,7 +117,7 @@ export async function sendRequest<TResult>(
           classifySocketError(error) ??
           new RuntimeClientError(
             'runtime_unavailable',
-            'This terminal could not connect to Orca.',
+            'This terminal could not connect to Otodus.',
             { nextSteps: TRANSIENT_DISCONNECT_NEXT_STEPS }
           )
       })
@@ -128,7 +128,7 @@ export async function sendRequest<TResult>(
         ok: false,
         error: new RuntimeClientError(
           'runtime_unavailable',
-          'Orca closed the connection before responding.',
+          'Otodus closed the connection before responding.',
           { nextSteps: TRANSIENT_DISCONNECT_NEXT_STEPS }
         )
       })

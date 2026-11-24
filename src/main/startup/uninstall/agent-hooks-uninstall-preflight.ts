@@ -12,7 +12,7 @@ const UNINSTALL_HOOK_REMOVAL_TIMEOUT_MS = 30_000
 
 type UninstallRemovalStatus = Pick<AgentHookInstallStatus, 'state' | 'detail'> & { agent: string }
 
-// OpenCode and Pi load Orca's plugin files, outside the hook registry.
+// OpenCode and Pi load Otodus's plugin files, outside the hook registry.
 function pluginRemovalStatuses(
   removals: readonly { agent: string; error: string | null }[]
 ): UninstallRemovalStatus[] {

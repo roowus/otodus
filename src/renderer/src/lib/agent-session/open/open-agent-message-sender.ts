@@ -160,7 +160,7 @@ async function openSender(
 
 type TerminalFocusFeedback = Parameters<typeof focusTerminal>[2]
 
-/** Opens an orchestration party by address on its host; a terminal worker Orca closed reopens there. */
+/** Opens an orchestration party by address on its host; a terminal worker Otodus closed reopens there. */
 export async function openOrchestrationDispatch(
   address: string,
   label: string,

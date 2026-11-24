@@ -73,11 +73,11 @@ export function observeChatAssignee(
   }
 }
 
-/** A worker whose chat closed: its mailbox handle and, for a worker Orca started, its pane. */
+/** A worker whose chat closed: its mailbox handle and, for a worker Otodus started, its pane. */
 export type ClosedChatWorker = { handle: string; paneKey: string | null }
 
 /** Workers whose chat is this hidden session, once its exit is proven: chat assignees with an unsettled
- *  Dispatch, and the worker Orca started in it. Other closes may roll back; a /clear successor keeps the work. */
+ *  Dispatch, and the worker Otodus started in it. Other closes may roll back; a /clear successor keeps the work. */
 export function closedChatWorkersForSession(
   hiddenSessionId: string,
   db: OrchestrationDb,

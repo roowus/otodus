@@ -10,7 +10,7 @@ export const CHAT_SELECTION_MIX = { light: 30, dark: 40 } as const
 const MIN_VISIBLE_MIX = 15
 
 /**
- * How much link hue the chat selection mixes into the chat background: Orca's own depth, lowered
+ * How much link hue the chat selection mixes into the chat background: Otodus's own depth, lowered
  * (down to a visible floor) to the deepest mix that keeps selected text 4.5:1.
  */
 export function chatSelectionMixOver(

@@ -4,7 +4,7 @@ import {
 } from '../../protocol/queries/terminal-osc-color-reply'
 import { resolveConfiguredTerminalColors } from '../../../terminal-themes/terminal-theme-selection'
 
-// Last resort before this process is told anything: Orca's default dark terminal theme.
+// Last resort before this process is told anything: Otodus's default dark terminal theme.
 export const ORCA_DEFAULT_COLOR_QUERY_REPLY_COLORS: TerminalOscColorQueryReplyColors =
   resolveConfiguredTerminalColors(
     {

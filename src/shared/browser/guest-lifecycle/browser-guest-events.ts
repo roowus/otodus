@@ -12,7 +12,7 @@ export type BrowserPopupEvent = {
   browserPageId: string
   /** Sanitized to origin/host so auth query params never leak into UI state. */
   origin: string
-  /** Whether Orca opened the target in Orca, opened it externally, or blocked it as unsafe. */
+  /** Whether Otodus opened the target in Otodus, opened it externally, or blocked it as unsafe. */
   action: 'opened-in-orca' | 'opened-external' | 'blocked'
 }
 

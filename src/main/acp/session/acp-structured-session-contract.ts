@@ -17,7 +17,7 @@ export type AcpStructuredSession = {
   spec: AcpLaunchSpec
   /** The session's folder on the agent's host. */
   cwd: string
-  /** Session modes this launch reports as Orca's permission modes. */
+  /** Session modes this launch reports as Otodus's permission modes. */
   permissionModes: Readonly<Partial<Record<AgentChatPermissionMode, string>>> | undefined
   childStops?: AcpChildStops
   connection: AcpStructuredConnection
@@ -26,7 +26,7 @@ export type AcpStructuredSession = {
   options: AcpStructuredOptions
   turns: AcpStructuredTurns
   closeRequested: boolean
-  /** Why Orca stopped this agent after its own failure (stream loss, a refused journal write). */
+  /** Why Otodus stopped this agent after its own failure (stream loss, a refused journal write). */
   failureClose: string | null
   /** Null while provider events can still reach the journal. */
   journalClosed: string | null

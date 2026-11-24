@@ -28,7 +28,7 @@ export function isJournalProviderActivity(
     return false
   }
   const identity = parseAgentJournalItemKey(itemId)
-  // Codex detail rows use Orca IDs; fallback rows already identify their provider.
+  // Codex detail rows use Otodus IDs; fallback rows already identify their provider.
   if (
     !identity ||
     (identity.provider === 'orca' &&

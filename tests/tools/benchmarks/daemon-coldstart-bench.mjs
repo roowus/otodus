@@ -13,7 +13,7 @@
  * Usage:
  *   node tests/tools/benchmarks/daemon-coldstart-bench.mjs --label baseline
  *     [--iterations 3] [--linger-ms 15000] [--timeout-ms 240000]
- *     [--exe <path-to-packaged-Orca.exe>]
+ *     [--exe <path-to-packaged-Otodus.exe>]
  *
  * Prereq (when not using --exe): `pnpm build:electron-vite` so out/ exists.
  * Results: tests/tools/benchmarks/results/daemon-coldstart-<label>-<timestamp>.json

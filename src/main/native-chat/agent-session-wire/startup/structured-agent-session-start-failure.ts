@@ -35,8 +35,8 @@ import {
 export type AgentSessionStartRetry = 'safe' | 'never'
 
 /** An adapter's reading of one error in the chain: the agent's answer, final or declared
- *  temporary; Orca's own record of its transport ending with no answer once output drained; or
- *  an SDK's report of that ending, which tells less than Orca's record of it. */
+ *  temporary; Otodus's own record of its transport ending with no answer once output drained; or
+ *  an SDK's report of that ending, which tells less than Otodus's record of it. */
 export type AgentSessionStartAnswer = (
   cause: Error
 ) => 'final' | 'temporary' | 'exited' | 'reported' | undefined
@@ -56,7 +56,7 @@ export class AgentSessionStartFailure extends Error {
 }
 
 /** One verdict from every observation an adapter kept of a failed start: the operation's errors,
- *  a failed result seen for it and Orca's own record of its process ending, earliest first. It
+ *  a failed result seen for it and Otodus's own record of its process ending, earliest first. It
  *  may run again only if every observation allows it; the most specific one explains it, ties
  *  going to the earliest. `exited`: the adapter saw its process end on its own, which words even
  *  a final answer as the agent's own failure to start without changing whether it may run again. */
@@ -86,7 +86,7 @@ export function agentSessionStartFailure(
 }
 
 /** Most specific first: what the user can act on, the request's deadline, the agent's answer,
- *  Orca's record of its exit, an SDK's report of that exit, then anything else. */
+ *  Otodus's record of its exit, an SDK's report of that exit, then anything else. */
 function explanationRank(cause: unknown, answers: ReadonlySet<string | undefined>): number {
   const rank = [
     agentCliInstallationProblemOf(cause),

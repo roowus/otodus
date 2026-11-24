@@ -5,7 +5,7 @@ import {
   type CatalogLanguagePack
 } from './language-pack-options'
 
-/** A community translation matching a device language Orca has no built-in translation for. */
+/** A community translation matching a device language Otodus has no built-in translation for. */
 export type DeviceLanguageOffer = {
   locale: string
   /** Native name, e.g. "italiano"; render it with `lang={locale}`. */

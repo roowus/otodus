@@ -116,7 +116,7 @@ export function upsertEphemeralVmRuntimeRollbackRecovery(
     if (error instanceof JsonStringifyByteLimitError) {
       throw new EphemeralVmRuntimeStoreError(
         'runtime_error',
-        `Could not write Orca ephemeral VM runtimes at ${path}; the store exceeds its durable capacity.`
+        `Could not write Otodus ephemeral VM runtimes at ${path}; the store exceeds its durable capacity.`
       )
     }
     throw error
@@ -247,7 +247,7 @@ function readEphemeralVmRuntimeStore(userDataPath: string): LoadedEphemeralVmRun
   } catch {
     throw new EphemeralVmRuntimeStoreError(
       'runtime_error',
-      `Could not read Orca ephemeral VM runtimes at ${path}; the file is invalid.`
+      `Could not read Otodus ephemeral VM runtimes at ${path}; the file is invalid.`
     )
   }
 }
@@ -298,7 +298,7 @@ function writeEphemeralVmRuntimeStore(
     if (error instanceof JsonStringifyByteLimitError) {
       throw new EphemeralVmRuntimeStoreError(
         'runtime_error',
-        `Could not write Orca ephemeral VM runtimes at ${path}; the store exceeds its durable capacity.`
+        `Could not write Otodus ephemeral VM runtimes at ${path}; the store exceeds its durable capacity.`
       )
     }
     throw error

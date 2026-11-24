@@ -26,7 +26,7 @@ export type WorkerApprovalAnswerReceipt = {
   approvalId: string
   dispatchId: string
   decision: 'allow' | 'deny'
-  /** The worker's own label for the option Orca picked. */
+  /** The worker's own label for the option Otodus picked. */
   option: string
   /** The agent's prompt takes no message, so a deny's reason went to the worker as mail. */
   reasonMessageId: string | null
@@ -47,7 +47,7 @@ export const ORCHESTRATION_WORKER_APPROVAL_METHODS = [
   })
 ]
 
-/** Answers a worker's open approval as Orca, and closes the card at once when the prompt is already
+/** Answers a worker's open approval as Otodus, and closes the card at once when the prompt is already
  *  gone; the access check decided who may answer and with what reason. */
 export async function answerWorkerApproval(
   params: z.infer<typeof ApprovalAnswerParams>,
@@ -66,11 +66,11 @@ export async function answerWorkerApproval(
   }
   const notify = (handle: string, type: string): void => runtime.notifyMessageArrived(handle, type)
   const custody = structuredMailboxCustody(`dispatch:${dispatch.id}`, db)
-  // Orca can't tell whether this is a chat worker: answering or closing either way could be wrong.
+  // Otodus can't tell whether this is a chat worker: answering or closing either way could be wrong.
   if (custody === 'unverifiable' && !runtime.terminalWorkerApprovals.isHeld(params.prompt)) {
     throw new OrchestrationError(
       'approval_refused',
-      `Orca could not read the worker's chat, so ${params.prompt} was not answered. Try again.`,
+      `Otodus could not read the worker's chat, so ${params.prompt} was not answered. Try again.`,
       { effectsApplied: false }
     )
   }
@@ -84,7 +84,7 @@ export async function answerWorkerApproval(
       message: access.reason ?? 'Denied by the owner.'
     })
     if (!answered.ok) {
-      // A prompt Orca no longer holds (a restart, an ended hook) can never close on its own.
+      // A prompt Otodus no longer holds (a restart, an ended hook) can never close on its own.
       if (
         answered.code === 'approval_not_open' &&
         !runtime.terminalWorkerApprovals.isHeld(params.prompt)

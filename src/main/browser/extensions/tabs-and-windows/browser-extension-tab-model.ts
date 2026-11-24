@@ -36,7 +36,7 @@ import {
 
 /**
  * Chrome tab id = the guest webContents id, which keeps Electron's own tabs.sendMessage and
- * scripting consistent. Every Orca browser tab sits in the main window; a popout is a window
+ * scripting consistent. Every Otodus browser tab sits in the main window; a popout is a window
  * holding exactly one tab (its page).
  */
 export type BrowserExtensionTabEntry = {
@@ -47,7 +47,7 @@ export type BrowserExtensionTabEntry = {
   active: boolean
 }
 
-/** How long an extension's new tab waits for Orca's window and its restored workspaces. */
+/** How long an extension's new tab waits for Otodus's window and its restored workspaces. */
 const MAIN_WINDOW_WAIT_MS = 30_000
 
 let activeBrowserPageId: string | null = null
@@ -156,7 +156,7 @@ export function resolveBrowserExtensionTab(tabId: number): BrowserExtensionTabEn
   return createBrowserExtensionTabResolver()(tabId)
 }
 
-/** Tabs an extension in this session can address: Orca tabs in the session plus its popouts. */
+/** Tabs an extension in this session can address: Otodus tabs in the session plus its popouts. */
 export function listBrowserExtensionTabs(sess: Electron.Session): BrowserExtensionTabEntry[] {
   const mainTabIds = mainWindowTabIds()
   const resolveTab = createBrowserExtensionTabResolver(mainTabIds)
@@ -213,7 +213,7 @@ function tabStatus(contents: Electron.WebContents): 'loading' | 'complete' {
   return contents.isLoading() ? 'loading' : 'complete'
 }
 
-/** The fields Orca owns; url/title come from Electron's native result or describeBrowserExtensionTab. */
+/** The fields Otodus owns; url/title come from Electron's native result or describeBrowserExtensionTab. */
 function orcaTabFields(entry: BrowserExtensionTabEntry): chrome.tabs.Tab {
   const { contents } = entry
   return {
@@ -247,7 +247,7 @@ export function describeBrowserExtensionTab(
   }
 }
 
-/** Keeps Electron's native fields (url/title gated by its own permission check) and adds Orca's. */
+/** Keeps Electron's native fields (url/title gated by its own permission check) and adds Otodus's. */
 export function mergeNativeTab(
   nativeTab: Record<string, unknown>,
   entry: BrowserExtensionTabEntry
@@ -291,17 +291,17 @@ export function recentWorktreeIdForBrowserProfile(profileId: string): string | u
   return undefined
 }
 
-/** Opens a tab through Orca's renderer-owned tab path, in the caller's browser profile. */
+/** Opens a tab through Otodus's renderer-owned tab path, in the caller's browser profile. */
 export async function openBrowserExtensionTab(
   browserProfileId: string,
   url: string,
   placement: { active: boolean; worktreeId?: string }
 ): Promise<number> {
   const profile = getBrowserExtensionProfile(browserProfileId)
-  // Why wait: extensions open tabs as they load (onInstalled), before Orca's window can take them.
+  // Why wait: extensions open tabs as they load (onInstalled), before Otodus's window can take them.
   const mainWindow = profile ? await whenBrowserMainWindowReady(MAIN_WINDOW_WAIT_MS) : null
   if (!mainWindow || !profile) {
-    throw new BrowserExtensionApiError('Orca has no window to open a tab in')
+    throw new BrowserExtensionApiError('Otodus has no window to open a tab in')
   }
   const { browserPageId } = await createBrowserTabInRenderer(
     { getAuthoritativeWindow: () => mainWindow },
@@ -321,7 +321,7 @@ export async function openBrowserExtensionTab(
   return tabId
 }
 
-/** Closes through Orca's close path (pinned-tab guard included); popout tabs close their window. */
+/** Closes through Otodus's close path (pinned-tab guard included); popout tabs close their window. */
 export async function closeBrowserExtensionTab(entry: BrowserExtensionTabEntry): Promise<void> {
   const popout = getPopoutWindowForWebContents(entry.contents)
   if (popout) {
@@ -336,7 +336,7 @@ export async function closeBrowserExtensionTab(entry: BrowserExtensionTabEntry):
   await closeBrowserTabInRenderer(mainWindow, browserPageId, undefined)
 }
 
-/** tabs.update({active}): Orca tabs activate through the renderer's tab model; a popout's tab is its window. */
+/** tabs.update({active}): Otodus tabs activate through the renderer's tab model; a popout's tab is its window. */
 export async function activateBrowserExtensionTab(entry: BrowserExtensionTabEntry): Promise<void> {
   const popout = getPopoutWindowForWebContents(entry.contents)
   if (popout) {

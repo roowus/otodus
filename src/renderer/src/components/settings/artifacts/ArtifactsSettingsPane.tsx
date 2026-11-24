@@ -41,7 +41,7 @@ export function ArtifactsSettingsPane({
             description: isWebClient
               ? t(
                   'auto.components.settings.artifacts.enableStepWebDescription',
-                  'Open Settings → Artifacts in the Orca desktop app on the host device and enable publishing.'
+                  'Open Settings → Artifacts in the Otodus desktop app on the host device and enable publishing.'
                 )
               : t(
                   'auto.components.settings.artifacts.enableStepDescription',
@@ -67,7 +67,7 @@ export function ArtifactsSettingsPane({
     },
     {
       key: 'manage',
-      title: t('auto.components.settings.artifacts.manageStepTitle', 'Manage it in Orca'),
+      title: t('auto.components.settings.artifacts.manageStepTitle', 'Manage it in Otodus'),
       description: t(
         'auto.components.settings.artifacts.manageStepDescription',
         'Open Artifacts from the sidebar to preview or remove links.'
@@ -125,7 +125,7 @@ export function ArtifactsSettingsPane({
             <OrcaSignInButton size="sm" disabled={authStatus?.configured !== true}>
               {authStatus?.state === 'reconnect-required'
                 ? t('auto.components.settings.artifacts.signInAgain', 'Sign in again')
-                : t('auto.components.settings.artifacts.signIn', 'Sign in to Orca')}
+                : t('auto.components.settings.artifacts.signIn', 'Sign in to Otodus')}
             </OrcaSignInButton>
             <OrcaSignInWaitNotice className="basis-full" />
           </section>

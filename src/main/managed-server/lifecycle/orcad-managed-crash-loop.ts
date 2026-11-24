@@ -335,7 +335,7 @@ async function crashLoopDetail(
 
 function crashLoopMessage(hostLabel: string, logPath: string): string {
   return (
-    `Orca stopped restarting its server on ${hostLabel}: it failed or exited unexpectedly ` +
+    `Otodus stopped restarting its server on ${hostLabel}: it failed or exited unexpectedly ` +
     `${MAX_FAILED_RUNS_PER_WINDOW} times in ${FAILED_RUN_WINDOW_MS / 60_000} minutes. ` +
     `Check ${logPath} on the host, fix the cause, then disconnect and reconnect the host to try again.`
   )

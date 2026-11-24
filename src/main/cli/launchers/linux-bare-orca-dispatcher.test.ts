@@ -98,7 +98,7 @@ describe('installLinuxBareOrcaDispatcher', () => {
 
   it('preserves a foreign dispatcher created while AppImage extraction is in flight', async () => {
     const { homePath, resourcesPath } = await makeFixture()
-    const appImagePath = join(homePath, 'Orca.AppImage')
+    const appImagePath = join(homePath, 'Otodus.AppImage')
     const cacheRootPath = join(homePath, 'cache')
     const dispatcherPath = join(homePath, '.local', 'bin', 'orca')
     await mkdir(homePath, { recursive: true })

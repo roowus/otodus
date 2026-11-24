@@ -217,7 +217,7 @@ export async function superviseServeService(options: SupervisedServeOptions): Pr
         if (held?.reason !== evidence.reason) {
           hold.current = { reason: evidence.reason, since: now(), reportedStuck: false }
           log(
-            `[serve] Waiting before starting Orca serve: ${SERVE_INSTALL_HOLD_REASON_TEXT[evidence.reason]}.`
+            `[serve] Waiting before starting Otodus serve: ${SERVE_INSTALL_HOLD_REASON_TEXT[evidence.reason]}.`
           )
         } else if (
           evidence.reason === 'bundle-missing' &&
@@ -225,7 +225,7 @@ export async function superviseServeService(options: SupervisedServeOptions): Pr
         ) {
           // Let the service manager find the updated app through its stable launcher.
           log(
-            '[serve] The Orca executable this service started from is gone; exiting so the service manager starts the installed Orca.'
+            '[serve] The Otodus executable this service started from is gone; exiting so the service manager starts the installed Otodus.'
           )
           return 1
         } else if (!held.reportedStuck && now() - held.since >= SERVE_INSTALL_HOLD_STUCK_MS) {
@@ -273,7 +273,7 @@ export async function superviseServeService(options: SupervisedServeOptions): Pr
           // An occupied profile warrants standby, not a crash-brake failure.
           const delayMs = standbyDelayMs(standbyAttempt++, random)
           log(
-            `[serve] Another Orca serves this profile, or holds it and cannot be shown to have stopped; checking again in ${Math.round(delayMs / 1000)}s.${process.platform === 'linux' ? ` If its message says it may have stopped, \`${orcadStaleLockReclaimCommand(options.userDataPath, null)}\` checks it.` : ''}`
+            `[serve] Another Otodus serves this profile, or holds it and cannot be shown to have stopped; checking again in ${Math.round(delayMs / 1000)}s.${process.platform === 'linux' ? ` If its message says it may have stopped, \`${orcadStaleLockReclaimCommand(options.userDataPath, null)}\` checks it.` : ''}`
           )
           await sleep(delayMs)
           continue
@@ -285,7 +285,7 @@ export async function superviseServeService(options: SupervisedServeOptions): Pr
       } else {
         const error: unknown = attempt.settled.reason
         failure = (error instanceof Error ? error.message : String(error))
-          .replace(/^Orca serve /, '')
+          .replace(/^Otodus serve /, '')
           .replace(/\.$/, '')
       }
       standbyAttempt = 0
@@ -297,7 +297,7 @@ export async function superviseServeService(options: SupervisedServeOptions): Pr
         return 0
       }
       log(
-        `[serve] Orca serve ${failure}; restarting in ${Math.max(1, Math.round(next.action.delayMs / 1000))}s.`
+        `[serve] Otodus serve ${failure}; restarting in ${Math.max(1, Math.round(next.action.delayMs / 1000))}s.`
       )
       await sleep(next.action.delayMs)
     }

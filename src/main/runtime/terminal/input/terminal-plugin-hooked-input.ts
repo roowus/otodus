@@ -14,7 +14,7 @@ import {
 
 type TerminalSendAction = { text?: string; enter?: boolean; interrupt?: boolean }
 
-/** Text and prompts Orca writes to terminals pass plugin hooks first (`terminal.send`,
+/** Text and prompts Otodus writes to terminals pass plugin hooks first (`terminal.send`,
  *  `agent.prompt.before`), in order per terminal; with no plugin listing one, a write adds no
  *  await. */
 export abstract class OrcaRuntimeWithPluginHookedTerminalInput extends OrcaRuntimeWithControllerKnowsPtyIsLive {

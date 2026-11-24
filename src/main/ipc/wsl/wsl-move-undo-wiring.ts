@@ -103,7 +103,7 @@ async function withHostCopyPort<T extends WslMoveHostCopyStop>(
   read: (hostIds: readonly string[], port: WslMoveHostCopyPort) => Promise<T>
 ): Promise<T | 'stopped' | 'unreachable'> {
   // A host the user removed ran its terminals down with it, unless its Remove kept the server
-  // running for another Orca (R39): then its copies may still run, and nothing here reaches them.
+  // running for another Otodus (R39): then its copies may still run, and nothing here reaches them.
   if (
     !(await listEnvironments(userDataPath)).some((env) => env.id === move.destinationEnvironmentId)
   ) {
@@ -199,7 +199,7 @@ export function createWslMoveUndoPorts(
     stopHostAutomations: async (move) => {
       // Inside a try: a throw here would otherwise escape past undo's spawn fence.
       try {
-        // A removed host took its automations with it, unless another Orca keeps its server (R39).
+        // A removed host took its automations with it, unless another Otodus keeps its server (R39).
         if (
           !(await listEnvironments(userDataPath)).some(
             (env) => env.id === move.destinationEnvironmentId

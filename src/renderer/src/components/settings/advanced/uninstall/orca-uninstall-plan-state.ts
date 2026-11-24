@@ -36,7 +36,7 @@ export function countOrcaUninstallProblems(plan: OrcaUninstallPlan): number {
   ).length
 }
 
-/** Kept for a reason that can still clear (an agent that failed), not because another Orca build uses it. */
+/** Kept for a reason that can still clear (an agent that failed), not because another Otodus build uses it. */
 export function countOrcaUninstallPendingKept(plan: OrcaUninstallPlan): number {
   if (plan.otherOrcaBuildName) {
     return 0

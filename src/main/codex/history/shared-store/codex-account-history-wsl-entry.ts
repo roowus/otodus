@@ -10,7 +10,7 @@ import { checkCodexHistoryLeftBehind } from './codex-account-history-content-che
 // Under the host's helper timeout; an unfinished check resumes on a later launch.
 const CHECK_BUDGET_MS = 8 * 60_000
 
-// Runs inside a WSL distro on Orca's pinned Node: `<share|unshare|check> <account home> <store home>`.
+// Runs inside a WSL distro on Otodus's pinned Node: `<share|unshare|check> <account home> <store home>`.
 // Prints each rollout still owed an index row, then `{"result":…,"pendingDir":…}` last.
 async function main(): Promise<void> {
   const [mode, accountHome = '', storeHome = ''] = process.argv.slice(2)

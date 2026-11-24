@@ -88,7 +88,7 @@ function closeUnpreparedPopup(
   }
 }
 
-// Native child windows lack an address bar; untrusted popups need an Orca-controlled origin display.
+// Native child windows lack an address bar; untrusted popups need an Otodus-controlled origin display.
 export function openPopupWithOriginBar(
   options: PopupChildWindowOptions,
   initialUrl: string,
@@ -148,7 +148,7 @@ export function openPopupWithOriginBar(
   // Re-pin on explicit fullscreen events; resize alone does not cover every platform.
   window.on('enter-full-screen', layoutViews)
   window.on('leave-full-screen', layoutViews)
-  // Off macOS, a return to Orca through this popup alone raises no app event.
+  // Off macOS, a return to Otodus through this popup alone raises no app event.
   window.on('focus', revealWindowsAwaitingAppActive)
   layoutViews()
 

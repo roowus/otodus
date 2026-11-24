@@ -142,11 +142,11 @@ export function LinkRoutingPreferenceDialogProvider({
                   {openLinksInAppDefault
                     ? t(
                         'auto.components.link.routing.preference.dialog.keep.title',
-                        "Keep terminal links in Orca's browser?"
+                        "Keep terminal links in Otodus's browser?"
                       )
                     : t(
                         'auto.components.link.routing.preference.dialog.title',
-                        "Open terminal links in Orca's browser?"
+                        "Open terminal links in Otodus's browser?"
                       )}
                 </DialogTitle>
                 <DialogDescription className="text-sm leading-relaxed">
@@ -157,7 +157,7 @@ export function LinkRoutingPreferenceDialogProvider({
                       )
                     : t(
                         'auto.components.link.routing.preference.dialog.description',
-                        "Use Orca's browser for terminal links, or keep your system browser."
+                        "Use Otodus's browser for terminal links, or keep your system browser."
                       )}
                 </DialogDescription>
               </div>
@@ -182,7 +182,7 @@ export function LinkRoutingPreferenceDialogProvider({
                 <p>
                   {t(
                     'auto.components.link.routing.preference.dialog.orca.note',
-                    'Orca can use imported cookies for logged-in sites.'
+                    'Otodus can use imported cookies for logged-in sites.'
                   )}
                 </p>
                 <p>
@@ -195,7 +195,7 @@ export function LinkRoutingPreferenceDialogProvider({
                   <span>
                     {t(
                       'auto.components.link.routing.preference.dialog.shortcut.note.prefix',
-                      'When links open in Orca,'
+                      'When links open in Otodus,'
                     )}
                   </span>
                   <ShortcutKeyCombo
@@ -224,8 +224,11 @@ export function LinkRoutingPreferenceDialogProvider({
             </Button>
             <Button autoFocus onClick={() => settleActiveRequest(true)}>
               {openLinksInAppDefault
-                ? t('auto.components.link.routing.preference.dialog.keep.orca.button', 'Keep Orca')
-                : t('auto.components.link.routing.preference.dialog.orca.button', 'Open in Orca')}
+                ? t(
+                    'auto.components.link.routing.preference.dialog.keep.orca.button',
+                    'Keep Otodus'
+                  )
+                : t('auto.components.link.routing.preference.dialog.orca.button', 'Open in Otodus')}
             </Button>
           </DialogFooter>
         </DialogContent>

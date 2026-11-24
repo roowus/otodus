@@ -325,7 +325,7 @@ export class SshConnectionStore {
           changed.push(updated)
         }
       } else if (routeDuplicates.has(alias)) {
-        // Another name for a machine already in Orca; inserting it would show its sessions twice.
+        // Another name for a machine already in Otodus; inserting it would show its sessions twice.
         continue
       } else {
         const inserted: SshTarget = {

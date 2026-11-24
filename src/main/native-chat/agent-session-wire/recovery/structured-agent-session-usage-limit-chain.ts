@@ -15,7 +15,7 @@ import {
   type NativeChatUsageLimitCut
 } from '../../../../shared/native-chat/transcript/continuation/native-chat-usage-limit-cut'
 
-/** Automatic continues a chain may spend before Orca leaves the chat to the person. */
+/** Automatic continues a chain may spend before Otodus leaves the chat to the person. */
 export const USAGE_LIMIT_CONTINUE_CHAIN_LIMIT = 5
 
 type ChainSubmission = Pick<AgentJournalSubmission, 'clientMessageId' | 'providerItemId' | 'origin'>

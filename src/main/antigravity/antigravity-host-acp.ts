@@ -21,13 +21,13 @@ import {
 } from './native-credential-backend'
 import { hasAntigravityMacOSCredential } from './native-macos-credentials'
 
-/** First release verified with Orca chats; it also leaves the chat's folder untouched. */
+/** First release verified with Otodus chats; it also leaves the chat's folder untouched. */
 export const ANTIGRAVITY_HOST_ACP_MINIMUM_VERSION = '1.5.2'
 /** agy keeps its sign-in and conversations here and ignores GEMINI_HOME, so this only pins the chat. */
 const AGY_HOME_FOLDER = '.gemini'
 /** Approves tools, not plans; the check launches with it, so a build without it stays managed. */
 export const AGY_SKIP_PERMISSIONS_FLAG = '--dangerously-skip-permissions'
-// agy.exe took 6-7s to list sessions while Orca started, and Windows has no managed fallback.
+// agy.exe took 6-7s to list sessions while Otodus started, and Windows has no managed fallback.
 const PROBE_TIMEOUT_MS = process.platform === 'win32' ? 15_000 : 5_000
 const RECHECK_MS = 5 * 60_000
 
@@ -140,7 +140,7 @@ export async function agyUsesApiKey(homePath: string): Promise<boolean> {
   }
 }
 
-/** Whether Orca's own Chat holds the managed server's personal sign-in token. */
+/** Whether Otodus's own Chat holds the managed server's personal sign-in token. */
 export async function hasManagedAntigravityChatSignIn(managedHome: string): Promise<boolean> {
   const token = join(managedHome, ANTIGRAVITY_ACP_HOME, 'acp_token.json')
   return (await stat(token).catch(() => null)) !== null

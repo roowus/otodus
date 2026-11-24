@@ -110,7 +110,7 @@ async function revalidateInBackground(
   }
 }
 
-/** Invalidate on Orca-driven removal or moves. */
+/** Invalidate on Otodus-driven removal or moves. */
 export function invalidateSparseCheckoutState(repoPath: string, worktreePath: string): void {
   deleteKeysWithPrefix(worktreeKeyPrefix(repoPath, worktreePath))
 }

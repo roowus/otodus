@@ -26,12 +26,12 @@ export function agentLaunchRecoveryMessage(recovery: Recovery): string {
     case 'updateServer':
       return translate(
         'agentLaunch.updateServer',
-        'Update Orca on this workspace’s server, then try again.'
+        'Update Otodus on this workspace’s server, then try again.'
       )
     case 'refreshProjects':
       return translate(
         'auto.store.slices.workspace.cleanup.hostUnresolved',
-        'Orca cannot tell which host owns this workspace. Refresh projects and review it again.'
+        'Otodus cannot tell which host owns this workspace. Refresh projects and review it again.'
       )
   }
 }

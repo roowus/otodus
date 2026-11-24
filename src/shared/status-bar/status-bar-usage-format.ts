@@ -16,7 +16,7 @@ const STATUS_BAR_USAGE_PROVIDERS: ReadonlySet<string> = new Set<StatusBarUsagePr
   'muse'
 ])
 
-/** User-defined footer usage text. Empty `template` means Orca's built-in rendering. */
+/** User-defined footer usage text. Empty `template` means Otodus's built-in rendering. */
 export type StatusBarUsageFormat = {
   template: string
   /** Per-provider templates that win over `template`; absent providers fall back to it. */

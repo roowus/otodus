@@ -123,17 +123,17 @@ export async function prepareWorkerStart(
     )
   }
   if (params.on && params.terminal?.startsWith(ORCA_SESSION_ADDRESS_PREFIX)) {
-    // Refused here, before any remote call: an Orca session ID names a chat only on its own host.
+    // Refused here, before any remote call: an Otodus session ID names a chat only on its own host.
     throw new OrchestrationError(
       SESSION_CODES.hostBoundary,
-      `${params.terminal} names a chat by its Orca session ID, which identifies it only on the host that runs it. Run worker-start on that host. No effects were applied.`,
+      `${params.terminal} names a chat by its Otodus session ID, which identifies it only on the host that runs it. Run worker-start on that host. No effects were applied.`,
       { effectsApplied: false }
     )
   }
   if (params.adoptTaskId !== undefined && orchestrationCaller?.kind !== 'peer') {
     throw new OrchestrationError(
       'invalid_argument',
-      'Only the paired Orca coordinating a Run names its Task IDs. No effects were applied.',
+      'Only the paired Otodus coordinating a Run names its Task IDs. No effects were applied.',
       { effectsApplied: false }
     )
   }

@@ -47,7 +47,7 @@ function revokePendingRead(environmentId: string, retire = false): void {
   }
 }
 
-// Hosts that answered `settings.get` without the setting: an Orca that predates it. Such a host
+// Hosts that answered `settings.get` without the setting: an Otodus that predates it. Such a host
 // polls at Default and rejects a write of the key, so the control must say so instead of waiting
 // for an answer that never comes. Kept apart from "not answered yet".
 const hostsLackingSetting = new Set<string>()
@@ -93,7 +93,7 @@ export function forgetHostPRAutoRefreshCadence(environmentId: string): void {
   setPRAutoRefreshCadenceForHost(environmentId, null)
 }
 
-/** The host answered without the setting (an older Orca). It keeps no value here, so every
+/** The host answered without the setting (an older Otodus). It keeps no value here, so every
  *  scheduler reads it as Default, which is what that host does. */
 export function noteHostLacksPRAutoRefresh(environmentId: string): void {
   revokePendingRead(environmentId)
@@ -112,7 +112,7 @@ function subscribeHostLacksSetting(listener: () => void): () => void {
   }
 }
 
-/** Whether the paired host is an older Orca without the setting; false for no host. */
+/** Whether the paired host is an older Otodus without the setting; false for no host. */
 export function useHostLacksPRAutoRefresh(environmentId: string | null): boolean {
   return useSyncExternalStore(subscribeHostLacksSetting, () =>
     environmentId ? hostLacksPRAutoRefresh(environmentId) : false

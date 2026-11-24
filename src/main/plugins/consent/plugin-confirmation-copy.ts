@@ -37,7 +37,7 @@ function automationIdentity(automation: PluginConfirmationAutomation): string {
       )
 }
 
-/** The question Orca shows for a plugin's request. */
+/** The question Otodus shows for a plugin's request. */
 export function pluginConfirmationCopy(
   pluginName: string,
   subject: PluginConfirmationSubject

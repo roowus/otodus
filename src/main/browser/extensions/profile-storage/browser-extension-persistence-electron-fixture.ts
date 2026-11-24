@@ -33,9 +33,9 @@ if (
 const fixtureStatusPath = statusPath
 const fixtureExtensionDirectory = extensionDirectory
 
-// Orca's preflight registers this before ready; the worker shim calls main through it.
+// Otodus's preflight registers this before ready; the worker shim calls main through it.
 protocol.registerSchemesAsPrivileged([BROWSER_EXTENSION_API_CUSTOM_SCHEME])
-// Orca sets this before ready; the tab's guest policies read it as its first load starts.
+// Otodus sets this before ready; the tab's guest policies read it as its first load starts.
 initializeBrowserProcessUserAgent('clean')
 
 const presentationCalls: string[] = []
@@ -84,7 +84,7 @@ function capture(message: string): void {
         key === 'commands' ? [...(Array.isArray(status[key]) ? status[key] : []), value] : value
       writeStatus()
       // Why quit, not exit: will-quit flushes the extension state the second launch replays; sync
-      // storage saves last, as Orca's quit does.
+      // storage saves last, as Otodus's quit does.
       if (key === 'setup' && phase === 'first') {
         setTimeout(
           () => void closeBrowserExtensionProfileDocumentStores().then(() => app.quit()),
@@ -95,14 +95,14 @@ function capture(message: string): void {
   }
 }
 
-/** Orca's main window with one registered tab on `url`, made active the way the renderer does. */
+/** Otodus's main window with one registered tab on `url`, made active the way the renderer does. */
 async function openTab(url: string): Promise<Electron.WebContents> {
   const host = new BrowserWindow({
     show: false,
     webPreferences: { contextIsolation: true, sandbox: true, webviewTag: true }
   })
   trackBrowserExtensionMainWindow(host)
-  // What Orca's main window does when a tab attaches in a browser profile.
+  // What Otodus's main window does when a tab attaches in a browser profile.
   host.webContents.on('will-attach-webview', (_event, _webPreferences, params) => {
     browserSessionRegistry.attachExtensions('default')
     holdWebviewFirstLoadForExtensions(host.webContents, 'default', params)
@@ -162,7 +162,7 @@ async function run(): Promise<void> {
   } as unknown as Electron.ContextMenuParams
   status.menu = buildBrowserExtensionPageContextMenu(guest, params)?.groups ?? null
   writeStatus()
-  // An extension command, then one Orca owns (Mod+Shift+F), typed into the tab.
+  // An extension command, then one Otodus owns (Mod+Shift+F), typed into the tab.
   const mod = process.platform === 'darwin' ? 'meta' : 'control'
   for (const keyCode of ['L', 'F']) {
     guest.sendInputEvent({ type: 'keyDown', keyCode, modifiers: [mod, 'shift'] })

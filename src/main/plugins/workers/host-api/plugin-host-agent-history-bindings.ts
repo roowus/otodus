@@ -65,7 +65,7 @@ async function namedWorkspace(
   return shown
 }
 
-/** The sessions Orca panes on this computer run now, by agent and session id. */
+/** The sessions Otodus panes on this computer run now, by agent and session id. */
 function runningSessions(rows: readonly PluginAgentStatusRow[]): Set<string> {
   return new Set(
     rows
@@ -110,7 +110,7 @@ export const PLUGIN_AGENT_HISTORY_HANDLERS = {
     const scope = params?.workspaceId
       ? await namedWorkspace(ctx, workspaces, params.workspaceId)
       : null
-    // Orca reads only this computer's history; another host's workspace has none here.
+    // Otodus reads only this computer's history; another host's workspace has none here.
     if (scope && !isLocalHistoryWorkspace(scope)) {
       return { sessions: [], truncated: false }
     }
@@ -133,7 +133,7 @@ export const PLUGIN_AGENT_HISTORY_HANDLERS = {
 } satisfies Record<string, BoundPluginHostMethod>
 
 /**
- * The history row `agent.resume` prepares for a session no Orca pane runs: the workspace's own
+ * The history row `agent.resume` prepares for a session no Otodus pane runs: the workspace's own
  * sessions first, then this computer's newest. Null when the history lists none, or the workspace
  * is on another host.
  */

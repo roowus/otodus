@@ -226,8 +226,8 @@ function firstPer(calls: HostCall[], keyOf: (call: HostCall) => string): HostCal
 const thisHostApi = `Host API ${PLUGIN_HOST_API_MAJOR}.${PLUGIN_HOST_API_MINOR}`
 
 /**
- * Host calls this Orca or the declared `engines.orca` cannot serve. Why errors only for unknown
- * and proposed methods: those fail on every released Orca, while a floor or surface miss may sit
+ * Host calls this Otodus or the declared `engines.orca` cannot serve. Why errors only for unknown
+ * and proposed methods: those fail on every released Otodus, while a floor or surface miss may sit
  * behind a guard or in code that surface never runs, which a text scan cannot see. An unknown call
  * is a warning once the plugin calls `orca.host.has` at all; a proposed one needs a literal guard.
  * Each deprecation warning starts `deprecated host method <name>`; catalog tooling matches it.
@@ -238,7 +238,7 @@ export async function pluginHostCallFindings(
 ): Promise<PluginHostCallFindings> {
   const { calls, guarded, detects, notes } = await scanHostCalls(manifest, read)
   const declared = manifest.engines.orca.slice(2)
-  // Why: on Orca before `host.has`, the guard throws, so it protects nothing.
+  // Why: on Otodus before `host.has`, the guard throws, so it protects nothing.
   const guardWorks = satisfiesOrcaEngineRange(declared, `>=${PLUGIN_HOST_HAS_SINCE}`)
   const errors: string[] = []
   const warnings: string[] = []
@@ -246,7 +246,7 @@ export async function pluginHostCallFindings(
     const spec = getPluginHostMethodSpec(call.name)
     let failure: string | null = null
     if (spec === null) {
-      failure = `${call.file}: calls host method "${call.name}", which Orca's ${thisHostApi} does not have; it is unreleased or misspelled`
+      failure = `${call.file}: calls host method "${call.name}", which Otodus's ${thisHostApi} does not have; it is unreleased or misspelled`
     } else if (spec.proposed) {
       failure = `${call.file}: calls proposed host method "${call.name}"; only development plugins (orca plugin dev) may call it until it is released`
     }
@@ -281,7 +281,7 @@ export async function pluginHostCallFindings(
       !(guardWorks && guarded.has(call.name))
     ) {
       warnings.push(
-        `engines.orca: must be at least >=${needs}, because ${call.file} calls host method "${call.name}", which needs Orca ${needs}; or guard the call with orca.host.has('${call.name}')${guardWorks ? '' : ` and engines.orca >=${PLUGIN_HOST_HAS_SINCE}, where orca.host.has arrived`}`
+        `engines.orca: must be at least >=${needs}, because ${call.file} calls host method "${call.name}", which needs Otodus ${needs}; or guard the call with orca.host.has('${call.name}')${guardWorks ? '' : ` and engines.orca >=${PLUGIN_HOST_HAS_SINCE}, where orca.host.has arrived`}`
       )
     }
   }

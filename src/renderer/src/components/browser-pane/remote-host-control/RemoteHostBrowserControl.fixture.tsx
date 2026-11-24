@@ -119,7 +119,7 @@ export const firstUseNotice = defineFixture({
   interact: toastMounted
 })
 
-/** Hosts Orca created itself keep their setting; only Stop is offered. */
+/** Hosts Otodus created itself keep their setting; only Stop is offered. */
 export const firstUseNoticeOrcaOwnedHost = defineFixture({
   width: 520,
   render: () => <Notice canDisallow={false} />,

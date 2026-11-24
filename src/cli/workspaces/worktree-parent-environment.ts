@@ -19,7 +19,7 @@ import { quoteCliCommandArgument } from '../arguments/shell-command-quote'
 import { describeClientEnvironment, environmentLabel } from './workspace-address'
 import { attachCliErrorData } from './worktree-setup-decision-recovery'
 
-/** The Orca a parent lives in: `local` or a saved environment's id. */
+/** The Otodus a parent lives in: `local` or a saved environment's id. */
 export type ParentEnvironment = { route: string; name: string }
 
 const LOCAL: ParentEnvironment = { route: LOCAL_ENVIRONMENT, name: LOCAL_ENVIRONMENT }
@@ -63,7 +63,7 @@ async function savedParentEnvironment(
 /**
  * Which environment `--parent-worktree` names, when that differs from the child's. Undefined keeps
  * same-environment parents. A caller-relative parent (active/current) is always on the caller's own
- * Orca, so against another environment it is implicitly `local`.
+ * Otodus, so against another environment it is implicitly `local`.
  */
 export async function resolveParentEnvironment(
   flags: Map<string, string | boolean>,
@@ -90,7 +90,7 @@ export async function resolveParentEnvironment(
   if (isCallerRelative(parentSelector) && named && named.route !== LOCAL_ENVIRONMENT) {
     throw new RuntimeClientError(
       'invalid_argument',
-      `--parent-worktree ${parentSelector} names the workspace containing this terminal or cwd, which is on this machine's own Orca, not ${named.name}.`,
+      `--parent-worktree ${parentSelector} names the workspace containing this terminal or cwd, which is on this machine's own Otodus, not ${named.name}.`,
       {
         nextSteps: [
           `Drop --parent-environment, or pass --parent-environment local.`,
@@ -118,7 +118,7 @@ function parentEnvironmentClient(
   )
 }
 
-/** Refuses before any request: an older child Orca would apply the rest and drop the parent. */
+/** Refuses before any request: an older child Otodus would apply the rest and drop the parent. */
 async function assertChildSavesCrossStoreParents(client: RuntimeClient): Promise<void> {
   const status = (await client.call<RuntimeStatus>('status.get')).result
   if (supportsCrossStoreLineage(status.capabilities)) {
@@ -127,7 +127,7 @@ async function assertChildSavesCrossStoreParents(client: RuntimeClient): Promise
   const environment = await describeClientEnvironment(client)
   throw new RuntimeClientError(
     'incompatible_runtime',
-    `Update Orca in ${environmentLabel(environment)} to nest workspaces under a parent in another environment. Nothing was changed.`,
+    `Update Otodus in ${environmentLabel(environment)} to nest workspaces under a parent in another environment. Nothing was changed.`,
     { environment: environment.id, requires: WORKTREE_CROSS_STORE_LINEAGE_RUNTIME_CAPABILITY }
   )
 }
@@ -237,7 +237,7 @@ export async function resolveCrossEnvironmentParent(
     if (!installationId) {
       throw new RuntimeClientError(
         'incompatible_runtime',
-        `Update Orca in ${environment.name} so workspaces in other environments can name it as a parent. Nothing was changed.`,
+        `Update Otodus in ${environment.name} so workspaces in other environments can name it as a parent. Nothing was changed.`,
         {
           environment: environment.route,
           requires: WORKTREE_CROSS_STORE_LINEAGE_RUNTIME_CAPABILITY
@@ -247,7 +247,7 @@ export async function resolveCrossEnvironmentParent(
     if (!ref) {
       throw new RuntimeClientError(
         'invalid_argument',
-        "Couldn't confirm the parent's workspace identity. Refresh it in the Orca app and try again."
+        "Couldn't confirm the parent's workspace identity. Refresh it in the Otodus app and try again."
       )
     }
     return ref

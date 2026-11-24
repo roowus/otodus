@@ -43,7 +43,7 @@ function readCopiedResourceSourcePath(managedHomePath: string, entryName: string
   }
 }
 
-/** The source an Orca fallback copy mirrors; null when the entry is a link or the user's own. */
+/** The source an Otodus fallback copy mirrors; null when the entry is a link or the user's own. */
 export async function readCopiedResourceSource(
   managedHomePath: string,
   entryName: string

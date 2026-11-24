@@ -36,7 +36,7 @@ afterEach(() => {
 it('consumes the shim marker before replacing a lifecycle command with root Electron', async () => {
   Object.defineProperty(process, 'platform', { value: 'darwin' })
   process.argv = ['/helper/node', '/app/cli.js', 'open', '--json']
-  vi.stubEnv('ORCA_CLI_ELECTRON_EXECUTABLE', '/Applications/Orca.app/Contents/MacOS/Orca')
+  vi.stubEnv('ORCA_CLI_ELECTRON_EXECUTABLE', '/Applications/Otodus.app/Contents/MacOS/Otodus')
   vi.stubEnv('ORCA_NODE_OPTIONS', '--max-old-space-size=2048')
   const replaced = new Error('Process replaced')
   let invocation:
@@ -51,8 +51,8 @@ it('consumes the shim marker before replacing a lifecycle command with root Elec
   expect(process.env.ORCA_CLI_ELECTRON_EXECUTABLE).toBeUndefined()
   expect(reenterPackagedElectron).toThrow(replaced)
   expect(invocation).toMatchObject({
-    file: '/Applications/Orca.app/Contents/MacOS/Orca',
-    args: ['/Applications/Orca.app/Contents/MacOS/Orca', '/app/cli.js', 'open', '--json'],
+    file: '/Applications/Otodus.app/Contents/MacOS/Otodus',
+    args: ['/Applications/Otodus.app/Contents/MacOS/Otodus', '/app/cli.js', 'open', '--json'],
     env: { ELECTRON_RUN_AS_NODE: '1', ORCA_NODE_OPTIONS: '--max-old-space-size=2048' }
   })
   expect(invocation?.env).not.toHaveProperty('ORCA_CLI_ELECTRON_EXECUTABLE')

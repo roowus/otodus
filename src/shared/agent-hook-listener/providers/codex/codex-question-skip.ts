@@ -29,7 +29,7 @@ export function codexRowAfterQuestionSkip(
       updateLead: false
     }
   )
-  // Carry only the row's identity, as Orca's other inferred restatements do.
+  // Carry only the row's identity, as Otodus's other inferred restatements do.
   return (
     payload && {
       paneKey: row.paneKey,

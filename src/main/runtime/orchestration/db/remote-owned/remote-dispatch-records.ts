@@ -160,7 +160,7 @@ export function recordRemoteDispatchReport(
 }
 
 /**
- * One stop intent from this Orca: owed until the server's ordinary stop proves the worker and its
+ * One stop intent from this Otodus: owed until the server's ordinary stop proves the worker and its
  * helpers stopped, even for a worker already finished, whose helpers may still run. A retry of an
  * intent keeps the count it was first given, so the server replays that stop instead of a new one.
  */

@@ -57,7 +57,7 @@ function lateWriterFilesystem(home: SkillHome): BundledSkillFilesystem {
   }
 }
 
-describe('per-skill silent update of unedited Orca copies', () => {
+describe('per-skill silent update of unedited Otodus copies', () => {
   it('updates every unedited skill, including CRLF legacy copies, and leaves nothing to ask', async () => {
     const home = await makeSkillHome()
     for (const name of NAMES) {
@@ -80,7 +80,7 @@ describe('per-skill silent update of unedited Orca copies', () => {
   it('updates only the unedited skill and leaves a repair and an edited copy to ask about', async () => {
     const home = await makeSkillHome()
     await writeCopy(skillPath(home, 'shared', 'alpha'), text('alpha', 'old'))
-    // An interrupted swap: the target is gone and Orca's old copy waits to be restored.
+    // An interrupted swap: the target is gone and Otodus's old copy waits to be restored.
     await writeCopy(join(dirname(home.shared), '.bravo.orca-old-1'), text('bravo', 'old'))
     await writeCopy(skillPath(home, 'shared', 'charlie'), text('charlie', 'my own notes'))
 

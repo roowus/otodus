@@ -49,7 +49,7 @@ export function wslHostUnavailableForPhoneMessage(distro: string): string {
 }
 
 export function wslHostRemovalPendingMessage(distro: string): string {
-  return `Orca didn’t finish removing the WSL host ${distro}. Remove it again in Settings → Remote Orca Servers, or connect it to keep it.`
+  return `Otodus didn’t finish removing the WSL host ${distro}. Remove it again in Settings → Remote Orca Servers, or connect it to keep it.`
 }
 
 /**

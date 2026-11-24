@@ -81,7 +81,7 @@ export function useTerminalPrimarySelectionActions({
         // Why: the link opens on mouseup and its preventDefault blocks Chromium's paste, so nothing pastes here.
         return
       }
-      // Arm suppression for Chromium’s mouseup paste whenever Orca may paste; forward tracking-mode reports unless the selection modifier makes Orca the sole paste owner.
+      // Arm suppression for Chromium’s mouseup paste whenever Otodus may paste; forward tracking-mode reports unless the selection modifier makes Otodus the sole paste owner.
       armPrimarySelectionNativePasteSuppression()
       if (
         targetPane.terminal.modes.mouseTrackingMode !== 'none' &&

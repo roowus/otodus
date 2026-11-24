@@ -93,7 +93,7 @@ export async function structuredAgentHostAlternativeReady(
 }
 
 /** Admission's answer in the workspace `cwd` names: only a too-old or unstartable binary keeps the
- *  terminal, or, where Orca installs no release, a host program that cannot serve the chat. */
+ *  terminal, or, where Otodus installs no release, a host program that cannot serve the chat. */
 export async function structuredAgentSupportsLaunch(
   agent: string,
   cwd: () => Promise<string>,

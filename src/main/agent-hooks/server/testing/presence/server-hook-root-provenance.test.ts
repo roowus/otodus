@@ -43,7 +43,7 @@ vi.mock('../../../../../shared/agent-status/process/agent-process-presence-probe
 
 registerRootTestHarness()
 
-// Orca's own agent-teams launch sets this synthetic TMUX; its Claudes run in no tmux server.
+// Otodus's own agent-teams launch sets this synthetic TMUX; its Claudes run in no tmux server.
 const AGENT_TEAMS_HINT = '%1 /tmp/orca-claude-agent-teams/team-x'
 const unboundRoot = () => {
   runningPane(49969, CLAUDE)

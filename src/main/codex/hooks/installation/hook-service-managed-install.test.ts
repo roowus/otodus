@@ -107,7 +107,7 @@ describe('CodexHookService', () => {
 
     expect(status).toMatchObject({
       state: 'error',
-      detail: expect.stringContaining('defines hook approvals in a form Orca cannot add to')
+      detail: expect.stringContaining('defines hook approvals in a form Otodus cannot add to')
     })
     const managedToml = join(homes.userDataDir, 'codex-runtime-home', 'home', 'config.toml')
     expect(readFileSync(managedToml, 'utf-8')).not.toContain('[hooks.state.')
@@ -173,7 +173,7 @@ describe('CodexHookService', () => {
           prompt: '你好世界',
           hook_event_name: 'UserPromptSubmit'
         })
-        // Remove inherited Orca endpoints so the hook cannot post to the running app.
+        // Remove inherited Otodus endpoints so the hook cannot post to the running app.
         const cleanEnv = { ...process.env }
         for (const key of Object.keys(cleanEnv)) {
           if (key.startsWith('ORCA_')) {
@@ -207,7 +207,7 @@ describe('CodexHookService', () => {
     }
   )
 
-  it('keeps hooks isolated by Orca userData instead of mutating system ~/.codex', async () => {
+  it('keeps hooks isolated by Otodus userData instead of mutating system ~/.codex', async () => {
     const systemCodexHome = join(homes.tmpHome, '.codex')
     const systemHooksPath = join(systemCodexHome, 'hooks.json')
     const existingSystemHooks = '{"hooks":{"Stop":[{"hooks":[{"command":"user-hook"}]}]}}\n'

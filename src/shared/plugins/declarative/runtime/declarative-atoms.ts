@@ -147,7 +147,7 @@ export function derived<T>(compute: () => T): OrcaAtom<T> {
   return create(compute(), { readonly: true, compute })
 }
 
-/** A read-only atom only Orca updates (for example `ctx.visible`). */
+/** A read-only atom only Otodus updates (for example `ctx.visible`). */
 export function hostAtom<T>(initial: T): { atom: OrcaAtom<T>; set: (value: T) => void } {
   const result = create(initial, { readonly: true })
   return { atom: result, set: (value) => assign(result[ATOM], value, false) }

@@ -229,7 +229,7 @@ describe('remote host PR auto-refresh cadence sync', () => {
     stop()
   })
 
-  it('marks a host that answers without the setting (an older Orca) as lacking it, scheduled as Default', async () => {
+  it('marks a host that answers without the setting (an older Otodus) as lacking it, scheduled as Default', async () => {
     // An older host's settings.get has no prAutoRefresh key at all.
     const answers: { prAutoRefresh?: string }[] = [{}, { prAutoRefresh: 'reduced' }]
     const reader = vi.fn(async () => answers.shift() ?? {})

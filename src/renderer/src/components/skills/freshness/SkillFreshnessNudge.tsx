@@ -62,7 +62,7 @@ export function SkillFreshnessNudge(): null {
       }
       return
     }
-    // Unedited Orca copies update without consent; the nudge names only edited, unknown or broken ones.
+    // Unedited Otodus copies update without consent; the nudge names only edited, unknown or broken ones.
     const autoUpdating = autoUpdateUnmodifiedSkills(target, plan)
     // Fingerprint host, counted skills and offered bytes so changed bundles can prompt again.
     const fingerprint = bundledSkillNudgeKey(targetKey, plan, autoUpdating)
@@ -111,17 +111,20 @@ export function SkillFreshnessNudge(): null {
       names.size === 1
         ? translate(
             'auto.components.skills.SkillFreshnessNudge.titleOne',
-            'An installed Orca skill is out of date'
+            'An installed Otodus skill is out of date'
           )
         : translate(
             'auto.components.skills.SkillFreshnessNudge.title',
-            '{{count}} installed Orca skills are out of date',
-            { count: names.size, defaultValue_one: '{{count}} installed Orca skill is out of date' }
+            '{{count}} installed Otodus skills are out of date',
+            {
+              count: names.size,
+              defaultValue_one: '{{count}} installed Otodus skill is out of date'
+            }
           ),
       {
         description: translate(
           'auto.components.skills.SkillFreshnessNudge.description',
-          'Update {{value0}} so agents follow the current instructions for this version of Orca.',
+          'Update {{value0}} so agents follow the current instructions for this version of Otodus.',
           { value0: outdatedNames }
         ),
         // Keep the nudge until action; quitting records no dismissal, allowing one prompt next launch.

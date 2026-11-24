@@ -55,7 +55,7 @@ function tableNames(db: Database.Database): string[] {
 
 /**
  * Where an original chat's history stands: its epoch, input tip and outcome coverage. Every turn an
- * older Orca saves moves one of them, so an unchanged value means nothing new was written.
+ * older Otodus saves moves one of them, so an unchanged value means nothing new was written.
  */
 export function journalLegacyChatRevision(
   source: Database.Database,

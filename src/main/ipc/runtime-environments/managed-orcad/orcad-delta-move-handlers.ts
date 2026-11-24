@@ -92,7 +92,7 @@ function requireChangedHost(args: { sshTargetId: string } | undefined) {
   const store = targetStore.getOrcadMigrationSource()
   const target = store.getSshTarget(sshTargetId)
   if (!target?.orcadFence?.sourceChangedAt) {
-    throw new Error('This SSH host has no changes from an older Orca to resolve.')
+    throw new Error('This SSH host has no changes from an older Otodus to resolve.')
   }
   return { store, claims, target, environmentId: target.orcadFence.environmentId }
 }

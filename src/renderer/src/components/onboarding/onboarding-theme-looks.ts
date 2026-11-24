@@ -53,7 +53,7 @@ export type ThemeLook = {
   | { kind: 'terminal'; terminalThemeName: string }
 )
 
-// Popular community palettes Orca ships; Match Terminal turns each into a whole-app theme.
+// Popular community palettes Otodus ships; Match Terminal turns each into a whole-app theme.
 const TERMINAL_LOOKS: Record<ThemeLookBase, readonly string[]> = {
   dark: [
     'Catppuccin Mocha',
@@ -212,7 +212,7 @@ function terminalLook(name: string, base: ThemeLookBase, source: string): ThemeL
   }
 }
 
-/** Every look the theme step offers for one mode: Orca's own first, then installed plugin
+/** Every look the theme step offers for one mode: Otodus's own first, then installed plugin
  *  themes, then popular terminal palettes painted through Match Terminal. */
 export function buildThemeLooks(
   options: {

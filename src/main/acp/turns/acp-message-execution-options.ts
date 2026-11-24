@@ -86,7 +86,7 @@ export async function applyAcpMessageOptions(
   return true
 }
 
-/** Orca's own words name the agent and the next step; the agent's reply stays a diagnostic. */
+/** Otodus's own words name the agent and the next step; the agent's reply stays a diagnostic. */
 function modelCommandRefusal(
   error: AcpModelCommandRefusedError,
   value: string,
