@@ -7,7 +7,7 @@ import { NO_PLUGIN_LIST_FILTER, type PluginListFilter } from './plugin-list-filt
 function entry(pluginKey: string, categories: string[]): PluginListEntry {
   return pluginListEntryFromListing({
     marketplaceSourceId: 'community',
-    marketplaceName: 'Orca Community Plugins',
+    marketplaceName: 'Otodus Community Plugins',
     marketplaceOwner: 'stablyai',
     marketplaceCommit: 'c'.repeat(40),
     pluginKey,

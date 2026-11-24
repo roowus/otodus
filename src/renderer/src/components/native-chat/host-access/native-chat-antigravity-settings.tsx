@@ -7,7 +7,7 @@ import type { RuntimeClientTarget } from '../../../../../shared/remote-runtime/h
 import { NativeChatActionButton } from '../composer/controls/NativeChatActionButton'
 import { useNativeChatHostSetupView } from './native-chat-host-setup'
 
-/** Links Orca's own Antigravity sign-in; chats on the host's agy (`system`) use agy's instead. */
+/** Links Otodus's own Antigravity sign-in; chats on the host's agy (`system`) use agy's instead. */
 export function nativeChatAntigravitySignInContent(
   failureKind: string | undefined,
   agentName: string | undefined,

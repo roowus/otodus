@@ -119,7 +119,7 @@ export function unsupportedWslCliStatus(
   }
 }
 
-/** The distro was deleted (`wsl --unregister`), so nothing of Orca's is left in it. */
+/** The distro was deleted (`wsl --unregister`), so nothing of Otodus's is left in it. */
 export function deletedDistroWslCliStatus(distro: string): CliInstallStatus {
   return {
     platform: 'linux',
@@ -212,7 +212,7 @@ export async function resolveReadyWslCliState(args: {
     return {
       status: unsupportedWslCliStatus(
         'launcher_missing',
-        'WSL Windows interop is unavailable; Orca cannot launch the Windows CLI from WSL.'
+        'WSL Windows interop is unavailable; Otodus cannot launch the Windows CLI from WSL.'
       )
     }
   }

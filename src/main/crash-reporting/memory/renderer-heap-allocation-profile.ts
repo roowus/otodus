@@ -151,7 +151,7 @@ function startSampling(
   record: (data: CrashReportBreadcrumbData) => void
 ): void {
   const debug = renderer.debugger
-  // Only sees Orca's own debugger client (the lag capture); other CDP sessions are not visible here.
+  // Only sees Otodus's own debugger client (the lag capture); other CDP sessions are not visible here.
   if (debug.isAttached()) {
     return
   }

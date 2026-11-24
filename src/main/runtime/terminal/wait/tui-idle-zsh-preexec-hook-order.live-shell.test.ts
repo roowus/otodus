@@ -1,4 +1,4 @@
-/** STA-2380 (C1 F1): Orca's zsh OSC 133;C hook runs first in `preexec_functions`, so a later user or
+/** STA-2380 (C1 F1): Otodus's zsh OSC 133;C hook runs first in `preexec_functions`, so a later user or
  * framework preexec hook prints before the agent exists. Real zsh under the production wrapper, a
  * silent stand-in `claude`, then the captured bytes replayed through the real tui-idle wait. */
 import { chmodSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
@@ -69,7 +69,7 @@ add-zsh-hook preexec _p9k_preexec
     hookOutput: null
   },
   {
-    // zsh-you-should-use reminds about an alias from preexec: visible text after Orca's marker.
+    // zsh-you-should-use reminds about an alias from preexec: visible text after Otodus's marker.
     name: 'zsh-you-should-use preexec (prints) under an oh-my-zsh title',
     zshrc: `autoload -Uz add-zsh-hook
 _omz_termsupport_preexec() { print -Pn "\\e]2;claude\\a\\e]1;claude\\a" }
@@ -160,7 +160,7 @@ async function captureLaunch(hookCase: HookCase): Promise<Capture> {
         output += data
         // Ubuntu's global zshrc runs a plain compinit, which stops at its insecure-directory prompt
         // on CI runners before zle exists; answer it as zsh-startup-hook-pty-harness.ts does. The
-        // bytes land before Orca's OSC 133;C marker, so stream-offset attribution never sees them.
+        // bytes land before Otodus's OSC 133;C marker, so stream-offset attribution never sees them.
         if (!answeredCompinit && output.includes('Ignore insecure directories')) {
           answeredCompinit = true
           proc.write('y\r')
@@ -221,7 +221,7 @@ function splitAtAgentStart(chunks: readonly Chunk[]): SplitCapture {
   return { shell, agent }
 }
 
-/** The launch sequence as stream offsets over the joined bytes: Orca's command-start marker, then
+/** The launch sequence as stream offsets over the joined bytes: Otodus's command-start marker, then
  *  the user hook's output, then the agent's first byte and its composer. No assertion reads a PTY
  *  read boundary or a timestamp, so how the kernel chunked the stream cannot fail it (C3-1). */
 function assertLaunchOrder(chunks: readonly Chunk[], hookCase: HookCase): void {
@@ -234,7 +234,7 @@ function assertLaunchOrder(chunks: readonly Chunk[], hookCase: HookCase): void {
   expect(agentBytes.startsWith(AGENT_FIRST_BYTES)).toBe(true)
   expect(agentBytes).toContain(CLAUDE_COMPOSER_PROMPT)
   if (hookCase.hookOutput !== null) {
-    // The later hook printed after Orca's marker and before the agent existed: the C1 F1 shape.
+    // The later hook printed after Otodus's marker and before the agent existed: the C1 F1 shape.
     expect(shellBytes.indexOf(hookCase.hookOutput, commandStart)).toBeGreaterThan(commandStart)
   }
 }

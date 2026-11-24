@@ -34,7 +34,7 @@ async function findBundledHelper(filename: string): Promise<string | null> {
   return null
 }
 
-/** Runs a bundled guest helper on Orca's pinned Node inside the distro; returns its stdout. */
+/** Runs a bundled guest helper on Otodus's pinned Node inside the distro; returns its stdout. */
 export async function runWslGuestNodeHelper(args: {
   distro: string
   helperFilename: string
@@ -48,7 +48,7 @@ export async function runWslGuestNodeHelper(args: {
 }): Promise<string> {
   const helper = await findBundledHelper(args.helperFilename)
   if (!helper) {
-    throw new Error(`The bundled WSL ${args.helperLabel} helper is missing. Reinstall Orca.`)
+    throw new Error(`The bundled WSL ${args.helperLabel} helper is missing. Reinstall Otodus.`)
   }
   const requireRunning = args.requireRunning ?? (async () => {})
   const run = async (spec: WslSpec, timeoutMs?: number) => {

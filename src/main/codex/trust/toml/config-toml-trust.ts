@@ -115,7 +115,7 @@ export function assertLoadableHookTrustConfig(
 ): void {
   if (isLoadableToml(previous) && !isLoadableToml(contents)) {
     throw new CodexConfigTomlRefusedError(
-      `${configPath} defines hook approvals in a form Orca cannot add to without breaking it`
+      `${configPath} defines hook approvals in a form Otodus cannot add to without breaking it`
     )
   }
 }
@@ -180,7 +180,7 @@ export function upsertProjectTrustLevel(
 /**
  * Grants project trust and records the tables this grant created, so a removed
  * worktree's entry can be deleted later without touching a table that existed
- * at the path before Orca first wrote it.
+ * at the path before Otodus first wrote it.
  */
 const codexProjectTrustOwnership = createAgentTrustOwnershipLedger(
   'codex-project-trust-created.json',
@@ -214,7 +214,7 @@ export function upsertOrcaCreatedProjectTrustLevel(
 }
 
 /**
- * Removes every Orca-created project trust entry for `projectPath`, wherever
+ * Removes every Otodus-created project trust entry for `projectPath`, wherever
  * recorded. Never throws: removal rides the worktree-removal path, which must
  * not fail over a config file it cannot read — the record is kept so a later
  * pass retries. Resolves once every touched file has been written.
@@ -225,13 +225,16 @@ export async function removeOrcaCreatedProjectTrustEntries(projectPath: string):
       try {
         removeOrcaCreatedProjectTrustEntry(configPath, projectPath)
       } catch (error) {
-        console.warn('[codex-config] Failed to remove an Orca-created project trust entry:', error)
+        console.warn(
+          '[codex-config] Failed to remove an Otodus-created project trust entry:',
+          error
+        )
       }
     })
   }
 }
 
-// Why: the separator below a table belongs to what follows it, not to the table Orca wrote.
+// Why: the separator below a table belongs to what follows it, not to the table Otodus wrote.
 function withoutTrailingSeparator(bytes: string): string {
   return bytes.replace(/[\r\n]+$/, '')
 }
@@ -253,7 +256,7 @@ function removeOrcaCreatedProjectTrustEntry(configPath: string, projectPath: str
     currentTable === null ||
     withoutTrailingSeparator(currentTable) !== withoutTrailingSeparator(ownedTable)
   ) {
-    // Why: the bytes at the path are no longer what Orca wrote, so the record no longer vouches
+    // Why: the bytes at the path are no longer what Otodus wrote, so the record no longer vouches
     // for the table — dropping it keeps a later pass from deleting someone else's replacement.
     codexProjectTrustOwnership.forget(configPath, projectPath)
     return

@@ -11,7 +11,7 @@ const MIN_NODE = [20, 6] as const
 export type PluginTestNode = {
   /** Absolute path of the executable to run. */
   program: string
-  /** Extra environment: Orca's own runtime needs ELECTRON_RUN_AS_NODE to act as Node. */
+  /** Extra environment: Otodus's own runtime needs ELECTRON_RUN_AS_NODE to act as Node. */
   env: Record<string, string>
   source: 'system' | 'orca'
   version: string
@@ -41,7 +41,7 @@ function supports(version: string): boolean {
 }
 
 /**
- * The Node to run plugin tests with: the author's `node` when it is new enough, else Orca's own
+ * The Node to run plugin tests with: the author's `node` when it is new enough, else Otodus's own
  * runtime, so tests run on a machine with no Node installed. The probe asks `node` for its own
  * absolute path from an empty folder: on Windows a bare name resolves in the working directory
  * first, and the plugin folder may hold a planted `node.exe`.

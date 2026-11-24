@@ -40,7 +40,7 @@ describe('runRecipeCommand passEnv', () => {
     const limited = await runAndReadEnv(['ORCA_TEST_RECIPE_ALLOWED'])
     expect(limited.ORCA_TEST_RECIPE_API_KEY).toBeUndefined()
     expect(limited.ORCA_TEST_RECIPE_ALLOWED).toBe('allowed-value')
-    // Orca's own recipe variables are always set.
+    // Otodus's own recipe variables are always set.
     expect(limited.ORCA_VM_MODE).toBe('create')
     expect(limited.ORCA_RECIPE_ID).toBe('remote-vm')
   })

@@ -8,7 +8,7 @@ export function rejectedReportInTurn(
   turnStartedAt: number | undefined
 ): boolean {
   const dispatch = db.getDispatchContextById(dispatchId)
-  // The worker's own handle sent it, as when Orca restarted under its report; another terminal's says nothing.
+  // The worker's own handle sent it, as when Otodus restarted under its report; another terminal's says nothing.
   if (!dispatch?.assignee_handle || turnStartedAt === undefined) {
     return false
   }

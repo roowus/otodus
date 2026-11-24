@@ -76,11 +76,11 @@ export function parseArgs(argv) {
   return { ...opts, errors }
 }
 
-/** Default per-user oneClick install location: %LOCALAPPDATA%\Programs\Orca. */
+/** Default per-user oneClick install location: %LOCALAPPDATA%\Programs\Otodus. */
 function defaultInstallDir() {
   const localAppData =
     process.env.LOCALAPPDATA ?? path.join(process.env.USERPROFILE ?? '', 'AppData', 'Local')
-  return path.join(localAppData, 'Programs', 'Orca')
+  return path.join(localAppData, 'Programs', 'Otodus')
 }
 
 /** True if `child` is equal to, inside, or an ancestor of `parent` (case-insensitive). */
@@ -101,7 +101,9 @@ function pathsOverlap(a, b) {
 
 /** A prior harness install directory carries both the app exe and its uninstaller. */
 function looksLikeHarnessInstall(dir) {
-  return existsSync(path.join(dir, 'Orca.exe')) && existsSync(path.join(dir, 'Uninstall Orca.exe'))
+  return (
+    existsSync(path.join(dir, 'Otodus.exe')) && existsSync(path.join(dir, 'Uninstall Otodus.exe'))
+  )
 }
 
 // Isolated /D must be last/unquoted, spaces-free, disjoint from the real install and not an unrelated nonempty directory.
@@ -140,7 +142,7 @@ export function validateInstallDir(installDir) {
     if (entries.length > 0 && !looksLikeHarnessInstall(installDir)) {
       errors.push(
         `--install-dir "${installDir}" is a non-empty directory that does not look like a ` +
-          `prior harness install (no Orca.exe + "Uninstall Orca.exe"). Refusing to overwrite ` +
+          `prior harness install (no Otodus.exe + "Uninstall Otodus.exe"). Refusing to overwrite ` +
           `unrelated files. Point at an empty or non-existent directory.`
       )
     }

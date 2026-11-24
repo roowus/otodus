@@ -32,7 +32,7 @@ const ANSI_PALETTE_KEYS = [
   'brightWhite'
 ] as const satisfies readonly (keyof ITheme)[]
 
-// Why: the default terminal themes already carry ANSI palettes tuned for Orca's dark and light surfaces.
+// Why: the default terminal themes already carry ANSI palettes tuned for Otodus's dark and light surfaces.
 const ANSI_PALETTES = {
   dark: ANSI_PALETTE_KEYS.map((key) => getTheme(DEFAULT_TERMINAL_THEME_DARK)?.[key]),
   light: ANSI_PALETTE_KEYS.map((key) => getTheme(DEFAULT_TERMINAL_THEME_LIGHT)?.[key])

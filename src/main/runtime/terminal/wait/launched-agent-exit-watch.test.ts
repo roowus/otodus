@@ -14,7 +14,7 @@ vi.mock('electron', () => ({
   app: { getPath: vi.fn(() => '/tmp') }
 }))
 
-// Raw bytes from zsh under Orca's wrapper in a PTY.
+// Raw bytes from zsh under Otodus's wrapper in a PTY.
 const ZSH_PROMPT = '\x1b]133;A\x07\r\x1b[0m\x1b[27m\x1b[24m\x1b[Jplain% \x1b[K\x1b[?2004h'
 const ZSH_RUNS_LAUNCH_LINE =
   "c\x08cursor-agent '--model' 'not-a-model'\x1b[?2004l\r\r\n\x1b]133;C\x07"

@@ -115,22 +115,23 @@ describe('hydrateLocalPtyRegistryAtBoot', () => {
 
   it('fails closed when live worktrees collide on one normalized key', async () => {
     const { hydrate, listRegisteredPtys } = await loadFresh()
-    const ptyId = 'repo-a::C:/Users/Neil/Orca@@cafebabe'
+    const ptyId = 'repo-a::C:/Users/Neil/Otodus@@cafebabe'
     getDaemonProviderMock.mockReturnValue(
       makeProvider([
-        { sessionId: ptyId, pid: 4242, cwd: 'C:/Users/Neil/Orca' } as unknown as SessionInfo
+        // oxlint-disable-next-line typescript/consistent-type-assertions -- SAFETY: partial SessionInfo fixture; the daemon provider reads only these fields
+        { sessionId: ptyId, pid: 4242, cwd: 'C:/Users/Neil/Otodus' } as unknown as SessionInfo
       ])
     )
     listLocalRepoWorktreesStrictMock.mockResolvedValue([
       {
-        path: 'C:/Users/Neil/Orca',
+        path: 'C:/Users/Neil/Otodus',
         head: '',
         branch: '',
         isBare: false,
         isMainWorktree: true
       },
       {
-        path: 'c:\\users\\neil\\orca',
+        path: 'c:\\users\\neil\\otodus',
         head: '',
         branch: '',
         isBare: false,
@@ -138,7 +139,7 @@ describe('hydrateLocalPtyRegistryAtBoot', () => {
       }
     ])
 
-    await hydrate(makeStore([{ id: 'repo-a', path: 'C:/Users/Neil/Orca' }]))
+    await hydrate(makeStore([{ id: 'repo-a', path: 'C:/Users/Neil/Otodus' }]))
 
     expect(listRegisteredPtys()).toHaveLength(0)
   })

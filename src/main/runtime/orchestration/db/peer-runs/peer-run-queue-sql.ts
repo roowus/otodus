@@ -2,8 +2,8 @@ import type Database from '../../../../sqlite/sync-database'
 import { REMOTE_OWNED_WIRE_VERSION } from '../../../../../shared/orchestration/remote-owned-wire'
 
 /**
- * A Run here whose coordinator is a paired Orca, keyed by the conversation its queue goes home
- * under. It outlives this Orca's resets, so the conversation keeps its Run ID and its sequence.
+ * A Run here whose coordinator is a paired Otodus, keyed by the conversation its queue goes home
+ * under. It outlives this Otodus's resets, so the conversation keeps its Run ID and its sequence.
  * Each conversation's next `to_home` sequence is persistent too, so a reset never reuses one.
  * A worker message's Dispatch is recorded when it is filed, before any reroute into the Run.
  */

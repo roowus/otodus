@@ -2,7 +2,7 @@ import type { BrowserGuestDiscardProtection } from '../../../../../shared/browse
 
 type IdleProtection = { audibleChangedAt: number | null; backgroundActivity: boolean }
 const idleProtection = new WeakMap<Electron.WebContents, IdleProtection>()
-// Orca's page visibility, not the native window's: a page shown in a minimized window stays visible.
+// Otodus's page visibility, not the native window's: a page shown in a minimized window stays visible.
 const semanticVisibility = new WeakMap<Electron.WebContents, boolean>()
 const notificationGrants = new WeakMap<Electron.Session, (pageUrl: string) => boolean>()
 const RECENT_AUDIO_MS = 60_000
@@ -60,7 +60,7 @@ export function readBrowserGuestIdleProtection(
   if (owner.backgroundActivity) {
     return result('background-activity')
   }
-  // Partitions without Orca's permission handler deny notifications.
+  // Partitions without Otodus's permission handler deny notifications.
   if (notificationGrants.get(guest.session)?.(url)) {
     return result('notifications')
   }

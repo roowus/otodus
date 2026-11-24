@@ -23,7 +23,7 @@ instruments:
   and returns correct output" but flashes a window is still caught, because the
   window watch runs independently.
 - **The daemon is identified by command-line marker, never by exe name.** With
-  `ELECTRON_RUN_AS_NODE` the daemon image is `Orca.exe`; a relocated
+  `ELECTRON_RUN_AS_NODE` the daemon image is `Otodus.exe`; a relocated
   host may be a differently-named copied binary. See `daemon-processes.mjs`.
 - **Each run uses an isolated userData dir** so its daemon's socket/token path
   is unique and never collides with the many other daemons a dev box or CI
@@ -151,7 +151,7 @@ node tests/tools/win-update-e2e/registry-shortcut-backup.mjs
    pre-existing Orca _app_ process (not a daemon) is running that the harness
    did not start (it is printed and the run aborts — the harness never kills a
    user's processes); snapshot the baseline set of visible top-level windows.
-2. **Install N** silently (`<setup.exe> /S`) and locate `Orca.exe`.
+2. **Install N** silently (`<setup.exe> /S`) and locate `Otodus.exe`.
 3. **Launch** the installed app (Playwright `_electron`, isolated userData),
    create ≥2 terminals, start a **marker** in one: a `powershell` loop that sets
    a unique window-title **canary**, records its PID, and heartbeats a file.

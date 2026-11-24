@@ -34,7 +34,7 @@ export type ClaudeSessionMoveCandidate = {
 }
 
 /** Match npm Claude by its fresh command line: generic node/python may now run user programs.
- *  Agent Teams: a packaged `orca claude-teams` leads the foreground as `Orca`, a name any `orca` command shares. */
+ *  Agent Teams: a packaged `orca claude-teams` leads the foreground as `Otodus`, a name any `orca` command shares. */
 function isClaudeProcess(processName: string | null, agentTeams: boolean): boolean {
   const agent = recognizeAgentProcess(processName)?.agent
   return agent === 'claude' || (agentTeams && agent === 'claude-agent-teams')
@@ -74,7 +74,7 @@ export type LocalClaudePane = ClaudeSessionMoveCandidate & {
   sessionId: string | undefined
   /** False when neither a live row nor a saved record names the session, so no restart can resume it. */
   resumable: boolean
-  /** A live process read, since any Orca command shares Agent Teams' executable name. */
+  /** A live process read, since any Otodus command shares Agent Teams' executable name. */
   agentTeams: boolean
 }
 

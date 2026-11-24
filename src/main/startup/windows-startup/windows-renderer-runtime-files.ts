@@ -38,9 +38,9 @@ export function ensureWindowsRendererRuntimeFiles(isServeMode: boolean): boolean
     return true
   }
   const message =
-    `Orca's installation is incomplete: ${fileName} is missing, empty, or in use. ` +
-    'If Orca is updating, wait for the installer to finish, then open Orca again. ' +
-    'Otherwise, reinstall Orca.'
+    `Otodus's installation is incomplete: ${fileName} is missing, empty, or in use. ` +
+    'If Otodus is updating, wait for the installer to finish, then open Otodus again. ' +
+    'Otherwise, reinstall Otodus.'
   console.error(`[startup] ${message}`)
   handleMainProcessPreflightFailure(new Error(message))
   return false

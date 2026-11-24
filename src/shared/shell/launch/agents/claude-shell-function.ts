@@ -1,4 +1,4 @@
-/** Re-read account selection on every launch in Orca-routed panes with a real claude binary. Missing/empty pointer restores the user’s config; another pane override wins. Create account homes without a login silently and preserve Anthropic auth. Refuse nonabsolute pointers rather than run under the wrong account. */
+/** Re-read account selection on every launch in Otodus-routed panes with a real claude binary. Missing/empty pointer restores the user’s config; another pane override wins. Create account homes without a login silently and preserve Anthropic auth. Refuse nonabsolute pointers rather than run under the wrong account. */
 export function getPosixClaudeShellFunction(): string {
   return `__orca_claude_binary="$(unalias claude 2>/dev/null || :; command -v claude 2>/dev/null || :)"
 # Why typeset -f: a user's own claude function wins; command -v prints its bare name, which -x tests against the cwd.
@@ -13,7 +13,7 @@ if ! typeset -f claude >/dev/null 2>&1 && [[ -n "\${ORCA_CLAUDE_PROFILE_POINTER:
       command claude "$@"; return
     fi
     # Why exec: bash can keep the subshell leading Claude's foreground group; zsh exec runs functions, hence unset -f.
-    # Why: Orca's value replaced the user's own at spawn, so System default restores theirs.
+    # Why: Otodus's value replaced the user's own at spawn, so System default restores theirs.
     if [ -z "$__orca_claude_home" ] && [ -n "\${CLAUDE_CONFIG_DIR:-}" ] && [ -n "\${ORCA_CLAUDE_USER_CONFIG_DIR:-}" ]; then
       ( unset ORCA_CLAUDE_INJECTED_CONFIG_DIR; export CLAUDE_CONFIG_DIR="$ORCA_CLAUDE_USER_CONFIG_DIR"; unset -f claude; exec claude "$@" ); return
     fi
@@ -21,7 +21,7 @@ if ! typeset -f claude >/dev/null 2>&1 && [[ -n "\${ORCA_CLAUDE_PROFILE_POINTER:
       ( unset CLAUDE_CONFIG_DIR ORCA_CLAUDE_INJECTED_CONFIG_DIR; unset -f claude; exec claude "$@" ); return
     fi
     case "$__orca_claude_home" in /*|[A-Za-z]:*) ;; *) return 1 ;; esac
-    # Why -m 700: matches the folder Orca's setup creates; a credentials folder stays private.
+    # Why -m 700: matches the folder Otodus's setup creates; a credentials folder stays private.
     [ -d "$__orca_claude_home" ] || mkdir -p -m 700 -- "$__orca_claude_home" 2>/dev/null
     ( export CLAUDE_CONFIG_DIR="$__orca_claude_home" ORCA_CLAUDE_INJECTED_CONFIG_DIR="$__orca_claude_home"; unset -f claude; exec claude "$@" )
   }

@@ -20,7 +20,7 @@ function folderSetupHost(repo: WorkspaceHookOwner | null | undefined): FolderSet
     return { kind: 'known', supported: true }
   }
   const host = parseExecutionHostId(getRepoExecutionHostId(repo))
-  // An unserved SSH folder runs no hooks; its files aren't on a host Orca runs scripts on.
+  // An unserved SSH folder runs no hooks; its files aren't on a host Otodus runs scripts on.
   if (host?.kind === 'ssh') {
     return { kind: 'known', supported: false }
   }

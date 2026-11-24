@@ -26,7 +26,7 @@ import {
 export const JOURNAL_LEGACY_REVISIONS_KEPT = 'journal.legacy-revisions-kept.v1'
 
 /**
- * An older Orca keeps writing the original journal after a downgrade. When the original changed,
+ * An older Otodus keeps writing the original journal after a downgrade. When the original changed,
  * each original chat's revision is compared with the one this file shows: a chat it started, or
  * one not converted here yet, joins as itself; a converted chat it continued is kept as a second
  * chat beside it, so no turn it saved goes missing. Nothing here deletes a chat or its turns.
@@ -112,7 +112,7 @@ function absorbChats(source: Database.Database, db: Database.Database, pass: Pas
       complete = false
       // The failed chat's transaction rolled back; reread what this file now holds.
       adoption = readAdoption(source, db)
-      console.warn('[agent-session-journal] keeping an older Orca chat failed', error)
+      console.warn('[agent-session-journal] keeping an older Otodus chat failed', error)
     }
   }
   return complete
@@ -318,7 +318,7 @@ function heldEveryItem(
   )
 }
 
-/** Uploads the older Orca attached stay claimed, so the sweeper never removes them. */
+/** Uploads the older Otodus attached stay claimed, so the sweeper never removes them. */
 function insertClaims(db: Database.Database, sessionId: string, claims: readonly Claim[]): void {
   const insert = db.prepare(`INSERT INTO agent_session_attachment_claims(upload_id,session_id,
     claimed_at) VALUES(?,?,?) ON CONFLICT DO NOTHING`)

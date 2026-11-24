@@ -103,7 +103,7 @@ export class CodexManagedHomePath {
     if (!this.pathsEqual(account.managedHomePath, expectedPath)) {
       throw originalError
     }
-    // Recreate missing homes only at this account's exact persisted Orca path.
+    // Recreate missing homes only at this account's exact persisted Otodus path.
     mkdirSync(expectedPath, { recursive: true })
     writeFileSync(join(expectedPath, '.orca-managed-home'), `${account.id}\n`, 'utf-8')
     return this.assert(expectedPath, account.id)
@@ -197,7 +197,7 @@ export class CodexManagedHomePath {
     }
     const markerPath = join(candidatePath, '.orca-managed-home')
     if (!existsSync(markerPath)) {
-      throw new Error('Managed Codex home is missing Orca ownership marker.')
+      throw new Error('Managed Codex home is missing Otodus ownership marker.')
     }
     if (
       expectedAccountId !== undefined &&

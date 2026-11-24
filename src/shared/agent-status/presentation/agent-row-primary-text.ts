@@ -19,7 +19,7 @@ const ATTACHED_FILE_CLOSER = '</file>'
 // Openers people don't type: a keyed object, an array of objects or strings, an XML or HTML document.
 const PASTED_DATA_LEAD = /^(?:\{\s*"[^"]*"\s*:|\[\s*\{\s*"|\[\s*"[^"]*"\s*,|<\?xml\s|<!doctype\s)/i
 
-/** True when the live prompt is still an Orca dispatch turn (not sticky metadata alone). */
+/** True when the live prompt is still an Otodus dispatch turn (not sticky metadata alone). */
 export function isOrcaDispatchPrompt(prompt: string): boolean {
   return findOrcaDispatchPreambleStart(prompt) !== -1
 }

@@ -37,7 +37,7 @@ export async function reapLeftoverMacOSPermissionStatusHelpers(): Promise<void> 
     if (!statusPath) {
       continue
     }
-    // A probe deletes its directory when it finishes, so a young probe with one may still be live in another Orca.
+    // A probe deletes its directory when it finishes, so a young probe with one may still be live in another Otodus.
     if (
       elapsedSeconds(match[3]) < LEFTOVER_PROBE_MIN_AGE_SECONDS &&
       (await probeDirectoryMayExist(dirname(statusPath)))

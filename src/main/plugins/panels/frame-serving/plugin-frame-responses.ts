@@ -34,7 +34,7 @@ export function readRange(
   return start <= end && start < size ? { start, end } : null
 }
 
-/** A response for bytes already in memory (checked types and Orca's own files). */
+/** A response for bytes already in memory (checked types and Otodus's own files). */
 export function bufferedResponse(
   request: Request,
   contentType: string,

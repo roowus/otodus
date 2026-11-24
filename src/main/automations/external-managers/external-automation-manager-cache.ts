@@ -1,4 +1,4 @@
-// Provider failures affect only their owner/provider cache entry, never Orca storage health.
+// Provider failures affect only their owner/provider cache entry, never Otodus storage health.
 
 import type { ExternalAutomationManager } from '../../../shared/automations/external/external-automation'
 import { isExternalAutomationProbeCancelled } from './external-automation-probe-scheduler'

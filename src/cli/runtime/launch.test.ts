@@ -84,7 +84,7 @@ describe('serveOrcaApp', () => {
   beforeEach(() => {
     spawnMock.mockReset()
     spawnSyncMock.mockReset()
-    process.env.ORCA_APP_EXECUTABLE = '/Applications/Orca.app/Contents/MacOS/Orca'
+    process.env.ORCA_APP_EXECUTABLE = '/Applications/Otodus.app/Contents/MacOS/Otodus'
     process.env.ORCA_SERVE_RUNTIME = 'electron'
     process.env.ORCA_USER_DATA_PATH = PROFILE
   })

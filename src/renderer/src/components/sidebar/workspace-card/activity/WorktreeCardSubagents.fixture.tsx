@@ -59,7 +59,7 @@ function setupRows(worktreeId: string) {
     tabId: tab.id,
     agentType: 'claude',
     state: 'working',
-    prompt: 'Orca plugin architecture review',
+    prompt: 'Otodus plugin architecture review',
     updatedAt: now,
     stateStartedAt: now - 5 * HOUR,
     stateHistory: [],

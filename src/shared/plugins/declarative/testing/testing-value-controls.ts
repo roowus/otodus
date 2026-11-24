@@ -41,7 +41,7 @@ function fallbackOf(element: TestElement): ControlValue {
 }
 
 /**
- * What Orca shows in each value control, owned as Orca owns it: an edit stays until the panel
+ * What Otodus shows in each value control, owned as Otodus owns it: an edit stays until the panel
  * renders a value having seen it (see the edit protocol in the components runtime).
  */
 export function createValueControls() {

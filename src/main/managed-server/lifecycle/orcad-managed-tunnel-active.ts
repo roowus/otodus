@@ -144,7 +144,7 @@ export function recordActiveOrcadTunnel(
 /** Superseded builds must not report success. */
 class OrcadTunnelSupersededError extends Error {
   constructor() {
-    super('Orca SSH tunnel setup was superseded.')
+    super('Otodus SSH tunnel setup was superseded.')
     this.name = 'OrcadTunnelSupersededError'
   }
 }

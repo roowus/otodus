@@ -18,7 +18,7 @@ import {
   type PluginDevWatchShotHost
 } from './plugin-dev-watch-shot'
 
-/** What the loop asks of the Orca host; the handler binds it to RPC for one folder. */
+/** What the loop asks of the Otodus host; the handler binds it to RPC for one folder. */
 export type PluginDevWatchHost = {
   refreshTypes(): Promise<string[]>
   /** `approvalFingerprint` overrides `--approve` once the person approved at the prompt. */
@@ -88,7 +88,7 @@ function findEntry(
   return strays.length === 1 ? strays[0] : undefined
 }
 
-/** A check that renders still fails while Orca itself does not run the plugin. */
+/** A check that renders still fails while Otodus itself does not run the plugin. */
 function checkEvent(
   pluginKey: string,
   result: PluginDevWatchCheckResult,

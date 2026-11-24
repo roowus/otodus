@@ -20,7 +20,7 @@ export type PiRpcLaunchOptions = {
   envToDelete?: readonly string[]
   sessionFile?: string
   forkFile?: string
-  /** Orca's background-work bridge for this launch; absent when it could not be prepared. */
+  /** Otodus's background-work bridge for this launch; absent when it could not be prepared. */
   backgroundWork?: PiBackgroundWorkLaunch
 }
 

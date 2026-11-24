@@ -110,7 +110,7 @@ export function claudeStructuredPermissionOptions(
 }
 
 export type ClaudeStructuredLaunch = {
-  /** Always Orca's resolved user CLI: the SDK's bundled binaries are excluded from the install. */
+  /** Always Otodus's resolved user CLI: the SDK's bundled binaries are excluded from the install. */
   pathToClaudeCodeExecutable: string
   prefixArgs?: readonly string[]
   account?: ClaudeStructuredInvocation['account']
@@ -298,7 +298,7 @@ export function claudeStructuredLaunchPart(
             ...permission.extraArgs,
             ...thinkingDisplayArgs
           },
-          // Claude owns where a resumed conversation continues; the stored leaf is Orca's bookkeeping.
+          // Claude owns where a resumed conversation continues; the stored leaf is Otodus's bookkeeping.
           ...(resumesTranscript
             ? { resume: providerSessionId }
             : { sessionId: providerSessionId, ...(fork ? claudeRewindForkOptions(fork) : {}) })

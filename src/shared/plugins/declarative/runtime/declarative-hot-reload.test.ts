@@ -46,7 +46,7 @@ describe('dev hot reload of keyed memory atoms', () => {
     runtime.dispose()
   })
 
-  it('posts keyed memory changes only once Orca asks, and non-JSON values as a drop', () => {
+  it('posts keyed memory changes only once Otodus asks, and non-JSON values as a drop', () => {
     vi.useFakeTimers()
     const { runtime, send, retained } = booted()
     const count = atom('hot.count', 0)

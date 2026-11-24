@@ -20,7 +20,7 @@ export type PluginWorkerSpawnSpec = {
   grantedCapabilities: readonly PluginCapabilityKind[]
   /** A development plugin: `host.has` also answers for proposed methods. */
   allowProposed?: true
-  /** Not reaped when idle: Orca waits on it (hooks), so a cold start must not be on that path. */
+  /** Not reaped when idle: Otodus waits on it (hooks), so a cold start must not be on that path. */
   keepWarm?: true
 }
 

@@ -6,9 +6,9 @@ const LIBRISPEECH_CLIPS = 73
 const FLEURS_CLIPS = 5
 const CHARACTER_SCORED = new Set(['ja', 'ko', 'zh'])
 
-// Orca's speech bench: transcribe-cpp 0.4.1 with Metal on an M4 Max, the catalog's pinned GGUF
+// Otodus's speech bench: transcribe-cpp 0.4.1 with Metal on an M4 Max, the catalog's pinned GGUF
 // files, one run per clip. English is LibriSpeech (73 clips); other languages are FLEURS dev
-// (5 clips each, so rough). Each clip's language was sent the way Orca sends it; Parakeet ignores it.
+// (5 clips each, so rough). Each clip's language was sent the way Otodus sends it; Parakeet ignores it.
 const MEASURED = {
   'parakeet-tdt-0.6b-v3-int8': [
     ['en', 3.7, '2026-11-06'],

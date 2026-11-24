@@ -10,7 +10,7 @@ import {
 } from './environment-doctor-check'
 import type { GitCheckoutProbe } from './environment-doctor-git'
 
-// Orca writes .cmd or .sh on Windows depending on the script's shell, so look for both.
+// Otodus writes .cmd or .sh on Windows depending on the script's shell, so look for both.
 const SETUP_RUNNER_NAMES = ['orca/setup-runner.sh', 'orca/setup-runner.cmd'] as const
 
 export async function checkSetup(

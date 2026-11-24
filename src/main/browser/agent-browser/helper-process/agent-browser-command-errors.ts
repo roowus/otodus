@@ -15,7 +15,7 @@ export function isTabClosedTransportError(message: string): boolean {
   )
 }
 
-/** agent-browser's handshake error when Orca's CDP proxy refuses its endpoint (wrong or missing token). */
+/** agent-browser's handshake error when Otodus's CDP proxy refuses its endpoint (wrong or missing token). */
 export function isCdpProxyRejectedError(message: string): boolean {
   return /websocket connect failed\b.*\b40[34]\b/i.test(message)
 }

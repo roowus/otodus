@@ -62,7 +62,7 @@ export type FleetLiveness =
         | 'host_unavailable'
         /** The host answered and lacks the fleet-snapshot capability; contact was never lost. */
         | 'capability_unsupported'
-        /** Orca's own fleet budget ran out before it asked the host anything. */
+        /** Otodus's own fleet budget ran out before it asked the host anything. */
         | 'home_budget_exhausted'
         /** The host answered and could not tell; contact was never lost. */
         | 'host_indeterminate'
@@ -123,7 +123,7 @@ export type OrchestrationFleetWorker = {
     lastObservedAt: number | null
   }
   resource: FleetResourceProjection
-  /** When Orca releases this settled worker's terminal on its own, from the host that owns it. */
+  /** When Otodus releases this settled worker's terminal on its own, from the host that owns it. */
   autoReleaseAt?: string
   nextAction: FleetNextAction
   attention: OrchestrationFleetAttention

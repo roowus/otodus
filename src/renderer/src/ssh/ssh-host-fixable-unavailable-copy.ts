@@ -10,7 +10,7 @@ export function hostFixableUnavailableText(
     case 'runtime_noexec':
       return t(
         'auto.components.settings.sshHostServer.runtimeNoexec',
-        'This host doesn’t allow running programs from ~/.orca-remote, so Orca can’t start its server there. This usually means the home folder is mounted with noexec. Ask the host’s administrator to allow running programs there, then connect again.'
+        'This host doesn’t allow running programs from ~/.orca-remote, so Otodus can’t start its server there. This usually means the home folder is mounted with noexec. Ask the host’s administrator to allow running programs there, then connect again.'
       )
     case 'windows_build_unsupported':
       return t(
@@ -20,7 +20,7 @@ export function hostFixableUnavailableText(
     case 'windows_no_extractor':
       return t(
         'auto.components.settings.sshHostServer.windowsNoExtractor',
-        'This Windows host has neither tar.exe nor PowerShell’s Expand-Archive, so Orca can’t unpack its server there. Install Windows PowerShell 5.1 on the host, then connect again.'
+        'This Windows host has neither tar.exe nor PowerShell’s Expand-Archive, so Otodus can’t unpack its server there. Install Windows PowerShell 5.1 on the host, then connect again.'
       )
     default:
       return null

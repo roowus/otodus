@@ -143,7 +143,7 @@ export function classifyWorktreeOwnership(args: {
   }
 
   if (canClassifyAsExternal(args.worktree.path, args.knownOrcaLayouts)) {
-    // An Orca-shaped path alone cannot prove creation; users can git worktree add there.
+    // An Otodus-shaped path alone cannot prove creation; users can git worktree add there.
     return 'external'
   }
 

@@ -46,7 +46,7 @@ vi.mock('@orca/process-host', () => ({ runProcess: runProcessMock }))
 vi.mock('../../../../../shared/app-lifecycle/app-environment', () => ({
   hasAppEnvironment: () => true,
   getAppEnvironment: () => ({
-    getAppPath: () => '/Applications/Orca.app/Contents/Resources/app.asar',
+    getAppPath: () => '/Applications/Otodus.app/Contents/Resources/app.asar',
     getPath: () => state.root,
     getVersion: () => '1.2.3',
     isPackaged: () => state.packaged
@@ -91,7 +91,7 @@ const nativePlatform = process.platform
 const originalGetuid = Object.getOwnPropertyDescriptor(process, 'getuid')
 const originalGetSystemVersion = Object.getOwnPropertyDescriptor(process, 'getSystemVersion')
 const roomyDeadline = (): number => Date.now() + 60_000
-const helperExec = (): string => join(copyDir, 'MacOS', 'Orca Agents')
+const helperExec = (): string => join(copyDir, 'MacOS', 'Otodus Agents')
 const helperEntry = (): string => join(copyDir, 'daemon-entry.js')
 const service = (): string => `gui/501/${macDaemonJobLabel(state.root)}`
 const launchctlCalls = (verb: string): ProcessSpec[] =>
@@ -143,8 +143,8 @@ beforeEach(async () => {
   copyDir = join(state.root, 'daemon-host', 'macos', 'terminal-host-abc')
   await mkdir(copyDir, { recursive: true })
   options = {
-    entryPath: '/Applications/Orca.app/Contents/Resources/daemon-entry.js',
-    forkEntryPath: '/Applications/Orca.app/Contents/Resources/daemon-entry.js',
+    entryPath: '/Applications/Otodus.app/Contents/Resources/daemon-entry.js',
+    forkEntryPath: '/Applications/Otodus.app/Contents/Resources/daemon-entry.js',
     userDataPath: state.root,
     runtimeDir: join(state.root, 'daemon'),
     socketPath: join(state.root, 'daemon.sock'),

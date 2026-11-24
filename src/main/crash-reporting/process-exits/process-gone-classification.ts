@@ -14,7 +14,7 @@ const RECOVERABLE_UTILITY_SERVICE_NAMES = new Set([
   // Screen-capture service exits are recoverable Chromium churn.
   'video_capture.mojom.VideoCaptureService'
 ])
-// Orca's own utility processes whose exits the app already handles and reports in place.
+// Otodus's own utility processes whose exits the app already handles and reports in place.
 const RECOVERABLE_ORCA_UTILITY_NAMES = new Set([
   STT_UTILITY_PROCESS_NAME,
   BACKEND_UTILITY_PROCESS_NAME
@@ -57,7 +57,7 @@ function isRecoverableChildProcess({
     return false
   }
   const normalizedProcessType = processType?.toLowerCase()
-  // Orca handles every exit of its own utilities, including OOM and failed launches.
+  // Otodus handles every exit of its own utilities, including OOM and failed launches.
   if (
     normalizedProcessType === 'utility' &&
     name !== undefined &&

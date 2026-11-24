@@ -1,6 +1,6 @@
 import type { PersistedOpenFile } from '../../../../../shared/workspace-session/workspace-session-state-types'
 
-/** Saved drafts of workspaces this window could not restore (folder gone while Orca was closed), by owner key; saves carry them verbatim until recovered. */
+/** Saved drafts of workspaces this window could not restore (folder gone while Otodus was closed), by owner key; saves carry them verbatim until recovered. */
 export type StrandedEditorDrafts = Record<string, PersistedOpenFile[]>
 
 /** Writable files holding unsaved text; read-only tabs never restore a draft. */

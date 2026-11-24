@@ -14,7 +14,7 @@ function hostError(code: string, message: string): Error {
 }
 
 function unavailable(what: string): Promise<never> {
-  return Promise.reject(hostError('unavailable', `${what} is not available in this Orca`))
+  return Promise.reject(hostError('unavailable', `${what} is not available in this Otodus`))
 }
 
 function isComponentTag(name: string): name is keyof typeof PLUGIN_DECLARATIVE_COMPONENT_PROPS {
@@ -70,7 +70,7 @@ export function createOrcaSdk(source: SdkSource) {
   })
 
   const env = Object.freeze({
-    /** Orca's UI language (BCP-47); the guest's `navigator.language` follows the OS instead. */
+    /** Otodus's UI language (BCP-47); the guest's `navigator.language` follows the OS instead. */
     get locale(): string {
       return source.bridge()?.locale ?? 'en'
     },
@@ -114,7 +114,7 @@ export function createOrcaSdk(source: SdkSource) {
   const ui = Object.freeze({
     /** Grows with the component catalog. */
     catalog: PLUGIN_DECLARATIVE_CATALOG_VERSION,
-    /** Whether this Orca draws `component`, and accepts `prop` on it when given. */
+    /** Whether this Otodus draws `component`, and accepts `prop` on it when given. */
     has(component: string, prop?: string): boolean {
       if (!isComponentTag(component)) {
         return false

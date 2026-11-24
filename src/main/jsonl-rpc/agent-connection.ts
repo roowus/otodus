@@ -181,7 +181,7 @@ export class JsonlRpcAgentConnection {
     return this.managed.lastCloseResult
   }
 
-  /** `requested`: Orca was closing the agent when it exited. */
+  /** `requested`: Otodus was closing the agent when it exited. */
   onExit(listener: (requested?: boolean) => void): void {
     this.managed.onExit(() => listener(this.closing))
   }

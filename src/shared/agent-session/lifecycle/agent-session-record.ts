@@ -122,7 +122,7 @@ export type AgentSessionRecord = {
   launchDirectory?: string
   /** Provider options the user chose, replayed whenever a new owner starts the session. */
   options?: Record<string, string>
-  /** The permission mode the user chose; Orca's, so a provider's options answer never replaces it. */
+  /** The permission mode the user chose; Otodus's, so a provider's options answer never replaces it. */
   permissionMode?: string
   usageLimitContinueCancel?: { turnItemId: string; resetsAt: number }
   /** The newest async question row the person skipped; it and every earlier question stop
@@ -130,11 +130,11 @@ export type AgentSessionRecord = {
   asyncQuestionsSkippedThrough?: string
   rewind?: AgentSessionRewindRecord
   conversationCommand?: AgentSessionConversationCommandRecord
-  /** The conversation's one name: Orca's automatic name or the user's rename. Session History,
+  /** The conversation's one name: Otodus's automatic name or the user's rename. Session History,
    *  tabs, sidebars and phones all read this field. */
   conversationName?: string
-  /** `'user'` once the user renamed the conversation; absent means Orca named it. Automatic naming
-   *  never replaces a user's name, and a window's pre-upgrade tab rename only fills a name Orca
+  /** `'user'` once the user renamed the conversation; absent means Otodus named it. Automatic naming
+   *  never replaces a user's name, and a window's pre-upgrade tab rename only fills a name Otodus
    *  chose. */
   conversationNameSource?: 'user'
   /** When the user's Sleep stopped this chat; the next admitted send clears it. */

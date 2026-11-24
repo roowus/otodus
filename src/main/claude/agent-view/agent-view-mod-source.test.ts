@@ -168,7 +168,7 @@ it.each(['not-json'])(
     expect(view).toHaveBeenCalledWith({ agentId: 'child' })
     expect(posts.at(-1)).toMatchObject({ action: 'ack', sessionId })
     api.http.fetch = async () => {
-      throw new Error('Orca is unavailable')
+      throw new Error('Otodus is unavailable')
     }
     await expect(invoke('command.run')).resolves.toEqual({})
     api.http.fetch = async () => new Promise(() => {})

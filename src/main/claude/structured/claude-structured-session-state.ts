@@ -144,7 +144,7 @@ export type ClaudeSession = {
   confirmedOptions: Set<string>
   /** Inputs carried by launch or accepted controls, independent of provider reports. */
   appliedInputOptions: Map<string, string>
-  /** What Orca put on this process's command line, and the first root init's answer; this process only. */
+  /** What Otodus put on this process's command line, and the first root init's answer; this process only. */
   launchIntent?: { permissionMode?: string; model?: string }
   firstRootInit?: { permissionMode: string | null }
   /** Full access processes only: Claude's mode in wire order, ahead of `reportedOptions`. */
@@ -335,7 +335,7 @@ export type ClaudeAcquireCallbacks = {
     event: ClaudeStructuredSessionEvent
   ) => void
   handleExit: (sessionId: string, attempt: ClaudeAcquisitionAttempt, error: Error) => void
-  /** The root exited during a close Orca began: finishes that close for this exact child. */
+  /** The root exited during a close Otodus began: finishes that close for this exact child. */
   finishClose: (sessionId: string, attempt: ClaudeAcquisitionAttempt) => void
   settleExit: (sessionId: string, exit: ClaudeSessionExit) => Promise<void>
 }

@@ -16,12 +16,12 @@ export const ENVIRONMENT_COMMAND_SPECS: CommandSpec[] = [
   },
   {
     path: ['host', 'list'],
-    summary: 'List every machine this Orca host can target, and how to name each one',
+    summary: 'List every machine this Otodus host can target, and how to name each one',
     usage: 'orca host list [--json]',
     allowedFlags: [...LOCAL_COMMAND_FLAGS],
     notes: [
       'Answers "what can I target and what do I pass" in one place: this machine, the SSH targets registered on it, and the Orca servers paired with it.',
-      'The three kinds are reached differently. A paired Orca server is a connection, selected with --environment <name>. An SSH target is a machine the connected Orca host reaches, selected with --host ssh:<id>. Passing one where the other belongs is the most common way to get an empty or missing-host answer.',
+      'The three kinds are reached differently. A paired Orca server is a connection, selected with --environment <name>. An SSH target is a machine the connected Otodus host reaches, selected with --host ssh:<id>. Passing one where the other belongs is the most common way to get an empty or missing-host answer.',
       'Commands that take --host also accept any name this list prints, such as --host "this machine" or --host <ssh-target-name> (except `orca host rm`, which takes only the ssh:<target-id> form). A name two hosts share is refused with the exact flag for each.',
       'SSH rows include the detected remote platform after that target has connected (linux, darwin, or win32); disconnected or older targets report platform unknown.',
       'SSH rows also include whether the target is currently connected and its lifecycle status when known.',
@@ -34,7 +34,7 @@ export const ENVIRONMENT_COMMAND_SPECS: CommandSpec[] = [
   {
     path: ['host', 'rm'],
     destructive: true,
-    summary: 'Remove one saved SSH target from this Orca host',
+    summary: 'Remove one saved SSH target from this Otodus host',
     usage: 'orca host rm --host ssh:<target-id> [--json]',
     allowedFlags: [...LOCAL_COMMAND_FLAGS, 'host'],
     notes: [

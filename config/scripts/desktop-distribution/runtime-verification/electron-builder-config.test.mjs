@@ -34,7 +34,7 @@ describe('electron-builder config', () => {
         ? ['notes']
         : [
             'notes/build.log',
-            'notes/installed-orca-backup/Orca.exe',
+            'notes/installed-orca-backup/Otodus.exe',
             'notes/installed-orca-backup/resources/app.asar',
             'notes/orca-windows-setup.exe',
             'notes/.recovery/state.json'

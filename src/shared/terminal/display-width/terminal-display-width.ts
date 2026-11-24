@@ -6,7 +6,7 @@ const WIDE_CODE_POINT =
 const ZERO_WIDTH_CODE_POINT = /(?!\u00ad)[\p{Mn}\p{Me}\p{Cf}\u1160-\u11ff]/u
 const ZERO_WIDTH_JOINER = '\u200d'
 
-// Why: approximates Orca's xterm Unicode11 provider (terminal-unicode-provider.ts) by summing per code
+// Why: approximates Otodus's xterm Unicode11 provider (terminal-unicode-provider.ts) by summing per code
 // point, where skin-tone modifiers advance and only ZWJ joins glyphs. Post-Unicode-11 emoji stay 2 wide.
 function terminalDisplayWidth(text: string): number {
   let width = 0

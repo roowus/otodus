@@ -130,7 +130,7 @@ export function scanChromiumCookieRows(
     return {
       ok: false,
       reason:
-        'This Orca client cannot report cookies skipped for an unreadable site partition. Update Orca on this device and try again.'
+        'This Otodus client cannot report cookies skipped for an unreadable site partition. Update Otodus on this device and try again.'
     }
   }
   return null

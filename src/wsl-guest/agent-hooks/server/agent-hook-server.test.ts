@@ -48,7 +48,7 @@ describe('RelayAgentHookServer', () => {
       expect(envelope.payload.state).toBe('working')
       expect(envelope.payload.prompt).toBe('hi')
       expect(envelope.claudeRunningNonAgentTask).toBe(false)
-      // Why: the relay forwards body env/version so Orca's warn-once
+      // Why: the relay forwards body env/version so Otodus's warn-once
       // protocol diagnostics and remote-location marker survive the wire.
       expect(envelope.env).toBe('remote')
       expect(envelope.version).toBe('1')

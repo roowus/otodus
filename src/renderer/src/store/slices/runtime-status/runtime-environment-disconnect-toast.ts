@@ -41,7 +41,7 @@ export function showRuntimeDisconnectedToast(
       id: toastId,
       description: translate(
         'auto.store.slices.runtime.status.runtimeHostDisconnectedDescription',
-        'Check that Orca is running on this server and that your network connection is working, then try again.'
+        'Check that Otodus is running on this server and that your network connection is working, then try again.'
       ),
       duration,
       action: {

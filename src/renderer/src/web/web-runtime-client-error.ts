@@ -29,7 +29,7 @@ function webRuntimeAuthFailureMessage(reason: WebRuntimeAuthFailureReason): stri
     case 'insecure-origin':
       return translate(
         'auto.web.runtimeAuth.insecureOrigin',
-        'Orca refused to pair from this page: it is plain http on another machine, so anyone on the network path could replace it and take the pairing code. Open the web client over https, at localhost on this computer, or through an SSH tunnel. To allow it anyway, the server operator can restart Orca with ORCA_ALLOW_INSECURE_WEB_PAIRING=1.'
+        'Otodus refused to pair from this page: it is plain http on another machine, so anyone on the network path could replace it and take the pairing code. Open the web client over https, at localhost on this computer, or through an SSH tunnel. To allow it anyway, the server operator can restart Otodus with ORCA_ALLOW_INSECURE_WEB_PAIRING=1.'
       )
     case 'device-downgraded':
       return translate(
@@ -45,7 +45,7 @@ function webRuntimeAuthFailureMessage(reason: WebRuntimeAuthFailureReason): stri
     case 'unauthorized':
       return translate(
         'auto.web.runtimeAuth.unauthorizedLinkUsedOrExpired',
-        'Unauthorized. This pairing link may have expired or already been used. Create a new pairing link in Orca and open it.'
+        'Unauthorized. This pairing link may have expired or already been used. Create a new pairing link in Otodus and open it.'
       )
   }
 }

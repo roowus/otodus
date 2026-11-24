@@ -18,7 +18,7 @@ export const WORKSPACE_CLEANUP_RULE_REASON: Record<
   orchestrationWorkers: 'orchestration-worker'
 }
 
-/** Turns one rule on or off; turning the inactive rule on picks delete while Orca cannot archive. */
+/** Turns one rule on or off; turning the inactive rule on picks delete while Otodus cannot archive. */
 export function setWorkspaceCleanupRuleEnabled(
   rules: WorkspaceCleanupRules,
   key: WorkspaceCleanupRuleKey,

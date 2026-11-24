@@ -54,7 +54,7 @@ function run(
   program: string,
   args: string[],
   env: NodeJS.ProcessEnv,
-  // `abandon` holds stdin open unwritten, the shape a caller outside an Orca pane produces.
+  // `abandon` holds stdin open unwritten, the shape a caller outside an Otodus pane produces.
   stdin: 'payload' | 'abandon' = 'payload'
 ): Promise<HookRun> {
   return new Promise((resolve, reject) => {
@@ -130,7 +130,7 @@ describe.skipIf(process.platform !== 'win32' || !tempIsCmdSafe)('native agent ho
     return listener
   }
 
-  it('exits 0 without reading stdin outside an Orca pane or in a background job (#11549, #9236)', async () => {
+  it('exits 0 without reading stdin outside an Otodus pane or in a background job (#11549, #9236)', async () => {
     const listener = await listen()
     for (const env of [
       hookEnv({}),

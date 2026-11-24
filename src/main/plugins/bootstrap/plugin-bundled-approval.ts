@@ -9,7 +9,7 @@ import { applyPluginConsent } from '../activation/plugin-enablement'
 import type { PluginService } from '../plugin-service'
 
 /**
- * Turns on shipped plugins that are content only, as a catalog click would; Orca's own release
+ * Turns on shipped plugins that are content only, as a catalog click would; Otodus's own release
  * vouches for their bytes. One the user turned off stays off, and code still waits for review.
  */
 export async function approveBundledContentPlugins(input: {

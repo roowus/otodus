@@ -43,7 +43,7 @@ function isAlive(pid: number): boolean {
   }
 }
 
-/** Electron main is Orca's real shape: it keeps std handles inheritable (kEnableStdioInheritance),
+/** Electron main is Otodus's real shape: it keeps std handles inheritable (kEnableStdioInheritance),
  * where plain Node clears them itself at startup. */
 async function runChild(host: 'electron' | 'node', mode: 'clear' | 'keep', holderMs: number) {
   const electron: unknown = createRequire(import.meta.url)('electron')

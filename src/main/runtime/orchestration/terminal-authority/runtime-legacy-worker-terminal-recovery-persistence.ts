@@ -153,7 +153,7 @@ export class RuntimeLegacyWorkerTerminalRecoveryPersistence {
               {
                 from: candidate.terminalHandle,
                 reason: 'lost',
-                cause: 'its terminal was gone when Orca restarted',
+                cause: 'its terminal was gone when Otodus restarted',
                 lastOutput,
                 settled
               },

@@ -151,6 +151,8 @@ async function closeServer(server: Server): Promise<void> {
   )
 }
 
+type LinkPoint = { x: number; y: number }
+
 async function clickBrowserLink(
   page: Parameters<typeof getActiveWorktreeId>[0],
   browserTabId: string,
@@ -161,71 +163,108 @@ async function clickBrowserLink(
     frameSelector?: string
   } = {}
 ): Promise<void> {
-  await page.evaluate(
-    async ({ targetBrowserTabId, targetSelector, inputModifiers, button, frameSelector }) => {
-      const slot = [...document.querySelectorAll('[data-browser-overlay-tab-id]')].find(
-        (candidate) => candidate.getAttribute('data-browser-overlay-tab-id') === targetBrowserTabId
-      )
-      const webview = slot?.querySelector('webview') as Electron.WebviewTag | null
-      if (!webview) {
-        throw new Error(`Missing webview for browser tab ${targetBrowserTabId}`)
-      }
-      const point = (await webview.executeJavaScript(`(async () => {
-        const deadline = Date.now() + 5000
-        while (Date.now() < deadline) {
-          const frame = ${JSON.stringify(frameSelector)}
-            ? document.querySelector(${JSON.stringify(frameSelector)})
-            : null
-          const root = frame?.contentDocument ?? document
-          const linkRect = root.querySelector(${JSON.stringify(targetSelector)})?.getBoundingClientRect()
-          if (linkRect) {
-            const frameRect = frame?.getBoundingClientRect()
-            return {
-              x: (frameRect?.left ?? 0) + linkRect.left + linkRect.width / 2,
-              y: (frameRect?.top ?? 0) + linkRect.top + linkRect.height / 2
+  // A tab created for this click may not have fired dom-ready yet, and its webview throws
+  // until then. Node-side poll: the in-page half reports "not ready" and never sleeps.
+  await expect
+    .poll(
+      () =>
+        page.evaluate(
+          async ({ targetBrowserTabId, targetSelector, inputModifiers, button, frameSelector }) => {
+            const slot = [...document.querySelectorAll('[data-browser-overlay-tab-id]')].find(
+              (candidate) =>
+                candidate.getAttribute('data-browser-overlay-tab-id') === targetBrowserTabId
+            )
+            const webview = slot?.querySelector('webview') as Electron.WebviewTag | null
+            if (!webview) {
+              return false
             }
+            let point: LinkPoint | null
+            try {
+              const raw: unknown = await webview.executeJavaScript(`(async () => {
+                const deadline = Date.now() + 2000
+                while (Date.now() < deadline) {
+                  const frame = ${JSON.stringify(frameSelector)}
+                    ? document.querySelector(${JSON.stringify(frameSelector)})
+                    : null
+                  const root = frame?.contentDocument ?? document
+                  const linkRect = root.querySelector(${JSON.stringify(targetSelector)})?.getBoundingClientRect()
+                  if (linkRect) {
+                    const frameRect = frame?.getBoundingClientRect()
+                    return {
+                      x: (frameRect?.left ?? 0) + linkRect.left + linkRect.width / 2,
+                      y: (frameRect?.top ?? 0) + linkRect.top + linkRect.height / 2
+                    }
+                  }
+                  await new Promise((resolve) => setTimeout(resolve, 25))
+                }
+                return null
+              })()`)
+              // Module helpers are invisible to the page realm; inline the shape check.
+              point =
+                typeof raw === 'object' &&
+                raw !== null &&
+                'x' in raw &&
+                'y' in raw &&
+                typeof raw.x === 'number' &&
+                typeof raw.y === 'number'
+                  ? { x: raw.x, y: raw.y }
+                  : null
+            } catch (error) {
+              // Only the not-yet-attached guest is retryable; anything else is a real failure.
+              if (!(error instanceof Error ? error.message : String(error)).includes('dom-ready')) {
+                throw error
+              }
+              return false
+            }
+            if (!point) {
+              return false
+            }
+            const holdShift = inputModifiers.includes('shift')
+            if (holdShift) {
+              await webview.sendInputEvent({
+                type: 'keyDown',
+                keyCode: 'Shift',
+                modifiers: ['shift']
+              })
+            }
+            try {
+              await webview.sendInputEvent({
+                type: 'mouseMove',
+                modifiers: inputModifiers,
+                ...point
+              })
+              await webview.sendInputEvent({
+                type: 'mouseDown',
+                button,
+                clickCount: 1,
+                modifiers: inputModifiers,
+                ...point
+              })
+              await webview.sendInputEvent({
+                type: 'mouseUp',
+                button,
+                clickCount: 1,
+                modifiers: inputModifiers,
+                ...point
+              })
+            } finally {
+              if (holdShift) {
+                await webview.sendInputEvent({ type: 'keyUp', keyCode: 'Shift' })
+              }
+            }
+            return true
+          },
+          {
+            targetBrowserTabId: browserTabId,
+            targetSelector: selector,
+            inputModifiers: options.modifiers ?? [],
+            button: options.button ?? 'left',
+            frameSelector: options.frameSelector ?? null
           }
-          await new Promise((resolve) => setTimeout(resolve, 25))
-        }
-        return null
-      })()`)) as { x: number; y: number } | null
-      if (!point) {
-        throw new Error(`Missing browser link ${targetSelector}`)
-      }
-      const holdShift = inputModifiers.includes('shift')
-      if (holdShift) {
-        await webview.sendInputEvent({ type: 'keyDown', keyCode: 'Shift', modifiers: ['shift'] })
-      }
-      try {
-        await webview.sendInputEvent({ type: 'mouseMove', modifiers: inputModifiers, ...point })
-        await webview.sendInputEvent({
-          type: 'mouseDown',
-          button,
-          clickCount: 1,
-          modifiers: inputModifiers,
-          ...point
-        })
-        await webview.sendInputEvent({
-          type: 'mouseUp',
-          button,
-          clickCount: 1,
-          modifiers: inputModifiers,
-          ...point
-        })
-      } finally {
-        if (holdShift) {
-          await webview.sendInputEvent({ type: 'keyUp', keyCode: 'Shift' })
-        }
-      }
-    },
-    {
-      targetBrowserTabId: browserTabId,
-      targetSelector: selector,
-      inputModifiers: options.modifiers ?? [],
-      button: options.button ?? 'left',
-      frameSelector: options.frameSelector ?? null
-    }
-  )
+        ),
+      { timeout: 15_000 }
+    )
+    .toBe(true)
 }
 
 async function waitForTabIdByExactTitle(
@@ -503,7 +542,7 @@ test.describe('Browser Tab', () => {
       // Context-menu links keep the source visible until the new tab is selected.
       await clickBrowserLink(orcaPage, sourceTab!.id, '#external-link', { button: 'right' })
       await orcaPage
-        .getByRole('menuitem', { name: 'Open Link In Orca Browser', exact: true })
+        .getByRole('menuitem', { name: 'Open Link In Otodus Browser', exact: true })
         .click()
       await expectBrowserTabOpenedInBackground(orcaPage, sourceTab!.id, 'Linked destination')
       await clickBrowserLink(orcaPage, sourceTab!.id, '#frame-link', {

@@ -13,7 +13,7 @@ function readAppDirArg(argv) {
     return explicit.slice('--app-dir='.length)
   }
   if (process.platform === 'darwin') {
-    return 'dist/mac-arm64/Orca.app'
+    return 'dist/mac-arm64/Otodus.app'
   }
   if (process.platform === 'win32') {
     return 'dist/win-unpacked'
@@ -82,7 +82,7 @@ try {
   smokeFailure = error
 }
 
-// Retry Windows cleanup locks from just-exited Orca.exe/crashpad descendants; persistent lock still throws unless it would mask smoke’s original failure.
+// Retry Windows cleanup locks from just-exited Otodus.exe/crashpad descendants; persistent lock still throws unless it would mask smoke’s original failure.
 const cleanupFailure = await rm(tempRoot, {
   recursive: true,
   force: true,

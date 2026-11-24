@@ -173,7 +173,7 @@ function HostRemoveDialogBody({
     target.kind === 'wsl'
       ? t(
           'auto.components.sidebar.HostRemoveDialog.wslHostEndsTerminalsUnlessShared',
-          'Removes {{value0}} from Orca. Unless another Orca that’s open on this computer is using it, this also ends its open terminals and stops Orca’s server in that distro. Files in the distro are untouched.',
+          'Removes {{value0}} from Otodus. Unless another Otodus that’s open on this computer is using it, this also ends its open terminals and stops Orca’s server in that distro. Files in the distro are untouched.',
           { value0: label }
         )
       : target.kind === 'runtime'
@@ -184,12 +184,12 @@ function HostRemoveDialogBody({
         : hasWorkspaces
           ? t(
               'auto.components.sidebar.HostRemoveDialog.hostKeepsWorkspaces',
-              'Removes {{host}} and its credentials from this computer. Its {{count}} workspaces stay in Orca — remote files are not touched.',
+              'Removes {{host}} and its credentials from this computer. Its {{count}} workspaces stay in Otodus — remote files are not touched.',
               {
                 host: label,
                 count: workspaceCount,
                 defaultValue_one:
-                  'Removes {{host}} and its credentials from this computer. Its {{count}} workspace stays in Orca — remote files are not touched.'
+                  'Removes {{host}} and its credentials from this computer. Its {{count}} workspace stays in Otodus — remote files are not touched.'
               }
             )
           : t(
@@ -199,8 +199,8 @@ function HostRemoveDialogBody({
 
   const deleteOptionLabel = t(
     'auto.components.sidebar.HostRemoveDialog.alsoRemoveWorkspaces',
-    'Also remove these {{count}} workspaces from Orca',
-    { count: workspaceCount, defaultValue_one: 'Also remove this workspace from Orca' }
+    'Also remove these {{count}} workspaces from Otodus',
+    { count: workspaceCount, defaultValue_one: 'Also remove this workspace from Otodus' }
   )
 
   return (
@@ -252,7 +252,7 @@ function HostRemoveDialogBody({
                   <span className="mt-0.5 block text-muted-foreground">
                     {t(
                       'auto.components.sidebar.HostRemoveDialog.alsoForgetLocalHint',
-                      'Clears them from Orca only. Remote files, worktrees, and branches are left untouched.'
+                      'Clears them from Otodus only. Remote files, worktrees, and branches are left untouched.'
                     )}
                   </span>
                 </span>

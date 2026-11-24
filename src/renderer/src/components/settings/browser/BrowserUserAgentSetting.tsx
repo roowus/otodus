@@ -89,7 +89,7 @@ export function BrowserUserAgentSetting({
       </span>
     )
   } else if (status.identity.configuredMode === null) {
-    // Name the CLI escape: UI reset could overwrite newer Orca data, but refusal still needs an actionable recovery route.
+    // Name the CLI escape: UI reset could overwrite newer Otodus data, but refusal still needs an actionable recovery route.
     control = (
       <div className="space-y-1 text-right">
         <div className="text-xs text-destructive">
@@ -121,7 +121,7 @@ export function BrowserUserAgentSetting({
               label: t('settings.browser.userAgent.optionClean', 'Cleaned'),
               tooltip: t(
                 'settings.browser.userAgent.optionCleanTooltip',
-                'Removes Orca and Electron tokens to match imported Chrome sessions.'
+                'Removes Otodus and Electron tokens to match imported Chrome sessions.'
               )
             },
             {

@@ -8,7 +8,7 @@ import {
 import { hasErrorCode } from '../../daemon/endpoint/identity/daemon-process-inspection'
 import { isPositiveSafeInteger } from '../../../shared/validation/positive-safe-integer'
 
-/** Per-distro record intentionally survives Orca quit so the next launch can re-adopt the surviving holder. */
+/** Per-distro record intentionally survives Otodus quit so the next launch can re-adopt the surviving holder. */
 export type WslDistroHolderRecord = {
   version: 1
   distro: string

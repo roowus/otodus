@@ -151,7 +151,7 @@ export class PluginPanelController {
       return {
         ok: false,
         code: 'not_permitted',
-        error: 'this method is only available in the Orca desktop app'
+        error: 'this method is only available in the Otodus desktop app'
       }
     }
     const admissionRefusal = userMethod

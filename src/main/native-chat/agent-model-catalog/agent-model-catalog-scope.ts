@@ -94,7 +94,7 @@ export async function resolveAgentModelCatalogScope(
     return { base, fingerprint: base, exact: false, ...(resolved ? { resolved } : {}) }
   }
   // The list belongs to the account and the CLI a chat here would launch, not to this folder:
-  // resolve the executable where the chat runs, but list from an empty Orca-owned folder so the
+  // resolve the executable where the chat runs, but list from an empty Otodus-owned folder so the
   // listing reads only account settings (a home folder can hold another account's settings as
   // project settings) and every workspace sharing that invocation shares one listing. A command
   // line that may name files in the chat's folder lists there instead (`catalogListingDirectory`).
@@ -105,7 +105,7 @@ export async function resolveAgentModelCatalogScope(
     return { base, fingerprint: base, exact: false }
   }
   // A workspace this host can't inspect lists as the account does (its default stays unknown),
-  // never from wherever Orca itself runs.
+  // never from wherever Otodus itself runs.
   const cwd =
     params.workspacePath === null
       ? listIn

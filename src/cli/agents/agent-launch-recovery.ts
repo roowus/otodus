@@ -72,7 +72,7 @@ export async function withCliAgentLaunchRecovery<T>(
         ? error.message.trim()
         : ''
     const message =
-      'Orca could not confirm the launch outcome; the agent may already be running and the prompt may already be submitted.'
+      'Otodus could not confirm the launch outcome; the agent may already be running and the prompt may already be submitted.'
     throw new RuntimeClientError(
       'agent_session_operation_unknown',
       refusal ? `${message} ${refusal}` : message,
@@ -85,7 +85,7 @@ export async function withCliAgentLaunchRecovery<T>(
         nextSteps,
         cause:
           error instanceof Error
-            ? error.message.replace(/\bRestart Orca and try again\./g, '')
+            ? error.message.replace(/\bRestart Otodus and try again\./g, '')
             : String(error)
       }
     )

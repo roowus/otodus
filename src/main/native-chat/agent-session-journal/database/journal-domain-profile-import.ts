@@ -37,7 +37,7 @@ export function importJournalDomainProfile(
   } finally {
     destination.pragma('foreign_keys = ON')
   }
-  // The baseline later launches compare with, so only chats an older Orca writes move.
+  // The baseline later launches compare with, so only chats an older Otodus writes move.
   runJournalTransaction(destination, () => {
     for (const { session_id: id } of source
       .prepare('SELECT session_id FROM agent_session_records')

@@ -85,7 +85,7 @@ export function createFakeWslHostConnector(
   ): Promise<WslOrcadConnection> => {
     // Same guard as the real connector: nothing starts for a host that is gone.
     if (!(await options.isKnownDistro(distro))) {
-      throw new Error(`${distro} is no longer a WSL host; Orca will not start anything for it.`)
+      throw new Error(`${distro} is no longer a WSL host; Otodus will not start anything for it.`)
     }
     if (isStopped(distro)) {
       if (intent?.noBoot || !config.distrosFile) {

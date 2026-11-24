@@ -101,7 +101,7 @@ export function getRemoteServerManualUpdateHelp(
   if (entry.support?.reason === 'manual-service-update-required') {
     return t(
       'auto.components.settings.RemoteServerUpdateStatus.serviceManagerHelp',
-      'Update Orca on the server host — through its system package manager if it was installed from a .deb or .rpm, otherwise through the service manager that starts it.'
+      'Update Otodus on the server host — through its system package manager if it was installed from a .deb or .rpm, otherwise through the service manager that starts it.'
     )
   }
   if (entry.support?.reason === 'unpackaged-build') {
@@ -112,6 +112,6 @@ export function getRemoteServerManualUpdateHelp(
   }
   return t(
     'auto.components.settings.RemoteServerUpdateStatus.legacyHelp',
-    'Remote updates are unavailable for this server. Update Orca on the server host.'
+    'Remote updates are unavailable for this server. Update Otodus on the server host.'
   )
 }

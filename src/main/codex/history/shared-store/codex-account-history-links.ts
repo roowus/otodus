@@ -33,7 +33,7 @@ const STORE_DIRECTORIES = ['sessions', 'archived_sessions', 'rollout-migrations'
 
 // Local logs and scratch; per-home process endpoints (a linked daemon socket would attach an
 // account to the ~/.codex login's daemon); state keyed to the home's own path (encrypted secrets
-// whose keyring passphrase is named from CODEX_HOME, the Windows sandbox setup); resources Orca
+// whose keyring passphrase is named from CODEX_HOME, the Windows sandbox setup); resources Otodus
 // links or copies itself, including the home's own bundled marketplaces inside `.tmp`.
 const PRIVATE_DIRECTORIES = new Set([
   'log',

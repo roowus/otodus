@@ -41,7 +41,7 @@ export class TerminalStreamPosition {
   private seq: number | null = null
   // xterm's parser state equals the stream's at `seq`.
   private exact = false
-  // xterm's parser is known to be at ground: it parsed nothing yet, or Orca's own CAN-led write last.
+  // xterm's parser is known to be at ground: it parsed nothing yet, or Otodus's own CAN-led write last.
   private grounded = true
   private skippedUnknown = 0
   // The escape tail re-armed by the replay that set `seq` ('' for none); null after stream bytes.
@@ -221,7 +221,7 @@ export function keptSuffixMeta(
   return next
 }
 
-/** Main's drop sentinel: Orca's recovery bytes (salvaged queries, mode releases), not stream bytes. */
+/** Main's drop sentinel: Otodus's recovery bytes (salvaged queries, mode releases), not stream bytes. */
 export function isDropSentinelMeta(meta: PtyDataMeta | undefined): boolean {
   return meta?.droppedOutput === true && !meta.midEscape
 }

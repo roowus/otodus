@@ -65,7 +65,7 @@ function setup(approvalId: string) {
   })
   const task = db.createTask({ spec: 'do the work', runId: run.id })
   const dispatch = createRootDispatch(db, task.id, HANDLE)
-  // The escalation Orca's stop report stored for this approval.
+  // The escalation Otodus's stop report stored for this approval.
   db.insertMessage({
     id: approvalReportId(dispatch.id, approvalId, 'open'),
     from: HANDLE,

@@ -12,8 +12,8 @@ import {
 } from '../../transport/acp-errors'
 
 /** An agent's answer, sign-in included, is final unless it declared a temporary one; a frame
- *  Orca could not read is final too. Only the process's own drained exit is unanswered: a closed
- *  connection alone may be Orca refusing what the agent wrote. */
+ *  Otodus could not read is final too. Only the process's own drained exit is unanswered: a closed
+ *  connection alone may be Otodus refusing what the agent wrote. */
 export const acpStartupAnswer: AgentSessionStartAnswer = (cause) => {
   if (cause instanceof AcpRpcError) {
     return temporaryAcpProviderAnswer(cause) ? 'temporary' : 'final'
@@ -28,7 +28,7 @@ export function acpStartFailure(error: unknown, exited = false): AgentSessionSta
   return agentSessionStartFailure(error, acpStartupAnswer, exited)
 }
 
-/** Orca closed the connection before the agent exited, refusing what it wrote: final. */
+/** Otodus closed the connection before the agent exited, refusing what it wrote: final. */
 export function acpRefusedStart(lost: Error): AgentSessionStartFailure {
   return new AgentSessionStartFailure(lost, 'never')
 }

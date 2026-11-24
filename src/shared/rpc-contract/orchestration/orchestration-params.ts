@@ -75,7 +75,7 @@ export const InboxParams = z.object({
   limit: OptionalFiniteNumber,
   // Filter inbox by handle to agree with check --all.
   terminal: OptionalString,
-  // Only this Run's mail; a paired Orca's inbox is always narrowed to its Run.
+  // Only this Run's mail; a paired Otodus's inbox is always narrowed to its Run.
   run: OptionalString
 })
 
@@ -110,7 +110,7 @@ export const DispatchParams = z.object({
   run: OptionalString
 })
 
-/** An Orca agent session id; the answer is its conversation's Orca session ID. */
+/** An Otodus agent session id; the answer is its conversation's Otodus session ID. */
 export const SessionAddressParams = z.object({
   sessionId: requiredString('Missing sessionId')
 })

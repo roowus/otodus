@@ -254,13 +254,13 @@ export function configureOrcaUserDataPathEnv(): void {
   }
   // Canonicalize stale inherited profile overrides before CLI modules derive runtime-home paths.
   process.env.ORCA_USER_DATA_PATH = userDataPath
-  // An Orca launched from another Orca terminal must own its CLI children.
+  // An Otodus launched from another Otodus terminal must own its CLI children.
   stampRuntimeSourceEnv(process.env, null)
 }
 
 export function shouldInstallManagedHooks(isDev: boolean): boolean {
   void isDev
-  // Codex hooks now target Orca-owned homes; retain installation until every agent has its own seam.
+  // Codex hooks now target Otodus-owned homes; retain installation until every agent has its own seam.
   return true
 }
 

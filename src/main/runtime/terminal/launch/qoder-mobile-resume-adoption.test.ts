@@ -91,7 +91,7 @@ it.each([
             title: 'Qoder',
             worktreeId: TEST_WORKTREE_ID,
             terminalHandle: args.preAllocatedHandle ?? '',
-            ...(scenario === 'wsl-inventory' ? { wslDistro: 'Ubuntu-Orca' } : {})
+            ...(scenario === 'wsl-inventory' ? { wslDistro: 'Ubuntu-Otodus' } : {})
           })
           if (scenario === 'surviving-recipe') {
             const retained = runtime.retainedRecipe('qoder-live-resume', TEST_WORKTREE_ID)

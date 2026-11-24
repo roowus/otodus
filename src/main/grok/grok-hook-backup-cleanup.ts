@@ -9,8 +9,8 @@ import { getGrokManagedScriptFileName } from './grok-hook-script'
 
 type BackupAction = { kind: 'delete' } | { kind: 'rewrite'; contents: string } | null
 
-/** Our writes keep a rolling `.bak` of the hook file, which still names Orca's script after
- * removal: delete it when only Orca's entries were in it, otherwise strip just those. */
+/** Our writes keep a rolling `.bak` of the hook file, which still names Otodus's script after
+ * removal: delete it when only Otodus's entries were in it, otherwise strip just those. */
 function backupAction(config: HooksConfig | null, raw: string | null): BackupAction {
   if (!config || raw === null) {
     return null

@@ -1,5 +1,5 @@
 /**
- * `evt` names in the frame envelope between a components panel's hidden guest and Orca, and the
+ * `evt` names in the frame envelope between a components panel's hidden guest and Otodus, and the
  * catalog the guest runtime can see. Zod-free so the guest runtime can bundle it. Every message
  * carries the guest's `document` id so nothing crosses a reload.
  */
@@ -76,7 +76,7 @@ export const PLUGIN_DECLARATIVE_COMPONENT_PROPS = {
   EmptyState: ['title', 'description', 'icon'],
   Link: ['href', 'onPress'],
   Code: ['block'],
-  // Catalog 2 (Orca 1.4.247).
+  // Catalog 2 (Otodus 1.4.247).
   Textarea: [
     'label',
     'labelHidden',
@@ -154,9 +154,9 @@ export const PLUGIN_DECLARATIVE_COMPONENT_PROPS = {
   KeyValue: ['label', 'items'],
   Callout: ['tone', 'title', 'icon'],
   Skeleton: ['shape', 'lines', 'label'],
-  // Catalog 3 (also Orca 1.4.247).
+  // Catalog 3 (also Otodus 1.4.247).
   RelativeTime: ['at', 'format', 'tone', 'muted'],
-  // Catalog 4 (Orca 1.4.248).
+  // Catalog 4 (Otodus 1.4.248).
   Box: [
     'direction',
     'gap',
@@ -186,7 +186,7 @@ export const PLUGIN_DECLARATIVE_COMPONENT_PROPS = {
 export type PluginDeclarativeComponentTag = keyof typeof PLUGIN_DECLARATIVE_COMPONENT_PROPS
 
 /**
- * Controls whose value Orca owns while the person edits, by the prop holding the value and the
+ * Controls whose value Otodus owns while the person edits, by the prop holding the value and the
  * callback reporting each edit; the runtime tags their renders with the edits they have seen.
  */
 export const PLUGIN_DECLARATIVE_VALUE_CONTROLS = {

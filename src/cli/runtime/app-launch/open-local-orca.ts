@@ -23,7 +23,7 @@ export async function openLocalOrca(
   if (windowStatus === 'blocked') {
     throwDesktopActivationBlocked()
   }
-  // Relaunching a running Orca would hand it the foreground, so ask it to show its own window.
+  // Relaunching a running Otodus would hand it the foreground, so ask it to show its own window.
   const asked =
     initial?.result.runtime.reachable === true && (await askToOpenWindow(openWindowInBackground))
   if (initial && windowStatus === 'available') {
@@ -47,7 +47,7 @@ export async function openLocalOrca(
 
   throw new RuntimeClientError(
     'runtime_open_timeout',
-    'Timed out waiting for an Orca desktop window. The runtime may still be running headlessly.'
+    'Timed out waiting for an Otodus desktop window. The runtime may still be running headlessly.'
   )
 }
 
@@ -82,7 +82,7 @@ async function askToOpenWindow(openWindowInBackground: OpenWindowInBackground): 
 function throwDesktopActivationBlocked(): never {
   throw new RuntimeClientError(
     'desktop_activation_blocked',
-    'Orca is running headlessly, but it cannot open a desktop window safely because the persistent terminal provider is unavailable. Quit Orca normally and start the app again; do not use open -n.'
+    'Otodus is running headlessly, but it cannot open a desktop window safely because the persistent terminal provider is unavailable. Quit Otodus normally and start the app again; do not use open -n.'
   )
 }
 

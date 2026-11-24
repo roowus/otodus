@@ -16,7 +16,7 @@ export function latestRunLink(
     .get(runId, environmentId) as RemoteRunLinkRow | undefined
 }
 
-/** A re-pair is not recovered: the Run's earlier workers there are shown only from this Orca's record. */
+/** A re-pair is not recovered: the Run's earlier workers there are shown only from this Otodus's record. */
 export function repairedListError(serverName: string): OrchestrationError {
   return new OrchestrationError(
     'server_pairing_changed',

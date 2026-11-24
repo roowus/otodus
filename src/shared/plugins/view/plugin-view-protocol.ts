@@ -13,7 +13,7 @@ export const PLUGIN_VIEW_REPLY_CHANNEL = 'plugins:viewReply'
 
 export type PluginViewColorScheme = 'light' | 'dark'
 
-/** Orca's chrome a plugin draws into: the status bar, or the whole window. */
+/** Otodus's chrome a plugin draws into: the status bar, or the whole window. */
 export type PluginChromeRegion = 'status-bar' | 'window'
 
 export type PluginViewCapture = {
@@ -21,7 +21,7 @@ export type PluginViewCapture = {
   guestRevision: string | null
   /** Panel width in CSS pixels for this capture only. */
   width?: number
-  /** Paint Orca in this mode for this capture only; the setting is not changed. */
+  /** Paint Otodus in this mode for this capture only; the setting is not changed. */
   colorScheme?: PluginViewColorScheme
   /** Capture only if the panel is already the open right-sidebar tab; never open or switch. */
   ifShown?: boolean
@@ -62,7 +62,7 @@ export type PluginViewRequestBody =
     }
   /** `shot --scenario`: draws a validated tree in a detached preview; no plugin panel or guest. */
   | { kind: 'replay-panel'; replay: PluginViewReplay }
-  /** `shot --status-bar` / `--window`: measures that part of Orca's own chrome for a capture. */
+  /** `shot --status-bar` / `--window`: measures that part of Otodus's own chrome for a capture. */
   | {
       kind: 'capture-chrome'
       region: PluginChromeRegion

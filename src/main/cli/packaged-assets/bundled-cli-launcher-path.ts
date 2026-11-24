@@ -1,6 +1,6 @@
 import { join } from 'node:path'
 
-// Why `orca-ide` on Linux: GNOME Orca ships /usr/bin/orca, so the CLI never claims that name.
+// Why `orca-ide` on Linux: GNOME Otodus ships /usr/bin/orca, so the CLI never claims that name.
 export const LINUX_CLI_COMMAND_NAME = 'orca-ide'
 
 // Keep path-only callers independent of cli-installer's Electron dependency.

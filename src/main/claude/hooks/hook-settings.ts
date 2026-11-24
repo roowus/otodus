@@ -280,7 +280,7 @@ export function getStatusLineInstallMarkerPath(settings = CLAUDE_HOOK_SETTINGS):
   return getSharedManagedScriptPath(`${getStatusLineScriptBaseName(settings)}.installed`)
 }
 
-// A user-owned status line takes precedence over Orca's usage feed.
+// A user-owned status line takes precedence over Otodus's usage feed.
 export function applyManagedStatusLine(
   config: HooksConfig,
   command: string,

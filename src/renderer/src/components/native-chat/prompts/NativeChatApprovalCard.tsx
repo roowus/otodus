@@ -62,7 +62,7 @@ export function NativeChatApprovalCard({
   const cardRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
   const neededPath = approvalBlockedPathToShow(approval)
-  // A newer Orca's subject: its detail is shown, and only the card's cancel answers.
+  // A newer Otodus's subject: its detail is shown, and only the card's cancel answers.
   const newerSubject = isNewerApprovalSubject(approval.subject)
   // A page to open: its option opens it, and the back-out stays quiet.
   const url = isUrlApprovalSubject(approval.subject) ? approval.subject.url : null
@@ -213,7 +213,7 @@ export function NativeChatApprovalCard({
                   <p data-native-chat-approval-needs-newer-orca="true" className="break-words">
                     {t(
                       'components.native-chat.approval.needsNewerOrca',
-                      'This request needs a newer version of Orca.'
+                      'This request needs a newer version of Otodus.'
                     )}
                   </p>
                 ) : null}

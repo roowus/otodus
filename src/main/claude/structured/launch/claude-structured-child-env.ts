@@ -35,13 +35,13 @@ export type ClaudeEnvDeps = {
   }) => StructuredAgentCommand
   /** Refresh once after command lookup misses; absent disables retry. */
   refreshEnvironmentAfterMiss?: (askedAt: number) => Promise<void>
-  /** Cwd used to resolve relative PATH entries; defaults to Orca's cwd. */
+  /** Cwd used to resolve relative PATH entries; defaults to Otodus's cwd. */
   resolveWorkingDirectory?: () => Promise<string> | string
   resolveEnv?: () =>
     | Promise<Record<string, string> | undefined>
     | Record<string, string>
     | undefined
-  /** Inherited environment before auth policy; defaults to Orca's process environment. */
+  /** Inherited environment before auth policy; defaults to Otodus's process environment. */
   resolveInheritedEnv?: () => Promise<Record<string, string>>
 }
 

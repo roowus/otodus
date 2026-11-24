@@ -49,10 +49,10 @@ const SERVER_CALLS: ReadonlySet<string> = new Set([
 type Values = Record<string, unknown>
 
 /**
- * Before this Orca's receipts: a command about a worker a paired server owns runs there, by that
+ * Before this Otodus's receipts: a command about a worker a paired server owns runs there, by that
  * server's ordinary handler, as its Run's coordinator. The worker is found from the subjects the
  * method declares; the caller passes the method's one access check here first, as it would for a
- * worker of its own. A paired Orca's calls always run here: pairing is one-way.
+ * worker of its own. A paired Otodus's calls always run here: pairing is one-way.
  */
 export async function routeRemoteOwnedCall(
   runtime: OrcaRuntimeService,
@@ -67,7 +67,7 @@ export async function routeRemoteOwnedCall(
   }
   const values: Values = params && typeof params === 'object' ? { ...params } : {}
   const db = runtime.getOrchestrationDb()
-  // A start goes to a server only by --on; a remote Dispatch it names (--retry-of) stays this Orca's claim to check.
+  // A start goes to a server only by --on; a remote Dispatch it names (--retry-of) stays this Otodus's claim to check.
   const subject =
     request.method === 'orchestration.workerStart' ? undefined : remoteSubject(db, access, values)
   if (!subject) {
@@ -77,7 +77,7 @@ export async function routeRemoteOwnedCall(
   checkDeclaredOrchestrationAccess(access, params, ctx)
   const record = subject.dispatchId ? getRemoteDispatch(db, subject.dispatchId) : undefined
   if (request.method === 'orchestration.workerShow' && record) {
-    // A status read is this Orca's record, never a call there: instant whatever the server is doing.
+    // A status read is this Otodus's record, never a call there: instant whatever the server is doing.
     return { handled: true, result: await remoteWorkerShow(runtime, record) }
   }
   const forward = remoteForwardKey(
@@ -210,7 +210,7 @@ async function routeServerCall(
 
 type RemoteSubject = { link: RemoteRunLinkRow; dispatchId?: string }
 
-/** The worker or question a call names, when a paired server owns it. Tasks stay in this Orca's graph. */
+/** The worker or question a call names, when a paired server owns it. Tasks stay in this Otodus's graph. */
 function remoteSubject(
   db: OrchestrationDb,
   access: OrchestrationMethodAccessDeclaration,
@@ -235,7 +235,7 @@ function remoteSubject(
   return undefined
 }
 
-/** This Orca's caller, Run and server fields mean nothing there: the server names the caller itself. */
+/** This Otodus's caller, Run and server fields mean nothing there: the server names the caller itself. */
 function paramsForServer(access: OrchestrationMethodAccessDeclaration, values: Values): Values {
   const local = new Set<string>(
     [
@@ -296,7 +296,7 @@ function seedNamedDispatches(db: OrchestrationDb, link: RemoteRunLinkRow, answer
   })
 }
 
-/** A retry of a start this Orca already took on today's path stays there, whatever the server runs now. */
+/** A retry of a start this Otodus already took on today's path stays there, whatever the server runs now. */
 function holdsLocalReceipt(
   db: OrchestrationDb,
   ctx: RpcContext,

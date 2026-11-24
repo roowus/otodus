@@ -10,7 +10,7 @@ export type PluginHostCallScope = {
   assertActive(): void
   /** The WebContents whose frame made the call (desktop IPC only): dialogs and budgets bind to it. */
   callerWebContentsId?: number
-  /** The plugin's display name, for prompts Orca shows on its behalf. */
+  /** The plugin's display name, for prompts Otodus shows on its behalf. */
   pluginName?: string
   /** The open panel or editor that made the call; absent for workers. */
   panel?: PluginPanelCaller

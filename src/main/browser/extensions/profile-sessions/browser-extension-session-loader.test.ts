@@ -255,7 +255,7 @@ describe('deleted profile action state', () => {
   })
 })
 
-it('does not restore stale enablement after uninstall and reinstall in another Orca profile', async () => {
+it('does not restore stale enablement after uninstall and reinstall in another Otodus profile', async () => {
   setBrowserExtensionSupportEnabled(true)
   await loader.detachBrowserExtensionsFromAllProfileSessions()
   loader.setBrowserExtensionSessionHooks({
@@ -285,7 +285,7 @@ it('does not restore stale enablement after uninstall and reinstall in another O
 
   await expect(
     loader.loadBrowserExtensionIntoProfile('inactive-profile', installed)
-  ).rejects.toThrow('Restart Orca')
+  ).rejects.toThrow('Restart Otodus')
   expect(mocks.session.extensions.loadExtension).not.toHaveBeenCalled()
   await loader.detachBrowserExtensionsFromAllProfileSessions()
 })

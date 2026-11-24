@@ -13,7 +13,7 @@ export type RuntimeWorktreeLifecycleEvent =
     } & WorktreeLifecycleIdentity)
   | ({ kind: 'removed'; worktreeId: string; path: string } & WorktreeLifecycleIdentity)
 
-/** A created worktree's identity, from the row Orca just built for it. */
+/** A created worktree's identity, from the row Otodus just built for it. */
 export function createdWorktreeLifecycleIdentity(worktree: {
   identity?: { key: string }
   hostId?: ExecutionHostId

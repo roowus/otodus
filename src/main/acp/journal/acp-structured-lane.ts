@@ -38,7 +38,7 @@ export type AcpStructuredLaneDeps = {
   providerSessionId: string
   dialect: AcpDialect
   logger: StructuredAgentSessionLogger
-  /** First provider event confirms receipt of an Orca send. */
+  /** First provider event confirms receipt of an Otodus send. */
   onInputAccepted: (clientMessageId: string) => void
   /** Permanent sink refusal prevents further journaling. */
   onFailed: (reason: string) => void

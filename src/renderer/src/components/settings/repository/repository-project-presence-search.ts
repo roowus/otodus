@@ -14,7 +14,7 @@ export function getRepositoryPresenceSearchEntries(
     title: t('auto.components.settings.repository.search.bbbe994528', 'Remove project'),
     description: t(
       'auto.components.settings.repository.search.c86478c3d8',
-      'Remove this project from Orca.'
+      'Remove this project from Otodus.'
     ),
     keywords: [
       repo.displayName,

@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Pressable, ScrollView, Text, View } from 'react-native'
 import Animated from 'react-native-reanimated'
 import { NumberedStepsPanel } from '../components/list/NumberedStepsPanel'
-import { OrcaLogo } from '../components/icons/OrcaLogo'
+import { OtodusLogo } from '../components/icons/OtodusLogo'
 import type { Translate } from '../i18n/mobile-i18n'
 import { useMobileTranslation } from '../i18n/use-mobile-translation'
 import { colors, radii, spacing } from '../theme/mobile-theme'
@@ -64,7 +64,7 @@ export function MobileHomeEmptyState(props: {
       <MobileHomeAppMoveBanner />
       <View style={styles.guide}>
         <View style={styles.hero}>
-          <OrcaLogo size={44} />
+          <OtodusLogo size={44} />
           <Text style={styles.title} accessibilityRole="header">
             {t('home.emptyState.title', 'Connect your desktop')}
           </Text>

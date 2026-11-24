@@ -121,7 +121,7 @@ export function resolveEditorLigaturesMode(
   return mode === 'on' || mode === 'auto' ? mode : 'off'
 }
 
-/** Profiles saved before the preference existed keep Orca's previous wrapped default. */
+/** Profiles saved before the preference existed keep Otodus's previous wrapped default. */
 export function resolveFileEditorWordWrap(editorWordWrap: boolean | undefined): 'on' | 'off' {
   return editorWordWrap === false ? 'off' : 'on'
 }

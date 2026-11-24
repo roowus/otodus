@@ -31,7 +31,7 @@ export abstract class UpdaterMacInstallPreflight extends UpdaterPackageRecovery 
         version: pendingVersion,
         retryAction: 'install',
         message:
-          'Could not check for other running Orca instances. Orca remains open. Try again. If the check keeps failing, close the other Orca instances and background orca serve servers, then quit Orca to let the update install on exit. Reopen Orca afterwards.'
+          'Could not check for other running Otodus instances. Otodus remains open. Try again. If the check keeps failing, close the other Otodus instances and background orca serve servers, then quit Otodus to let the update install on exit. Reopen Otodus afterwards.'
       })
       recordUpdaterLifecycle('macos_running_instances_check_failed')
       return false

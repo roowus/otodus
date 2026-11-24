@@ -24,7 +24,7 @@ export function getManagedScript(target: 'local' | 'posix' = 'local'): string {
       'echo {}',
       // Why: the direct registration passes the event as %1; the encoded fallback sets the env var.
       'if not "%~1"=="" set "ORCA_COPILOT_HOOK_EVENT=%~1"',
-      // Why: refresh endpoint coordinates for PTYs surviving an Orca restart.
+      // Why: refresh endpoint coordinates for PTYs surviving an Otodus restart.
       'if defined ORCA_AGENT_HOOK_ENDPOINT if exist "%ORCA_AGENT_HOOK_ENDPOINT%" call "%ORCA_AGENT_HOOK_ENDPOINT%" 2>nul',
       ...buildWindowsHookEnvironmentGuardLines(),
       buildWindowsAgentHookPostCommand('copilot', [

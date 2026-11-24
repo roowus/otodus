@@ -66,7 +66,7 @@ export type AgentStatusIpcPayload = ParsedAgentStatusPayload & {
   /** Live host acknowledgement of this renderer’s exact pane retirement. */
   authorityRestartId?: string
   launchToken?: string
-  /** The host's statement on the Orca launch in this pane: its note, or null for none; absent says nothing. */
+  /** The host's statement on the Otodus launch in this pane: its note, or null for none; absent says nothing. */
   launchConfig?: SleepingAgentLaunchConfig | null
   terminalHandle?: string
   tabId?: string
@@ -95,7 +95,7 @@ export type AgentStatusIpcPayload = ParsedAgentStatusPayload & {
   programStatus?: ProgramStatusFacet
   /** Only `programStatus` changed: readers patch the facet and treat nothing else as news. */
   programStatusOnly?: true
-  /** The terminal agent's Orca id on its execution host; null when that host can name this
+  /** The terminal agent's Otodus id on its execution host; null when that host can name this
    *  conversation but has not yet (Copy retries); absent from older hosts and unnameable rows. */
   orcaSessionId?: string | null
   /** See AgentStatusEntry.restoredUnconfirmed — hydrated nonterminal provenance. */

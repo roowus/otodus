@@ -74,7 +74,7 @@ describe('browserManager', () => {
     vi.useRealTimers()
   })
 
-  // #36804: headless serve pages have no renderer to own Orca's tab model.
+  // #36804: headless serve pages have no renderer to own Otodus's tab model.
   // orcad's Electron browser registers pages without a workspace, so there is no tab list to open into.
 
   function attachGuest(): {

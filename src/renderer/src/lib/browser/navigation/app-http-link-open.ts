@@ -30,7 +30,7 @@ function isEscapeModifierClick(event: AppHttpLinkClick | undefined): boolean {
   )
 }
 
-/** Opens a web link from Orca's own UI per the link setting, in the given or active workspace. */
+/** Opens a web link from Otodus's own UI per the link setting, in the given or active workspace. */
 export function openAppHttpLink(
   url: string,
   options: OpenAppHttpLinkOptions = {}

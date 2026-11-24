@@ -102,7 +102,7 @@ async function automationTarget(
 
 export const PLUGIN_AUTOMATION_HANDLERS = {
   'automation.list': bind(api['automation.list'], async (_params, ctx) => {
-    // No selector: every automation this Orca stores, the list `orca automations list` prints.
+    // No selector: every automation this Otodus stores, the list `orca automations list` prints.
     const { automations } = automationListAnswer.parse(
       await rpc(ctx.services)('automation.list', {})
     )
@@ -116,7 +116,7 @@ export const PLUGIN_AUTOMATION_HANDLERS = {
     const target = await automationTarget(ctx, params)
     // Never forwarded: a precheck (a shell command), agent arguments, launch setup (permission
     // modes), setup decisions or trust, or a destination. Runs use the person's settings for the
-    // agent, here. Orca records this plugin as the creator from the caller, not from params.
+    // agent, here. Otodus records this plugin as the creator from the caller, not from params.
     const answer = await effect(ctx, 'automation.create', {
       name: params.name.trim(),
       prompt: params.prompt,

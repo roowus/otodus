@@ -76,7 +76,7 @@ beforeEach(() => {
     getAppMetrics: () => []
   })
   setProcessProp('platform', 'win32')
-  setProcessProp('execPath', join(installDir, 'Orca.exe'))
+  setProcessProp('execPath', join(installDir, 'Otodus.exe'))
   setProcessProp('resourcesPath', join(installDir, 'resources'))
 })
 

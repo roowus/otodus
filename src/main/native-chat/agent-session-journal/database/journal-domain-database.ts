@@ -95,7 +95,7 @@ function absorbOlderOrcaWrites(stateDirectory: string, destination: string): voi
       db.close()
     }
   } catch (error) {
-    console.warn('[agent-session-journal] reading chats an older Orca saved failed', error)
+    console.warn('[agent-session-journal] reading chats an older Otodus saved failed', error)
   }
 }
 

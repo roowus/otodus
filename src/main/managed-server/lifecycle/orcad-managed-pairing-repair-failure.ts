@@ -5,8 +5,8 @@ export class OrcadManagedPairingRepairFailedError extends Error {
   constructor(reason: string) {
     super(
       `${ORCAD_PAIRING_REPAIR_FAILED_CODE}: the Orca server on this host no longer accepts this ` +
-        `computer, and Orca couldn't pair with it again over SSH: ${reason}. Nothing on the host ` +
-        `was stopped; its terminals can't be verified until Orca pairs again. Connect again to retry.`
+        `computer, and Otodus couldn't pair with it again over SSH: ${reason}. Nothing on the host ` +
+        `was stopped; its terminals can't be verified until Otodus pairs again. Connect again to retry.`
     )
     this.name = 'OrcadManagedPairingRepairFailedError'
   }

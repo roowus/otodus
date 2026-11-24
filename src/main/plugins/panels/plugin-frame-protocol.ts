@@ -222,7 +222,7 @@ export function createPluginFrameRequestHandler(
   }
 }
 
-/** `__orca/*`: only files Orca ships, never the plugin's own files under that name. */
+/** `__orca/*`: only files Otodus ships, never the plugin's own files under that name. */
 async function readOrcaFile(
   dependencies: PluginFrameProtocolDependencies,
   plugin: ValidDiscoveredPlugin,

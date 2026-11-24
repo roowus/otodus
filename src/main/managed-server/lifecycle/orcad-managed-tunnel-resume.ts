@@ -226,7 +226,7 @@ export class OrcadManagedTunnelResumeRecovery {
       connection: active.connection,
       forwards: this.dependencies.forwards,
       localPort: deployment.localPort,
-      label: `Orca on ${current.environment.name}`,
+      label: `Otodus on ${current.environment.name}`,
       ...checks,
       stillCurrent
     })

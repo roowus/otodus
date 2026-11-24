@@ -64,7 +64,7 @@ export type AppThemePaintState = {
 }
 
 /** Paints the document in the selected app theme (a plugin's or Match Terminal's) and its mode.
- *  Every Orca window runs this, so pop-outs follow the main window's theme. */
+ *  Every Otodus window runs this, so pop-outs follow the main window's theme. */
 export function useAppThemePaint(): AppThemePaintState {
   const theme = useAppStore((s) => s.settings?.theme)
   const requestedDark = useSettingsDarkTheme()

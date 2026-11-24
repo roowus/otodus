@@ -78,7 +78,7 @@ export function createDeclarativeStorageSync(options: {
   }
 }
 
-/** Persisted atoms that change: `storage` ones go to the plugin's storage, the rest to Orca. */
+/** Persisted atoms that change: `storage` ones go to the plugin's storage, the rest to Otodus. */
 export function createDeclarativePersistence(options: {
   bridge: OrcaBridge | null
   report: (error: unknown) => void

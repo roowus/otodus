@@ -15,7 +15,7 @@ import { recordReceiptBeforeNudge } from './mutation-replay-nudge'
 
 const NOTHING_SENT = { effectsApplied: false } as const
 
-/** A reply to mail that came from another Orca goes back over that mail's conversation. */
+/** A reply to mail that came from another Otodus goes back over that mail's conversation. */
 export async function replyOverPeerMail(args: {
   runtime: OrcaRuntimeService
   original: MessageRow
@@ -31,7 +31,7 @@ export async function replyOverPeerMail(args: {
   if (!conversation) {
     throw new OrchestrationError(
       'request_mismatch',
-      `The conversation ${original.id} came on is gone from this Orca. No reply was sent.`,
+      `The conversation ${original.id} came on is gone from this Otodus. No reply was sent.`,
       NOTHING_SENT
     )
   }

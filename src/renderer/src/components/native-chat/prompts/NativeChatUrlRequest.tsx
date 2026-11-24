@@ -7,7 +7,7 @@ import type {
   AgentJournalUrlApprovalSubject
 } from '../../../../../shared/agent-session/journal/agent-session-journal-types'
 
-/** Opens only in the system browser, outside anything Orca or an agent can read. */
+/** Opens only in the system browser, outside anything Otodus or an agent can read. */
 export function openUrlRequestPage(url: string): void {
   const target = readApprovalUrl(url)
   if (target) {

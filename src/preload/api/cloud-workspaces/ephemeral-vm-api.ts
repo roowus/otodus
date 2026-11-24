@@ -29,7 +29,7 @@ export type EphemeralVmApi = {
       diagnostics: NonNullable<OrcaHooks['environmentRecipeDiagnostics']>
     }[]
   >
-  /** Credential-like variable names (never values) recipe scripts would inherit from Orca. */
+  /** Credential-like variable names (never values) recipe scripts would inherit from Otodus. */
   listCredentialEnvNames: () => Promise<string[]>
   doctor: (args: { repoId: string; recipeId: string }) => Promise<EphemeralVmRecipeDoctorResult>
   provision: (args: {

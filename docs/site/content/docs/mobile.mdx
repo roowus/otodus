@@ -1,11 +1,11 @@
 ---
 title: Mobile companion
-description: Pair the Orca mobile app to your desktop to monitor agents and unstick worktrees from your phone.
+description: Pair the Otodus mobile app to your desktop to monitor agents and unstick worktrees from your phone.
 ---
 
 import { Callout } from '@/components/docs/prose'
 
-The Orca mobile companion is an iOS/Android app that pairs with your desktop Orca and lets you monitor and control running agents — agent status, recent terminal scrollback, terminal input, source control, and agent accounts. Pairing establishes persistent access to the selected host; the desktop remains the source of truth.
+The Otodus mobile companion is an iOS/Android app that pairs with your desktop Otodus and lets you monitor and control running agents — agent status, recent terminal scrollback, terminal input, source control, and agent accounts. Pairing establishes persistent access to the selected host; the desktop remains the source of truth.
 
 <Callout title="Beta">
   The mobile companion is in beta. Install iOS from the [App
@@ -37,8 +37,8 @@ The mobile app is intentionally not a full editor — it's a remote control for 
 
 ## Pairing
 
-1. On desktop, open Orca's pairing flow from the account / status menu. Orca shows a pairing code. Treat it as a secret and share it only with the device you want to authorize.
-1. On mobile, open the Orca companion app and choose **Pair**, then paste the code. (You can also follow a deep link from the desktop directly into the mobile pairing screen.)
+1. On desktop, open Otodus's pairing flow from the account / status menu. Otodus shows a pairing code. Treat it as a secret and share it only with the device you want to authorize.
+1. On mobile, open the Otodus companion app and choose **Pair**, then paste the code. (You can also follow a deep link from the desktop directly into the mobile pairing screen.)
 1. Prefer **Orca Relay** for pairing when it is available — sign-in is required for Relay only. The local network address picker is optional on Relay (expand it when you want a LAN fast path); LAN pairing still needs an address.
 1. The pairing exchange establishes a device token for that phone; keep desktop reachable on the path you chose.
 
@@ -56,12 +56,12 @@ The paired desktop can deliver mobile web UI and JavaScript independently of a m
 
 1. On each paired desktop, open the Mobile settings and remove the phone from the paired-device list. Confirm the operation succeeds; removing a saved host on the phone is not a substitute for host-side revocation.
 1. Host-side revocation removes the device authorization and closes its active connections on that host. Relay credential cleanup is queued durably and requires connectivity to reach the service. Remote runtimes receive updated delegated-device grants when synchronization succeeds. If a host is offline or cleanup has not completed, restrict its network access until revocation is confirmed; there is no guaranteed immediate revocation across offline hosts.
-1. For a lost phone, use your device-management tools to lock or wipe it and review any separately granted host or provider access. Revoking Orca access does not remotely erase files, screenshots, clipboard contents, or other data already saved on the phone.
+1. For a lost phone, use your device-management tools to lock or wipe it and review any separately granted host or provider access. Revoking Otodus access does not remotely erase files, screenshots, clipboard contents, or other data already saved on the phone.
 1. If you suspect a pairing code was shared, regenerate it and review paired devices on the affected host before pairing a replacement phone.
 
 ## Chat UI
 
-For chat-capable agents (Claude, Codex, and others Orca recognizes), mobile can open the session in **Chat UI** instead of the raw terminal — the same idea as desktop's [Chat UI](/docs/agents/native-chat): a readable transcript, composer, permissions/questions, and image attachments.
+For chat-capable agents (Claude, Codex, and others Otodus recognizes), mobile can open the session in **Chat UI** instead of the raw terminal — the same idea as desktop's [Chat UI](/docs/agents/native-chat): a readable transcript, composer, permissions/questions, and image attachments.
 
 - **Device default** — on first launch, mobile asks how sessions should open on this phone. Change it later under **Settings → Chat UI → Open sessions in Chat UI**. The default is terminal until you choose Chat UI.
 - **Per-session** — long-press a session tab and choose **Switch to chat view** or **Switch to terminal view**. That override sticks for that tab without changing the device default.
@@ -140,14 +140,14 @@ For a direct LAN or Tailscale connection, allow the paired desktop's listening p
 - **Stuck spinner on a worktree** — the phone tracks a heartbeat from the desktop agent process. If the desktop says idle but the phone shows working, force-refresh the worktree row to sync state.
 - **Pairing fails** — Relay requires desktop sign-in; local-only pairing requires a reachable LAN or Tailscale endpoint. Generate a fresh code if an offer has expired, and check the connection mode and host address.
 - **Authentication failed / pairing invalid** — the desktop no longer accepts this device token (for example after desktop cleared paired devices). Try **Retry** on the banner first (transient rejections can recover without re-pairing). If it keeps failing, use **Re-pair** from desktop, or **Remove** the host and pair again.
-- **Update Orca Mobile / Update Orca on your computer** — the phone and desktop speak a versioned mobile protocol. If either side is too old, mobile blocks that host and points you at the App Store (iOS), [GitHub Releases](https://github.com/stablyai/orca/releases) (Android APK or desktop), then back to hosts. After updating, refresh the connection; if the message stays, remove the host and pair again.
-- **A chat tab says Update mobile** — the session was started in desktop Chat UI, and this phone's app is too old to show it (the tab opens to an empty pane). Update the mobile app, then reconnect to the host so it sees the new app. If the app is already up to date and the tab still says Update mobile after reconnecting, report it with your mobile app version and desktop Orca version.
+- **Update Otodus Mobile / Update Otodus on your computer** — the phone and desktop speak a versioned mobile protocol. If either side is too old, mobile blocks that host and points you at the App Store (iOS), [GitHub Releases](https://github.com/stablyai/orca/releases) (Android APK or desktop), then back to hosts. After updating, refresh the connection; if the message stays, remove the host and pair again.
+- **A chat tab says Update mobile** — the session was started in desktop Chat UI, and this phone's app is too old to show it (the tab opens to an empty pane). Update the mobile app, then reconnect to the host so it sees the new app. If the app is already up to date and the tab still says Update mobile after reconnecting, report it with your mobile app version and desktop Otodus version.
 - **Quick Commands unavailable** — update the paired desktop so it advertises the quick-commands capability.
 - **Can't reach desktop** — phone and desktop must share a network path (LAN, Tailscale, or the pairing path you used). Closing the desktop app drops the connection; reopen desktop and the phone reconnects automatically.
 
 <Callout title="Next steps">
   Pair mobile notifications with [desktop notifications](/docs/notifications) so agent-finished
-  alerts reach the right device. For headless machines, use [Remote Orca
+  alerts reach the right device. For headless machines, use [Remote Otodus
   Server](/docs/remote-servers) mobile pairing. Track provider usage on desktop and mobile under
   [Usage & rate-limit tracking](/docs/agents/usage-tracking).
 </Callout>

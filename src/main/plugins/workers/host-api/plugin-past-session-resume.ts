@@ -79,9 +79,9 @@ async function findPastSession(
 }
 
 /**
- * A session no pane runs, readied as Orca's own terminal Resume from Agent Session History
+ * A session no pane runs, readied as Otodus's own terminal Resume from Agent Session History
  * readies it (the same request and answer handling): an older Codex home's transcript moved
- * where `codex resume` finds it, a session repinned to the selected account, a session an Orca
+ * where `codex resume` finds it, a session repinned to the selected account, a session an Otodus
  * chat owns refused. Answers the transcript to resume from, or undefined when this computer's
  * history does not list the session: the agent then resumes it by id.
  */
@@ -118,7 +118,7 @@ export async function preparePluginPastSession(
     }
     throw new PluginHostCallError(
       'action_failed',
-      'Orca could not prepare this session to resume',
+      'Otodus could not prepare this session to resume',
       undefined,
       error instanceof PluginHostCallError ? (error.detail ?? error.message) : String(error),
       { cause: error }

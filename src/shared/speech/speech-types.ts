@@ -42,7 +42,7 @@ export type SpeechModelManifest = {
   sizeBytes?: number
   downloadFiles?: SpeechModelDownloadFile[]
   files?: string[]
-  /** The sherpa-onnx files an earlier Orca downloaded for this model; they no longer run. */
+  /** The sherpa-onnx files an earlier Otodus downloaded for this model; they no longer run. */
   legacyDownloadFiles?: SpeechModelDownloadFile[]
   sampleRate: number
   streaming: boolean

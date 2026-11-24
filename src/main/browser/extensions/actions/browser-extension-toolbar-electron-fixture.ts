@@ -31,7 +31,7 @@ if (!statusPath || !extensionDirectory || process.env.ORCA_BACKGROUND_LAUNCH !==
 const fixtureStatusPath = statusPath
 const fixtureExtensionDirectory = extensionDirectory
 
-// Orca's preflight registers this before ready; the worker shim calls main through it.
+// Otodus's preflight registers this before ready; the worker shim calls main through it.
 protocol.registerSchemesAsPrivileged([BROWSER_EXTENSION_API_CUSTOM_SCHEME])
 
 const presentationCalls: string[] = []
@@ -110,7 +110,7 @@ async function run(): Promise<void> {
     contents.on('console-message', (details) => captureResult(details.message))
   })
 
-  // Orca's main window with two registered tabs; page-1 starts active.
+  // Otodus's main window with two registered tabs; page-1 starts active.
   const host = new BrowserWindow({
     show: false,
     webPreferences: { contextIsolation: true, sandbox: true, webviewTag: true }

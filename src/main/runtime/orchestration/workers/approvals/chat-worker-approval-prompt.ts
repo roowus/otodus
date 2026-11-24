@@ -1,5 +1,5 @@
-/** A chat worker's permission prompt is its own journal item: Orca reads it there and answers it
- *  through the chat's ordinary prompt response, so the worker's chat and Orca share one record. */
+/** A chat worker's permission prompt is its own journal item: Otodus reads it there and answers it
+ *  through the chat's ordinary prompt response, so the worker's chat and Otodus share one record. */
 import { getStructuredAgentSessionHost } from '../../../../native-chat/agent-session-wire/host/structured-agent-session-registry'
 import { structuredAgentSessionPayloadFingerprint } from '../../../../../shared/agent-session/lifecycle/operations/structured-agent-session-mutation'
 import type { AgentJournalApprovalItem } from '../../../../../shared/agent-session/journal/agent-session-journal-types'
@@ -10,7 +10,7 @@ import type {
   WorkerApprovalOutcome
 } from '../../../../../shared/orchestration/approvals/worker-approval-payload'
 
-/** Marks a prompt Orca answered for a coordinator or a person, so the chat's own closer leaves it alone. */
+/** Marks a prompt Otodus answered for a coordinator or a person, so the chat's own closer leaves it alone. */
 export const ORCHESTRATION_APPROVAL_CALLER_PREFIX = 'trusted-local:orchestration:approval:'
 
 export type ChatWorkerPrompt = { revision: number; body: AgentJournalApprovalItem }
@@ -31,7 +31,7 @@ export const readChatWorkerPrompt: ChatWorkerPromptReader = async (sessionId, it
 }
 
 /** How a reported chat approval closed, from its journal item; null while it is still open, or when
- *  Orca answered it, since that answer writes its own closing line with the reason. */
+ *  Otodus answered it, since that answer writes its own closing line with the reason. */
 export function chatApprovalCloseOutcome(
   prompt: ChatWorkerPrompt | null
 ): WorkerApprovalOutcome | null {
@@ -67,7 +67,7 @@ export function personOnlyMessage(approvalId: string): string {
   return `The worker's agent lets only a person approve ${approvalId}, so it stays with the user. You can deny it with a reason, or leave it.`
 }
 
-/** Answer as Orca with the one option the decision may pick; the chat checks the revision it read. */
+/** Answer as Otodus with the one option the decision may pick; the chat checks the revision it read. */
 export async function answerChatWorkerApproval(input: {
   sessionId: string
   approvalId: string
@@ -84,7 +84,7 @@ export async function answerChatWorkerApproval(input: {
     return {
       ok: false,
       code: 'approval_refused',
-      message: `Orca could not read the worker's chat, so ${approvalId} was not answered. Try again.`
+      message: `Otodus could not read the worker's chat, so ${approvalId} was not answered. Try again.`
     }
   }
   const notOpen: ChatWorkerApprovalAnswer = {
@@ -107,7 +107,7 @@ export async function answerChatWorkerApproval(input: {
       code: 'approval_option_missing',
       message:
         decision === 'deny'
-          ? `Approval ${approvalId} offers no way to refuse just this request, so Orca will not pick one. A person must answer it on the worker.`
+          ? `Approval ${approvalId} offers no way to refuse just this request, so Otodus will not pick one. A person must answer it on the worker.`
           : `Approval ${approvalId} offers no way to allow just this request. A person must answer it on the worker.`
     }
   }
@@ -155,7 +155,7 @@ export async function answerChatWorkerApproval(input: {
           message: `The worker's chat did not take the answer to ${approvalId}: ${result.refusal.message}`
         }
   }
-  // A same-option answer already on record also succeeds; it is this call's only if Orca recorded it here.
+  // A same-option answer already on record also succeeds; it is this call's only if Otodus recorded it here.
   if (result.value.resolution.resolvedBy !== callerKey) {
     return notOpen
   }

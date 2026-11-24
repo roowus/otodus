@@ -96,7 +96,7 @@ export class ConnectorCloud {
     }
   }
 
-  /** Null while no client runs: signed out, connectors off, or Orca quitting. */
+  /** Null while no client runs: signed out, connectors off, or Otodus quitting. */
   reply(
     body: Parameters<ConnectorPollClient['reply']>[0]
   ): ReturnType<ConnectorPollClient['reply']> | null {

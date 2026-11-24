@@ -47,7 +47,7 @@ export class OrcadManagedIdentityError extends Error {
     return new OrcadManagedIdentityError(
       'foreign-port',
       `the server on remote port ${remotePort} is not this host’s Orca server ` +
-        '(another Orca may be using that port)',
+        '(another Otodus may be using that port)',
       detail
     )
   }
@@ -62,7 +62,7 @@ export class OrcadManagedIdentityError extends Error {
     const selector = quotePosixShellUnlessPlain(environment.id)
     return new OrcadManagedIdentityError(
       'replaced-server',
-      `${environmentName} is not the Orca server this desktop paired with (Orca now connects ` +
+      `${environmentName} is not the Orca server this desktop paired with (Otodus now connects ` +
         'to the host as a different SSH user, or the server was reinstalled), so reconnecting ' +
         `won’t restore access. To pair with the host’s current server, open the ⋯ menu on ` +
         `${environmentName} in Settings › Remote Orca Servers and choose Forget… (or run ` +

@@ -52,7 +52,7 @@ export type WorkspaceCleanupRunRow = WorkspaceCleanupWorkspaceRef &
     keptOnRecheck?: true
     /** The unmerged branch Git kept after the checkout was removed. */
     branchKept?: string
-    /** Last measured checkout size; absent when Orca never measured it. */
+    /** Last measured checkout size; absent when Otodus never measured it. */
     sizeBytes?: number
     /** Plain-words failure for 'failed' rows. */
     error?: string

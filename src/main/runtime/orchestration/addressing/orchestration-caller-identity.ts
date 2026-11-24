@@ -14,7 +14,7 @@ export type OrchestrationCoordinatorKey = Pick<
   'terminalHandle' | 'paneKey' | 'orcaSessionId'
 >
 
-/** A caller the dispatch entry resolved from the Orca session id in its injected environment. */
+/** A caller the dispatch entry resolved from the Otodus session id in its injected environment. */
 export type OrchestrationSessionCaller = OrchestrationCallerIdentity &
   Readonly<{
     kind?: undefined
@@ -25,7 +25,7 @@ export type OrchestrationSessionCaller = OrchestrationCallerIdentity &
     workspaceId: string
   }>
 
-/** A paired Orca acting as the coordinator of its Run here, as its authenticated frame names it.
+/** A paired Otodus acting as the coordinator of its Run here, as its authenticated frame names it.
  *  Its handle and binding key are its address, which no terminal or session here can have. */
 export type OrchestrationPeerCaller = OrchestrationCallerIdentity &
   Readonly<{
@@ -37,10 +37,10 @@ export type OrchestrationPeerCaller = OrchestrationCallerIdentity &
   }>
 
 /** The caller the dispatch entry resolved, which wins over any declared handle: a session from
- *  its environment, or a paired Orca from its pairing. */
+ *  its environment, or a paired Otodus from its pairing. */
 export type OrchestrationEntryCaller = OrchestrationSessionCaller | OrchestrationPeerCaller
 
-/** The address, and Run binding key, of the paired Orca coordinating a conversation's Run here. */
+/** The address, and Run binding key, of the paired Otodus coordinating a conversation's Run here. */
 export function peerCoordinatorAddress(conversationId: string): string {
   return `${PEER_ADDRESS_PREFIX}${conversationId}`
 }
@@ -69,7 +69,7 @@ export function isPeerCaller(
   return !!caller && 'kind' in caller && caller.kind === 'peer'
 }
 
-/** A caller with neither a pane nor an Orca session id can never be bound to a Run. */
+/** A caller with neither a pane nor an Otodus session id can never be bound to a Run. */
 export function hasRunBindingKey(caller: OrchestrationCoordinatorKey): boolean {
   return caller.paneKey !== null || caller.orcaSessionId !== null
 }
@@ -85,7 +85,7 @@ export function mailboxAddressOf(
   return party.orcaSessionId === null ? null : formatOrcaSessionAddress(party.orcaSessionId)
 }
 
-/** Who a Run's binding names now; an Orca session id an older binding left behind is not part of it. */
+/** Who a Run's binding names now; an Otodus session id an older binding left behind is not part of it. */
 export function runCoordinatorKey(run: RunRow): OrchestrationCoordinatorKey {
   return {
     terminalHandle: run.coordinator_handle,

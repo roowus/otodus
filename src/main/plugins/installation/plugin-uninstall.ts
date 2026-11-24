@@ -41,7 +41,7 @@ export async function uninstallInstalledPlugin(input: {
   if (!canRemoveInstalledPlugin(pluginService, pluginKey, lock)) {
     return false
   }
-  // Why: Orca republishes a copy it ships on the next launch; it must come back off, not on.
+  // Why: Otodus republishes a copy it ships on the next launch; it must come back off, not on.
   const { bundledPluginRoot } = pluginService.options
   const shipped =
     bundledPluginRoot !== undefined && (await isBundledPluginKey(bundledPluginRoot, pluginKey))

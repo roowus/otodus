@@ -219,7 +219,7 @@ export function registerSpeechHandlers(
             if (newStatus !== 'granted') {
               throw new Error(
                 'Microphone access not granted. In System Settings > Privacy & Security > Microphone, ' +
-                  'click "+" and add the Electron app, then restart Orca.'
+                  'click "+" and add the Electron app, then restart Otodus.'
               )
             }
           }

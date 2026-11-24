@@ -177,7 +177,7 @@ describe('OrcaRuntimeService', () => {
         '-C',
         clonePath,
         '-c',
-        'user.name=Orca Test',
+        'user.name=Otodus Test',
         '-c',
         'user.email=test@orca.invalid',
         'commit',

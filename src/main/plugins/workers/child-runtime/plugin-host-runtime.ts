@@ -131,10 +131,10 @@ export function createPluginWorkerRuntime(
     const module: unknown = await importModule(entryUrl)
     const activate = readExport(module, 'default')
     if (typeof activate !== 'function') {
-      // Why name it: `export function activate` is the usual slip, and Orca never calls it.
+      // Why name it: `export function activate` is the usual slip, and Otodus never calls it.
       throw new Error(
         typeof readExport(module, 'activate') === 'function'
-          ? `plugin entry ${input.mainEntry} exports activate by name, but Orca calls the default export: write \`export default function activate(orca)\``
+          ? `plugin entry ${input.mainEntry} exports activate by name, but Otodus calls the default export: write \`export default function activate(orca)\``
           : `plugin entry ${input.mainEntry} has no default-exported activate function`
       )
     }

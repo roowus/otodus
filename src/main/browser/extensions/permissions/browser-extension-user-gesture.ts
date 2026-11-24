@@ -7,7 +7,7 @@ export const BROWSER_EXTENSION_USER_GESTURE_WINDOW_MS = 5_000
 const recentGestures = new WeakMap<AbortSignal, number>()
 
 /**
- * Chrome lets permissions.request run only inside a user gesture. Orca records the gestures it
+ * Chrome lets permissions.request run only inside a user gesture. Otodus records the gestures it
  * delivers to an extension (menu click, command, notification click, toolbar click).
  */
 export function noteBrowserExtensionUserGesture(
@@ -22,7 +22,7 @@ export function noteBrowserExtensionUserGesture(
   recentGestures.set(signal, Date.now())
 }
 
-/** When Orca last handed the caller's extension a gesture, if still within the gesture window. */
+/** When Otodus last handed the caller's extension a gesture, if still within the gesture window. */
 export function getBrowserExtensionUserGestureAt(caller: BrowserExtensionCaller): number | null {
   const state = getHostSessionState(caller.session)
   if (!state) {

@@ -49,7 +49,7 @@ export async function deliverWorkerDispatchPreamble(args: {
   structuredTurnStart?: WorkerTurnStartObservation
 }> {
   const { runtime, structuredSession, terminalHandle } = args
-  // A reused structured worker is a chat too, though its handle is not an Orca session ID.
+  // A reused structured worker is a chat too, though its handle is not an Otodus session ID.
   const chat = structuredSession
     ? null
     : chatAssigneeOf(resolveDispatchAssigneeParty(terminalHandle, args.db))
@@ -61,7 +61,7 @@ export async function deliverWorkerDispatchPreamble(args: {
     taskSpec: args.taskSpec,
     coordinatorHandle: orcaSessionIdOrHandle(args.coordinatorHandle, args.db),
     coordinatedFrom: args.db.getPeerRun(args.runId)?.home_label,
-    // Its mailbox stays keyed by the handle; its commands name its Orca session ID, which binds to it.
+    // Its mailbox stays keyed by the handle; its commands name its Otodus session ID, which binds to it.
     workerHandle:
       structuredSession && isOrcaSessionId(structuredSession.identity.sessionId)
         ? formatOrcaSessionAddress(canonicalOrcaSessionId(structuredSession.identity.sessionId))

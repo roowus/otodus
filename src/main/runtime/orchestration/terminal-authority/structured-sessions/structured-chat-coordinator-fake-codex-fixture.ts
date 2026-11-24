@@ -191,7 +191,7 @@ export function isWholeMail(text: string): boolean {
   return text.includes('\nSubject: ') && /\[[^\]\n]*: orca(-dev)? orchestration /.test(text)
 }
 
-/** What the agent itself is sent for that card: only Orca's pointer at `check`. */
+/** What the agent itself is sent for that card: only Otodus's pointer at `check`. */
 export function isMailPointer(text: string): boolean {
   return /^You have 1 orchestration message\. Run `orca(-dev)? orchestration check( --run \S+)?`\.$/.test(
     text

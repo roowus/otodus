@@ -21,7 +21,7 @@ export function canConfirmInWindow(window: BrowserWindow | null): window is Brow
 }
 
 /**
- * Orca asks the person before a plugin acts on their behalf; where nobody can see the question,
+ * Otodus asks the person before a plugin acts on their behalf; where nobody can see the question,
  * nobody is asked and the answer is `unavailable`.
  */
 export async function confirmPluginAction(

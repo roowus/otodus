@@ -40,15 +40,15 @@ export type WorkerShowResult = {
     terminalHandle?: string | null
   } | null
   observation?: { agentWait?: { source: string; reason?: string } | null; reason?: string }
-  /** Present only for a worker a paired server runs, which this Orca's record answers. */
+  /** Present only for a worker a paired server runs, which this Otodus's record answers. */
   server?: RemoteWorkerServer & { reachable?: boolean }
   lastReport?: string | null
   autoReleaseAt?: string | null
-  /** The paired Orca whose Run here coordinates this worker. */
+  /** The paired Otodus whose Run here coordinates this worker. */
   coordinatedFrom?: string | null
 }
 
-/** A worker a paired server runs, as this Orca names that server and last heard from it. */
+/** A worker a paired server runs, as this Otodus names that server and last heard from it. */
 type RemoteWorkerServer = { name: string; asOf: string; repaired?: true }
 
 type WorkerShowFields = {
@@ -136,7 +136,7 @@ export type WorkerListResult = {
     coordinatedFrom?: string | null
     resource?: { worktreeId?: string | null; autoReleaseAt?: string | null } | null
     projection?: WorkerProjection
-    /** Only on a worker a paired server runs, listed from this Orca's record of it. */
+    /** Only on a worker a paired server runs, listed from this Otodus's record of it. */
     server?: RemoteWorkerServer
   }[]
   counts: Record<string, number>

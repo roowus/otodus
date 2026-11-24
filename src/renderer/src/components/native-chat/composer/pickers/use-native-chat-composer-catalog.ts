@@ -16,7 +16,7 @@ export type NativeChatComposerCatalog = {
   sessionSkills: readonly NativeChatSessionSkill[] | undefined
 }
 
-/** Structured chats use host and session-loaded commands/skills plus Orca /resume, /btw and /mcp; PTY chats retain curated catalogs. */
+/** Structured chats use host and session-loaded commands/skills plus Otodus /resume, /btw and /mcp; PTY chats retain curated catalogs. */
 export function useNativeChatComposerCatalog(
   agent: AgentType,
   structuredTransport?: NativeChatStructuredComposerTransport

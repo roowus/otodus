@@ -2,15 +2,15 @@ import { spawn, type ChildProcessByStdio } from 'node:child_process'
 import { createInterface, type Interface } from 'node:readline'
 import type { Readable, Writable } from 'node:stream'
 
-/** Stdin EOF tells the wrapper that Orca died. */
+/** Stdin EOF tells the wrapper that Otodus died. */
 export type LogStreamChild = ChildProcessByStdio<Writable, Readable, Readable>
 
-// AUTHREQ_PROMPTING identifies actual dialogs, including access attributed to Orca’s terminal children (#9756).
+// AUTHREQ_PROMPTING identifies actual dialogs, including access attributed to Otodus’s terminal children (#9756).
 
 // TCC can attribute terminal access to the detached helper independently of the main app.
 const ORCA_RESPONSIBLE_IDENTIFIERS = new Set([
-  'com.stablyai.orca',
-  'com.stablyai.orca.helper',
+  'com.roowus.otodus',
+  'com.roowus.otodus.helper',
   'com.stablyai.orca.dev',
   'com.stablyai.orca.dev.helper',
   'com.stablyai.orca.local',

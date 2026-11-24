@@ -7,7 +7,7 @@ import { PLUGIN_AUTOMATION_API } from './plugin-host-api-automation-methods'
 import { PLUGIN_AGENT_HISTORY_API } from './plugin-host-api-agent-history'
 import { PLUGIN_PROJECT_VISIBILITY_API } from './plugin-host-api-project-visibility'
 
-/** Worker-only methods that act on Orca: its status bar, projects, workspaces, terminals, agents,
+/** Worker-only methods that act on Otodus: its status bar, projects, workspaces, terminals, agents,
  *  agent session history and automations. Spread into PLUGIN_HOST_API. */
 export const PLUGIN_WORKER_ACTIONS_API = {
   ...PLUGIN_STATUS_BAR_API,

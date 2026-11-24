@@ -45,7 +45,7 @@ export type LeftBehindRollout = FileFacts & {
 type CodexHistoryCleanupManifest = {
   version: typeof MANIFEST_VERSION
   storeHome: string
-  /** The first and latest fully shared pass (about one per Orca run) since sharing was off. */
+  /** The first and latest fully shared pass (about one per Otodus run) since sharing was off. */
   firstSharedAt: string | null
   lastSharedAt: string | null
   sharedPasses: number

@@ -118,7 +118,7 @@ describe('native host process', () => {
     host.connection.close()
     expect(isRunning(pid)).toBe(true)
     await expect.poll(() => isRunning(pid), { timeout: 8000 }).toBe(false)
-    // Closing from Orca's side never reports back to the extension.
+    // Closing from Otodus's side never reports back to the extension.
     expect(host.closes).toEqual([])
   })
 

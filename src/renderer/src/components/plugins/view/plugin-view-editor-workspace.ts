@@ -113,7 +113,7 @@ export async function showWorkspaceForFile(
   let addedRepoId: string | undefined
   if (!found) {
     const state = useAppStore.getState()
-    // Why local: plugin open resolves paths on the Orca that runs it, which is this one.
+    // Why local: plugin open resolves paths on the Otodus that runs it, which is this one.
     const repo = await state.addRepoPath(fallbackFolder, 'folder', { runtimeEnvironmentId: null })
     if (!repo) {
       return null

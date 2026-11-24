@@ -11,7 +11,7 @@ const WORKER_REPORT_METHODS: ReadonlySet<string> = new Set([
 ])
 
 /**
- * While Orca restarts, a worker's terminal reads as an unknown pane and process until the startup
+ * While Otodus restarts, a worker's terminal reads as an unknown pane and process until the startup
  * restore rebinds it; wait for that before the handler runs the unchanged identity check. Null when
  * nothing needs to wait, so ordinary admission stays synchronous.
  */

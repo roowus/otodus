@@ -33,7 +33,7 @@ const AGENTS: [string, string[]][] = [
 function makePlan(
   state: (part: string) => OrcaUninstallEntryState,
   installKind: OrcaUninstallInstallKind = 'mac-app',
-  otherOrcaBuildName: string | null = 'Orca RC'
+  otherOrcaBuildName: string | null = 'Otodus RC'
 ): OrcaUninstallPlan {
   return {
     installKind,
@@ -78,7 +78,7 @@ function makePlan(
       }
     ],
     otherOrcaBuildName,
-    appPath: '/Applications/Orca.app',
+    appPath: '/Applications/Otodus.app',
     removeAppCommand: installKind === 'mac-homebrew' ? 'brew uninstall --cask orca' : null
   }
 }

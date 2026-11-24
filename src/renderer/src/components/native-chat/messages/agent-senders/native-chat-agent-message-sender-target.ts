@@ -29,7 +29,7 @@ export const GONE_TERMINAL_SENDER_CLICK: 'host-lookup' | 'plain' = 'host-lookup'
 /** The one answer a card's avatar, link and click read, on every host. */
 export type AgentMessageSenderTarget =
   | Exclude<AgentSenderResolution, { kind: 'legacy' }>
-  /** The host publishes nothing (an older Orca): what this window can place for it, if anything;
+  /** The host publishes nothing (an older Otodus): what this window can place for it, if anything;
    *  the click still asks that host. */
   | { kind: 'legacy'; location?: SenderLocation }
   /** Its terminal now runs a different kind of agent than the card saved. */
@@ -155,7 +155,7 @@ export function agentMessageSenderUnavailableText(
     : target.kind === 'ambiguous'
       ? translate(
           'components.native-chat.agentMessage.senderAmbiguous',
-          "Orca can't tell which terminal {{name}} is running in. Open it from the sidebar.",
+          "Otodus can't tell which terminal {{name}} is running in. Open it from the sidebar.",
           { name: subject }
         )
       : translate(

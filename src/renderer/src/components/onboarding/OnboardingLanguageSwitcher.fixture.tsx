@@ -9,11 +9,11 @@ function Header({ offer }: { offer: OnboardingLanguageOffer | null }) {
   return (
     <div className="rounded-xl border border-border bg-card px-8 pt-9 pb-8 text-card-foreground">
       <div className="flex items-center justify-between gap-3">
-        <div className="text-base font-semibold tracking-tight">Orca</div>
+        <div className="text-base font-semibold tracking-tight">Otodus</div>
         <OnboardingLanguageSwitcherButton offer={offer} onOpen={noop} />
       </div>
       <div className="mt-10 mb-2 text-xs font-medium tracking-[0.18em] text-muted-foreground uppercase">
-        Welcome to Orca
+        Welcome to Otodus
       </div>
       <h1 className="text-[34px] leading-[1.15] font-semibold tracking-tight">
         How do you want to work with agents?

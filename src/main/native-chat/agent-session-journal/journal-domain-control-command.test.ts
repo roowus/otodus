@@ -181,7 +181,7 @@ it('explains a quit only for an interrupted turn whose cut is absent', () => {
     kind: 'shutdown-cut' as const,
     input: {
       identity: { provider: 'orca' as const, clientMessageId: 'quit' },
-      body: { kind: 'status' as const, text: 'Orca quit' },
+      body: { kind: 'status' as const, text: 'Otodus quit' },
       turnItemId: 'turn-item',
       fence: 1
     }

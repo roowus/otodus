@@ -63,7 +63,7 @@ export function prepareWorkerStartCard(
   agent: AgentType | null
   followUp?: AgentJournalAgentStartItem['followUp']
 }) => void {
-  // A paired Orca has no chat here to show the card in.
+  // A paired Otodus has no chat here to show the card in.
   const publish = prepareAgentCreationCard(
     callerSession?.kind === 'peer' ? undefined : callerSession?.sessionId
   )

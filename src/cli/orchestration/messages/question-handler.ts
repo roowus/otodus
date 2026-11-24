@@ -55,7 +55,7 @@ export const ORCHESTRATION_QUESTION_HANDLER: Record<string, CommandHandler> = {
         '--options is only valid when creating a new question.'
       )
     }
-    // Only a new question returns at once, and only from an Orca that can; resume and --wait still wait.
+    // Only a new question returns at once, and only from an Otodus that can; resume and --wait still wait.
     const wait =
       resume !== undefined ||
       flags.has('wait') ||

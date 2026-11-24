@@ -33,7 +33,7 @@ export type RuntimeMobileSessionTerminalTab = {
   /** Event-only lead-turn end time for paired clients; never persisted in AgentStatusEntry. */
   turnCompletedAt?: number
   launchAgent?: TuiAgent
-  /** Whether the host's launch owner attests that the Orca launch it admitted still runs here; older hosts omit it. */
+  /** Whether the host's launch owner attests that the Otodus launch it admitted still runs here; older hosts omit it. */
   launchAttested?: boolean
   startupCwd?: string
   parentLayout?: TerminalLayoutSnapshot

@@ -13,7 +13,7 @@ import {
   type WorkerApprovalPayload
 } from '../../../../../shared/orchestration/approvals/worker-approval-payload'
 
-/** The outcome of a chat prompt Orca answered: a deny's reason is told only when it went to the
+/** The outcome of a chat prompt Otodus answered: a deny's reason is told only when it went to the
  *  worker as mail; a coordinator's allow keeps its reason for the receipt. */
 export function chatAnswerOutcome(input: {
   by: WorkerApprovalAnswerer
@@ -39,7 +39,7 @@ const INTENT_OF: Record<WorkerApprovalDecision, AgentJournalPromptOption['intent
 const SUMMARY_DETAIL_MAX_CHARS = 2_000
 
 /** The one option a decision may pick: allow once or reject once. Never a standing rule, a stop,
- *  or a guess by position; none, or more than one, means Orca cannot answer it. */
+ *  or a guess by position; none, or more than one, means Otodus cannot answer it. */
 export function workerApprovalOption(
   options: readonly AgentJournalPromptOption[],
   decision: WorkerApprovalDecision

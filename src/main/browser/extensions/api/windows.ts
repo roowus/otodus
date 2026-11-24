@@ -109,7 +109,7 @@ function applyWindowUpdate(
   byAgent: boolean
 ): void {
   const { window } = entry
-  // Why: extensions may focus Orca's main window but never move, resize or minimize it.
+  // Why: extensions may focus Otodus's main window but never move, resize or minimize it.
   if (!entry.isMain) {
     // Why not for an agent: restoring, maximizing or fullscreen can show or raise the window.
     if (!byAgent || info.state === 'minimized') {
@@ -194,7 +194,7 @@ export function registerWindowsNamespace(): void {
       remove: defineBrowserExtensionMethod(z.tuple([windowIdSchema]), (caller, windowId) => {
         const entry = requireWindow(caller, windowId)
         if (entry.isMain) {
-          throw new BrowserExtensionApiError("Extensions cannot close Orca's main window")
+          throw new BrowserExtensionApiError("Extensions cannot close Otodus's main window")
         }
         entry.window.close()
       })

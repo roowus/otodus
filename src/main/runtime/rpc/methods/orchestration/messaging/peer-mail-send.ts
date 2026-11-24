@@ -16,7 +16,7 @@ import type { SendParams } from './send-params'
 
 const NOTHING_SENT = { effectsApplied: false } as const
 
-/** The agent on this Orca that mail sent elsewhere answers to: a chat by its session, a terminal by its live pane. */
+/** The agent on this Otodus that mail sent elsewhere answers to: a chat by its session, a terminal by its live pane. */
 export function peerMailLocalCaller(args: {
   runtime: OrcaRuntimeService
   from: string | undefined
@@ -33,21 +33,21 @@ export function peerMailLocalCaller(args: {
   if (!args.from || !paneKey) {
     throw new OrchestrationError(
       'invalid_argument',
-      '--on needs a terminal or chat agent on this Orca to receive the replies. Run it from that agent. Nothing was sent.',
+      '--on needs a terminal or chat agent on this Otodus to receive the replies. Run it from that agent. Nothing was sent.',
       NOTHING_SENT
     )
   }
   if (args.runtime.getOrchestrationDb().findActiveRemoteAttachmentForPane(paneKey)) {
     throw new OrchestrationError(
       'invalid_argument',
-      "This terminal is a worker for another Orca's Run; its mail goes to that Run's coordinator, not to other servers. Nothing was sent.",
+      "This terminal is a worker for another Otodus's Run; its mail goes to that Run's coordinator, not to other servers. Nothing was sent.",
       NOTHING_SENT
     )
   }
   return { address: args.from, paneKey }
 }
 
-/** `send --on <server>`: this Orca carries the mail and keeps the conversation the replies come back on. */
+/** `send --on <server>`: this Otodus carries the mail and keeps the conversation the replies come back on. */
 export async function sendPeerMail(args: {
   params: z.infer<typeof SendParams> & { on: string }
   runtime: OrcaRuntimeService
@@ -76,7 +76,7 @@ export async function sendPeerMail(args: {
   if (params.payload !== undefined) {
     throw new OrchestrationError(
       'invalid_argument',
-      '--on carries a subject and body; payload fields such as --task-id or --report-path name work on this Orca only. Nothing was sent.',
+      '--on carries a subject and body; payload fields such as --task-id or --report-path name work on this Otodus only. Nothing was sent.',
       NOTHING_SENT
     )
   }

@@ -111,7 +111,7 @@ export function assertNoPendingWorktreeRemovalConflict(
     throw new Error(
       removal.failure
         ? `Cleanup failed for the workspace at ${removal.worktreePath}. Retry deleting it before reusing its path or branch.`
-        : `Orca is still deleting the workspace at ${removal.worktreePath}. Cleanup is pending; try again shortly.`
+        : `Otodus is still deleting the workspace at ${removal.worktreePath}. Cleanup is pending; try again shortly.`
     )
   }
 }

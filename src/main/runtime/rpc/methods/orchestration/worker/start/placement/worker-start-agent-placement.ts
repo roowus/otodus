@@ -97,7 +97,7 @@ export async function placeWorkerAgent(
     args.effects.push({
       kind: 'terminal',
       role: 'agent',
-      // Only a resumed tab is Orca's to clean up; a chat keeps its conversation.
+      // Only a resumed tab is Otodus's to clean up; a chat keeps its conversation.
       action: reopened.chat ? 'reused' : 'created',
       id: reopened.handle
     })

@@ -97,7 +97,7 @@ export function SkillInstallDialog({
       setError(
         translate(
           'auto.components.skills.install.enterShareLink',
-          'Enter an Orca skill share link.'
+          'Enter an Otodus skill share link.'
         )
       )
       return
@@ -235,7 +235,7 @@ export function SkillInstallDialog({
       setError(
         t(
           'auto.components.skills.install.requestedVersionVerificationFailed',
-          'Installation failed before Orca could verify the requested version.'
+          'Installation failed before Otodus could verify the requested version.'
         )
       )
     } finally {

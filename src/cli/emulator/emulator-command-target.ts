@@ -11,7 +11,7 @@ import { resolveCurrentWorktreeSelector } from '../workspace-selection/workspace
 export type EmulatorCliTarget = {
   worktree?: string
   device?: string
-  emulator?: string // Orca id from list
+  emulator?: string // Otodus id from list
 }
 
 async function optionalCurrentWorktreeSelector(

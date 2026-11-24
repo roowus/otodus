@@ -186,7 +186,7 @@ export function resolveOpenCodeSourceConfigDir(
     return sourceDir
   }
 
-  // Matching public/private paths identify Orca-owned state, not user config to mirror into child Orcas.
+  // Matching public/private paths identify Otodus-owned state, not user config to mirror into child Orcas.
   if (configDir && orcaConfigDir && configDir === orcaConfigDir) {
     return undefined
   }

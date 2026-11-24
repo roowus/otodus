@@ -142,7 +142,7 @@ export class TerminalWorkerApprovalHolds implements ClaudePermissionHolds {
     }
   }
 
-  /** Whether Orca still holds this prompt's hook, answering or not. */
+  /** Whether Otodus still holds this prompt's hook, answering or not. */
   isHeld(approvalId: string): boolean {
     return this.byApprovalId.has(approvalId)
   }
@@ -268,7 +268,7 @@ export class TerminalWorkerApprovalHolds implements ClaudePermissionHolds {
       // Stopped, exited or handed on: no terminal is left to answer it in.
       this.close(hold, { by: 'worker-ended', decision: null })
     } else if (!lines || showsClaudeDialog(lines)) {
-      // The dialog is up but Orca can no longer answer it: a person must, in the terminal.
+      // The dialog is up but Otodus can no longer answer it: a person must, in the terminal.
       this.close(hold, { by: 'terminal-only', decision: null })
     } else {
       this.closeAwaitingEvidence(hold)
@@ -297,10 +297,10 @@ export class TerminalWorkerApprovalHolds implements ClaudePermissionHolds {
     hold.summary.reason ??= claudeDialogWarning(lines)
   }
 
-  /** Ends a record not answered through Orca; a reported one gets its one closing line. */
+  /** Ends a record not answered through Otodus; a reported one gets its one closing line. */
   private close(hold: Hold, how: CloseHow | null): void {
     if (hold.state === 'answered') {
-      // Orca's answer stands unless its tool's result names the opposite one.
+      // Otodus's answer stands unless its tool's result names the opposite one.
       if (
         this.closingByToolUseId.delete(hold.toolUseId) &&
         how?.decision &&

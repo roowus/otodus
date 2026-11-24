@@ -56,7 +56,7 @@ export function terminalAppThemeBase(
   return base
 }
 
-/** Whether Orca paints dark: the app theme slot for the requested mode decides when it holds a
+/** Whether Otodus paints dark: the app theme slot for the requested mode decides when it holds a
  *  theme whose mode differs (Match Terminal follows the terminal's background). */
 export function resolvePaintedDark(
   settings:

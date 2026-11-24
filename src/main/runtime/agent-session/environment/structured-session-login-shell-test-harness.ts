@@ -1,4 +1,4 @@
-/** Bash/zsh login profiles put a fake global Orca first; zsh runs only in the real-shell lane. */
+/** Bash/zsh login profiles put a fake global Otodus first; zsh runs only in the real-shell lane. */
 
 import { chmodSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'

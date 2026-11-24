@@ -1,5 +1,5 @@
 /**
- * A runtime pane whose terminal still runs inside an older Orca's relay: it reattaches through
+ * A runtime pane whose terminal still runs inside an older Otodus's relay: it reattaches through
  * main's legacy relay bridge, and hands every other connect to the managed server's transport.
  * COMPAT(legacy-relay-bridge): revisit 2027-01-15, with src/main/ssh/legacy-relay/.
  *

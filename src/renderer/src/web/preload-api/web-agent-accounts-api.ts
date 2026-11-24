@@ -40,7 +40,7 @@ export function createZcodePlanCredentialsApi(): PreloadApi['zcodePlanCredential
   const unsupported = () =>
     Promise.reject(
       new Error(
-        'GLM Coding Plan keys can only be changed in the desktop app on the computer running Orca.'
+        'GLM Coding Plan keys can only be changed in the desktop app on the computer running Otodus.'
       )
     )
   return {
@@ -63,7 +63,7 @@ export function createCursorAccountsApi(): NonNullable<Partial<PreloadApi>['curs
         tokenFresh: false,
         error: translate(
           'auto.components.web.preloadApi.cursorAccounts.hostOnly',
-          'Cursor sign-in details are only readable on the computer running Orca.'
+          'Cursor sign-in details are only readable on the computer running Otodus.'
         )
       })
   }
@@ -100,7 +100,7 @@ function rejectHostOnlySignIn(): Promise<never> {
     new Error(
       translate(
         'auto.components.web.preloadApi.accounts.signInHostOnly',
-        'Adding or re-signing an account is only available in the desktop app on the computer running Orca.'
+        'Adding or re-signing an account is only available in the desktop app on the computer running Otodus.'
       )
     )
   )

@@ -63,7 +63,7 @@ export function managedUpdateLine(
         tone: 'warning',
         text: t(
           'auto.components.settings.sshHostServer.behindCheckFailed',
-          'Runs Orca’s server; Orca couldn’t check whether it is behind this app.'
+          'Runs Orca’s server; Otodus couldn’t check whether it is behind this app.'
         ),
         ...withDetail(update.detail)
       }

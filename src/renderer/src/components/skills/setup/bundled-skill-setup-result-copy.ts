@@ -28,7 +28,7 @@ const RESULT_HEADLINE_ORDER: readonly BundledSkillOutcomeText[] = [
   'Linked'
 ]
 
-/** Why setup can't finish: the first location Orca must leave and can't replace. */
+/** Why setup can't finish: the first location Otodus must leave and can't replace. */
 export function bundledSkillSetupAttentionMessage(plan: BundledSkillPlan): string {
   const blocked = plan.skills
     .flatMap((entry) => entry.ops)
@@ -44,7 +44,7 @@ export function bundledSkillSetupAttentionMessage(plan: BundledSkillPlan): strin
     case 'unwritable':
       return translate(
         'auto.components.settings.bundledSkillSetupCopy.attentionUnwritable',
-        "Needs attention · Orca can't write to {{folder}}",
+        "Needs attention · Otodus can't write to {{folder}}",
         { folder: collapseHomePath(dirname(blocked.path), plan.homeDirectory) }
       )
     case 'busy':
@@ -55,7 +55,7 @@ export function bundledSkillSetupAttentionMessage(plan: BundledSkillPlan): strin
     case 'unreadable':
       return translate(
         'auto.components.settings.bundledSkillSetupCopy.attentionUnreadable',
-        "Needs attention · Orca can't read every file in this copy"
+        "Needs attention · Otodus can't read every file in this copy"
       )
     case 'edited':
       return translate(
@@ -70,7 +70,7 @@ export function bundledSkillSetupAttentionMessage(plan: BundledSkillPlan): strin
     case 'shared-not-current':
       return translate(
         'auto.components.settings.bundledSkillSetupCopy.attentionSharedNotCurrent',
-        'Needs attention · The shared copy this folder uses is not Orca’s'
+        'Needs attention · The shared copy this folder uses is not Otodus’s'
       )
     // Another build's copy is kept, never a blocker, so it never reaches here; listed for exhaustiveness.
     case 'other-build':

@@ -7,7 +7,7 @@ import {
 } from '../../../../shared/execution-host/execution-host'
 import { isWslMoveWorktreeBlocked } from '../../../persistence/moving-wsl-projects/orchestration/wsl-move-background-backoff'
 
-// GUI terminals can run Git before Orca sync; request deferred push-target setup on spawn and reattach (#17828).
+// GUI terminals can run Git before Otodus sync; request deferred push-target setup on spawn and reattach (#17828).
 export function triggerPtySpawnPushTargetMaterialization(
   deps: PtySpawnIpcDeps,
   args: PtySpawnIpcArgs

@@ -131,7 +131,7 @@ export abstract class OrcaRuntimeWithWorktreeSleepResumeRecording extends OrcaRu
 
   protected abstract getPtyRecordForPaneKey(paneKey: string): RuntimePtyWorktreeRecord | null
 
-  /** Main's word on the Orca launch running in this pane now; the one check every saved note passes. */
+  /** Main's word on the Otodus launch running in this pane now; the one check every saved note passes. */
   getLaunchStatementForPaneKey: PaneLaunchConfigOf = (paneKey, agent) =>
     launchStatement(this.getPtyRecordForPaneKey(paneKey), agent)
 

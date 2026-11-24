@@ -171,7 +171,7 @@ describe('AutomationService', () => {
     const poisonRun = reloaded.listAutomationRuns(poison.id)[0]
     expect(poisonRun?.status).toBe('skipped_unavailable')
     expect(poisonRun?.error).toBe(
-      'Orca could not evaluate this automation and skipped the occurrence.'
+      'Otodus could not evaluate this automation and skipped the occurrence.'
     )
     expect(logged).toHaveBeenCalled()
   })
@@ -198,7 +198,7 @@ describe('AutomationService', () => {
     const store = await createStore()
     store.addRepo(makeRepo())
     const automation = store.createAutomation(dailyAt9('Quit between writes'))
-    // Orca quit after saving the run and before advancing the schedule.
+    // Otodus quit after saving the run and before advancing the schedule.
     const retained = store.createAutomationRun(automation, automation.nextRunAt)
     vi.setSystemTime(new Date('2026-05-13T09:01:00'))
     const launch = vi.fn(async () => LAUNCHED)
@@ -221,7 +221,7 @@ describe('AutomationService', () => {
       expect.objectContaining({
         id: retained.id,
         status: 'dispatch_failed',
-        error: 'Orca stopped before this run could launch.'
+        error: 'Otodus stopped before this run could launch.'
       })
     ])
     expect(launch).not.toHaveBeenCalled()

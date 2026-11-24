@@ -88,16 +88,16 @@ export type WorktreeMeta = {
   sparsePresetId?: string
   /** Intended create base for stale-base probes. Persisted metadata, not UI drift state. */
   baseRef?: string
-  /** True when Orca checked out a pre-existing local branch that delete must not prune. */
+  /** True when Otodus checked out a pre-existing local branch that delete must not prune. */
   preserveBranchOnDelete?: boolean
-  /** The user switched to or created the current branch in Orca, so first-work naming must not rename it. */
+  /** The user switched to or created the current branch in Otodus, so first-work naming must not rename it. */
   branchNameIsUserChosen?: boolean
   /** See {@link Worktree.pushTarget}. Persisted so refreshed worktree lists keep the target. */
   pushTarget?: GitPushTarget
-  /** Explicit marker stamped when Orca creates the worktree. */
+  /** Explicit marker stamped when Otodus creates the worktree. */
   orcaCreatedAt?: number
   orcaCreationSource?: 'desktop' | 'runtime' | 'cli' | 'ssh'
-  /** Workspace layout active when Orca created the worktree. */
+  /** Workspace layout active when Otodus created the worktree. */
   orcaCreationWorkspaceLayout?: OrcaWorkspaceLayout
   /** User-assigned workspace board status for manual sidebar organization. */
   workspaceStatus?: WorkspaceStatus

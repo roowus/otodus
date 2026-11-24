@@ -93,7 +93,7 @@ export function claudeResultFailure(
 }
 
 /** Keep unknown wire kinds in disclosure, with readable placeholder text on the row. */
-export const CLAUDE_UNRENDERABLE_CONTENT_TEXT = 'Claude sent content Orca cannot display yet'
+export const CLAUDE_UNRENDERABLE_CONTENT_TEXT = 'Claude sent content Otodus cannot display yet'
 
 export function isModeledClaudeContent(value: unknown): boolean {
   const part = claudeRecord(value)
@@ -108,7 +108,7 @@ export function isModeledClaudeContent(value: unknown): boolean {
     if (source?.type === 'url') {
       return claudeText(source.url) !== null
     }
-    // Local attachments replay with the base64 or file source Orca sent.
+    // Local attachments replay with the base64 or file source Otodus sent.
     return source?.type === 'base64' || source?.type === 'file'
   }
   if (isClaudeToolUseContent(part)) {

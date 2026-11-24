@@ -34,7 +34,7 @@ export async function runRecipeCommand(args: {
   resultSchemaVersion: 1 | 2
   stdin?: string
   env?: NodeJS.ProcessEnv
-  /** When set, only these (plus a safe base set) of Orca's own variables reach the script. */
+  /** When set, only these (plus a safe base set) of Otodus's own variables reach the script. */
   passEnv?: readonly string[]
   maxCaptureBytes?: number
   signal?: AbortSignal

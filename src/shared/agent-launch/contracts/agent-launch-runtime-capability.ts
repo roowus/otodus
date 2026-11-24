@@ -64,7 +64,7 @@ export const AGENT_LAUNCH_SURFACE_RUNTIME_CAPABILITY = 'agent.launch.surface.v1'
 // on its default.
 export const AGENT_LAUNCH_PI_MODEL_RUNTIME_CAPABILITY = 'agent.launch.pi-model.v1' as const
 
-// Host-advertised: accepts a reserved chat ID in any Orca ID spelling; older hosts refuse one not
+// Host-advertised: accepts a reserved chat ID in any Otodus ID spelling; older hosts refuse one not
 // spelled `<agent>_…`.
 export const AGENT_LAUNCH_PLAIN_SESSION_ID_RUNTIME_CAPABILITY =
   'agent.launch.plain-session-id.v1' as const

@@ -7,7 +7,7 @@ import type { PRComment } from '../../../../../../shared/github/comments/comment
 /** How a comment group should read in the PR sidebar triage UI. */
 export type PRCommentGroupActionState = 'open' | 'conversation' | 'resolved'
 
-/** Whether Orca knows this thread is still open on the host. */
+/** Whether Otodus knows this thread is still open on the host. */
 export function getPRCommentGroupActionState(group: PRCommentGroup): PRCommentGroupActionState {
   const root = getPRCommentGroupRoot(group)
   if (root.isResolved === true) {

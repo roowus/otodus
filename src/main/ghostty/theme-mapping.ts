@@ -70,7 +70,7 @@ function normalizeCatalogName(name: string): string {
 
 let catalogNamesByKey: Map<string, string> | null = null
 
-// Without a Ghostty install (Windows, or a config copied from another machine) Orca's own catalog is the only theme set left.
+// Without a Ghostty install (Windows, or a config copied from another machine) Otodus's own catalog is the only theme set left.
 function findBuiltInThemeName(name: string): string | null {
   catalogNamesByKey ??= new Map(
     Object.keys(TERMINAL_THEME_CATALOG).map((catalogName) => [
@@ -130,12 +130,12 @@ async function resolveTheme(
   const themeDiff = mapGhosttyToOrca(colors).diff
   const terminal = ghosttyThemeTerminalColors(themeDiff.terminalColorOverrides ?? {})
   const dividerColor = themeDiff.terminalDividerColorDark
-  // A Ghostty theme Orca already ships selects the built-in instead of adding a same-named duplicate.
+  // A Ghostty theme Otodus already ships selects the built-in instead of adding a same-named duplicate.
   if (builtIn && hasSamePalette(terminal, TERMINAL_THEME_CATALOG[builtIn])) {
     return { selection: builtIn, name: builtIn, dividerColor }
   }
   const fileName = normalizeTerminalThemeName(path.basename(themeName.replaceAll('\\', '/')))
-  // Ghostty's palette differs from Orca's same-named built-in, so the label tells the two apart.
+  // Ghostty's palette differs from Otodus's same-named built-in, so the label tells the two apart.
   let name = builtIn ? `${fileName} (Ghostty)` : fileName
   let id = `ghostty:${normalizeTerminalThemeId(name)}`
   const claimed = claimedThemes.get(id)
@@ -222,7 +222,7 @@ export async function importGhosttyTheme(
     }
   }
 
-  // A single Ghostty theme paints both appearances, which Orca expresses as the dark slot alone.
+  // A single Ghostty theme paints both appearances, which Otodus expresses as the dark slot alone.
   if (!isPair && themeNames.dark !== undefined) {
     diff.terminalUseSeparateLightTheme = false
   } else if (isPair && themeNames.light !== undefined) {

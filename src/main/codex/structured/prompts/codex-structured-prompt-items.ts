@@ -227,7 +227,7 @@ function questionOptions(
   return mapped
 }
 
-/** Use Orca keys for nonpersisted prompts; one tool item can issue several distinct asks. */
+/** Use Otodus keys for nonpersisted prompts; one tool item can issue several distinct asks. */
 export function codexPromptIdentity(input: {
   threadId: string
   promptKey: string

@@ -29,7 +29,7 @@ const terminalListResult = z.object({
 
 const terminalTargetParams = z.strictObject({ terminalId: pluginTerminalIdSchema })
 const terminalFocusResult = z.object({
-  /** False when Orca's window did not move to the terminal: a newer focus request won, or the
+  /** False when Otodus's window did not move to the terminal: a newer focus request won, or the
    *  window could not show it. */
   focused: z.boolean()
 })

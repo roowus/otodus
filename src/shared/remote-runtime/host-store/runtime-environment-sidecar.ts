@@ -72,8 +72,8 @@ export class RuntimeEnvironmentSidecarInvalidError extends Error {
   constructor(path: string, environmentId?: string) {
     super(
       environmentId === undefined
-        ? `Could not read Orca environment links at ${path}; the file is invalid.`
-        : `Could not read the Orca environment link for ${environmentId} at ${path}; it may need a newer version of Orca.`
+        ? `Could not read Otodus environment links at ${path}; the file is invalid.`
+        : `Could not read the Otodus environment link for ${environmentId} at ${path}; it may need a newer version of Otodus.`
     )
     this.name = 'RuntimeEnvironmentSidecarInvalidError'
   }

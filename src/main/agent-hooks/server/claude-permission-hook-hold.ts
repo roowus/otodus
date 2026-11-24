@@ -2,14 +2,14 @@ import type { IncomingMessage, ServerResponse } from 'node:http'
 import type { AgentHookEventPayload } from '../../../shared/agent-hook-listener/listener-event'
 import { AGENT_TOOL_DECISION_HEADER } from '../tool-events/agent-tool-plugin-hooks'
 
-/** Sent by hook scripts that wait for, and print, Orca's answer to a Claude Code PermissionRequest. */
+/** Sent by hook scripts that wait for, and print, Otodus's answer to a Claude Code PermissionRequest. */
 export const CLAUDE_PERMISSION_REQUEST_DECISION = 'claude-permission-request-v1'
 // Why 122 s: past Claude's 2:00 auto-block, inside the script's 126 s curl and the entry's 130 s timeout.
 export const CLAUDE_PERMISSION_HOLD_BUDGET_MS = 122_000
 
 export type ClaudePermissionVerdict = { behavior: 'allow' } | { behavior: 'deny'; message: string }
 
-/** Why a hold ended without Orca's decision: the budget ran out, the hook hung up first, or Orca quit. */
+/** Why a hold ended without Otodus's decision: the budget ran out, the hook hung up first, or Otodus quit. */
 export type ClaudePermissionHoldEnd = 'budget' | 'hook-gone' | 'quit'
 
 /** One waiting PermissionRequest hook: exactly one reply ever reaches it. */
@@ -28,7 +28,7 @@ export type ClaudePermissionHold = {
   openChannel: () => ClaudePermissionHookChannel
 }
 
-/** The runtime's side: keeps a hold it can answer (true); otherwise Orca answers as it always has. */
+/** The runtime's side: keeps a hold it can answer (true); otherwise Otodus answers as it always has. */
 export type ClaudePermissionHolds = {
   admit: (hold: ClaudePermissionHold) => boolean
   observe: (event: AgentHookEventPayload) => void

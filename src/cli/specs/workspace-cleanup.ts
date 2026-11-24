@@ -2,7 +2,7 @@ import type { CommandSpec } from '../discovery/command-spec'
 import { CLI_GLOBAL_FLAGS as GLOBAL_FLAGS } from '../../shared/cli/cli-argument-boundary'
 
 const HOST_NOTE =
-  'Runs on the Orca that owns the repos: this computer by default, or a paired server with --environment or --pairing-code. Rules are set in Orca settings; these commands never change them.'
+  'Runs on the Otodus that owns the repos: this computer by default, or a paired server with --environment or --pairing-code. Rules are set in Otodus settings; these commands never change them.'
 
 export const WORKSPACE_CLEANUP_COMMAND_SPECS: CommandSpec[] = [
   {

@@ -60,20 +60,20 @@ export class RuntimeSourceFence {
     if (response.ok === false) {
       throw new RuntimeClientError(
         'runtime_source_unverifiable',
-        `Could not confirm that the running Orca is the one that launched this terminal: ${response.error.message}`
+        `Could not confirm that the running Otodus is the one that launched this terminal: ${response.error.message}`
       )
     }
     const sourceId = response.result.hostDescriptor?.installationId
     if (!sourceId) {
       throw new RuntimeClientError(
         'runtime_source_unverifiable',
-        'The running Orca does not report which profile it serves, so this terminal cannot confirm it is the Orca that launched it. Nothing was sent. Open a new terminal from the Orca you want to control.'
+        'The running Otodus does not report which profile it serves, so this terminal cannot confirm it is the Otodus that launched it. Nothing was sent. Open a new terminal from the Otodus you want to control.'
       )
     }
     if (sourceId !== this.expected.sourceId) {
       throw new RuntimeClientError(
         'runtime_source_mismatch',
-        'The running Orca is not the one that launched this terminal (another profile or instance took over its runtime record). Nothing was sent. Open a new terminal from the Orca you want to control.'
+        'The running Otodus is not the one that launched this terminal (another profile or instance took over its runtime record). Nothing was sent. Open a new terminal from the Otodus you want to control.'
       )
     }
     this.verifiedRuntimeIds.add(metadata.runtimeId)

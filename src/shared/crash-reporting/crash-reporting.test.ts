@@ -59,8 +59,8 @@ describe('crash-reporting shared helpers', () => {
 
   it.each([
     ['POSIX', '/home/alice/orca/app.log then recovered.'],
-    ['Windows', 'C:\\Users\\alice\\Orca\\app.log then recovered.'],
-    ['UNC', '\\\\server\\share\\Orca\\app.log then recovered.']
+    ['Windows', 'C:\\Users\\alice\\Otodus\\app.log then recovered.'],
+    ['UNC', '\\\\server\\share\\Otodus\\app.log then recovered.']
   ])('stops unquoted %s paths at prose boundaries', (_platform, value) => {
     expect(sanitizeCrashReportString(value)).toBe('[redacted-path] then recovered.')
   })

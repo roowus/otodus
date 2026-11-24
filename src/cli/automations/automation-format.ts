@@ -84,7 +84,7 @@ export function formatAutomationShow(result: AutomationShowPayload): string {
     `nextRunAt: ${new Date(automation.nextRunAt).toISOString()}`,
     ...projectLines,
     `workspaceMode: ${automation.workspaceMode}`,
-    // The saved choice only: what an unset choice does depends on the host's Orca version.
+    // The saved choice only: what an unset choice does depends on the host's Otodus version.
     ...(automation.workspaceMode === 'new_per_run'
       ? [`setup: ${automation.setupDecision ?? 'not set'}`]
       : []),

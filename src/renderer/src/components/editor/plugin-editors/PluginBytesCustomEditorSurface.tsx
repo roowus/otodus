@@ -53,7 +53,7 @@ function SurfaceMessage({
 }
 
 /**
- * A bytes editor: Orca pages the file from the host that owns it (local, SSH or a paired runtime),
+ * A bytes editor: Otodus pages the file from the host that owns it (local, SSH or a paired runtime),
  * caps its size, and hands the frame only the bytes, never a path. Its edits replace the whole
  * document and save through the tab's save pipeline.
  */

@@ -21,7 +21,7 @@ export function EphemeralVmRecipeRow({
 }: {
   entry: RecipeCatalogEntry
   recipe: Recipe
-  /** Credential-like names in Orca's environment; null until loaded or when unavailable. */
+  /** Credential-like names in Otodus's environment; null until loaded or when unavailable. */
   credentialEnvNames: readonly string[] | null
   onUse: () => void
 }): React.JSX.Element {

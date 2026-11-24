@@ -44,7 +44,7 @@ export type WorktreeLineageRecordingResolution =
   | CrossStoreLineageResolution
   | { kind: 'none'; warnings: WorktreeLineageWarning[] }
 
-/** A parent in another Orca store; saved only in crossStoreLineageByChildKey. */
+/** A parent in another Otodus store; saved only in crossStoreLineageByChildKey. */
 export type CrossStoreLineageResolution = {
   kind: 'crossStore'
   parent: CrossStoreParentRef
@@ -146,7 +146,7 @@ export function recordCreatedWorktreeLineage(
     warnings.push({
       code: 'LINEAGE_PARENT_CONTEXT_MISSING',
       message:
-        'Worktree created, but Orca could not record lineage because instance identity was unavailable.',
+        'Worktree created, but Otodus could not record lineage because instance identity was unavailable.',
       details: {
         childHasInstanceId: Boolean(childInstanceId),
         parentHasInstanceId: Boolean(parentInstanceId),
@@ -220,7 +220,7 @@ function recordCrossStoreLineage(
           {
             code: 'LINEAGE_PARENT_CONTEXT_MISSING',
             message:
-              'Worktree created, but Orca could not record its parent on another machine for this workspace.'
+              'Worktree created, but Otodus could not record its parent on another machine for this workspace.'
           }
         ]
   }

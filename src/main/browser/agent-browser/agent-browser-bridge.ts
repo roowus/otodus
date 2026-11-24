@@ -107,7 +107,7 @@ export class AgentBrowserBridge extends AgentBrowserBridgeInteractionCommands {
         throw new BrowserError('browser_error', 'Debugger not attached')
       }
 
-      // agent-browser lacks a mobile viewport flag; apply Orca's emulation through CDP.
+      // agent-browser lacks a mobile viewport flag; apply Otodus's emulation through CDP.
       await sendGuestCdpCommand(wc, 'Emulation.setDeviceMetricsOverride', {
         width,
         height,

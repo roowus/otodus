@@ -1,7 +1,7 @@
 /**
  * Runs inside the plugin's Node process with the test hooks: for each components panel, and each
  * scenario its `<entry>.check.ts` defines (else one plain run), mount the worker (`main`) and the
- * panel on one mock host, so the panel's `plugin.request` reaches the worker as in Orca.
+ * panel on one mock host, so the panel's `plugin.request` reaches the worker as in Otodus.
  */
 export const PLUGIN_PANEL_CHECK_SCRIPT = `
 const { mount, mockHost, mountWorker } = await import('orca/testing')
@@ -76,7 +76,7 @@ for (const { panel, entry, url, fixture } of panels) {
       if (drawnTree) result.drawnTree = mounted.drawnTree()
       result.issues.push(...mounted.errors)
       result.warnings.push(...mounted.warnings)
-      // Refused even when the code caught it: in Orca the call fails the same way.
+      // Refused even when the code caught it: in Otodus the call fails the same way.
       result.warnings.push(...refused(mounted.refusals))
       await mounted.unmount()
     } catch (error) {

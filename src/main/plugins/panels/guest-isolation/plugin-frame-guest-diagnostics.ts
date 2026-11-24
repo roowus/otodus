@@ -62,7 +62,7 @@ export function shortenPluginFrameUrls(text: string, frameKey: string): string {
   })
 }
 
-/** Plugin-relative `file:line`; null outside this plugin's origin or in an Orca-shipped file,
+/** Plugin-relative `file:line`; null outside this plugin's origin or in an Otodus-shipped file,
  *  whose message carries the author's stack instead. */
 export function pluginFrameSourceLocation(
   sourceId: string,
@@ -77,12 +77,12 @@ export function pluginFrameSourceLocation(
   return lineNumber > 0 ? `${path}:${lineNumber}` : path
 }
 
-// After shortening, Orca's own guest files read `__orca/…`; authors only need their own frames.
+// After shortening, Otodus's own guest files read `__orca/…`; authors only need their own frames.
 const ORCA_STACK_FRAME = new RegExp(`^\\s+at (?:.*\\()?${PLUGIN_FRAME_RESERVED_SEGMENT}/`)
 // `at Array.forEach (<anonymous>)`, `at new Promise (<anonymous>)`: engine frames with no source.
 const SOURCELESS_STACK_FRAME = /^\s+at (?:.*\((?:<anonymous>|native)\)|<anonymous>|native)\s*$/
 
-/** Drops stack lines inside Orca's guest runtime (`__orca/orca-runtime.mjs`) and the engine's. */
+/** Drops stack lines inside Otodus's guest runtime (`__orca/orca-runtime.mjs`) and the engine's. */
 export function withoutOrcaStackFrames(text: string): string {
   return text
     .split('\n')

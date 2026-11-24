@@ -58,7 +58,7 @@ describe('released computer-use installation migration', () => {
     expect(bundledSkillInstallAction(plan)).toEqual({ kind: 'none' })
   })
 
-  it('still flags a released former copy Orca cannot retire beside the current skill', async () => {
+  it('still flags a released former copy Otodus cannot retire beside the current skill', async () => {
     const home = await makeSkillHome()
     await writeCopy(join(dirname(home.shared), OLD), await readFile(FIXTURE, 'utf8'))
     await installCurrent(home)

@@ -188,9 +188,9 @@ describe('a worker cannot tell which mode it is running in', () => {
 
     expect(result).toMatchObject({ state: 'ready' })
     expect(showTerminal).not.toHaveBeenCalled()
-    // Its sub-worker is told the coordinator's Orca session ID, not the handle it was minted.
+    // Its sub-worker is told the coordinator's Otodus session ID, not the handle it was minted.
     expect(vi.mocked(runtime.sendTerminalAgentPrompt).mock.calls[0]?.[1]).toContain(
-      "Your coordinator's Orca session ID is: orca_session_id:sess_coord\n"
+      "Your coordinator's Otodus session ID is: orca_session_id:sess_coord\n"
     )
     expect(vi.mocked(runtime.sendTerminalAgentPrompt).mock.calls[0]?.[1]).toContain(
       '=== SUB-DISPATCH ==='

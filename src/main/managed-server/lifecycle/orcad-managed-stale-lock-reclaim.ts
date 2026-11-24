@@ -169,7 +169,7 @@ async function runOnActiveSlot(
   if (lines.includes(RECLAIM_UNPINNED_SENTINEL)) {
     return {
       status: 'unpinned',
-      message: 'This host’s Orca server is too old for Orca to clear the lock from here.'
+      message: 'This host’s Orca server is too old for Otodus to clear the lock from here.'
     }
   }
   const answer = parseReclaimAnswer(output)
@@ -177,7 +177,8 @@ async function runOnActiveSlot(
     ? { status: 'answered', answer }
     : {
         status: 'no-answer',
-        message: 'This host’s Orca server gave no answer Orca understands to the stale-lock check.'
+        message:
+          'This host’s Orca server gave no answer Otodus understands to the stale-lock check.'
       }
 }
 

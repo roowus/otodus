@@ -321,7 +321,7 @@ describe('ssh remote command builders', () => {
       try {
         const lockPath = join(root, '.install-lock')
         const acquire = decodePowerShellCommand(tryCreateInstallLockCommand(windows, lockPath))
-        // The directory-only lock probe older Orca builds still run against this host.
+        // The directory-only lock probe older Otodus builds still run against this host.
         const legacyProbe = `if (Test-Path -LiteralPath '${lockPath}' -PathType Container) { 'LOCKED' } else { 'OPEN' }`
 
         await expect(runPowerShellCommand(powerShellExecutable!, acquire)).resolves.toMatch(/OK/)

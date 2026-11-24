@@ -21,7 +21,7 @@ function serverSelector(
   return inherited ? { name: inherited, route: `ORCA_ENVIRONMENT=${inherited}` } : undefined
 }
 
-/** Only an agent its own Orca verifies counts; a person's shell keeps --environment = run it there. */
+/** Only an agent its own Otodus verifies counts; a person's shell keeps --environment = run it there. */
 async function isOrcaVerifiedAgent(): Promise<boolean> {
   if (!readInjectedAgentSessionId() && !process.env.ORCA_AGENT_LAUNCH_TOKEN?.trim()) {
     return false
@@ -55,7 +55,7 @@ function withOn(rawArgs: readonly string[] | undefined, server: string): string 
   return renderOrchestrationArgv(kept) ?? ''
 }
 
-/** An agent's mail and workers live on its own Orca; pointing them at another server reaches nobody. */
+/** An agent's mail and workers live on its own Otodus; pointing them at another server reaches nobody. */
 export async function refuseAgentServerRoute(
   command: AgentServerRoutedCommand,
   ctx: HandlerContext
@@ -71,7 +71,7 @@ export async function refuseAgentServerRoute(
   if (command === 'check') {
     throw new RuntimeClientError(
       'mailbox_is_local',
-      `Your mailbox is on this Orca; replies from ${name} arrive here. Drop ${route}.`
+      `Your mailbox is on this Otodus; replies from ${name} arrive here. Drop ${route}.`
     )
   }
   const verb = command === 'send' ? 'message an agent' : 'start a worker'
@@ -81,7 +81,7 @@ export async function refuseAgentServerRoute(
   )
 }
 
-/** An older Orca would drop --on and send the mail to an agent here, so it must carry mail between servers first. */
+/** An older Otodus would drop --on and send the mail to an agent here, so it must carry mail between servers first. */
 export async function requirePeerMailCarrier(ctx: HandlerContext): Promise<void> {
   if (!ctx.flags.has('on')) {
     return
@@ -90,7 +90,7 @@ export async function requirePeerMailCarrier(ctx: HandlerContext): Promise<void>
   if (!result.capabilities?.includes(ORCHESTRATION_PEER_MAIL_RUNTIME_CAPABILITY)) {
     throw new RuntimeClientError(
       'server_mail_unsupported',
-      'The Orca running here is too old to carry mail to another server. Update or restart Orca here, then send again. Nothing was sent.'
+      'The Otodus running here is too old to carry mail to another server. Update or restart Otodus here, then send again. Nothing was sent.'
     )
   }
 }

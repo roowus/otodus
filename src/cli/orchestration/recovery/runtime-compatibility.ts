@@ -19,7 +19,7 @@ export function resolvePackagedWindowsCompatibilityCommand(): 'orca' | 'orca-ide
   }
   throw new RuntimeClientError(
     'invalid_argument',
-    'The packaged Orca launcher did not provide a valid resume command. No question was created.'
+    'The packaged Otodus launcher did not provide a valid resume command. No question was created.'
   )
 }
 
@@ -43,7 +43,7 @@ export function isDevCliInvocation(): boolean {
 }
 
 // Linux desktop installs the app CLI as `orca-ide` (GNOME's screen reader owns `orca`), while
-// Orca terminals advertise their shim via ORCA_CLI_COMMAND, dev launchers are `orca-dev`, and
+// Otodus terminals advertise their shim via ORCA_CLI_COMMAND, dev launchers are `orca-dev`, and
 // SSH/headless Node CLIs stay `orca`.
 export function resolveInvokedCliCommand(): string {
   if (process.platform !== 'linux') {

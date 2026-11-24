@@ -18,9 +18,9 @@ export type PeerRunRow = {
 const NO_EFFECTS = { effectsApplied: false } as const
 
 /**
- * The Run a paired Orca coordinates here for one conversation, written when its frame arrives and
+ * The Run a paired Otodus coordinates here for one conversation, written when its frame arrives and
  * before any await, so a later frame of the same conversation (a cancel) always finds it. The Run
- * keeps its ID across this Orca's resets: a reset that removed its row gets it back on the next call.
+ * keeps its ID across this Otodus's resets: a reset that removed its row gets it back on the next call.
  */
 export function admitPeerRun(
   this: OrchestrationDb,

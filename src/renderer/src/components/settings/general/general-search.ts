@@ -31,7 +31,7 @@ export const getGeneralWorkspaceSearchDescriptors = createLocalizedCatalog(() =>
     ),
     description: translate(
       'auto.components.settings.general.search.externalWorktreesDescription',
-      'Choose whether worktrees created outside Orca appear by default.'
+      'Choose whether worktrees created outside Otodus appear by default.'
     ),
     keywords: [
       ...translateSearchKeyword('settings.general.search.keywords.source', 'source'),
@@ -168,10 +168,10 @@ export const getGeneralCliSearchEntries = createLocalizedCatalog(() => [
   },
   {
     targetSectionId: GENERAL_SETTING_ANCHORS.cliSkill,
-    title: translate('settings.general.cli.skillTitle', 'Orca skill for agents'),
+    title: translate('settings.general.cli.skillTitle', 'Otodus skill for agents'),
     description: translate(
       'auto.components.settings.general.search.244e3fb4c8',
-      'Install the Orca skill so agents know to use the Orca CLI.'
+      'Install the Otodus skill so agents know to use the Orca CLI.'
     ),
     keywords: [
       translate('auto.components.settings.general.search.2d9f7b42df', 'Agent skill'),
@@ -186,7 +186,7 @@ export const getGeneralUpdateSearchEntries = createLocalizedCatalog(() => [
     title: translate('auto.components.settings.general.search.0504f69ba0', 'Check for updates'),
     description: translate(
       'auto.components.settings.general.search.79ff46776e',
-      'Check for app updates and install a newer Orca version.'
+      'Check for app updates and install a newer Otodus version.'
     ),
     keywords: [
       ...translateSearchKeyword('settings.general.search.keywords.about', 'about'),

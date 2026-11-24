@@ -48,7 +48,7 @@ async function launchedWithOtherPermissionMode(
   )
 }
 
-/** Orca mail notices are not the user's turn: they keep the running process and its choices. */
+/** Otodus mail notices are not the user's turn: they keep the running process and its choices. */
 function picksNewLaunchModel(
   body: AgentJournalMessageItem | null,
   next: AgentJournalSubmission | undefined,

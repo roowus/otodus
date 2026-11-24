@@ -1,6 +1,6 @@
 import '../../shared/remote-runtime/host-store/environment-store-worker-test-fixture'
 // #34089 for VMs reached as paired Orca servers: a VM its provider stopped or reclaimed stays
-// recorded as running. Once Orca's own probes have failed for minutes, opening the workspace runs
+// recorded as running. Once Otodus's own probes have failed for minutes, opening the workspace runs
 // the recipe's resume and keeps the device pairing unless the server came back with a new host key.
 import { mkdtempSync } from 'node:fs'
 import { tmpdir } from 'node:os'
@@ -129,7 +129,7 @@ async function probe(environmentId: string) {
   }
 }
 
-describe('opening a workspace whose paired VM server Orca could not reach for minutes', () => {
+describe('opening a workspace whose paired VM server Otodus could not reach for minutes', () => {
   let serverDataPath: string
   let environmentId: string
   let keyPair: KeyPair
@@ -174,7 +174,7 @@ describe('opening a workspace whose paired VM server Orca could not reach for mi
     await removeTempDirs([state.desktopDataPath, serverDataPath])
   })
 
-  /** The VM goes away; Orca's probes keep failing for `forMs`. */
+  /** The VM goes away; Otodus's probes keep failing for `forMs`. */
   async function vmDisappears(forMs: number): Promise<void> {
     await closeSharedControlTestServers()
     for (let elapsed = 0; elapsed <= forMs; elapsed += forMs / 3) {

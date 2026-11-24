@@ -9,10 +9,10 @@ import { createIndexedDbNativeChatComposerDraftStorage } from './native-chat-com
 
 export type NativeChatComposerDraftImage = {
   id: string
-  /** Empty for an image Orca could not keep. */
+  /** Empty for an image Otodus could not keep. */
   path: string
   connectionId?: string
-  /** Set on an image Orca could not keep: the file name the user must attach again. */
+  /** Set on an image Otodus could not keep: the file name the user must attach again. */
   unavailableName?: string
 }
 

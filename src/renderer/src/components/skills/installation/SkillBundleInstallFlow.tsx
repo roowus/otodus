@@ -222,7 +222,7 @@ export function SkillBundleInstallFlow(props: {
       setError(
         t(
           'auto.components.skills.install.bundleVerificationFailed',
-          'Installation failed before Orca could verify the requested bundle.'
+          'Installation failed before Otodus could verify the requested bundle.'
         )
       )
     } finally {

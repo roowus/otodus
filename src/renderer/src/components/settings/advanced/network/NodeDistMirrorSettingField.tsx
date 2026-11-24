@@ -13,7 +13,7 @@ type NodeDistMirrorSettingFieldProps = {
   onCommit: (value: string) => void
 }
 
-/** Where Orca downloads the Node it installs on SSH and WSL servers, when nodejs.org is out of reach. */
+/** Where Otodus downloads the Node it installs on SSH and WSL servers, when nodejs.org is out of reach. */
 export function NodeDistMirrorSettingField({
   value,
   onCommit
@@ -75,7 +75,7 @@ export function NodeDistMirrorSettingField({
         <p className="text-xs text-muted-foreground">
           {t(
             'auto.components.settings.AdvancedNetworkSettingsSection.nodeDistMirrorDescription',
-            'Optional. A copy of nodejs.org/dist that Orca uses first when it installs Node on SSH and WSL servers. Each file is still checked against the release Orca expects.'
+            'Optional. A copy of nodejs.org/dist that Otodus uses first when it installs Node on SSH and WSL servers. Each file is still checked against the release Otodus expects.'
           )}
         </p>
       )}

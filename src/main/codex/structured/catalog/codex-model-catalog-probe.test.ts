@@ -83,7 +83,7 @@ describe('codex model catalog probe', () => {
     expect(JSON.stringify(identities[0]) === JSON.stringify(identities[1])).toBe(
       listedIn[0] === listedIn[1]
     )
-    // The account's configured default is read for Orca's folder, never the project's.
+    // The account's configured default is read for Otodus's folder, never the project's.
     expect(configReads).toEqual(
       expect.arrayContaining([expect.objectContaining({ cwd: '/orca-probe' })])
     )

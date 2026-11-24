@@ -18,7 +18,7 @@ export type FolderWorkspaceRepoChoice = {
   path: string
 }
 
-/** The folder workspace whose terminal runs this command, from the env Orca sets on its terminals. */
+/** The folder workspace whose terminal runs this command, from the env Otodus sets on its terminals. */
 export function getCallerFolderWorkspaceKey(): WorkspaceKey | undefined {
   return [process.env.ORCA_WORKSPACE_ID, process.env.ORCA_WORKTREE_ID]
     .map((id) => id?.trim())
@@ -119,7 +119,7 @@ export async function getFolderWorkspaceMissingRepoError(
   if (choices.length === 0) {
     return new RuntimeClientError(
       'invalid_argument',
-      `This folder workspace is not a Git repository, and Orca has no Git repositories registered under ${read.folderWorkspace.folderPath}. Add one with orca repo add --path <repository path>, then pass --repo.`,
+      `This folder workspace is not a Git repository, and Otodus has no Git repositories registered under ${read.folderWorkspace.folderPath}. Add one with orca repo add --path <repository path>, then pass --repo.`,
       data
     )
   }

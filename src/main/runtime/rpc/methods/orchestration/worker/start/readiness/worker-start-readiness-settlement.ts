@@ -104,7 +104,7 @@ export async function deliverAndSettleWorkerStartReadiness(args: {
   // A worker report can settle the dispatch while turn observation is outstanding.
   const currentWorker = db.getWorkerDispatch(args.dispatchId)
   const alreadySettled = currentWorker && currentWorker.state !== 'starting'
-  // Only Orca's own worker chat queues behind its own turn, so its card is sure to run; a user's chat may drop it.
+  // Only Otodus's own worker chat queues behind its own turn, so its card is sure to run; a user's chat may drop it.
   const queuedOnOwnWorker =
     turnStart.queued === true &&
     db.getWorkerTerminalResourceByOwner(args.dispatchId)?.ownership_state === 'owned'

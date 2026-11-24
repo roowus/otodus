@@ -250,7 +250,7 @@ export function SkillShareDialog({
       setError(
         t(
           'auto.components.skills.SkillShareDialog.cancelRequestFailed',
-          'Orca could not send the cancellation request. The upload may still finish.'
+          'Otodus could not send the cancellation request. The upload may still finish.'
         )
       )
     }

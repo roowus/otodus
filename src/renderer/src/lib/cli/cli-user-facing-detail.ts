@@ -12,9 +12,9 @@ const KNOWN_CLI_DETAILS: {
     fallback: 'Development mode uses a generated launcher for validation only.'
   },
   {
-    test: 'The bundled CLI launcher is missing from this Orca build.',
+    test: 'The bundled CLI launcher is missing from this Otodus build.',
     key: 'auto.lib.cli.detail.launcherMissing',
-    fallback: 'The bundled CLI launcher is missing from this Orca build.'
+    fallback: 'The bundled CLI launcher is missing from this Otodus build.'
   },
   {
     test: 'CLI registration is not implemented on this platform.',
@@ -57,14 +57,14 @@ const KNOWN_CLI_DETAILS: {
     fallback: 'Could not reach the WSL distro. Try again.'
   },
   {
-    test: 'WSL Windows interop is unavailable; Orca cannot launch the Windows CLI from WSL.',
+    test: 'WSL Windows interop is unavailable; Otodus cannot launch the Windows CLI from WSL.',
     key: 'auto.lib.cli.detail.wslInteropUnavailable',
-    fallback: 'WSL Windows interop is unavailable; Orca cannot launch the Windows CLI from WSL.'
+    fallback: 'WSL Windows interop is unavailable; Otodus cannot launch the Windows CLI from WSL.'
   },
   {
-    test: 'The Orca launcher exists, but Orca could not check your Windows user PATH.',
+    test: 'The Otodus launcher exists, but Otodus could not check your Windows user PATH.',
     key: 'auto.lib.cli.detail.windowsPathCheckFailed',
-    fallback: 'The Orca launcher exists, but Orca could not check your Windows user PATH.'
+    fallback: 'The Otodus launcher exists, but Otodus could not check your Windows user PATH.'
   },
   {
     test: /WSL command timed out after (\d+)ms\.?/i,
@@ -82,7 +82,7 @@ const KNOWN_CLI_DETAILS: {
     test: /^EACCES:\s*permission denied,\s*readlink\s+['"](.+)['"]$/i,
     key: 'auto.lib.cli.detail.readlinkPermissionDenied',
     fallback:
-      'Orca does not have permission to inspect {{path}}. Check the path and its parent directory permissions, then try again.',
+      'Otodus does not have permission to inspect {{path}}. Check the path and its parent directory permissions, then try again.',
     vars: (match) => ({ path: match?.[1] ?? 'orca' })
   },
   {
@@ -101,15 +101,15 @@ const KNOWN_CLI_DETAILS: {
     })
   },
   {
-    test: /(.+) exists but is not an Orca launcher script\.?$/,
+    test: /(.+) exists but is not an Otodus launcher script\.?$/,
     key: 'auto.lib.cli.detail.notOrcaLauncherScript',
-    fallback: '{{path}} exists but is not an Orca launcher script.',
+    fallback: '{{path}} exists but is not an Otodus launcher script.',
     vars: (match) => ({ path: match?.[1] ?? '' })
   },
   {
-    test: /(.+) exists but is not an Orca symlink\.?$/,
+    test: /(.+) exists but is not an Otodus symlink\.?$/,
     key: 'auto.lib.cli.detail.notOrcaSymlink',
-    fallback: '{{path}} exists but is not an Orca symlink.',
+    fallback: '{{path}} exists but is not an Otodus symlink.',
     vars: (match) => ({ path: match?.[1] ?? '' })
   },
   {
@@ -119,9 +119,9 @@ const KNOWN_CLI_DETAILS: {
     vars: (match) => ({ path: match?.[1] ?? '' })
   },
   {
-    test: /(.+) contains an older Orca launcher\.?$/,
+    test: /(.+) contains an older Otodus launcher\.?$/,
     key: 'auto.lib.cli.detail.olderLauncher',
-    fallback: '{{path}} contains an older Orca launcher.',
+    fallback: '{{path}} contains an older Otodus launcher.',
     vars: (match) => ({ path: match?.[1] ?? '' })
   },
   {
@@ -143,31 +143,31 @@ function registerPathToken(raw: string | undefined): string {
   return trimmed.length > 0 ? trimmed : 'orca'
 }
 
-/** Map stable English "Register … to use Orca from …" status details. */
+/** Map stable English "Register … to use Otodus from …" status details. */
 function formatRegisterCliDetail(normalized: string): string | null {
-  const wsl = normalized.match(/^Register\s*(.*?)\s+to use Orca from WSL\.?$/i)
+  const wsl = normalized.match(/^Register\s*(.*?)\s+to use Otodus from WSL\.?$/i)
   if (wsl) {
     return translate(
       'auto.lib.cli.detail.registerForWsl',
-      'Register {{path}} to use Orca from WSL.',
+      'Register {{path}} to use Otodus from WSL.',
       { path: registerPathToken(wsl[1]) }
     )
   }
-  const terminal = normalized.match(/^Register\s*(.*?)\s+to use Orca from the terminal\.?$/i)
+  const terminal = normalized.match(/^Register\s*(.*?)\s+to use Otodus from the terminal\.?$/i)
   if (terminal) {
     return translate(
       'auto.lib.cli.detail.registerForTerminal',
-      'Register {{path}} to use Orca from the terminal.',
+      'Register {{path}} to use Otodus from the terminal.',
       { path: registerPathToken(terminal[1]) }
     )
   }
   const windowsShell = normalized.match(
-    /^Register\s*(.*?)\s+to use Orca from Command Prompt or PowerShell\.?$/i
+    /^Register\s*(.*?)\s+to use Otodus from Command Prompt or PowerShell\.?$/i
   )
   if (windowsShell) {
     return translate(
       'auto.lib.cli.detail.registerForWindowsShell',
-      'Register {{path}} to use Orca from Command Prompt or PowerShell.',
+      'Register {{path}} to use Otodus from Command Prompt or PowerShell.',
       { path: registerPathToken(windowsShell[1]) }
     )
   }

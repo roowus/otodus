@@ -15,10 +15,16 @@ export function getDropIndicatorClasses(dropIndicator: DropIndicator): string {
 export const ACTIVE_TAB_INDICATOR_CLASSES =
   'pointer-events-none absolute inset-x-0 bottom-0 h-[2px] bg-tab-active-indicator z-20 group-data-[single-tab]/tab-strip:hidden'
 
+// Rounded tab faces: the strip owns the seam, each tab rounds its own corners.
+export const TAB_ROUNDED_CLASSES = 'rounded-t-[10px] my-0.5 overflow-hidden'
+
 export function getTabRootStateClasses(isActive: boolean): string {
-  return isActive
-    ? 'bg-tab-active text-tab-active-foreground'
-    : 'bg-tab-inactive text-tab-inactive-foreground hover:text-tab-active-foreground'
+  return [
+    isActive
+      ? 'bg-tab-active text-tab-active-foreground'
+      : 'bg-tab-inactive text-tab-inactive-foreground hover:text-tab-active-foreground',
+    TAB_ROUNDED_CLASSES
+  ].join(' ')
 }
 
 export function getTabStripBorderClasses(

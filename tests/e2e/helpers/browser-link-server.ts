@@ -21,7 +21,7 @@ export async function startBrowserLinkServer(): Promise<{
   close: () => Promise<void>
 }> {
   const image = readFileSync(
-    path.join(process.cwd(), 'resources', 'app-icons', 'orca-watercolor.png')
+    path.join(process.cwd(), 'resources', 'app-icons', 'app-watercolor.png')
   )
   const server = createServer((request, response) => {
     const origin = `http://127.0.0.1:${(server.address() as AddressInfo).port}`

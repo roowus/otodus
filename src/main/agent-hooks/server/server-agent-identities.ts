@@ -154,7 +154,7 @@ export abstract class AgentHookServerAgentIdentities extends AgentHookServerStat
     const places: { paneKey: string; worktreeId?: string }[] = []
     for (const place of this.agentIdentities.placesOf(id)) {
       // Canonical rows are never hydrated; a legacy row counts only once this runtime observed it,
-      // since a saved status (even Done) cannot prove its process survived Orca being closed.
+      // since a saved status (even Done) cannot prove its process survived Otodus being closed.
       const subject = place.canonical
         ? this.canonicalSubjectsByPane.get(place.paneKey)?.get(place.key)
         : undefined

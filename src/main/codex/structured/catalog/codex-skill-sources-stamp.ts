@@ -100,7 +100,7 @@ export function createCodexSkillSourcesStamp(
       return facts.join('\n')
     })
 
-  // Only skill and plugin tables matter: Orca adds a trust entry each time a chat opens in a new folder.
+  // Only skill and plugin tables matter: Otodus adds a trust entry each time a chat opens in a new folder.
   const configStamp = async (path: string): Promise<string> => {
     const info = await stat(path).catch(() => null)
     if (!info) {
@@ -132,7 +132,7 @@ export function createCodexSkillSourcesStamp(
   ): Promise<string | undefined> => {
     const bounded = AbortSignal.any([signal, AbortSignal.timeout(STAMP_TIMEOUT_MS)])
     const work = async (): Promise<string> => {
-      // Orca's managed home holds copies the probe rewrites; stamping them would rescan forever.
+      // Otodus's managed home holds copies the probe rewrites; stamping them would rescan forever.
       const mirrored =
         normalizeRuntimePathForComparison(accountHomePath) ===
         normalizeRuntimePathForComparison(managedCodexHome())

@@ -32,7 +32,7 @@ async function copyOrcaId(
   }
 }
 
-/** Copies an Orca id the host resolves at click, `orca_session_id:<id>`; null resolves as a failure. */
+/** Copies an Otodus id the host resolves at click, `orca_session_id:<id>`; null resolves as a failure. */
 export function CopyOrcaIdMenuItem({
   resolveOrcaSessionId,
   copy,
@@ -57,7 +57,7 @@ export function CopyOrcaIdMenuItem({
   )
 }
 
-/** Copies the chat's Orca session ID from the host: `orca_session_id:<root>`, which `/clear` keeps. */
+/** Copies the chat's Otodus session ID from the host: `orca_session_id:<root>`, which `/clear` keeps. */
 export function NativeChatCopyOrcaSessionIdMenuItem({
   resolveOrcaSessionId
 }: {
@@ -68,18 +68,18 @@ export function NativeChatCopyOrcaSessionIdMenuItem({
     <CopyOrcaIdMenuItem
       resolveOrcaSessionId={resolveOrcaSessionId}
       copy={{
-        label: t('components.native-chat.contextMenu.copyOrcaSessionId', 'Copy Orca Session ID'),
+        label: t('components.native-chat.contextMenu.copyOrcaSessionId', 'Copy Otodus Session ID'),
         tooltip: t(
           'components.native-chat.contextMenu.orcaSessionIdTooltip',
-          "Orca's ID for this chat, separate from the agent CLI's own session ID. Agents use it to refer to each other through Orca."
+          "Otodus's ID for this chat, separate from the agent CLI's own session ID. Agents use it to refer to each other through Otodus."
         ),
         copied: t(
           'components.native-chat.contextMenu.orcaSessionIdCopied',
-          'Orca session ID copied'
+          'Otodus session ID copied'
         ),
         failed: t(
           'components.native-chat.contextMenu.orcaSessionIdCopyFailed',
-          'Unable to copy Orca session ID'
+          'Unable to copy Otodus session ID'
         )
       }}
     />

@@ -137,7 +137,7 @@ async function authorizeWindowsCheckoutReads(
         (current.branch !== expected.branch || (expected.head && current.head !== expected.head))))
   ) {
     throw new Error(
-      `A different checkout is now at ${root}; Orca left it in place. Delete it again to remove it.`
+      `A different checkout is now at ${root}; Otodus left it in place. Delete it again to remove it.`
     )
   }
   let entry

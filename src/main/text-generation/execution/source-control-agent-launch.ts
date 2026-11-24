@@ -53,7 +53,7 @@ export const spawnSourceControlAgent: SpawnSourceControlAgent = (input) => {
   const wslDistro = input.preparation
     ? wslDistroForCommand(input.cwd, input.wslDistro)
     : input.wslDistro
-  // Background agents cannot report hooks against the terminal that launched Orca.
+  // Background agents cannot report hooks against the terminal that launched Otodus.
   const spawnEnv = { ...(input.env ?? processEnvWithoutAgentSession()) }
   for (const key of Object.keys(spawnEnv)) {
     if (BACKGROUND_HOOK_ENV_KEYS.has(process.platform === 'win32' ? key.toUpperCase() : key)) {

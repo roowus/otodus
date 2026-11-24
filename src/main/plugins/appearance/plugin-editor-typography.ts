@@ -6,7 +6,7 @@ import {
   type PluginEditorTypography
 } from '../../../shared/plugins/workers/plugin-host-api-editor-typography'
 
-/** What `editor.readTypography` reads: this Orca's own profile, never a remote host's. */
+/** What `editor.readTypography` reads: this Otodus's own profile, never a remote host's. */
 export type PluginEditorTypographySource = {
   read(): PluginEditorTypography
 }

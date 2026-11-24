@@ -54,7 +54,7 @@ export const WORKTREE_CLIENT_AUTOMATION_PROVENANCE_RUNTIME_CAPABILITY =
 export const WORKTREE_CREATE_AGENT_OPTIONS_RUNTIME_CAPABILITY =
   'worktree.create-agent-options.v1' as const
 
-// Hosts that save a parent from another Orca store; older hosts strip `crossStoreParent` and write no link.
+// Hosts that save a parent from another Otodus store; older hosts strip `crossStoreParent` and write no link.
 export const WORKTREE_CROSS_STORE_LINEAGE_RUNTIME_CAPABILITY =
   'worktree.lineage.crossMachine' as const
 
@@ -69,7 +69,7 @@ export function assertCrossStoreLineageSupported(
 ): void {
   if (!supportsCrossStoreLineage(capabilities)) {
     throw new Error(
-      `Update Orca on ${hostLabel} to nest workspaces under a parent on another machine. Nothing was changed.`
+      `Update Otodus on ${hostLabel} to nest workspaces under a parent on another machine. Nothing was changed.`
     )
   }
 }
@@ -89,7 +89,7 @@ export function assertFolderParentSetSupported(
 ): void {
   if (!supportsFolderParent(capabilities)) {
     throw new Error(
-      `Update Orca on ${hostLabel} to attach a worktree to a folder workspace. Nothing was changed.`
+      `Update Otodus on ${hostLabel} to attach a worktree to a folder workspace. Nothing was changed.`
     )
   }
 }

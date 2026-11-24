@@ -73,7 +73,7 @@ export function resolvePluginServiceHostCallPolicy(input: {
   pluginsDataDir: string
   desktop: PluginDesktopFrameServices | null | undefined
   panels: PluginPanelBridgeServices | null
-  /** The service's desktop sinks; each is absent where this Orca has none. */
+  /** The service's desktop sinks; each is absent where this Otodus has none. */
   sinks: Pick<PluginServiceOptions, 'statusBar' | 'appearance' | 'editorTypography'>
   audit: PluginAuditLog
   log?: (pluginKey: string) => (line: string) => void

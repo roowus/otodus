@@ -95,7 +95,7 @@ export async function prepareEphemeralVmWorkspaceTarget(
           WORKTREE_PROVISIONED_ROOT_RUNTIME_CAPABILITY,
           translate(
             'auto.lib.ephemeralVm.provisionedRootNeedsUpdate',
-            'The Orca server on this VM cannot adopt a provisioned root. Update Orca on the VM.'
+            'The Orca server on this VM cannot adopt a provisioned root. Update Otodus on the VM.'
           )
         )
       }

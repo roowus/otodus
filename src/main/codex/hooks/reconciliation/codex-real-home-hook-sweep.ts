@@ -14,7 +14,7 @@ import {
 } from '../../trust/hooks/codex-hook-orca-approvals'
 import { mutateRealHomeHooksPreservingUserTrust } from '../../trust/hooks/codex-user-hook-trust-moves'
 
-/** Move shifted user approvals; the caller removes Orca's own approvals. */
+/** Move shifted user approvals; the caller removes Otodus's own approvals. */
 export function sweepRealHomeCodexHook(
   home: CodexHookHome = getRealHomeCodexHookHome()
 ): 'removed' | 'unavailable' {

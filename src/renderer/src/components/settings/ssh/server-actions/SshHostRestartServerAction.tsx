@@ -78,7 +78,7 @@ export function SshHostRestartServerDialog({
           <DialogDescription>
             {t(
               'auto.components.settings.restartServer.description',
-              'Orca restarts its server on this host from your current connection. It restarts only when no terminals are running on the host, because terminals that are still open stay cut off. Close them first.'
+              'Otodus restarts its server on this host from your current connection. It restarts only when no terminals are running on the host, because terminals that are still open stay cut off. Close them first.'
             )}
           </DialogDescription>
         </DialogHeader>
@@ -103,7 +103,7 @@ function refusalText(result: Exclude<OrcadManagedRestartResult, { outcome: 'rest
   if (result.liveSessions === null) {
     return translate(
       'auto.components.settings.restartServer.terminalsUnknown',
-      'Orca couldn’t confirm whether terminals are running on this host, so it didn’t restart Orca’s server.'
+      'Otodus couldn’t confirm whether terminals are running on this host, so it didn’t restart Orca’s server.'
     )
   }
   return translate(

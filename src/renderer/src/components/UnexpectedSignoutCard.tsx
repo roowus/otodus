@@ -207,7 +207,7 @@ export function UnexpectedSignoutCard(): React.JSX.Element | null {
                 title={t('auto.components.UnexpectedSignoutCard.8d2e4f7a1b', 'Artifact sharing')}
                 description={t(
                   'auto.components.UnexpectedSignoutCard.2c9a5b6e8d',
-                  'Publish HTML and Markdown files and manage every shared link from Orca.'
+                  'Publish HTML and Markdown files and manage every shared link from Otodus.'
                 )}
               />
               <FeatureRow
@@ -215,7 +215,7 @@ export function UnexpectedSignoutCard(): React.JSX.Element | null {
                 title={t('auto.components.UnexpectedSignoutCard.6e3f1a9c5b', 'Orca Relay')}
                 description={t(
                   'auto.components.UnexpectedSignoutCard.4b7d2e8f1a',
-                  'Connect Orca Mobile to this desktop across cellular or any Wi-Fi.'
+                  'Connect Otodus Mobile to this desktop across cellular or any Wi-Fi.'
                 )}
               />
               <FeatureRow
@@ -231,7 +231,7 @@ export function UnexpectedSignoutCard(): React.JSX.Element | null {
 
           <div className="mt-0.5 flex gap-2">
             <OrcaSignInButton variant="default" size="sm" className="flex-1" disabled={!canConnect}>
-              {t('auto.components.UnexpectedSignoutCard.c5b3e8a17d', 'Sign in to Orca')}
+              {t('auto.components.UnexpectedSignoutCard.c5b3e8a17d', 'Sign in to Otodus')}
             </OrcaSignInButton>
           </div>
           <OrcaSignInWaitNotice />

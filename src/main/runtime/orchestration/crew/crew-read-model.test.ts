@@ -106,7 +106,7 @@ describe('public crew read and stream', () => {
   })
 })
 
-it("keeps a worker's last real message over Orca's own records", () => {
+it("keeps a worker's last real message over Otodus's own records", () => {
   const { db, deps, assign } = fixture()
   const worker = assign('term_worker')
   db.insertMessage({
@@ -115,7 +115,7 @@ it("keeps a worker's last real message over Orca's own records", () => {
     subject: 'Update',
     body: 'Read 3 files'
   })
-  // Orca's notice as QA recorded it, an agent's own escalation, an empty setup receipt and a rejected report.
+  // Otodus's notice as QA recorded it, an agent's own escalation, an empty setup receipt and a rejected report.
   db.insertMessage({
     from: 'term_worker',
     to: 'term_coord',

@@ -39,7 +39,7 @@ export class ClaudeWslProfileRouter {
   constructor(
     private readonly args: {
       getSettings: () => ClaudeProfileRouterSettings
-      /** The host's data folder; it names the guest pointer per Orca build. */
+      /** The host's data folder; it names the guest pointer per Otodus build. */
       dataRoot: string
       runSetup?: WslSetup
     }

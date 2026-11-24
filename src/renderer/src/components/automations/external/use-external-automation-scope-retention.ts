@@ -3,7 +3,7 @@ import { ownerKey } from '../../../../../shared/automations/ownership/automation
 import { externalAutomationProbeOwners } from './external-automation-scope-gating'
 import type { AutomationHostCatalogEntry } from '../hosts/automation-host-catalog-types'
 
-/** Retain probes only for visible hosts; cancel filtered/page-exit work so stale results cannot compete with requested Orca traffic. */
+/** Retain probes only for visible hosts; cancel filtered/page-exit work so stale results cannot compete with requested Otodus traffic. */
 export function useExternalAutomationScopeRetention(
   entries: readonly AutomationHostCatalogEntry[]
 ): void {

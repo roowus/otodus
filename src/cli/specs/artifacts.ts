@@ -14,7 +14,7 @@ export const ARTIFACT_COMMAND_SPECS: CommandSpec[] = [
   },
   {
     path: ['artifacts', 'update'],
-    summary: 'Update a file previously shared from this Orca profile',
+    summary: 'Update a file previously shared from this Otodus profile',
     usage: 'orca artifacts update <file> [--api-url <url>] [--json]',
     allowedFlags: [...LOCAL_COMMAND_FLAGS, ...CLOUD_FLAGS, 'file'],
     positionalArgs: ['file']

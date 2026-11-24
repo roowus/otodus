@@ -2,6 +2,8 @@ const { existsSync, readFileSync, statSync } = require('node:fs')
 const { dirname, join, posix } = require('node:path')
 
 const WEB_CLIENT_INDEX = 'web-index.html'
+// Vite copies public/ to the output root, so the served favicon sits beside the entry rather than under assets/.
+const ROOT_STATIC_ICON = /^(?:favicon\.(?:svg|ico|png)|apple-touch-icon(?:-\d+x\d+)?\.png)$/
 const REMEDY = 'Run pnpm build:web-from-renderer (build:desktop and build:release already do).'
 
 function failure(message) {
@@ -35,7 +37,9 @@ function assertPackagedWebClient(resourcesDir) {
     !files.every(
       (file) =>
         typeof file === 'string' &&
-        (file === WEB_CLIENT_INDEX || /^(?:assets|cmaps|standard_fonts|wasm)\//.test(file)) &&
+        (file === WEB_CLIENT_INDEX ||
+          ROOT_STATIC_ICON.test(file) ||
+          /^(?:assets|cmaps|standard_fonts|wasm)\//.test(file)) &&
         !file.includes('\\') &&
         !file.includes('\0') &&
         file.split('/').every((part) => part !== '' && part !== '.' && part !== '..') &&

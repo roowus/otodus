@@ -152,7 +152,7 @@ export class OrcadManagedTunnelTransportProvider implements SshPortForwardProvid
   }
 }
 
-/** Cancel only Orca's persisted forward spec, preserving the user's ControlMaster and other forwards. */
+/** Cancel only Otodus's persisted forward spec, preserving the user's ControlMaster and other forwards. */
 export function reserveManagedTunnelLocalPort(
   conn: SshConnection,
   options: PortForwardStartOptions

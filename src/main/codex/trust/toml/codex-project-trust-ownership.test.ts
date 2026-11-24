@@ -1,7 +1,7 @@
 /**
- * Ownership for the [projects."<path>"] tables Orca's preflight trust writes:
+ * Ownership for the [projects."<path>"] tables Otodus's preflight trust writes:
  * a removed worktree's entry must die with the worktree, while a table that
- * existed at the path before Orca first wrote it stays the user's.
+ * existed at the path before Otodus first wrote it stays the user's.
  */
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
@@ -15,7 +15,7 @@ import {
 const PROJECT = '/tmp/worktrees/feature-r1'
 const OTHER = '/tmp/worktrees/other-r1'
 
-describe('Orca-created project trust lifecycle', () => {
+describe('Otodus-created project trust lifecycle', () => {
   let userDataDir: string
   let managedConfigPath: string
   let accountConfigPath: string
@@ -42,7 +42,7 @@ describe('Orca-created project trust lifecycle', () => {
     }
   })
 
-  it('removes the tables Orca created for a removed worktree, per account, and keeps other paths', async () => {
+  it('removes the tables Otodus created for a removed worktree, per account, and keeps other paths', async () => {
     upsertOrcaCreatedProjectTrustLevel(managedConfigPath, PROJECT, 'trusted')
     upsertOrcaCreatedProjectTrustLevel(accountConfigPath, PROJECT, 'trusted')
     upsertOrcaCreatedProjectTrustLevel(managedConfigPath, OTHER, 'trusted')
@@ -59,7 +59,7 @@ describe('Orca-created project trust lifecycle', () => {
     expect(readFileSync(managedConfigPath, 'utf-8')).toContain(`[projects."${OTHER}"]`)
   })
 
-  it('keeps a table that existed at the path before Orca wrote it', async () => {
+  it('keeps a table that existed at the path before Otodus wrote it', async () => {
     const userTable = [`[projects."${PROJECT}"]`, 'trust_level = "untrusted"', ''].join('\n')
     writeFileSync(managedConfigPath, userTable)
     writeFileSync(accountConfigPath, userTable)
@@ -78,7 +78,7 @@ describe('Orca-created project trust lifecycle', () => {
     )
   })
 
-  it('does not delete a table the user replaced after Orca created the original', async () => {
+  it('does not delete a table the user replaced after Otodus created the original', async () => {
     upsertOrcaCreatedProjectTrustLevel(managedConfigPath, PROJECT, 'trusted')
     const replacement = [
       `[projects."${PROJECT}"]`,

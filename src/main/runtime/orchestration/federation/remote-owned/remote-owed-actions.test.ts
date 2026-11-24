@@ -52,7 +52,7 @@ const STOPPED = {
   processAction: 'closed_agent_terminal'
 }
 
-describe('what the coordinating Orca owes a paired server', () => {
+describe('what the coordinating Otodus owes a paired server', () => {
   let db: OrchestrationDb
   let runtime: OrcaRuntimeService
   let run: RunRow

@@ -231,7 +231,7 @@ async function runSkill(run: SkillRun): Promise<BundledSkillOutcome> {
 }
 
 /**
- * Lets other Orca builds on this host recognise these bytes as Orca's, not a user edit.
+ * Lets other Otodus builds on this host recognise these bytes as Otodus's, not a user edit.
  * Execution only: preview stays read-only.
  */
 function recordOrcaCopy(input: BundledSkillExecuteInput, entry: BundledSkillPlanEntry) {

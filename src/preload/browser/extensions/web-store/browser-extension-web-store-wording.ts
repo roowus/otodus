@@ -1,14 +1,14 @@
 /**
- * Runs in the Chrome Web Store page's main world: renames the install wording from Chrome to Orca
+ * Runs in the Chrome Web Store page's main world: renames the install wording from Chrome to Otodus
  * and hides the "Switch to Chrome" banner, which is wrong here because installing works.
  * Self-contained because executeInMainWorld serializes it without its closure. The
  * "Chrome Web Store" name stays.
  */
 export function adaptChromeWebStoreWordingForOrca(): void {
   const replacements: [RegExp, string][] = [
-    [/\bAdd to Chrome\b/g, 'Add to Orca'],
-    [/\bRemove from Chrome\b/g, 'Remove from Orca'],
-    [/ has been removed from Chrome\./g, ' has been removed from Orca.']
+    [/\bAdd to Chrome\b/g, 'Add to Otodus'],
+    [/\bRemove from Chrome\b/g, 'Remove from Otodus'],
+    [/ has been removed from Chrome\./g, ' has been removed from Otodus.']
   ]
   const SWITCH_BANNER_TEXT = 'Switch to Chrome to install extensions and themes'
   const HIDDEN_BANNER_ATTRIBUTE = 'data-orca-hidden-switch-banner'

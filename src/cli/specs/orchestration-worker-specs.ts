@@ -41,11 +41,11 @@ export const ORCHESTRATION_WORKER_COMMAND_SPECS: CommandSpec[] = [
       'When reusing --terminal, pass --worktree for that terminal; current means the coordinator worktree.',
       "Reusing a settled worker's terminal with --terminal before its autoReleaseAt cancels that automatic release; after it, the start is refused while the release runs.",
       'A terminal the user kept open takes --terminal work and stays kept open.',
-      '--agent takes an Orca agent id enabled on the worker server, such as claude, codex, cursor, antigravity, muse, zcode, opencode, or opencode2.',
+      '--agent takes an Otodus agent id enabled on the worker server, such as claude, codex, cursor, antigravity, muse, zcode, opencode, or opencode2.',
       '--model supports Claude, Codex, Cursor, Antigravity, Grok, and Muse opaque provider model ids; --effort requires --model. OMP also takes its model roles and selectors (such as @worker or provider/model:level), with --effort as its thinking level. Neither can combine with --terminal. OpenCode model selection requires an existing worktree, a verified execution-host CLI, and an available model; effort is unsupported. Pi takes a provider/id --model and maps --effort to its --thinking level (off, minimal, low, medium, high, xhigh, max). Other agents, including zcode, launch with the model from their own config.',
       'Finished workers close on their own unless started with --keep-open; a worker started in a new worktree (new-child or new-top-level) is kept open, so release it when no one will use its chat.',
       'New worktrees use agent-first creation; without --setup, setup runs unless the project turns it off. Repository start-immediately runs setup beside the agent; wait-for-setup gates agent readiness and task input.',
-      'New worktrees without --name get the name Orca gives an unnamed workspace; the receipt names it. Servers older than this change still require --name.',
+      'New worktrees without --name get the name Otodus gives an unnamed workspace; the receipt names it. Servers older than this change still require --name.',
       'Creation flags (--name, --repo, --base-branch, --display-name, --comment, --setup) are rejected for current/existing worktrees. Use exact --repo on the selected server; project/host convenience routing remains on worktree create.',
       "How the worker runs follows the user's own setting for new agent tabs; there is no flag for it and no caller needs to ask. A dispatch the setting cannot apply to still starts, so the placement, agent, and launch options passed here are always the ones honoured.",
       'Drive every worker the same way whichever way it was started: the same orchestration verbs, the same handle. Mail, dispatch, worker-show, worker-read and the whole lifecycle behave identically. The start receipt records which one ran, for operators and telemetry.',
@@ -65,7 +65,7 @@ export const ORCHESTRATION_WORKER_COMMAND_SPECS: CommandSpec[] = [
     allowedFlags: [...GLOBAL_FLAGS, 'dispatch'],
     notes: [
       'A Dispatch created by orchestration dispatch is shown as unsupervised and reports the exact adopted terminal when its identity is still provable.',
-      'observation.agentWait names a worker parked on a prompt only a human can answer, with the evidence that proved it (hook, prompt-text, or title). Null means Orca looked and found no wait. An absent field means it never looked — an older host, an unverifiable worker identity, an unreadable pane, or an agent probe that did not answer in time — and never means the worker is not waiting. A waiting worker is healthy, not failed.'
+      'observation.agentWait names a worker parked on a prompt only a human can answer, with the evidence that proved it (hook, prompt-text, or title). Null means Otodus looked and found no wait. An absent field means it never looked — an older host, an unverifiable worker identity, an unreadable pane, or an agent probe that did not answer in time — and never means the worker is not waiting. A waiting worker is healthy, not failed.'
     ]
   },
   {
@@ -78,7 +78,7 @@ export const ORCHESTRATION_WORKER_COMMAND_SPECS: CommandSpec[] = [
       'The default auto source uses an exact hook-reported transcript when available and otherwise returns labeled terminal output.',
       'A Dispatch created by orchestration dispatch reads from its adopted terminal with worker status unsupervised.',
       'Output stays readable after the terminal is released, including an automatic release after worker_done.',
-      'A returned cursor is pinned to the exact source; start a fresh read if Orca reports source_changed.'
+      'A returned cursor is pinned to the exact source; start a fresh read if Otodus reports source_changed.'
     ]
   },
   {
@@ -90,7 +90,7 @@ export const ORCHESTRATION_WORKER_COMMAND_SPECS: CommandSpec[] = [
     allowedFlags: [...GLOBAL_FLAGS, 'dispatch', 'retry-request'],
     notes: [
       'A Dispatch created by orchestration dispatch is fenced without closing its unsupervised terminal process.',
-      'processAction closed_agent_terminal means Orca issued the close (do not also run terminal close); stop_unknown exits 1 and may still report it when the agent exit was not proven.',
+      'processAction closed_agent_terminal means Otodus issued the close (do not also run terminal close); stop_unknown exits 1 and may still report it when the agent exit was not proven.',
       'Also stops every helper it started and theirs, listed in helpers; a helper the user kept open is listed and keeps running.',
       'Never deletes the worktree, setup terminal, configured tabs, or unrelated processes.'
     ]
@@ -106,9 +106,9 @@ export const ORCHESTRATION_WORKER_COMMAND_SPECS: CommandSpec[] = [
     allowedFlags: [...GLOBAL_FLAGS, 'dispatch', 'prompt', 'reason', 'from', 'retry-request'],
     identityFlagRoles: { from: 'caller' },
     notes: [
-      "Refused unless the user turned on Let coordinators approve worker permission prompts in Orca's settings on the machine running the worker; the escalation shows this command only then.",
+      "Refused unless the user turned on Let coordinators approve worker permission prompts in Otodus's settings on the machine running the worker; the escalation shows this command only then.",
       "The user still sees Allow and Deny; the first answer wins. A prompt the worker's agent lets only a person approve is refused and stays with the user.",
-      "Orca picks the prompt's own allow-once option, never a standing rule."
+      "Otodus picks the prompt's own allow-once option, never a standing rule."
     ]
   },
   {
@@ -120,7 +120,7 @@ export const ORCHESTRATION_WORKER_COMMAND_SPECS: CommandSpec[] = [
     identityFlagRoles: { from: 'caller' },
     notes: [
       'The approval id is in the escalation that reported the prompt. Agents can allow one only with orchestration approve, when the user allows it.',
-      "Orca picks the prompt's own refuse-once option, never a standing rule or a stop, and refuses when there is none.",
+      "Otodus picks the prompt's own refuse-once option, never a standing rule or a stop, and refuses when there is none.",
       "When the agent's prompt takes no message, the reason reaches the worker as its next mail."
     ]
   },

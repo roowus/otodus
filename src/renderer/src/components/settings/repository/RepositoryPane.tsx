@@ -71,7 +71,7 @@ type RepositoryPaneProps = {
   settingsSelectionKey?: string
   settingsEntryRepoIds?: ReadonlySet<string>
   removalScope?: SettingsProjectRemovalScope
-  /** Every checkout the remove action takes out of Orca. */
+  /** Every checkout the remove action takes out of Otodus. */
   removalSetups?: readonly ProjectHostSetup[]
   isLocalWindowsProject?: boolean
   wslAvailable?: boolean

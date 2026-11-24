@@ -122,7 +122,7 @@ function stopAwaitingAppActive(): void {
   electronApp.off('did-become-active', revealWindowsAwaitingAppActive)
 }
 
-/** The user is back in Orca. Origin-bar popups (plain BaseWindows) call this on focus, since only BrowserWindows raise `browser-window-focus`. */
+/** The user is back in Otodus. Origin-bar popups (plain BaseWindows) call this on focus, since only BrowserWindows raise `browser-window-focus`. */
 export function revealWindowsAwaitingAppActive(): void {
   if (windowsAwaitingAppActive.size === 0) {
     return
@@ -136,12 +136,12 @@ export function revealWindowsAwaitingAppActive(): void {
   windowsAwaitingAppActive.clear()
 }
 
-/** Shows a window an agent opened without activating Orca: now if Orca is in front, else once the user returns to it. */
+/** Shows a window an agent opened without activating Otodus: now if Otodus is in front, else once the user returns to it. */
 export function showWhenAppActive(window: BaseWindow, env: PolicyEnv = process.env): void {
   if (window.isDestroyed() || isWindowlessLaunch(env)) {
     return
   }
-  // Any Orca window counts, including origin-bar popups (plain BaseWindows).
+  // Any Otodus window counts, including origin-bar popups (plain BaseWindows).
   if (BaseWindow.getFocusedWindow()) {
     window.showInactive()
     return

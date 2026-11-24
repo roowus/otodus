@@ -21,7 +21,7 @@ function measureChrome(region: PluginChromeRegion): Rect | null {
   return width > 0 && height > 0 ? { x, y, width, height } : null
 }
 
-/** Paints Orca in the asked theme, then measures the status bar or the whole window. */
+/** Paints Otodus in the asked theme, then measures the status bar or the whole window. */
 export async function captureChrome(
   request: Extract<PluginViewRequest, { kind: 'capture-chrome' }>
 ): Promise<PluginViewReply> {
@@ -42,8 +42,8 @@ export async function captureChrome(
       code: 'chrome_hidden',
       message:
         region === 'status-bar'
-          ? "Orca's status bar is hidden; turn on Appearance > Show Status Bar, then shoot again."
-          : "Orca's window has no area to capture."
+          ? "Otodus's status bar is hidden; turn on Appearance > Show Status Bar, then shoot again."
+          : "Otodus's window has no area to capture."
     }
   }
   const dark = document.documentElement.classList.contains('dark')

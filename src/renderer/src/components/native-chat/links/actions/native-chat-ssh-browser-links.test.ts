@@ -144,7 +144,7 @@ describe.each([
 ] as const)('%s on This device', (_label, hostId, runtimeEnvironmentId) => {
   beforeEach(() => seedOwner(hostId, runtimeEnvironmentId))
 
-  it('opens an unrouted desktop tab when links open in Orca', async () => {
+  it('opens an unrouted desktop tab when links open in Otodus', async () => {
     setSettings({ ...THIS_DEVICE, openLinksInApp: true })
 
     clickLink()

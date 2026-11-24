@@ -22,7 +22,7 @@ import {
 import { resolveEnvironmentFromStore } from './runtime-environment-store-operations'
 import { findCollidingEnvironmentName } from '../host-catalog/runtime-environment-name-collision'
 
-/** Registers a server Orca deployed over SSH, paired through its own loopback tunnel. */
+/** Registers a server Otodus deployed over SSH, paired through its own loopback tunnel. */
 export function addManagedOrcadEnvironment(
   userDataPath: string,
   args: {

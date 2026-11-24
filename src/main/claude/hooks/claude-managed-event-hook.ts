@@ -7,7 +7,7 @@ import {
   type NativeHookFormOptions
 } from './hook-settings'
 
-// Why 130 s: a worker's request waits up to Orca's 122 s hold, past Claude's own 2:00 auto-block.
+// Why 130 s: a worker's request waits up to Otodus's 122 s hold, past Claude's own 2:00 auto-block.
 const CLAUDE_PERMISSION_HOOK_TIMEOUT_SECONDS = 130
 
 /** The managed entry for one Claude hook event; only PermissionRequest waits longer than the shared timeout. */

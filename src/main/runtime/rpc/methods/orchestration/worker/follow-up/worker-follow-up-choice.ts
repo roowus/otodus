@@ -1,5 +1,5 @@
 /** Which placement a follow-up takes: in place while the worker's agent still runs, reopened in its saved
- *  conversation once closed, or a fresh agent of the same kind. Effect-free except closing a pane Orca owns
+ *  conversation once closed, or a fresh agent of the same kind. Effect-free except closing a pane Otodus owns
  *  whose agent is proven gone, so the replacement never sits beside it. */
 
 import { isResumableTuiAgent } from '../../../../../../../shared/agent-session/lifecycle/agent-session-resume'
@@ -146,7 +146,7 @@ async function openWorkerTerminal(
   return null
 }
 
-/** The agent exited and left Orca's shell behind: close it the way worker-release does before replacing it. */
+/** The agent exited and left Otodus's shell behind: close it the way worker-release does before replacing it. */
 async function releaseLeftoverShell(
   runtime: OrcaRuntimeService,
   db: OrchestrationDb,
@@ -210,7 +210,7 @@ export async function userTabHoldingSession(
 function unverifiable(dispatchId: string, reason: string): OrchestrationError {
   return new OrchestrationError(
     'worker_unverifiable',
-    `Orca cannot tell whether Dispatch ${dispatchId}'s worker still runs (${reason}), so it starts no second one. Send again once worker-show reads it. No effects were applied.`,
+    `Otodus cannot tell whether Dispatch ${dispatchId}'s worker still runs (${reason}), so it starts no second one. Send again once worker-show reads it. No effects were applied.`,
     { effectsApplied: false }
   )
 }
@@ -218,7 +218,7 @@ function unverifiable(dispatchId: string, reason: string): OrchestrationError {
 function notRestartable(dispatchId: string): OrchestrationError {
   return new OrchestrationError(
     'worker_not_restartable',
-    `Dispatch ${dispatchId} has no worker Orca started that it can continue; start a new worker with worker-start. No effects were applied.`,
+    `Dispatch ${dispatchId} has no worker Otodus started that it can continue; start a new worker with worker-start. No effects were applied.`,
     { effectsApplied: false }
   )
 }

@@ -83,7 +83,7 @@ function readHookTrustProvenance(
   }
 }
 
-/** Preserve unreadable provenance so later snapshots cannot misclassify user approvals as Orca writes. */
+/** Preserve unreadable provenance so later snapshots cannot misclassify user approvals as Otodus writes. */
 function provenanceIsUnreadable(provenancePath: string): boolean {
   try {
     readFileSync(provenancePath, 'utf-8')
@@ -93,7 +93,7 @@ function provenanceIsUnreadable(provenancePath: string): boolean {
   }
 }
 
-/** Snapshot after all trust writes to distinguish Orca changes from later user approvals. */
+/** Snapshot after all trust writes to distinguish Otodus changes from later user approvals. */
 export function snapshotCodexRuntimeHookTrustProvenance(
   runtimeHomePath: string = getOrcaManagedCodexHomePath()
 ): boolean {
@@ -186,7 +186,7 @@ function promoteCodexRuntimeHookApprovalsToSystemUnsafe(runtimeHomePath: string)
       previous.trustedHash === state.trustedHash &&
       (previous.enabled ?? true) === (state.enabled ?? true)
     ) {
-      // Unchanged Orca-written entries are not new user approvals.
+      // Unchanged Otodus-written entries are not new user approvals.
       continue
     }
     const eventName = CODEX_EVENT_NAME_BY_LABEL[parsed.eventLabel]

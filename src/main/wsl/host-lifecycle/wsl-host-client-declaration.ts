@@ -1,4 +1,4 @@
-/** R39: each ready control socket to a WSL host says which Orca installation it belongs to. */
+/** R39: each ready control socket to a WSL host says which Otodus installation it belongs to. */
 import { getAppEnvironment } from '../../../shared/app-lifecycle/app-environment'
 import { ORCAD_DECLARE_CLIENT_METHOD } from '../../../shared/remote-runtime/orcad-lifecycle/orcad-peer-desktops-contract'
 import { resolveEnvironment } from '../../../shared/remote-runtime/host-store/runtime-environment-store'
@@ -30,7 +30,7 @@ export async function declareWslHostClient(
     .then((response) => {
       // An older server lacks the method; it then has no peer check, so nothing reads the tag.
       if (!response.ok && response.error.code !== 'method_not_found') {
-        console.warn('[wsl-hosts] The WSL host did not note this Orca:', response.error.message)
+        console.warn('[wsl-hosts] The WSL host did not note this Otodus:', response.error.message)
       }
     })
     .catch(() => {

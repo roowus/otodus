@@ -70,7 +70,7 @@ async function serviceEntry(host: OrcaUninstallHost): Promise<OrcaUninstallSimpl
     : { location: units.map((unit) => unit.name).join(', '), state: 'present', detail: null }
 }
 
-/** Read-only: lists what Orca added outside its own folders. */
+/** Read-only: lists what Otodus added outside its own folders. */
 export async function buildOrcaUninstallPlan(host: OrcaUninstallHost): Promise<OrcaUninstallPlan> {
   const registryAgents: OrcaUninstallAgentEntry[] = getManagedAgentHookStatuses()
     .filter((status) => status.managedHooksPresent)
@@ -129,7 +129,7 @@ function registryOutcome(
     return { state: 'removed', detail: null }
   }
   if (status.state === 'error' || status.managedHooksPresent) {
-    return { state: 'error', detail: status.detail ?? 'Orca hooks are still in this file.' }
+    return { state: 'error', detail: status.detail ?? 'Otodus hooks are still in this file.' }
   }
   return { state: 'removed', detail: null }
 }

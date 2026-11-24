@@ -33,7 +33,7 @@ export default function WebConnect({
   const t = useTranslate()
   const existingEnvironment = readStoredWebRuntimeEnvironment()
   const [name, setName] = useState(
-    (!confirmReplacingSavedServer && existingEnvironment?.name) || 'Orca Server'
+    (!confirmReplacingSavedServer && existingEnvironment?.name) || 'Otodus'
   )
   const [pairingCode, setPairingCode] = useState(initialPairingInput ?? '')
   const [error, setError] = useState<string | null>(null)
@@ -46,7 +46,7 @@ export default function WebConnect({
   const connect = async (): Promise<void> => {
     setError(null)
     if (!parsedOffer) {
-      setError('Enter a valid Orca pairing URL or pairing code.')
+      setError('Enter a valid Otodus pairing URL or pairing code.')
       return
     }
     if (parsedOffer.scope === 'mobile') {
@@ -132,7 +132,7 @@ export default function WebConnect({
           </div>
           <div className="min-w-0">
             <h1 className="text-base font-semibold leading-6">
-              {t('auto.web.WebConnect.e3bcd082ac', 'Connect to Orca')}
+              {t('auto.web.WebConnect.e3bcd082ac', 'Connect to Otodus')}
             </h1>
             <p className="mt-1 text-sm leading-5 text-muted-foreground">
               {t(

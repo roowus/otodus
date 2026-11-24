@@ -91,7 +91,7 @@ export function PluginFrameView({
   if (guest && hidden) {
     return (
       // Inert: the runner must never take focus (keys would vanish into it), and its own
-      // activation never counts; only presses on Orca's controls do.
+      // activation never counts; only presses on Otodus's controls do.
       <div inert aria-hidden="true" className="pointer-events-none absolute size-0 overflow-hidden">
         <webview
           ref={(element: PluginFrameElement | null) => {

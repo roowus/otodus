@@ -83,7 +83,7 @@ async function initializeFromDisposableFolder(
           observe
             ? {
                 onExit: (_error, { expected, exit }) => {
-                  // Orca closing the check, or a spawn that never ran, says nothing about the runtime.
+                  // Otodus closing the check, or a spawn that never ran, says nothing about the runtime.
                   if (!expected && !exit.processless) {
                     probe.exit = exit
                   }

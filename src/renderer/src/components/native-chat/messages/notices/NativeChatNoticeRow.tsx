@@ -207,7 +207,7 @@ export function NativeChatNoticeRow({
       </NativeChatDetailsDisclosure>
     )
   }
-  // Name Orca and its host as the stop cause; without host context, preserve the original words.
+  // Name Otodus and its host as the stop cause; without host context, preserve the original words.
   const { orcaStop } = block
   const { hostLabel, remoteHost, continueAvailable, wslDistro } = orcaStopView
   // A paired server with no name to show is still a remote server; its id is not a name.

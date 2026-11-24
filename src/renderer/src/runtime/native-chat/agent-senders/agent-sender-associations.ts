@@ -10,7 +10,7 @@ export type AgentSenderResolution =
   /** The host runs nothing under the identities the card saved: a closed chat, a terminal that
    *  exited or was respawned, or a sender with no identity this host can name. */
   | { kind: 'gone'; sender: 'chat' | 'terminal' | 'other' }
-  /** The host publishes nothing: an older Orca, read through its own lookup. */
+  /** The host publishes nothing: an older Otodus, read through its own lookup. */
   | { kind: 'legacy' }
 
 const AMBIGUOUS: AgentSenderResolution = Object.freeze({ kind: 'ambiguous' })
