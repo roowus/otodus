@@ -1,0 +1,177 @@
+{
+  "base": "light",
+  "tokens": {
+    "--background": "#fafafa",
+    "--editor-surface": "#ffffff",
+    "--foreground": "#141414",
+    "--card": "#ffffff",
+    "--card-foreground": "#141414",
+    "--popover": "#ffffff",
+    "--popover-foreground": "#141414",
+    "--primary": "#a83c2b",
+    "--primary-foreground": "#ffffff",
+    "--secondary": "#efefef",
+    "--secondary-foreground": "#141414",
+    "--muted": "#f2f2f2",
+    "--muted-foreground": "#6b6b6b",
+    "--accent": "#e8e8e8",
+    "--accent-foreground": "#0f0f0f",
+    "--border": "#dcdcdc",
+    "--input": "#dcdcdc",
+    "--ring": "#a83c2b",
+    "--sidebar": "#f4f4f4",
+    "--sidebar-foreground": "#262626",
+    "--sidebar-primary": "#a83c2b",
+    "--sidebar-primary-foreground": "#ffffff",
+    "--sidebar-accent": "#e8e8e8",
+    "--sidebar-accent-foreground": "#0f0f0f",
+    "--sidebar-border": "#e2e2e2",
+    "--sidebar-ring": "#a83c2b",
+    "--worktree-sidebar": "#f4f4f4",
+    "--worktree-sidebar-foreground": "#262626",
+    "--worktree-sidebar-accent": "#e8e8e8",
+    "--worktree-sidebar-accent-foreground": "#0f0f0f",
+    "--worktree-sidebar-border": "#e2e2e2",
+    "--worktree-sidebar-ring": "#a83c2b",
+    "--worktree-sidebar-active": "#e4e4e4",
+    "--worktree-sidebar-active-border": "#a83c2b",
+    "--tab-bar": "#f0f0f0",
+    "--tab-active": "#ffffff",
+    "--tab-active-foreground": "#0f0f0f",
+    "--tab-active-indicator": "#a83c2b",
+    "--tab-inactive": "#f0f0f0",
+    "--tab-inactive-foreground": "#6b6b6b",
+    "--split-divider": "#e2e2e2",
+    "--split-divider-hover": "#c6c6c6",
+    "--host-badge": "#e6e6e6",
+    "--host-badge-foreground": "#3a3a3a",
+    "--chat-user-message": "#efefef",
+    "--chat-muted-foreground": "#6b6b6b",
+    "--chat-inline-code": "#e8e8e8",
+    "--chat-inline-code-foreground": "#8c3527",
+    "--chat-code-block": "#f7f7f7",
+    "--chat-selection": "#d6d6d6",
+    "--chat-selection-foreground": "#0f0f0f",
+    "--text-link": "#a94434",
+    "--editor-selection": "#d6d6d6",
+    "--diff-added": "#1f7a56",
+    "--diff-added-background": "#e6f4ec",
+    "--diff-removed": "#b3352f",
+    "--diff-removed-background": "#fbe9e8",
+    "--git-decoration-added": "#1f7a56",
+    "--git-decoration-modified": "#8a6008",
+    "--git-decoration-deleted": "#b3352f",
+    "--git-decoration-renamed": "#a94434",
+    "--git-decoration-untracked": "#1f7a56",
+    "--chart-1": "#6b6b6b",
+    "--chart-2": "#a94434",
+    "--chart-3": "#9a9a9a",
+    "--chart-4": "#4a4a4a",
+    "--chart-5": "#c0c0c0"
+  },
+  "tokenColors": [
+    {
+      "name": "Comment",
+      "scope": [
+        "comment",
+        "punctuation.definition.comment"
+      ],
+      "settings": {
+        "foreground": "#8a8a8a",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "Keyword",
+      "scope": [
+        "keyword",
+        "storage.type",
+        "storage.modifier"
+      ],
+      "settings": {
+        "foreground": "#a94434"
+      }
+    },
+    {
+      "name": "String",
+      "scope": [
+        "string",
+        "constant.other.symbol"
+      ],
+      "settings": {
+        "foreground": "#1f7a56"
+      }
+    },
+    {
+      "name": "Number, constant",
+      "scope": [
+        "constant.numeric",
+        "constant.language"
+      ],
+      "settings": {
+        "foreground": "#8a6008"
+      }
+    },
+    {
+      "name": "Function",
+      "scope": [
+        "entity.name.function",
+        "support.function"
+      ],
+      "settings": {
+        "foreground": "#2e2e2e"
+      }
+    },
+    {
+      "name": "Type, class",
+      "scope": [
+        "entity.name.type",
+        "entity.name.class",
+        "support.type",
+        "support.class"
+      ],
+      "settings": {
+        "foreground": "#8a5a3c"
+      }
+    },
+    {
+      "name": "Variable",
+      "scope": [
+        "variable",
+        "variable.other"
+      ],
+      "settings": {
+        "foreground": "#141414"
+      }
+    },
+    {
+      "name": "Property",
+      "scope": [
+        "variable.other.property",
+        "meta.object-literal-key"
+      ],
+      "settings": {
+        "foreground": "#4f4f4f"
+      }
+    },
+    {
+      "name": "Tag",
+      "scope": [
+        "entity.name.tag"
+      ],
+      "settings": {
+        "foreground": "#a94434"
+      }
+    },
+    {
+      "name": "Invalid",
+      "scope": [
+        "invalid",
+        "invalid.illegal"
+      ],
+      "settings": {
+        "foreground": "#b3352f"
+      }
+    }
+  ]
+}
