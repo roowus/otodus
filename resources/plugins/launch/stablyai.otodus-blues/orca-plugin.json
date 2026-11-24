@@ -5,7 +5,7 @@
   "name": "Otodus Blues",
   "version": "1.0.0",
   "execution": "data",
-  "description": "A cold sea-blue pair for Otodus: Abyss for the dark half of the day, Shoal for daylight. Monochrome chrome, blue reserved for selection and state.",
+  "description": "A cold sea-blue pair for Otodus: Abyss for the dark half of the day, Shoal for daylight. Monochrome chrome and matching terminal palettes; blue reserved for selection and state.",
   "license": "MIT",
   "engines": {
     "orca": ">=1.4.245"
@@ -21,6 +21,18 @@
         "id": "shoal",
         "title": "Otodus Shoal",
         "path": "themes/shoal.json"
+      }
+    ],
+    "terminalThemes": [
+      {
+        "id": "abyss",
+        "title": "Otodus Abyss",
+        "path": "terminal/abyss.json"
+      },
+      {
+        "id": "shoal",
+        "title": "Otodus Shoal",
+        "path": "terminal/shoal.json"
       }
     ]
   },
