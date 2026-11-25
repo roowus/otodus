@@ -121,11 +121,11 @@ const devChannelBuildVersion = isHourlyChannel
       : undefined
 // Separate dev-channel repos: 24 hourly tags/day would evict stable/RC from the ten-entry release feed; isolate adhoc/daily from hourly subscribers too.
 const devChannelRepo = isHourlyChannel
-  ? 'orca-hourly'
+  ? 'otodus-hourly'
   : isDailyChannel
-    ? 'orca-daily'
+    ? 'otodus-daily'
     : isAdhocChannel
-      ? 'orca-adhoc'
+      ? 'otodus-adhoc'
       : null
 const appId = 'com.roowus.otodus'
 const featureWallResources = {
@@ -762,7 +762,7 @@ module.exports = {
     ],
     // Keep local artifacts aligned with the release pipeline.
     target: ['AppImage', 'deb', 'rpm'],
-    maintainer: 'stablyai',
+    maintainer: 'roowus',
     category: 'Utility'
   },
   appImage: {
@@ -813,8 +813,8 @@ module.exports = {
   npmRebuild: true,
   publish: {
     provider: 'github',
-    owner: 'stablyai',
-    repo: devChannelRepo ?? 'orca',
+    owner: 'roowus',
+    repo: devChannelRepo ?? 'otodus',
     // Keep main-repo releases draft until release-cut verifies all assets; early --publish always would expose missing Windows installers.
     releaseType: devChannelRepo ? 'prerelease' : 'draft'
   }

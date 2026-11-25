@@ -23,6 +23,7 @@ import { configureMacShipItScheduling } from '../mac-install/macos-shipit-schedu
 import { handleElectronUpdaterProxyLogin } from './electron-updater-proxy-session'
 import { resolveWindowsUpdateInstallDirectory } from './windows-update-install-directory'
 import type { PreQuitCleanupFailureMode, UpdateInstallMode } from './updater-state'
+import { MAIN_RELEASE_REPOSITORY } from '../../../shared/updater/release-repository'
 
 export type UpdaterSetupOptions = {
   getMainWindow?: () => BrowserWindow | null
@@ -171,7 +172,7 @@ export class UpdaterSetup extends UpdaterDownloadInstall {
     if (this.activeUpdateSource === 'release') {
       autoUpdater.setFeedURL({
         provider: 'generic',
-        url: 'https://github.com/stablyai/orca/releases/latest/download'
+        url: `https://github.com/${MAIN_RELEASE_REPOSITORY}/releases/latest/download`
       })
     }
     if (this.autoUpdaterInitialized) {

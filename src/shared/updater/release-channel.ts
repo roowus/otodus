@@ -1,4 +1,10 @@
 import { compareAppVersions, isValidAppVersion } from '../app-lifecycle/identity/app-version'
+import {
+  ADHOC_RELEASE_REPOSITORY,
+  DAILY_RELEASE_REPOSITORY,
+  HOURLY_RELEASE_REPOSITORY,
+  MAIN_RELEASE_REPOSITORY
+} from './release-repository'
 
 export type ReleaseChannel = 'stable' | 'rc' | 'hourly' | 'daily' | 'adhoc'
 
@@ -19,10 +25,10 @@ export const RELEASE_CHANNEL_LABELS: Readonly<Record<ReleaseChannel, string>> = 
 }
 
 /** Keep dev tags out of the 10-entry main releases feed, where hourlies would evict stable/RC updates. */
-export const HOURLY_RELEASE_REPO = 'stablyai/orca-hourly'
-export const DAILY_RELEASE_REPO = 'stablyai/orca-daily'
-export const ADHOC_RELEASE_REPO = 'stablyai/orca-adhoc'
-export const MAIN_RELEASE_REPO = 'stablyai/orca'
+export const HOURLY_RELEASE_REPO = HOURLY_RELEASE_REPOSITORY
+export const DAILY_RELEASE_REPO = DAILY_RELEASE_REPOSITORY
+export const ADHOC_RELEASE_REPO = ADHOC_RELEASE_REPOSITORY
+export const MAIN_RELEASE_REPO = MAIN_RELEASE_REPOSITORY
 
 /** The dev channels, each published to its own repo rather than the main one. */
 const DEDICATED_REPO_CHANNELS = ['hourly', 'daily', 'adhoc'] as const

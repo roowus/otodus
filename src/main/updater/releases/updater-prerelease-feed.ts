@@ -1,4 +1,5 @@
 import { net } from 'electron'
+import { MAIN_RELEASE_REPOSITORY } from '../../../shared/updater/release-repository'
 import { compareVersions, isPrereleaseVersion, isValidVersion } from './updater-fallback'
 import {
   FETCH_TIMEOUT_MS,
@@ -12,12 +13,12 @@ import {
   type ReleaseDelayResult
 } from './updater-release-delay'
 
-const ATOM_FEED_URL = 'https://github.com/stablyai/orca/releases.atom'
+const ATOM_FEED_URL = `https://github.com/${MAIN_RELEASE_REPOSITORY}/releases.atom`
 const MAX_MANIFEST_PROBE_CANDIDATES = 6
 
 // Atom includes stable and prerelease tags without channel filtering.
 const ENTRY_RE = /<entry>([\s\S]*?)<\/entry>/g
-const TAG_HREF_RE = /href="https:\/\/github\.com\/stablyai\/orca\/releases\/tag\/([^"]+)"/
+const TAG_HREF_RE = /href="https:\/\/github\.com\/roowus\/otodus\/releases\/tag\/([^"]+)"/
 const ENTRY_UPDATED_RE = /<updated>([^<]+)<\/updated>/
 
 export function normalizeTagToVersion(tag: string): string {
@@ -69,7 +70,7 @@ async function fetchReleaseFeedTags(): Promise<ReleaseFeedTag[] | null> {
 export async function fetchLatestStableReleaseTag(): Promise<string | null> {
   try {
     // Resolve only the release-page redirect; installer redirects continue on to signed storage URLs.
-    const latestUrl = 'https://github.com/stablyai/orca/releases/latest'
+    const latestUrl = `https://github.com/${MAIN_RELEASE_REPOSITORY}/releases/latest`
     const response = await requestGitHubReleaseHead(latestUrl)
     if (!response?.redirectUrl || response.statusCode < 300 || response.statusCode >= 400) {
       return null

@@ -1,7 +1,7 @@
 import { EventEmitter } from 'node:events'
-import { afterAll, vi } from 'vitest'
-import type { Mock } from 'vitest'
+import { afterAll, vi, type Mock } from 'vitest'
 import { clearTrackedRealTimers, trackRealTimers } from './updater-test-timer-tracking'
+import { MAIN_RELEASE_REPOSITORY } from '../../../shared/updater/release-repository'
 
 type UpdaterSpy = Mock<(...args: unknown[]) => unknown>
 type LinuxPackageType = 'deb' | 'rpm' | 'non-root' | 'unusable'
@@ -245,7 +245,7 @@ export function createUpdaterMocks(): UpdaterMocks {
           : result
       },
       getReleaseDownloadUrl: (tag: string) =>
-        `https://github.com/stablyai/orca/releases/download/${tag}`
+        `https://github.com/${MAIN_RELEASE_REPOSITORY}/releases/download/${tag}`
     }),
     localBuildSwitch: () => ({ chooseLocalBuild: chooseLocalBuildMock }),
     localBuildFeedServer: () => ({ startLocalBuildFeed: startLocalBuildFeedMock })
