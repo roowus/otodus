@@ -1,8 +1,8 @@
 {
   "manifestVersion": 2,
-  "id": "otodus-blues",
+  "id": "otodus-themes",
   "publisher": "stablyai",
-  "name": "Otodus Blues",
+  "name": "Otodus Themes",
   "version": "1.0.0",
   "execution": "data",
   "description": "Two monochrome pairs for Otodus, each with a matching terminal palette: Abyss and Shoal in sea-blue, Megalodon and Coral in warm coral. Hue is reserved for selection and state.",

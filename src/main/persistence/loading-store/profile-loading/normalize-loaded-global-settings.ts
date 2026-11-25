@@ -10,6 +10,7 @@ import { normalizeTerminalShortcutPolicy } from '../../../../shared/keybindings/
 import { normalizeAppIconId } from '../../../../shared/app-lifecycle/identity/app-icon'
 import { normalizeTerminalCustomThemes } from '../../../../shared/terminal-themes/terminal-custom-themes'
 import { normalizePluginOwnedSettings } from '../../../../shared/plugins/capabilities/plugin-owned-settings'
+import { migrateLegacyOtodusThemePluginKey } from '../../../../shared/plugins/appearance/legacy-otodus-theme-plugin-rename'
 import {
   hasLegacyMatchTerminalSidebar,
   syncLegacyMatchTerminalSidebar
@@ -76,7 +77,13 @@ export function normalizeLoadedGlobalSettings(
     normalizedNotifications,
     normalizedSourceControlGroupOrder
   } = profile
-  const pluginOwnedSettings = normalizePluginOwnedSettings(parsed.settings ?? {})
+  // Why before everything else: settings the base spread carries below (consents, disabled list,
+  // terminal slots, host grants) still name the theme plugin's former key.
+  const storedSettings = {
+    ...parsed.settings,
+    ...migrateLegacyOtodusThemePluginKey(parsed.settings ?? {})
+  }
+  const pluginOwnedSettings = normalizePluginOwnedSettings(storedSettings)
   const voice = {
     ...getDefaultVoiceSettings(),
     ...parsed.settings?.voice,
@@ -92,7 +99,7 @@ export function normalizeLoadedGlobalSettings(
     ...defaults.settings,
     // Legacy stored booleans cannot distinguish opt-in from the old default; retain explicit true.
     ...normalizeLoadedWorkspaceDirSetting(
-      stripRetiredGlobalSettings(parsed.settings),
+      stripRetiredGlobalSettings(storedSettings),
       defaults.settings
     ),
     agentDefaultSurface: normalizeAgentDefaultSurface(parsed.settings?.agentDefaultSurface),
