@@ -145,9 +145,9 @@ export function renderTabBarSurface(
         <div
           data-single-tab={singleTab ? '' : undefined}
           // Why: tabs are the only drag source, so a narrow pane clips the "+" before the last tab sliver.
-          // Why an explicit height: `w-max` sizes this box from its content, so the pills' own
-          // height would feed back into it; the strip must inherit the row's content box instead.
-          className={`group/tab-strip relative flex h-full w-max max-w-full shrink ${
+          // Why flex-1, not w-max: a shrink-wrapped box ends at the last pill, so the pill touched
+          // the strip's right edge and no inset could exist there.
+          className={`group/tab-strip relative flex h-full flex-1 max-w-full ${
             hasTabs ? 'min-w-10' : 'min-w-0'
           }`}
           style={{ WebkitAppRegion: 'no-drag' } as React.CSSProperties}

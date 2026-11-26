@@ -17,44 +17,32 @@ function cornerClasses(classes: string): string[] {
   return directional ? [directional, '0', '0', '0'] : []
 }
 
-/** Tailwind spacing step to pixels; the scale is 4px per step. */
-function px(step: string | undefined): number | null {
-  return step === undefined ? null : Number(step) * 4
+/** Pixels for a Tailwind spacing token: a bare step is 4px, a `[Npx]` value is N. */
+function pxOf(token: string | undefined): number | null {
+  if (token === undefined) {
+    return null
+  }
+  const arbitrary = /^\d+px$/.exec(token)
+  return arbitrary ? Number(arbitrary[0].replace('px', '')) : Number(token) * 4
 }
 
-function paddingTop(classes: string): number | null {
-  return (
-    px(/\bpt-(\d+)\b/.exec(classes)?.[1]) ??
-    px(/\bpy-(\d+)\b/.exec(classes)?.[1]) ??
-    px(/\bp-(\d+)\b/.exec(classes)?.[1])
-  )
+/** Resolves one side's padding from most- to least-specific utility. */
+function sidePadding(classes: string, sides: readonly string[]): number | null {
+  for (const side of sides) {
+    const match =
+      new RegExp(`\\b${side}-\\[(\\d+px)\\]`).exec(classes) ??
+      new RegExp(`\\b${side}-(\\d+)\\b`).exec(classes)
+    if (match) {
+      return pxOf(match[1])
+    }
+  }
+  return null
 }
 
-function paddingBottom(classes: string): number | null {
-  const arbitrary = /\bpb-\[(\d+)px\]/.exec(classes)?.[1]
-  return (
-    (arbitrary === undefined ? null : Number(arbitrary)) ??
-    px(/\bpb-(\d+)\b/.exec(classes)?.[1]) ??
-    px(/\bpy-(\d+)\b/.exec(classes)?.[1]) ??
-    px(/\bp-(\d+)\b/.exec(classes)?.[1])
-  )
-}
-
-function paddingLeft(classes: string): number | null {
-  return (
-    px(/\bpl-(\d+)\b/.exec(classes)?.[1]) ??
-    px(/\bpx-(\d+)\b/.exec(classes)?.[1]) ??
-    px(/\bp-(\d+)\b/.exec(classes)?.[1])
-  )
-}
-
-function paddingRight(classes: string): number | null {
-  return (
-    px(/\bpr-(\d+)\b/.exec(classes)?.[1]) ??
-    px(/\bpx-(\d+)\b/.exec(classes)?.[1]) ??
-    px(/\bp-(\d+)\b/.exec(classes)?.[1])
-  )
-}
+const paddingTop = (c: string): number | null => sidePadding(c, ['pt', 'py', 'p'])
+const paddingBottom = (c: string): number | null => sidePadding(c, ['pb', 'py', 'p'])
+const paddingLeft = (c: string): number | null => sidePadding(c, ['pl', 'px', 'p'])
+const paddingRight = (c: string): number | null => sidePadding(c, ['pr', 'px', 'p'])
 
 describe('floating tab pill', () => {
   it('rounds all four corners, so no edge is left square against the window', () => {
@@ -94,9 +82,9 @@ describe('floating tab pill', () => {
 describe('tab row inset', () => {
   it('gives the pill the same clear background above as below the rule', () => {
     // The rule paints on the row's last pixel, so the bottom padding is one larger and the two
-    // clear bands come out equal. Measured in the running app at 8px above and 8px below.
-    expect(paddingTop(TAB_STRIP_ROW_CLASSES)).toBe(8)
-    expect(paddingBottom(TAB_STRIP_ROW_CLASSES)).toBe(9)
+    // clear bands come out equal. Measured in the running app at 10px above and 10px below.
+    expect(paddingTop(TAB_STRIP_ROW_CLASSES)).toBe(10)
+    expect(paddingBottom(TAB_STRIP_ROW_CLASSES)).toBe(11)
   })
 
   it('keeps the horizontally inset sides equal to each other', () => {

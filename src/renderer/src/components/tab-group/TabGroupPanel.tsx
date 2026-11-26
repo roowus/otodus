@@ -298,7 +298,8 @@ export default function TabGroupPanel({
           data-terminal-focus-release-surface="true"
           data-worktree-id={worktreeId}
         >
-          <div className="flex h-full items-stretch pr-1">
+          {/* Symmetric ends; min-h-8 so the action buttons do not fix the content box at 28px. */}
+          <div className="flex h-full min-h-8 items-stretch">
             {/* Why: Electron drag hit-test respects no-drag only on DOM descendants, not z-index siblings, so this no-drag spacer keeps the collapsed left-sidebar's floating toggle clickable. */}
             {reserveCollapsedSidebarHeaderSpace && !sidebarOpen ? (
               <div

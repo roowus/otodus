@@ -49,9 +49,10 @@ export function getTabStripBorderClasses(
     .join(' ')
 }
 
-/** The row that holds a floating strip. The rule paints on the row's last pixel, so the bottom
- *  padding carries one extra pixel: that pixel is the rule, which leaves the same 8 clear pixels
- *  of background below the pill as above it. A border cannot do this, since it is subtracted from
- *  the content box, and a pseudo-element outside the box is clipped by the panel's overflow. */
+/** The row that holds a floating strip. Bottom padding carries one extra pixel because the rule
+ *  paints on the row's last pixel, which leaves the pill the same 10px of background above and
+ *  below. Horizontal sides stay equal so the first and last pill sit the same distance from
+ *  their ends. The content box is 32px (min-h-8), which is what makes the pill taller rather
+ *  than the padding: the action buttons used to fix the content height at 28px. */
 export const TAB_STRIP_ROW_CLASSES =
-  'relative shrink-0 bg-tab-bar pt-2 pr-2 pl-2 pb-[9px] shadow-[inset_0_-1px_0_var(--border)]'
+  'relative shrink-0 bg-tab-bar pt-[10px] pr-2 pl-2 pb-[11px] shadow-[inset_0_-1px_0_var(--border)]'
