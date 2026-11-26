@@ -27,8 +27,10 @@ import { useWindowBackdropActive } from '@/app-shell/appearance/window-backdrop'
 import { EditorRevealFlash } from './editor-reveal/EditorRevealFlash'
 import { SplitPaneLanding } from './landing/SplitPaneLanding'
 import { isSplitLandingGroup } from '@/store/slices/tabs/split-landing-groups'
+import { TAB_STRIP_ROW_CLASSES } from '../tab-bar/strip/drop-indicator'
 
 const EditorPanel = lazy(() => import('../editor/EditorPanel'))
+
 const EMPTY_GROUPS: readonly TabGroup[] = []
 const EMPTY_CLIENT_HOSTED_ROWS: readonly ClientHostedBrowserRow[] = []
 
@@ -288,7 +290,10 @@ export default function TabGroupPanel({
       {/* Omit external strips entirely because hidden duplicates would still register competing drag sortables. */}
       {tabStrip !== 'attached' ? null : (
         <div
-          className="h-[32px] shrink-0 border-b border-border bg-tab-bar"
+          // Why an inset shadow, not border-b: a border consumes a pixel of the content box, so the
+          // pill sat 8px from the top edge and 9px from the painted bottom edge. The shadow keeps
+          // the rule without spending layout, letting all four insets be the same 8px.
+          className={TAB_STRIP_ROW_CLASSES}
           data-tab-group-strip-id={groupId}
           data-terminal-focus-release-surface="true"
           data-worktree-id={worktreeId}
@@ -306,8 +311,8 @@ export default function TabGroupPanel({
                 }
               />
             ) : null}
-            {/* Why: the tab-strip container excludes the reserved spacers, so width rules see only the room tabs and actions share. */}
-            <div className="@container/tab-strip flex min-w-0 flex-1 items-stretch">
+            {/* Why: the tab-strip container excludes the reserved spacers, so width rules see only the room tabs and actions share. Height must be explicit: a flex container's auto height is its tallest child, and the action buttons leave it at 24px, which collapses the pills. */}
+            <div className="@container/tab-strip flex h-full min-w-0 flex-1 items-stretch">
               <div className="min-w-10 flex-1 h-full">{tabBar}</div>
               {/* Why: overflowing tabs eat all strip whitespace; keep a window-drag handle while the right sidebar header is closed. It goes first in narrow strips: 203 = 40 gap + 163 for the tab floor and every control, so controls never clip behind it. */}
               {reserveRightTitlebarSpace ? (

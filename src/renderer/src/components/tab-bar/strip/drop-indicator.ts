@@ -16,10 +16,11 @@ export function getDropIndicatorClasses(dropIndicator: DropIndicator): string {
 export const ACTIVE_TAB_INDICATOR_CLASSES =
   'pointer-events-none absolute inset-0 rounded-[10px] ring-1 ring-inset ring-tab-active-indicator/70 z-20 group-data-[single-tab]/tab-strip:hidden'
 
-// Floating tab pills: every corner rounds and the margin is the gap to the strip on all four
-// sides, so no tab edge ever touches the window chrome.
+// Floating tab pills: every corner rounds. The inset comes from the strip's own padding and gap,
+// never from a margin here — a percentage height plus a margin on the same box is circular and
+// resolves to a collapsed pill.
 export const TAB_IS_FLOATING = true
-export const TAB_ROUNDED_CLASSES = 'rounded-[10px] mx-0.5 overflow-hidden'
+export const TAB_ROUNDED_CLASSES = 'rounded-[10px] overflow-hidden'
 
 export function getTabRootStateClasses(isActive: boolean): string {
   return [
@@ -47,3 +48,8 @@ export function getTabStripBorderClasses(
     .filter(Boolean)
     .join(' ')
 }
+
+/** The row that holds a floating strip: uniform padding puts the pill equally inset on all four
+ *  sides, and an inset shadow draws the rule without spending layout the way `border-b` did. */
+export const TAB_STRIP_ROW_CLASSES =
+  'box-border h-[40px] shrink-0 bg-tab-bar p-2 shadow-[inset_0_-1px_0_var(--border)]'

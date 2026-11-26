@@ -145,7 +145,9 @@ export function renderTabBarSurface(
         <div
           data-single-tab={singleTab ? '' : undefined}
           // Why: tabs are the only drag source, so a narrow pane clips the "+" before the last tab sliver.
-          className={`group/tab-strip relative flex min-h-0 w-max max-w-full shrink ${
+          // Why an explicit height: `w-max` sizes this box from its content, so the pills' own
+          // height would feed back into it; the strip must inherit the row's content box instead.
+          className={`group/tab-strip relative flex h-full w-max max-w-full shrink ${
             hasTabs ? 'min-w-10' : 'min-w-0'
           }`}
           style={{ WebkitAppRegion: 'no-drag' } as React.CSSProperties}
@@ -157,9 +159,9 @@ export function renderTabBarSurface(
             data-active-tab-docked={activeTabDockSide ?? undefined}
             // Why: only `border-r` here — a strip-level `border-l` would render a heavier L-corner than the first tab's own `border-l`.
             className={[
-              // py-1 reserves the pill's vertical gap; px-1 keeps the first and last pill off the
-              // window edge without letting the strip's own scrollbar hide it.
-              'terminal-tab-strip flex h-full min-w-0 max-w-full flex-1 items-stretch overflow-x-auto overflow-y-hidden px-1 py-1',
+              // The row supplies the inset, so the strip starts flush and only adds the gap between
+              // pills. px-1 here would double the row's horizontal padding.
+              'terminal-tab-strip flex h-full min-w-0 max-w-full flex-1 items-stretch gap-1 overflow-x-auto overflow-y-hidden',
               'border-r border-border/70',
               getTabStripScrollMaskClassName(tabStripOverflowState, activeTabDockSide)
             ]
