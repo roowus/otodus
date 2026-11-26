@@ -37,29 +37,10 @@ fi
 
 cp "$TMP_DIR/icon.icns" "$BUILD_DIR/icon.icns"
 
-# macOS list views use the small .icns slots directly. Icon Composer keeps the
-# safe-area inset there, so trim only those slots while preserving larger icons.
-ICONSET_DIR="$TMP_DIR/icon.iconset"
-iconutil -c iconset "$BUILD_DIR/icon.icns" -o "$ICONSET_DIR"
-for icon_file in \
-  icon_16x16.png \
-  icon_16x16@2x.png \
-  icon_32x32.png \
-  icon_32x32@2x.png; do
-  case "$icon_file" in
-    icon_16x16.png) icon_size=16 ;;
-    icon_16x16@2x.png | icon_32x32.png) icon_size=32 ;;
-    icon_32x32@2x.png) icon_size=64 ;;
-  esac
-  "$MAGICK_BIN" "$ICONSET_DIR/$icon_file" \
-    -trim +repage \
-    -resize "${icon_size}x${icon_size}" \
-    -background none \
-    -gravity center \
-    -extent "${icon_size}x${icon_size}" \
-    "$ICONSET_DIR/$icon_file"
-done
-iconutil -c icns "$ICONSET_DIR" -o "$BUILD_DIR/icon.icns"
+# Icon Composer renders the tile edge-to-edge, but every other macOS app leaves Apple's 100px
+# margin around an 824px tile. Without this the Dock icon draws ~24% larger than its neighbours.
+node "$PROJECT_DIR/config/scripts/desktop-distribution/macos/inset-macos-icon-canvas.mjs" \
+  "$BUILD_DIR/icon.icns"
 echo "  -> resources/build/icon.icns"
 
 # Extract PNG fallbacks from the unmodified compiled icon; small-slot trimming is

@@ -11,12 +11,15 @@ export function getDropIndicatorClasses(dropIndicator: DropIndicator): string {
   return ''
 }
 
-// Keep the foreground marker above selection/unread layers; zero horizontal inset avoids scrollWidth jitter at the strip’s end.
+// A floating pill carries its accent as a full rounded ring, since it has no bottom edge on the
+// window to underline. Inset keeps the ring inside the tab's own rounded corners.
 export const ACTIVE_TAB_INDICATOR_CLASSES =
-  'pointer-events-none absolute inset-x-0 bottom-0 h-[2px] bg-tab-active-indicator z-20 group-data-[single-tab]/tab-strip:hidden'
+  'pointer-events-none absolute inset-0 rounded-[10px] ring-1 ring-inset ring-tab-active-indicator/70 z-20 group-data-[single-tab]/tab-strip:hidden'
 
-// Rounded tab faces: the strip owns the seam, each tab rounds its own corners.
-export const TAB_ROUNDED_CLASSES = 'rounded-t-[10px] my-0.5 overflow-hidden'
+// Floating tab pills: every corner rounds and the margin is the gap to the strip on all four
+// sides, so no tab edge ever touches the window chrome.
+export const TAB_IS_FLOATING = true
+export const TAB_ROUNDED_CLASSES = 'rounded-[10px] mx-0.5 overflow-hidden'
 
 export function getTabRootStateClasses(isActive: boolean): string {
   return [
@@ -27,11 +30,15 @@ export function getTabRootStateClasses(isActive: boolean): string {
   ].join(' ')
 }
 
+/** A floating pill draws its own outline, so the strip-level seam edges are only for joined tabs. */
 export function getTabStripBorderClasses(
   hasTabsToRight: boolean,
   options?: { includeTopBorder?: boolean }
 ): string {
   const includeTopBorder = options?.includeTopBorder ?? true
+  if (TAB_IS_FLOATING) {
+    return ''
+  }
   return [
     includeTopBorder ? 'border-t' : '',
     'border-r border-border',

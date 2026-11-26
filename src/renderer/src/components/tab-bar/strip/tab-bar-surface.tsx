@@ -157,7 +157,9 @@ export function renderTabBarSurface(
             data-active-tab-docked={activeTabDockSide ?? undefined}
             // Why: only `border-r` here — a strip-level `border-l` would render a heavier L-corner than the first tab's own `border-l`.
             className={[
-              'terminal-tab-strip flex h-full min-w-0 max-w-full flex-1 items-stretch overflow-x-auto overflow-y-hidden',
+              // py-1 reserves the pill's vertical gap; px-1 keeps the first and last pill off the
+              // window edge without letting the strip's own scrollbar hide it.
+              'terminal-tab-strip flex h-full min-w-0 max-w-full flex-1 items-stretch overflow-x-auto overflow-y-hidden px-1 py-1',
               'border-r border-border/70',
               getTabStripScrollMaskClassName(tabStripOverflowState, activeTabDockSide)
             ]
