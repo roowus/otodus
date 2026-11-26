@@ -17,9 +17,43 @@ function cornerClasses(classes: string): string[] {
   return directional ? [directional, '0', '0', '0'] : []
 }
 
-/** The uniform inset a row class string applies on every side, or null when they disagree. */
-function evenRowInset(classes: string): string | null {
-  return new RegExp('\\bp-(\\d+)\\b').exec(classes)?.[1] ?? null
+/** Tailwind spacing step to pixels; the scale is 4px per step. */
+function px(step: string | undefined): number | null {
+  return step === undefined ? null : Number(step) * 4
+}
+
+function paddingTop(classes: string): number | null {
+  return (
+    px(/\bpt-(\d+)\b/.exec(classes)?.[1]) ??
+    px(/\bpy-(\d+)\b/.exec(classes)?.[1]) ??
+    px(/\bp-(\d+)\b/.exec(classes)?.[1])
+  )
+}
+
+function paddingBottom(classes: string): number | null {
+  const arbitrary = /\bpb-\[(\d+)px\]/.exec(classes)?.[1]
+  return (
+    (arbitrary === undefined ? null : Number(arbitrary)) ??
+    px(/\bpb-(\d+)\b/.exec(classes)?.[1]) ??
+    px(/\bpy-(\d+)\b/.exec(classes)?.[1]) ??
+    px(/\bp-(\d+)\b/.exec(classes)?.[1])
+  )
+}
+
+function paddingLeft(classes: string): number | null {
+  return (
+    px(/\bpl-(\d+)\b/.exec(classes)?.[1]) ??
+    px(/\bpx-(\d+)\b/.exec(classes)?.[1]) ??
+    px(/\bp-(\d+)\b/.exec(classes)?.[1])
+  )
+}
+
+function paddingRight(classes: string): number | null {
+  return (
+    px(/\bpr-(\d+)\b/.exec(classes)?.[1]) ??
+    px(/\bpx-(\d+)\b/.exec(classes)?.[1]) ??
+    px(/\bp-(\d+)\b/.exec(classes)?.[1])
+  )
 }
 
 describe('floating tab pill', () => {
@@ -58,13 +92,19 @@ describe('floating tab pill', () => {
 })
 
 describe('tab row inset', () => {
-  it('pads every side by the same amount, so the pill is evenly inset', () => {
-    // One uniform `p-*`: mixed px/pt/pb values are how the top and bottom drifted apart.
-    expect(evenRowInset(TAB_STRIP_ROW_CLASSES)).toBe('2')
-    expect(TAB_STRIP_ROW_CLASSES).not.toMatch(/\bp[trblxy]-/)
+  it('gives the pill the same clear background above as below the rule', () => {
+    // The rule paints on the row's last pixel, so the bottom padding is one larger and the two
+    // clear bands come out equal. Measured in the running app at 8px above and 8px below.
+    expect(paddingTop(TAB_STRIP_ROW_CLASSES)).toBe(8)
+    expect(paddingBottom(TAB_STRIP_ROW_CLASSES)).toBe(9)
   })
 
-  it('draws its rule with a shadow, since a border would steal a pixel from the bottom inset', () => {
+  it('keeps the horizontally inset sides equal to each other', () => {
+    expect(paddingLeft(TAB_STRIP_ROW_CLASSES)).toBe(paddingRight(TAB_STRIP_ROW_CLASSES))
+    expect(paddingLeft(TAB_STRIP_ROW_CLASSES)).toBe(8)
+  })
+
+  it('paints the rule with an inset shadow, since a border is subtracted from the content box', () => {
     expect(TAB_STRIP_ROW_CLASSES).toMatch(/shadow-\[inset_0_-1px_0_var\(--border\)\]/)
     expect(TAB_STRIP_ROW_CLASSES).not.toMatch(/\bborder-b\b/)
   })

@@ -49,7 +49,9 @@ export function getTabStripBorderClasses(
     .join(' ')
 }
 
-/** The row that holds a floating strip: uniform padding puts the pill equally inset on all four
- *  sides, and an inset shadow draws the rule without spending layout the way `border-b` did. */
+/** The row that holds a floating strip. The rule paints on the row's last pixel, so the bottom
+ *  padding carries one extra pixel: that pixel is the rule, which leaves the same 8 clear pixels
+ *  of background below the pill as above it. A border cannot do this, since it is subtracted from
+ *  the content box, and a pseudo-element outside the box is clipped by the panel's overflow. */
 export const TAB_STRIP_ROW_CLASSES =
-  'box-border h-[40px] shrink-0 bg-tab-bar p-2 shadow-[inset_0_-1px_0_var(--border)]'
+  'relative shrink-0 bg-tab-bar pt-2 pr-2 pl-2 pb-[9px] shadow-[inset_0_-1px_0_var(--border)]'
