@@ -51,8 +51,9 @@ export function getTabStripBorderClasses(
     .join(' ')
 }
 
-/** The row that holds a floating strip. Its height plus the 4px drag strip above it must equal
- *  the 36px header the sidebars use, or the three top bars end on different lines: the row gets
- *  32px, of which the bottom pixel is the rule and the rest is the pill and its breathing room. */
+/** The row that holds a floating strip. Its height plus the 4px drag strip above it is the top
+ *  band, which every bar must match: 4 + 40 = 44px, the same band the titlebar and sidebars use.
+ *  The 4px vertical padding is what puts the 32px pill *inside* the row; without it an `h-full`
+ *  pill filled the row and painted over the rule, which read as tabs spilling out of the bar. */
 export const TAB_STRIP_ROW_CLASSES =
-  'relative flex h-8 shrink-0 items-center bg-tab-bar px-2 shadow-[inset_0_-1px_0_var(--border)]'
+  'relative flex h-10 shrink-0 items-center bg-tab-bar px-2 py-1 shadow-[inset_0_-1px_0_var(--border)]'

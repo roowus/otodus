@@ -16,7 +16,7 @@ export default function WorktreeCreationTabStrip({
 }): React.JSX.Element {
   const t = useTranslate()
   return (
-    <div className="flex h-[36px] shrink-0 items-stretch border-b border-border bg-card">
+    <div className="flex h-[44px] shrink-0 items-stretch border-b border-border bg-card">
       {reserveCollapsedSidebarHeaderSpace ? (
         // Reserve the real tab strip’s measured collapsed-sidebar width so title/cancel remain unobstructed.
         <div

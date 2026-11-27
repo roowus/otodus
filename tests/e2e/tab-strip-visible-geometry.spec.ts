@@ -105,9 +105,36 @@ test('every tab is laid out with a real width inside its strip', async ({ orcaPa
   for (const width of geometry.chainWidths) {
     expect(width).toBeGreaterThan(400)
   }
+
+  // The pill has to sit *inside* the row, not fill it. An h-full pill took the row's whole height,
+  // so it painted over the row's bottom rule and the tabs read as spilling out of the bar. Require
+  // a real gap above and below, and that the ink stays clear of the rule.
+  const pill = await orcaPage.evaluate(
+    ({ stripSelector, group }) => {
+      const tab = document.querySelector<HTMLElement>(`${stripSelector} [data-tab-id]`)
+      const row = document.querySelector<HTMLElement>(`[data-tab-group-strip-id="${group}"]`)
+      if (!tab || !row) {
+        return null
+      }
+      const t = tab.getBoundingClientRect()
+      const r = row.getBoundingClientRect()
+      return {
+        top: t.top - r.top,
+        bottom: r.bottom - t.bottom,
+        tabHeight: t.height,
+        rowHeight: r.height
+      }
+    },
+    { stripSelector: selector, group: groupId }
+  )
+  expect(pill).not.toBeNull()
+  expect(pill!.top).toBeGreaterThanOrEqual(3)
+  expect(pill!.bottom).toBeGreaterThanOrEqual(3)
+  // A pill as tall as its row is the bug, whatever the padding claims.
+  expect(pill!.rowHeight - pill!.tabHeight).toBeGreaterThanOrEqual(6)
 })
 
-test('the tab chrome adds up to the 36px header the sidebars use', async ({ orcaPage }) => {
+test('the tab chrome adds up to the 44px header the sidebars use', async ({ orcaPage }) => {
   await orcaPage.setViewportSize({ width: 1280, height: 800 })
   await waitForSessionReady(orcaPage)
   const worktreeId = await waitForActiveWorktree(orcaPage)
@@ -117,9 +144,10 @@ test('the tab chrome adds up to the 36px header the sidebars use', async ({ orca
 
   // Why arithmetic and not a side-by-side box comparison: the left sidebar's own top bar is the
   // window titlebar segment, so it has no element starting at y=0 to compare against. What must
-  // hold is that the 4px drag strip plus the row reconstruct exactly the 36px the sidebars use
-  // (h-[36px] in right-sidebar-top-activity-bar.tsx and RightSidebar.tsx). A row that grows even
-  // one pixel ends the rule below the right sidebar's header and the three top bars look ragged.
+  // hold is that the 4px drag strip plus the row reconstruct exactly the 44px band every other top
+  // bar uses (h-[44px] in right-sidebar-top-activity-bar.tsx, RightSidebar.tsx and .titlebar). A
+  // row that grows even one pixel ends the rule below the right sidebar's header and the three top
+  // bars look ragged.
   const chrome = await orcaPage.evaluate((group) => {
     const box = (selector: string): { top: number; bottom: number; height: number } | null => {
       const el = document.querySelector<HTMLElement>(selector)
@@ -144,8 +172,8 @@ test('the tab chrome adds up to the 36px header the sidebars use', async ({ orca
 
   // The row begins where the drag strip ends, so the two stack without a gap or an overlap.
   expect(Math.abs(row.top - dragStrip.bottom)).toBeLessThanOrEqual(1)
-  // Together they cover the same 36px band the sidebar headers occupy.
-  expect(Math.abs(dragStrip.height + row.height - 36)).toBeLessThanOrEqual(1)
+  // Together they cover the same 44px band the sidebar headers occupy.
+  expect(Math.abs(dragStrip.height + row.height - 44)).toBeLessThanOrEqual(1)
   // Both start at the window's top edge: the drag strip carries the whole offset.
   expect(Math.abs(dragStrip.top)).toBeLessThanOrEqual(1)
 
