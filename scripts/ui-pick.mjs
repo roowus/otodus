@@ -104,14 +104,16 @@ await page.evaluate(() => {
       if (!el || el === box || el === tip) {
         return
       }
-      hovered = el
-      const rect = el.getBoundingClientRect()
+      // Lift to the nearest element worth talking about: a click on button text should report the
+      // button, not the span holding the characters.
+      hovered = liftToMeaningful(el)
+      const rect = hovered.getBoundingClientRect()
       box.style.left = `${rect.left}px`
       box.style.top = `${rect.top}px`
       box.style.width = `${rect.width}px`
       box.style.height = `${rect.height}px`
       box.style.display = 'block'
-      tip.textContent = describe(el)
+      tip.textContent = describe(hovered)
       tip.style.left = `${Math.min(event.clientX + 12, innerWidth - 340)}px`
       tip.style.top = `${Math.min(event.clientY + 18, innerHeight - 32)}px`
     },
@@ -128,9 +130,13 @@ await page.evaluate(() => {
       event.stopPropagation()
       const rect = hovered.getBoundingClientRect()
       const computed = getComputedStyle(hovered)
+      // The element under the pointer, before lifting, so a report can name what was actually hit.
+      const inner = document.elementFromPoint(event.clientX, event.clientY)
       window.__otodusPickResult = {
         selector: describe(hovered),
+        css: cssSelector(hovered, inner),
         text: (hovered.textContent ?? '').trim().slice(0, 160),
+        hitInside: inner && inner !== hovered ? describe(inner) : null,
         rect: {
           x: Math.round(rect.x),
           y: Math.round(rect.y),
@@ -152,6 +158,52 @@ await page.evaluate(() => {
     },
     true
   )
+
+  /** Walk up from `el` to the first element that carries a stable identity or a real box. */
+  function liftToMeaningful(el) {
+    let cur = el
+    for (let depth = 0; depth < 6 && cur && cur !== document.body; depth += 1) {
+      const hasMarker =
+        cur.id !== '' ||
+        cur.hasAttribute('data-testid') ||
+        cur.hasAttribute('data-tab-title') ||
+        cur.hasAttribute('aria-label') ||
+        cur.getAttribute('role') === 'button' ||
+        cur.tagName === 'BUTTON' ||
+        cur.tagName === 'A' ||
+        cur.tagName === 'INPUT'
+      if (hasMarker) {
+        return cur
+      }
+      cur = cur.parentElement
+    }
+    return el
+  }
+
+  /** A selector Playwright can run directly, anchored on the nearest stable attribute. */
+  function cssSelector(el, inner) {
+    const attrOf = (node) => {
+      for (const attr of ['data-tab-id', 'data-testid', 'id', 'aria-label']) {
+        const value = node.getAttribute(attr)
+        if (value) {
+          return attr === 'id' ? `#${CSS.escape(value)}` : `[${attr}="${value}"]`
+        }
+      }
+      return null
+    }
+    const own = attrOf(el)
+    if (own) {
+      return own
+    }
+    // Fall back to the hit target anchored inside its nearest named ancestor.
+    let anchor = el.parentElement
+    while (anchor && anchor !== document.body && !attrOf(anchor)) {
+      anchor = anchor.parentElement
+    }
+    const anchorSel = anchor && anchor !== document.body ? attrOf(anchor) : null
+    const innerSel = inner && inner !== el ? el.tagName.toLowerCase() : el.tagName.toLowerCase()
+    return anchorSel ? `${anchorSel} ${innerSel}` : innerSel
+  }
 })
 
 console.log('Click anything in the Otodus window. Esc here (Ctrl+C) to cancel.')
