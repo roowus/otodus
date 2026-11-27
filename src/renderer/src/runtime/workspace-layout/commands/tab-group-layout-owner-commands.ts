@@ -197,3 +197,38 @@ export function setGroupRatioThroughLayoutOwner(
     )
   }
 }
+
+/** Draw several ratios locally, then ask the owner to persist them as one change. */
+export function setGroupRatiosThroughLayoutOwner(
+  worktreeId: string,
+  ratios: readonly { nodePath: string; ratio: number }[]
+): void {
+  if (ratios.length === 0) {
+    return
+  }
+  // Drawn through the shipped window path one seam at a time; React batches them into one paint.
+  const before = useAppStore.getState()
+  for (const { nodePath, ratio } of ratios) {
+    before.setTabGroupSplitRatio(worktreeId, nodePath, ratio)
+  }
+  if (!ORCA_LAYOUT_OWNER_IS_MAIN) {
+    return
+  }
+  const layout = useAppStore.getState().layoutByWorktree[worktreeId]
+  if (!layout || layout === before.layoutByWorktree[worktreeId]) {
+    return
+  }
+  const intents = ratios.flatMap(({ nodePath, ratio }) => {
+    const intent = splitRatioIntentAt(layout, nodePath, ratio)
+    return intent ? [intent] : []
+  })
+  if (intents.length === 0) {
+    return
+  }
+  const keep = (): void => {}
+  sendLayoutCommandToOwner(
+    worktreeId,
+    { type: 'setGroupRatios', ratios: intents },
+    { apply: keep, asToday: keep, drawn: true }
+  )
+}

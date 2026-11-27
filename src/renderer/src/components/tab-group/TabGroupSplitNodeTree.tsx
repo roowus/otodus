@@ -1,13 +1,38 @@
-import 'react'
+import { useCallback, useMemo, useRef } from 'react'
 import type { TabGroupLayoutNode } from '../../../../shared/workspace-layout/tab-groups/tab-types'
 import { useAppStore } from '../../store/index'
 import TabGroupPanel, { type TabGroupPanelTabStrip } from './TabGroupPanel'
 import type { HoveredTabInsertion } from './drag/tab-insertion'
 import { ORCA_LAYOUT_OWNER_IS_MAIN } from '../../../../shared/workspace-layout/layout-owner-switch'
-import { setGroupRatioThroughLayoutOwner } from '../../runtime/workspace-layout/commands/tab-group-layout-owner-commands'
+import {
+  setGroupRatioThroughLayoutOwner,
+  setGroupRatiosThroughLayoutOwner
+} from '../../runtime/workspace-layout/commands/tab-group-layout-owner-commands'
 import '../browser-pane/host-guest/drag/webview-drag-passthrough'
 
 import { ResizeHandle } from '../pane-resize/PaneSplitResizeHandle'
+import { SplitCornerGrips } from './SplitCornerGrips'
+
+/**
+ * Split node paths in the order their handles mount, which is the order the grips index by.
+ *
+ * `SplitNode` renders a split's handle between its two children, then recurses into `first` and
+ * `second`, so a depth-first walk that visits a node before its children matches the DOM exactly.
+ * Keeping this in step with the render is what lets a grip name the splits it moves.
+ */
+function splitPathsInRenderOrder(root: TabGroupLayoutNode): string[] {
+  const paths: string[] = []
+  const walk = (node: TabGroupLayoutNode, path: string): void => {
+    if (node.type !== 'split') {
+      return
+    }
+    paths.push(path)
+    walk(node.first, path.length > 0 ? `${path}.first` : 'first')
+    walk(node.second, path.length > 0 ? `${path}.second` : 'second')
+  }
+  walk(root, '')
+  return paths
+}
 
 function SplitNode({
   node,
@@ -164,25 +189,44 @@ export function TabGroupSplitNodeTree({
   /** True when the host's own chrome bounds the tree's bottom edge (no border-b to paint). */
   rootTouchesBottomEdge?: boolean
 }): React.JSX.Element {
+  const treeRef = useRef<HTMLDivElement | null>(null)
+  const ownedSplitPaths = useMemo(() => splitPathsInRenderOrder(layout), [layout])
+
+  const commitCornerRatios = useCallback(
+    (ratios: { handleIndex: number; ratio: number }[]) => {
+      const named = ratios.flatMap(({ handleIndex, ratio }) => {
+        const nodePath = ownedSplitPaths[handleIndex]
+        return nodePath === undefined ? [] : [{ nodePath, ratio }]
+      })
+      // One owner command for the whole gesture: the seams share a frame, so they land together.
+      setGroupRatiosThroughLayoutOwner(worktreeId, named)
+    },
+    [ownedSplitPaths, worktreeId]
+  )
+
   return (
-    <SplitNode
-      node={layout}
-      nodePath=""
-      worktreeId={worktreeId}
-      focusedGroupId={focusedGroupId}
-      isWorktreeActive={isWorktreeActive}
-      hasSplitGroups={layout.type === 'split'}
-      tabStrip={tabStrip}
-      markdownAnnotationsEnabled={markdownAnnotationsEnabled}
-      touchesTopEdge={true}
-      touchesRightEdge={true}
-      touchesLeftEdge={true}
-      touchesBottomEdge={rootTouchesBottomEdge}
-      suppressLeftBorder={false}
-      suppressRightBorder={false}
-      suppressBottomBorder={false}
-      isTabDragActive={isTabDragActive}
-      hoveredTabInsertion={hoveredTabInsertion}
-    />
+    <div ref={treeRef} className="relative flex flex-1 min-w-0 min-h-0 overflow-hidden">
+      <SplitNode
+        node={layout}
+        nodePath=""
+        worktreeId={worktreeId}
+        focusedGroupId={focusedGroupId}
+        isWorktreeActive={isWorktreeActive}
+        hasSplitGroups={layout.type === 'split'}
+        tabStrip={tabStrip}
+        markdownAnnotationsEnabled={markdownAnnotationsEnabled}
+        touchesTopEdge={true}
+        touchesRightEdge={true}
+        touchesLeftEdge={true}
+        touchesBottomEdge={rootTouchesBottomEdge}
+        suppressLeftBorder={false}
+        suppressRightBorder={false}
+        suppressBottomBorder={false}
+        isTabDragActive={isTabDragActive}
+        hoveredTabInsertion={hoveredTabInsertion}
+      />
+      {/* Grips sit over the seams; a layout with a single direction of split gets none. */}
+      <SplitCornerGrips rootRef={treeRef} onRatiosChange={commitCornerRatios} />
+    </div>
   )
 }

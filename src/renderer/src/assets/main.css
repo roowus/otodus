@@ -1243,6 +1243,53 @@ html.native-shell .app-layout {
   transform: translateY(-50%);
 }
 
+/* Corner grip: where two seams meet, one drag moves both. The hit area is wider than the mark so
+   the joint is forgiving to grab, and the crosshair only appears on hover so idle seams look as
+   they always have. */
+.split-corner-grip {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  margin: -9px 0 0 -9px;
+  pointer-events: auto;
+  cursor: move;
+  border-radius: 3px;
+}
+
+.split-corner-grip::before,
+.split-corner-grip::after {
+  content: '';
+  position: absolute;
+  background: var(--split-divider-setting, var(--split-divider));
+  opacity: 0;
+  transition: opacity 90ms ease;
+}
+
+/* The arms sit on the joint centre, so the crosshair reads as the seams crossing. */
+.split-corner-grip::before {
+  left: 50%;
+  top: 2px;
+  bottom: 2px;
+  width: 2px;
+  transform: translateX(-50%);
+}
+
+.split-corner-grip::after {
+  top: 50%;
+  left: 2px;
+  right: 2px;
+  height: 2px;
+  transform: translateY(-50%);
+}
+
+.split-corner-grip:hover::before,
+.split-corner-grip:hover::after,
+.split-corner-grip.is-dragging::before,
+.split-corner-grip.is-dragging::after {
+  opacity: 1;
+  background: var(--ring);
+}
+
 .tab-group-split-resize-handle:hover::after,
 .tab-group-split-resize-handle.is-dragging::after {
   background: var(--split-divider-hover);
