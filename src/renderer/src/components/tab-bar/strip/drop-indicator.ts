@@ -26,7 +26,9 @@ export function getTabRootStateClasses(isActive: boolean): string {
   return [
     isActive
       ? 'bg-tab-active text-tab-active-foreground'
-      : 'bg-tab-inactive text-tab-inactive-foreground hover:text-tab-active-foreground',
+      : // The hover fill has to be a background, not just text: on a floating pill the text
+        // alone barely reads, since the pill already sits on the strip's own surface.
+        'bg-tab-inactive text-tab-inactive-foreground hover:bg-tab-hover hover:text-tab-active-foreground',
     TAB_ROUNDED_CLASSES
   ].join(' ')
 }
@@ -50,9 +52,9 @@ export function getTabStripBorderClasses(
 }
 
 /** The row that holds a floating strip. Bottom padding carries one extra pixel because the rule
- *  paints on the row's last pixel, which leaves the pill the same 10px of background above and
+ *  paints on the row's last pixel, which leaves the pill the same 6px of background above and
  *  below. Horizontal sides stay equal so the first and last pill sit the same distance from
- *  their ends. The content box is 32px (min-h-8), which is what makes the pill taller rather
- *  than the padding: the action buttons used to fix the content height at 28px. */
+ *  their ends. The content box is 28px (min-h-7), which is what makes the pill taller rather
+ *  than the padding: the action buttons used to fix the content height. */
 export const TAB_STRIP_ROW_CLASSES =
-  'relative shrink-0 bg-tab-bar pt-[10px] pr-2 pl-2 pb-[11px] shadow-[inset_0_-1px_0_var(--border)]'
+  'relative shrink-0 bg-tab-bar pt-[6px] pr-2 pl-2 pb-[7px] shadow-[inset_0_-1px_0_var(--border)]'

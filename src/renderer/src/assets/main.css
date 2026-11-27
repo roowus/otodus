@@ -161,6 +161,9 @@
   --color-workspace-status-progress: var(--workspace-status-progress);
   --color-tab-active: var(--tab-active);
   --color-tab-inactive: var(--tab-inactive);
+  /* Hover sits between the inactive surface and the active one, so the fill reads as a step
+     toward selection rather than a second selected color. */
+  --color-tab-hover: color-mix(in srgb, var(--tab-active) 55%, var(--tab-inactive));
   /* Public tokens a theme may omit; resolved per element so unthemed tabs paint exactly as before. */
   --color-tab-bar: var(--tab-bar, var(--card));
   --color-tab-active-foreground: var(--tab-active-foreground, var(--foreground));

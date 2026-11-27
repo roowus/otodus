@@ -82,9 +82,9 @@ describe('floating tab pill', () => {
 describe('tab row inset', () => {
   it('gives the pill the same clear background above as below the rule', () => {
     // The rule paints on the row's last pixel, so the bottom padding is one larger and the two
-    // clear bands come out equal. Measured in the running app at 10px above and 10px below.
-    expect(paddingTop(TAB_STRIP_ROW_CLASSES)).toBe(10)
-    expect(paddingBottom(TAB_STRIP_ROW_CLASSES)).toBe(11)
+    // clear bands come out equal. Measured in the running app at 6px above and 6px below.
+    expect(paddingTop(TAB_STRIP_ROW_CLASSES)).toBe(6)
+    expect(paddingBottom(TAB_STRIP_ROW_CLASSES)).toBe(7)
   })
 
   it('keeps the horizontally inset sides equal to each other', () => {

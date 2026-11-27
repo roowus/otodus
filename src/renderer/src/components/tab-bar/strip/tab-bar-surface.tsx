@@ -161,7 +161,9 @@ export function renderTabBarSurface(
             className={[
               // The row supplies the inset, so the strip starts flush and only adds the gap between
               // pills. px-1 here would double the row's horizontal padding.
-              'terminal-tab-strip flex h-full min-w-0 max-w-full flex-1 items-stretch gap-1 overflow-x-auto overflow-y-hidden',
+              // Why pr-2: the border-r below is the divider the next control sits against, and
+              // without its own space the last pill painted flush onto it.
+              'terminal-tab-strip flex h-full min-w-0 max-w-full flex-1 items-stretch gap-1 overflow-x-auto overflow-y-hidden pr-2',
               'border-r border-border/70',
               getTabStripScrollMaskClassName(tabStripOverflowState, activeTabDockSide)
             ]
