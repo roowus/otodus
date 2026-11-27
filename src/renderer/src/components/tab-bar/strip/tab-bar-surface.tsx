@@ -157,14 +157,13 @@ export function renderTabBarSurface(
             // Tab drags clip drop targets to this box (tab-drag-collision.ts).
             data-tab-strip-scroller=""
             data-active-tab-docked={activeTabDockSide ?? undefined}
-            // Why: only `border-r` here — a strip-level `border-l` would render a heavier L-corner than the first tab's own `border-l`.
             className={[
               // The row supplies the inset, so the strip starts flush and only adds the gap between
               // pills. px-1 here would double the row's horizontal padding.
-              // Why pr-2: the border-r below is the divider the next control sits against, and
-              // without its own space the last pill painted flush onto it.
+              // Why pr-2 and no border: the rule between the tabs and the + / Command controls is
+              // gone, so the space itself separates them. There is no border-l either, which would
+              // render a heavier L-corner than the first tab's own edge.
               'terminal-tab-strip flex h-full min-w-0 max-w-full flex-1 items-stretch gap-1 overflow-x-auto overflow-y-hidden pr-2',
-              'border-r border-border/70',
               getTabStripScrollMaskClassName(tabStripOverflowState, activeTabDockSide)
             ]
               .filter(Boolean)
