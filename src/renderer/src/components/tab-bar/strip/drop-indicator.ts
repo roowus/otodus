@@ -51,10 +51,8 @@ export function getTabStripBorderClasses(
     .join(' ')
 }
 
-/** The row that holds a floating strip. Bottom padding carries one extra pixel because the rule
- *  paints on the row's last pixel, which leaves the pill the same 6px of background above and
- *  below. Horizontal sides stay equal so the first and last pill sit the same distance from
- *  their ends. The content box is 28px (min-h-7), which is what makes the pill taller rather
- *  than the padding: the action buttons used to fix the content height. */
+/** The row that holds a floating strip. Its height plus the 4px drag strip above it must equal
+ *  the 36px header the sidebars use, or the three top bars end on different lines: the row gets
+ *  32px, of which the bottom pixel is the rule and the rest is the pill and its breathing room. */
 export const TAB_STRIP_ROW_CLASSES =
-  'relative shrink-0 bg-tab-bar pt-[6px] pr-2 pl-2 pb-[7px] shadow-[inset_0_-1px_0_var(--border)]'
+  'relative flex h-8 shrink-0 items-center bg-tab-bar px-2 shadow-[inset_0_-1px_0_var(--border)]'

@@ -39,8 +39,6 @@ function sidePadding(classes: string, sides: readonly string[]): number | null {
   return null
 }
 
-const paddingTop = (c: string): number | null => sidePadding(c, ['pt', 'py', 'p'])
-const paddingBottom = (c: string): number | null => sidePadding(c, ['pb', 'py', 'p'])
 const paddingLeft = (c: string): number | null => sidePadding(c, ['pl', 'px', 'p'])
 const paddingRight = (c: string): number | null => sidePadding(c, ['pr', 'px', 'p'])
 
@@ -80,11 +78,16 @@ describe('floating tab pill', () => {
 })
 
 describe('tab row inset', () => {
-  it('gives the pill the same clear background above as below the rule', () => {
-    // The rule paints on the row's last pixel, so the bottom padding is one larger and the two
-    // clear bands come out equal. Measured in the running app at 6px above and 6px below.
-    expect(paddingTop(TAB_STRIP_ROW_CLASSES)).toBe(6)
-    expect(paddingBottom(TAB_STRIP_ROW_CLASSES)).toBe(7)
+  it('is exactly as tall as the 4px drag strip plus the 36px header it must line up with', () => {
+    // Measured in the running app: the row starts at y=4 and must end at y=36, so it gets 32px.
+    // A taller row ends the rule below the sidebars' headers and the three top bars look ragged.
+    expect(TAB_STRIP_ROW_CLASSES).toMatch(/\bh-8\b/)
+  })
+
+  it('centres the pill instead of padding it, now that the height is fixed', () => {
+    expect(TAB_STRIP_ROW_CLASSES).toMatch(/\bitems-center\b/)
+    // Vertical padding on a fixed height would fight the centring and desync the two sides.
+    expect(TAB_STRIP_ROW_CLASSES).not.toMatch(/\bp[tyb]-/)
   })
 
   it('keeps the horizontally inset sides equal to each other', () => {
