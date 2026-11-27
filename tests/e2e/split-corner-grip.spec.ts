@@ -178,3 +178,36 @@ test('dragging an L-shape T-grip moves its own seam and the column seam, not the
   // The column seam moves too, since the grip carries it.
   expect(Math.abs(after.verticals[0] - before.verticals[0])).toBeGreaterThan(15)
 })
+
+/**
+ * A press alone must not move anything. The first version computed each seam's ratio from the
+ * pointer's absolute position, so the seam jumped to the cursor on pointerdown instead of
+ * following the drag; Truss's implementation diffs against the grab point for this reason.
+ */
+test('pressing a corner grip without dragging leaves every seam where it was', async ({
+  orcaPage
+}) => {
+  await orcaPage.setViewportSize({ width: 1280, height: 800 })
+  await waitForSessionReady(orcaPage)
+  const worktreeId = await waitForActiveWorktree(orcaPage)
+  await ensureTerminalVisible(orcaPage)
+  await buildQuad(orcaPage, worktreeId)
+  await expect.poll(async () => (await readSeams(orcaPage)).grips.length).toBe(1)
+
+  const before = await readSeams(orcaPage)
+  const grip = before.grips[0]
+  await orcaPage.mouse.move(grip.x, grip.y)
+  await orcaPage.mouse.down()
+  // One pixel, then release: a grab-time delta moves at most a pixel or two.
+  await orcaPage.mouse.move(grip.x + 1, grip.y + 1, { steps: 2 })
+  await orcaPage.mouse.up()
+
+  const after = await readSeams(orcaPage)
+  const seamPositions = (seams: Seams): number[] => [...seams.horizontals, ...seams.verticals]
+  const moved = seamPositions(after).map((value, index) =>
+    Math.abs(value - seamPositions(before)[index])
+  )
+  for (const delta of moved) {
+    expect(delta).toBeLessThanOrEqual(2)
+  }
+})

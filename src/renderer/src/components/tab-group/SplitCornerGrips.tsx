@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import {
+  grabbableQuadrants,
   isGrabbableJoint,
   resolveSplitCornerJoints,
   type SplitCornerJoint,
@@ -62,8 +63,60 @@ function measureJoints(root: HTMLElement): { joints: SplitCornerJoint[]; handles
   // overlay, which fills the tree's relative wrapper). Convert here, in the same frame as the
   // measurement, subtracting that wrapper's own origin on both axes.
   const origin = root.getBoundingClientRect()
+  // Which panes surround a crossing. Ask the panes for their boxes rather than sampling points:
+  // the joint sits on the seam's centre line, which is *below* the upper panes' content, so any
+  // fixed point offset falls outside one side or the other. A pane is above the joint when its
+  // box starts at or above it, and to the left when its box does, which needs no offset at all.
+  const bodies = [...root.querySelectorAll<HTMLElement>('[data-tab-group-body-id]')].map(
+    (element) => ({
+      id: element.getAttribute('data-tab-group-body-id'),
+      rect: element.getBoundingClientRect()
+    })
+  )
+  // The nearest pane on each side of the crossing, by box edges.
+  const nearest = (
+    pick: (rect: DOMRect) => boolean,
+    distance: (rect: DOMRect) => number
+  ): string | null => {
+    let best: { id: string | null; d: number } | null = null
+    for (const { id, rect } of bodies) {
+      if (!pick(rect)) {
+        continue
+      }
+      const d = distance(rect)
+      if (!best || d < best.d) {
+        best = { id, d }
+      }
+    }
+    return best?.id ?? null
+  }
+  const leftOf = (x: number) => (rect: DOMRect) => rect.right <= x
+  const rightOf = (x: number) => (rect: DOMRect) => rect.left >= x
+  const above = (y: number) => (rect: DOMRect) => rect.bottom <= y
+  const below = (y: number) => (rect: DOMRect) => rect.top >= y
+  const gapTo = (pred: (rect: DOMRect) => number) => (rect: DOMRect) => Math.abs(pred(rect))
+  const corners = (x: number, y: number) => ({
+    tl: nearest(
+      (r) => leftOf(x)(r) && above(y)(r),
+      gapTo((r) => y - r.bottom)
+    ),
+    tr: nearest(
+      (r) => rightOf(x)(r) && above(y)(r),
+      gapTo((r) => y - r.bottom)
+    ),
+    bl: nearest(
+      (r) => leftOf(x)(r) && below(y)(r),
+      gapTo((r) => r.top - y)
+    ),
+    br: nearest(
+      (r) => rightOf(x)(r) && below(y)(r),
+      gapTo((r) => r.top - y)
+    )
+  })
   const joints = resolveSplitCornerJoints(handles)
     .filter(isGrabbableJoint)
+    // A crossing of two panes is a corner, not a junction: the far side has no pane to give.
+    .filter((joint) => grabbableQuadrants(corners(joint.x, joint.y)))
     .map((joint) => ({ ...joint, x: joint.x - origin.left, y: joint.y - origin.top }))
   return { joints, handles }
 }
@@ -144,6 +197,18 @@ export function SplitCornerGrips({
       setDragging(true)
       const releaseWebviewDragPassthrough = acquireWebviewsDragPassthrough()
       const rects = drags.map((drag) => drag.container.getBoundingClientRect())
+      // Diff against the grab point, not the pointer's absolute position: the joint sits at the
+      // start of the seam's travel, so an absolute ratio would snap the seam to the pointer on the
+      // first move. Truss learned this the same way (its dragJunction takes dx/dy, not x/y).
+      const startX = event.clientX
+      const startY = event.clientY
+      // Remember where the seams started so a wiggle out and back lands exactly where it was.
+      const startRatios = drags.map((drag) => {
+        const first = Number.parseFloat(drag.firstPane.style.flex) || 0.5
+        const second = Number.parseFloat(drag.secondPane.style.flex) || 0.5
+        const total = first + second || 1
+        return first / total
+      })
       const dragged: { handleIndex: number; ratio: number }[] = []
 
       const onPointerMove = (moveEvent: PointerEvent): void => {
@@ -157,10 +222,12 @@ export function SplitCornerGrips({
         }
         drags.forEach((drag, index) => {
           const rect = rects[index]
-          const ratio =
+          // Delta from the grab point, in that container's units.
+          const delta =
             drag.direction === 'horizontal'
-              ? (moveEvent.clientX - rect.left) / rect.width
-              : (moveEvent.clientY - rect.top) / rect.height
+              ? (moveEvent.clientX - startX) / rect.width
+              : (moveEvent.clientY - startY) / rect.height
+          const ratio = startRatios[index] + delta
           const clamped = Math.min(MAX_RATIO, Math.max(MIN_RATIO, ratio))
           // Write during the drag, as the single-seam handle does, and commit once on release.
           drag.firstPane.style.flex = `${clamped} 1 0%`

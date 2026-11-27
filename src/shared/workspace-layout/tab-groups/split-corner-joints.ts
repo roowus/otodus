@@ -104,3 +104,24 @@ export function resolveSplitCornerJoints(
 export function isGrabbableJoint(joint: SplitCornerJoint): boolean {
   return joint.horizontal.length > 0 && joint.vertical.length > 0
 }
+
+/** A joint's four surrounding panes, by group id; a spanning pane repeats. */
+export type JointQuadrants = {
+  tl: string | null
+  tr: string | null
+  bl: string | null
+  br: string | null
+}
+
+/**
+ * Whether a joint is genuinely grabbable, from the panes around it.
+ *
+ * Truss reached the same rule (issue #187): three or four distinct panes make a junction, because
+ * a T's spanning pane covers two quadrants. Two distinct panes is a corner, where the two seams
+ * merely touch and dragging one would move a boundary that has no pane on the far side. One pane
+ * is inside a single leaf. Pass the group ids sampled just off the joint on each side.
+ */
+export function grabbableQuadrants(quadrants: JointQuadrants): boolean {
+  const ids = [quadrants.tl, quadrants.tr, quadrants.bl, quadrants.br]
+  return new Set(ids.filter((id): id is string => id !== null)).size >= 3
+}

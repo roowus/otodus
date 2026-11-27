@@ -1,5 +1,9 @@
 import { describe, expect, it } from 'vitest'
-import { isGrabbableJoint, resolveSplitCornerJoints } from './split-corner-joints'
+import {
+  grabbableQuadrants,
+  isGrabbableJoint,
+  resolveSplitCornerJoints
+} from './split-corner-joints'
 
 /** Handles as measured in a real 2x2 window at 1280x800: two rows of panes, one column seam. */
 const ALIGNED_2X2 = [
@@ -61,5 +65,29 @@ describe('split corner joints', () => {
     expect(isGrabbableJoint({ horizontal: [0], vertical: [1], x: 0, y: 0 })).toBe(true)
     expect(isGrabbableJoint({ horizontal: [], vertical: [1], x: 0, y: 0 })).toBe(false)
     expect(isGrabbableJoint({ horizontal: [0], vertical: [], x: 0, y: 0 })).toBe(false)
+  })
+})
+
+describe('which crossings are grabbable', () => {
+  it('accepts four distinct panes, the classic cross', () => {
+    expect(grabbableQuadrants({ tl: 'a', tr: 'b', bl: 'c', br: 'd' })).toBe(true)
+  })
+
+  it('accepts three, because a T has one pane spanning two quadrants', () => {
+    // Truss's rule (issue #187): a T is a junction, not a gap.
+    expect(grabbableQuadrants({ tl: 'top', tr: 'top', bl: 'a', br: 'b' })).toBe(true)
+    expect(grabbableQuadrants({ tl: 'left', tr: 'a', bl: 'left', br: 'b' })).toBe(true)
+  })
+
+  it('rejects two, where only a corner exists and the far side has no pane', () => {
+    expect(grabbableQuadrants({ tl: 'left', tr: 'right', bl: 'left', br: 'right' })).toBe(false)
+  })
+
+  it('rejects one, the inside of a single pane', () => {
+    expect(grabbableQuadrants({ tl: 'a', tr: 'a', bl: 'a', br: 'a' })).toBe(false)
+  })
+
+  it('treats an unsampled quadrant as absent rather than as a pane', () => {
+    expect(grabbableQuadrants({ tl: 'a', tr: 'b', bl: null, br: null })).toBe(false)
   })
 })
