@@ -1,9 +1,12 @@
 // Paths whose change runs the required `layout_oracle` job in pr.yml.
 
-/** The layout oracle's two specs; the job runs both and nothing else. */
+/** The layout oracle's specs; the job runs these and nothing else. */
 export const LAYOUT_ORACLE_E2E_SPECS = [
   'tests/e2e/workspace-layout-oracle-headless.spec.ts',
-  'tests/e2e/workspace-layout-oracle.spec.ts'
+  'tests/e2e/workspace-layout-oracle.spec.ts',
+  // Chrome geometry, not workspace-layout state: the tab strip can be present in the DOM with zero
+  // width and hide every tab, which no state-based oracle scenario would notice.
+  'tests/e2e/tab-strip-visible-geometry.spec.ts'
 ]
 
 const LAYOUT_ORACLE_PREFIXES = [
