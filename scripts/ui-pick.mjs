@@ -2,7 +2,7 @@
 // click, reports the element's selector, box and computed styles. Lets a person point at UI
 // instead of describing it. Run with the app already open (`pnpm app`).
 import { createRequire } from 'node:module'
-import { existsSync, readFileSync, unlinkSync, writeFileSync } from 'node:fs'
+import { existsSync, unlinkSync, writeFileSync } from 'node:fs'
 
 const require = createRequire(import.meta.url)
 
@@ -145,9 +145,9 @@ await page.evaluate(() => {
       const computed = getComputedStyle(hovered)
       // The element under the pointer, before lifting, so a report can name what was actually hit.
       const inner = document.elementFromPoint(event.clientX, event.clientY)
-      window.__otodusPickResult = {
+      const picked = {
         selector: describe(hovered),
-        css: cssSelector(hovered, inner),
+        css: cssSelector(hovered),
         text: (hovered.textContent ?? '').trim().slice(0, 160),
         hitInside: inner && inner !== hovered ? describe(inner) : null,
         rect: {
@@ -165,58 +165,107 @@ await page.evaluate(() => {
           classes: hovered.getAttribute('class')
         }
       }
-      box.remove()
-      tip.remove()
-      window.__otodusPickInstalled = false
+      // Keep the overlay alive so several elements can be marked in one pass.
+      window.__otodusPicks = [...(window.__otodusPicks ?? []), picked]
+      // A brief held outline confirms what was taken without ending the session.
+      box.style.borderColor = '#7ee787'
+      box.style.background = 'rgba(126,231,135,.22)'
+      setTimeout(() => {
+        box.style.borderColor = '#4aa3d8'
+        box.style.background = 'rgba(74,163,216,.16)'
+      }, 500)
     }
   }
   window.addEventListener('pointerdown', pick, { capture: true })
   window.addEventListener('mousedown', pick, { capture: true })
 
-  /** Walk up from `el` to the first element that carries a stable identity or a real box. */
+  /** A stable identity marker, if the node has one. */
+  function markerOf(node) {
+    for (const attr of ['data-tab-id', 'data-testid', 'data-tab-title', 'aria-label', 'id']) {
+      const value = node.getAttribute?.(attr)
+      if (value) {
+        return `${attr}="${value}"`
+      }
+    }
+    return null
+  }
+
+  /** True for nodes a person would call "the thing": buttons, links, labelled controls. */
+  function isInteractive(node) {
+    return (
+      node.tagName === 'BUTTON' ||
+      node.tagName === 'A' ||
+      node.tagName === 'INPUT' ||
+      node.tagName === 'SELECT' ||
+      node.getAttribute('role') === 'button' ||
+      node.getAttribute('role') === 'tab' ||
+      node.getAttribute('role') === 'menuitem' ||
+      node.hasAttribute('data-tab-title')
+    )
+  }
+
+  /**
+   * Walk up from the hit target to the element a person meant.
+   *
+   * Order of preference: an interactive control, then anything with a stable marker, then the
+   * smallest ancestor that actually holds text. A bare layout wrapper with no text and no marker
+   * (`div.right-sidebar-activity-strip`) is a bad answer even when it is the first thing hit.
+   */
   function liftToMeaningful(el) {
+    const ownText = (node) => (node.textContent ?? '').trim()
     let cur = el
-    for (let depth = 0; depth < 6 && cur && cur !== document.body; depth += 1) {
-      const hasMarker =
-        cur.id !== '' ||
-        cur.hasAttribute('data-testid') ||
-        cur.hasAttribute('data-tab-title') ||
-        cur.hasAttribute('aria-label') ||
-        cur.getAttribute('role') === 'button' ||
-        cur.tagName === 'BUTTON' ||
-        cur.tagName === 'A' ||
-        cur.tagName === 'INPUT'
-      if (hasMarker) {
+    let markerOnly = null
+    for (let depth = 0; depth < 8 && cur && cur !== document.body; depth += 1) {
+      if (isInteractive(cur)) {
         return cur
+      }
+      if (!markerOnly && markerOf(cur)) {
+        markerOnly = cur
+      }
+      // The first ancestor that carries text is the smallest thing worth naming.
+      if (ownText(cur) && cur.children.length > 0) {
+        return markerOnly ?? cur
       }
       cur = cur.parentElement
     }
-    return el
+    return markerOnly ?? el
   }
 
-  /** A selector Playwright can run directly, anchored on the nearest stable attribute. */
-  function cssSelector(el, inner) {
-    const attrOf = (node) => {
-      for (const attr of ['data-tab-id', 'data-testid', 'id', 'aria-label']) {
-        const value = node.getAttribute(attr)
+  /** A selector Playwright can run directly: prefer stable attributes, else a structural path. */
+  function cssSelector(el) {
+    const attrSel = (node) => {
+      for (const attr of ['data-tab-id', 'data-testid', 'data-tab-title', 'aria-label', 'id']) {
+        const value = node.getAttribute?.(attr)
         if (value) {
           return attr === 'id' ? `#${CSS.escape(value)}` : `[${attr}="${value}"]`
         }
       }
       return null
     }
-    const own = attrOf(el)
+
+    const own = attrSel(el)
     if (own) {
       return own
     }
-    // Fall back to the hit target anchored inside its nearest named ancestor.
-    let anchor = el.parentElement
-    while (anchor && anchor !== document.body && !attrOf(anchor)) {
-      anchor = anchor.parentElement
+
+    // No stable attribute anywhere: build an index path from the nearest anchored ancestor.
+    const segments = []
+    let cur = el
+    for (let depth = 0; depth < 8 && cur && cur !== document.documentElement; depth += 1) {
+      const anchored = attrSel(cur)
+      if (anchored) {
+        segments.unshift(anchored)
+        return segments.join(' > ')
+      }
+      const tag = cur.tagName.toLowerCase()
+      const parent = cur.parentElement
+      const sameTag = parent
+        ? [...parent.children].filter((sibling) => sibling.tagName === cur.tagName)
+        : []
+      segments.unshift(sameTag.length > 1 ? `${tag}:nth-of-type(${sameTag.indexOf(cur) + 1})` : tag)
+      cur = parent
     }
-    const anchorSel = anchor && anchor !== document.body ? attrOf(anchor) : null
-    const innerSel = inner && inner !== el ? el.tagName.toLowerCase() : el.tagName.toLowerCase()
-    return anchorSel ? `${anchorSel} ${innerSel}` : innerSel
+    return segments.join(' > ')
   }
 })
 
@@ -227,22 +276,30 @@ await page.bringToFront().catch(() => {})
 const start = await page.evaluate(() => ({ w: innerWidth, h: innerHeight }))
 await page.mouse.move(Math.round(start.w * 0.5), Math.round(start.h * 0.5)).catch(() => {})
 
-console.log('Click anything in the Otodus window.')
+console.log('Click any number of elements in the Otodus window.')
 console.log('Clicking a terminal reports the terminal: click the chrome instead.')
-console.log('Ctrl+C here to cancel.')
+console.log('Results accumulate; Ctrl+C here to stop and save.')
 
 // Poll rather than await an event: the click lands in the page, and the page cannot signal Node.
-for (let attempt = 0; attempt < 2400; attempt += 1) {
-  const result = await page.evaluate(() => window.__otodusPickResult ?? null)
-  if (result) {
-    writeFileSync(OUT, `${JSON.stringify(result, null, 2)}\n`)
-    console.log(`\nPicked: ${result.selector}`)
+// Results accumulate until the person presses Ctrl+C, so several elements can be marked at once.
+let written = 0
+process.on('SIGINT', async () => {
+  console.log(`\nStopped after ${written} pick(s). Saved to ${OUT}`)
+  await browser.close().catch(() => {})
+  process.exit(0)
+})
+
+for (let attempt = 0; attempt < 7200; attempt += 1) {
+  const picks = await page.evaluate(() => window.__otodusPicks ?? [])
+  if (picks.length > written) {
+    written = picks.length
+    writeFileSync(OUT, `${JSON.stringify(picks, null, 2)}\n`)
+    const latest = picks.at(-1)
+    console.log(`\n[${written}] ${latest.css}`)
     console.log(
-      `Box: ${result.rect.width}x${result.rect.height} at (${result.rect.x}, ${result.rect.y})`
+      `     ${latest.rect.width}x${latest.rect.height} at (${latest.rect.x}, ${latest.rect.y})`
     )
-    console.log(`Saved to ${OUT}`)
-    console.log(`\n${readFileSync(OUT, 'utf8')}`)
-    break
+    console.log(`     ${latest.text || latest.selector}`)
   }
   await page.waitForTimeout(250)
 }
