@@ -97,7 +97,15 @@ await page.evaluate(() => {
   }
 
   let hovered = null
-  addEventListener(
+  const resolveAt = (event) => {
+    const el = document.elementFromPoint(event.clientX, event.clientY)
+    if (!el || el === box || el === tip) {
+      return null
+    }
+    return liftToMeaningful(el)
+  }
+
+  window.addEventListener(
     'mousemove',
     (event) => {
       const el = document.elementFromPoint(event.clientX, event.clientY)
@@ -117,17 +125,22 @@ await page.evaluate(() => {
       tip.style.left = `${Math.min(event.clientX + 12, innerWidth - 340)}px`
       tip.style.top = `${Math.min(event.clientY + 18, innerHeight - 32)}px`
     },
-    true
+    { capture: true }
   )
 
-  addEventListener(
-    'click',
-    (event) => {
-      if (!hovered) {
+  // Why capture both pointerdown and mousedown: xterm binds native listeners on its canvas, and
+  // either event may be consumed before a non-capturing handler sees it. Resolving the target
+  // here also means a click with no preceding mouse move still reports something.
+  const pick = (event) => {
+    {
+      const target = resolveAt(event) ?? hovered
+      hovered = target
+      if (!target) {
         return
       }
       event.preventDefault()
       event.stopPropagation()
+      event.stopImmediatePropagation()
       const rect = hovered.getBoundingClientRect()
       const computed = getComputedStyle(hovered)
       // The element under the pointer, before lifting, so a report can name what was actually hit.
@@ -155,9 +168,10 @@ await page.evaluate(() => {
       box.remove()
       tip.remove()
       window.__otodusPickInstalled = false
-    },
-    true
-  )
+    }
+  }
+  window.addEventListener('pointerdown', pick, { capture: true })
+  window.addEventListener('mousedown', pick, { capture: true })
 
   /** Walk up from `el` to the first element that carries a stable identity or a real box. */
   function liftToMeaningful(el) {
@@ -206,8 +220,16 @@ await page.evaluate(() => {
   }
 })
 
-console.log('Click anything in the Otodus window. Esc here (Ctrl+C) to cancel.')
-console.log('Waiting…')
+await page.bringToFront().catch(() => {})
+
+// A terminal holding focus swallows the click, so put the pointer somewhere neutral first: the
+// window then has a hover target before the person clicks anything.
+const start = await page.evaluate(() => ({ w: innerWidth, h: innerHeight }))
+await page.mouse.move(Math.round(start.w * 0.5), Math.round(start.h * 0.5)).catch(() => {})
+
+console.log('Click anything in the Otodus window.')
+console.log('Clicking a terminal reports the terminal: click the chrome instead.')
+console.log('Ctrl+C here to cancel.')
 
 // Poll rather than await an event: the click lands in the page, and the page cannot signal Node.
 for (let attempt = 0; attempt < 2400; attempt += 1) {
