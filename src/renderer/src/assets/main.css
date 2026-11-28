@@ -1243,51 +1243,77 @@ html.native-shell .app-layout {
   transform: translateY(-50%);
 }
 
-/* Corner grip: where two seams meet, one drag moves both. The hit area is wider than the mark so
-   the joint is forgiving to grab, and the crosshair only appears on hover so idle seams look as
-   they always have. */
+/* Corner junction: where a vertical and a horizontal seam cross, one drag reshapes every pane
+   around the crossing. It is a DOT, always visible, because an invisible grip is undiscoverable:
+   the seams cross in a plain gap, so without a mark there is nothing to aim at. Hover or drag
+   blooms it into a four-way crosshair and switches the cursor to match. */
 .split-corner-grip {
   position: absolute;
-  width: 18px;
-  height: 18px;
-  margin: -9px 0 0 -9px;
+  width: 22px;
+  height: 22px;
+  margin: -11px 0 0 -11px;
   pointer-events: auto;
+  /* `move` is the four-directional arrow: the four-way drag cursor. */
   cursor: move;
-  border-radius: 3px;
+  display: grid;
+  place-items: center;
+  touch-action: none;
 }
 
-.split-corner-grip::before,
+/* the dot itself: solid enough to find, small enough not to shout */
+.split-corner-grip::before {
+  content: '';
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background: var(--split-divider-setting, var(--split-divider));
+  /* a hairline ring in the bar's own colour keeps the dot legible over any seam */
+  box-shadow: 0 0 0 2px var(--tab-bar, var(--card));
+  transition:
+    background 100ms ease,
+    transform 100ms ease,
+    box-shadow 100ms ease;
+}
+
+/* the crosshair arms: hidden until the pointer is on the junction */
 .split-corner-grip::after {
   content: '';
   position: absolute;
-  background: var(--split-divider-setting, var(--split-divider));
+  inset: 4px;
+  background:
+    linear-gradient(
+      0deg,
+      transparent calc(50% - 1px),
+      var(--ring) calc(50% - 1px),
+      var(--ring) calc(50% + 1px),
+      transparent calc(50% + 1px)
+    ),
+    linear-gradient(
+      90deg,
+      transparent calc(50% - 1px),
+      var(--ring) calc(50% - 1px),
+      var(--ring) calc(50% + 1px),
+      transparent calc(50% + 1px)
+    );
   opacity: 0;
-  transition: opacity 90ms ease;
-}
-
-/* The arms sit on the joint centre, so the crosshair reads as the seams crossing. */
-.split-corner-grip::before {
-  left: 50%;
-  top: 2px;
-  bottom: 2px;
-  width: 2px;
-  transform: translateX(-50%);
-}
-
-.split-corner-grip::after {
-  top: 50%;
-  left: 2px;
-  right: 2px;
-  height: 2px;
-  transform: translateY(-50%);
+  transform: scale(0.7);
+  transition:
+    opacity 110ms ease,
+    transform 110ms ease;
 }
 
 .split-corner-grip:hover::before,
+.split-corner-grip.is-dragging::before {
+  background: var(--ring);
+  transform: scale(0.6);
+  box-shadow: 0 0 0 3px var(--tab-bar, var(--card));
+}
+
 .split-corner-grip:hover::after,
-.split-corner-grip.is-dragging::before,
 .split-corner-grip.is-dragging::after {
   opacity: 1;
-  background: var(--ring);
+  transform: scale(1);
 }
 
 .tab-group-split-resize-handle:hover::after,
