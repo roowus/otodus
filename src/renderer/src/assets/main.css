@@ -1267,8 +1267,11 @@ html.native-shell .app-layout {
   width: 7px;
   height: 7px;
   border-radius: 2px;
-  background: var(--split-divider-setting, var(--split-divider));
-  /* a hairline ring in the bar's own colour keeps the dot legible over any seam */
+  /* Why the muted foreground, not the divider colour: the seams are --split-divider (#262626 on
+     this theme), so a dot in that tone sits invisibly on the line it is meant to mark. It reads as
+     "two lines and no dot", which is exactly what happened. */
+  background: var(--muted-foreground);
+  /* a ring in the bar's own colour keeps the dot legible over any seam */
   box-shadow: 0 0 0 2px var(--tab-bar, var(--card));
   transition:
     background 100ms ease,

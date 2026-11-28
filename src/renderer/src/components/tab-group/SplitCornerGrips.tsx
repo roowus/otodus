@@ -63,60 +63,35 @@ function measureJoints(root: HTMLElement): { joints: SplitCornerJoint[]; handles
   // overlay, which fills the tree's relative wrapper). Convert here, in the same frame as the
   // measurement, subtracting that wrapper's own origin on both axes.
   const origin = root.getBoundingClientRect()
-  // Which panes surround a crossing. Ask the panes for their boxes rather than sampling points:
-  // the joint sits on the seam's centre line, which is *below* the upper panes' content, so any
-  // fixed point offset falls outside one side or the other. A pane is above the joint when its
-  // box starts at or above it, and to the left when its box does, which needs no offset at all.
-  const bodies = [...root.querySelectorAll<HTMLElement>('[data-tab-group-body-id]')].map(
-    (element) => ({
-      id: element.getAttribute('data-tab-group-body-id'),
-      rect: element.getBoundingClientRect()
+  // Which panes surround a crossing. Query the pane's OUTER box, tab strip included: the joint
+  // lies on the seam's centre line, which is below the upper panes' bodies, so body boxes leave
+  // every probe outside a pane. Probes step off the crossing by the seam's half-width plus a few
+  // pixels: enough to clear the handle boxes, small enough to stay inside neighbouring panes.
+  // A group's root is the direct parent of its tab strip, and is the pane's OUTER box: the strip
+  // itself is only the top 40px, and a junction sits below that.
+  const panes = [...root.querySelectorAll<HTMLElement>('[data-tab-group-strip-id]')].map(
+    (strip) => ({
+      id: strip.getAttribute('data-tab-group-strip-id'),
+      rect: (strip.parentElement ?? strip).getBoundingClientRect()
     })
   )
-  // The nearest pane on each side of the crossing, by box edges.
-  const nearest = (
-    pick: (rect: DOMRect) => boolean,
-    distance: (rect: DOMRect) => number
-  ): string | null => {
-    let best: { id: string | null; d: number } | null = null
-    for (const { id, rect } of bodies) {
-      if (!pick(rect)) {
-        continue
-      }
-      const d = distance(rect)
-      if (!best || d < best.d) {
-        best = { id, d }
-      }
-    }
-    return best?.id ?? null
-  }
-  const leftOf = (x: number) => (rect: DOMRect) => rect.right <= x
-  const rightOf = (x: number) => (rect: DOMRect) => rect.left >= x
-  const above = (y: number) => (rect: DOMRect) => rect.bottom <= y
-  const below = (y: number) => (rect: DOMRect) => rect.top >= y
-  const gapTo = (pred: (rect: DOMRect) => number) => (rect: DOMRect) => Math.abs(pred(rect))
-  const corners = (x: number, y: number) => ({
-    tl: nearest(
-      (r) => leftOf(x)(r) && above(y)(r),
-      gapTo((r) => y - r.bottom)
-    ),
-    tr: nearest(
-      (r) => rightOf(x)(r) && above(y)(r),
-      gapTo((r) => y - r.bottom)
-    ),
-    bl: nearest(
-      (r) => leftOf(x)(r) && below(y)(r),
-      gapTo((r) => r.top - y)
-    ),
-    br: nearest(
-      (r) => rightOf(x)(r) && below(y)(r),
-      gapTo((r) => r.top - y)
-    )
+  const paneAt = (x: number, y: number): string | null =>
+    panes.find(({ rect }) => x >= rect.left && x < rect.right && y >= rect.top && y < rect.bottom)
+      ?.id ?? null
+  // A seam handle is 6px thick, so stepping 7px off the crossing clears it on both axes while
+  // staying inside the neighbouring panes (they are hundreds of pixels across).
+  const PROBE_X = 7
+  const PROBE_Y = 7
+  const corners = (x: number, y: number, probeX: number, probeY: number) => ({
+    tl: paneAt(x - probeX, y - probeY),
+    tr: paneAt(x + probeX, y - probeY),
+    bl: paneAt(x - probeX, y + probeY),
+    br: paneAt(x + probeX, y + probeY)
   })
   const joints = resolveSplitCornerJoints(handles)
     .filter(isGrabbableJoint)
     // A crossing of two panes is a corner, not a junction: the far side has no pane to give.
-    .filter((joint) => grabbableQuadrants(corners(joint.x, joint.y)))
+    .filter((joint) => grabbableQuadrants(corners(joint.x, joint.y, PROBE_X, PROBE_Y)))
     .map((joint) => ({ ...joint, x: joint.x - origin.left, y: joint.y - origin.top }))
   return { joints, handles }
 }

@@ -69,8 +69,9 @@ export function resolveSplitCornerJoints(
     for (const vertical of verticals) {
       const y = horizontal.seam.y
       const x = vertical.seam.x
-      // The join has to be near both spans: the vertical seam must pass this height and the
-      // horizontal seam must pass this width. Otherwise the two strips are unrelated.
+      // Both spans have to reach the join. Measured in the live app, a T's horizontal seam ends
+      // 3px short of the vertical seam's centre because the vertical handle box occupies that
+      // space, so a few pixels of slack are required rather than exact overlap.
       if (
         !within(y, vertical.top, vertical.bottom, tolerance) ||
         !within(x, horizontal.left, horizontal.right, tolerance)

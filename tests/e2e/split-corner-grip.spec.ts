@@ -211,3 +211,82 @@ test('pressing a corner grip without dragging leaves every seam where it was', a
     expect(delta).toBeLessThanOrEqual(2)
   }
 })
+
+/** Three panes: one spanning across the top, a column split underneath. Two joints, not one. */
+async function buildTee(page: Page, worktreeId: string): Promise<void> {
+  await page.evaluate((id) => {
+    const st = () => window.__store!.getState()
+    const root = st().activeGroupIdByWorktree[id]!
+    // Split right, then split the LEFT pane down: the right pane spans both rows, so the column
+    // seam is crossed twice. This is the T the corner-grip work cares about. (Splitting down first
+    // gives a row split whose top pane then splits, a single junction.)
+    const right = st().createEmptySplitGroup(id, root, 'right')
+    void right
+    st().createEmptySplitGroup(id, root, 'down')
+    type Node = { type: 'leaf'; groupId: string } | { type: 'split'; first: Node; second: Node }
+    const ids: string[] = []
+    const walk = (node: Node): void => {
+      if (node.type === 'leaf') {
+        ids.push(node.groupId)
+        return
+      }
+      walk(node.first)
+      walk(node.second)
+    }
+    // oxlint-disable-next-line typescript/consistent-type-assertions -- SAFETY: the store types layout loosely; this walk only reads the fields it names.
+    walk(st().layoutByWorktree[id] as unknown as Node)
+    for (const groupId of ids) {
+      st().createTab(id, groupId, undefined, { activate: false })
+    }
+  }, worktreeId)
+}
+
+test('a three-pane T gets a grabbable junction, not a bare line', async ({ orcaPage }) => {
+  await orcaPage.setViewportSize({ width: 1280, height: 800 })
+  await waitForSessionReady(orcaPage)
+  const worktreeId = await waitForActiveWorktree(orcaPage)
+  await ensureTerminalVisible(orcaPage)
+  await buildTee(orcaPage, worktreeId)
+
+  // Which three-pane shape the builder produces depends on split order (a spanning right pane, a
+  // spanning top row, or a spanning bottom row), and each has a different number of crossings. The
+  // invariant that matters: every crossing of a short seam with the long one is grabbable, so a
+  // T always gets at least one grip, and it sits where the seams actually meet.
+  await expect.poll(async () => (await readSeams(orcaPage)).grips.length).toBeGreaterThanOrEqual(1)
+  const seams = await readSeams(orcaPage)
+  const columnSeam = seams.verticals[0]
+  for (const grip of seams.grips) {
+    expect(Math.abs(grip.x - columnSeam)).toBeLessThanOrEqual(3)
+    // It must land on a real seam, not float in a pane.
+    expect(seams.horizontals.some((y) => Math.abs(grip.y - y) <= 3)).toBe(true)
+  }
+})
+
+test('the junction dot is visible at rest, not only on hover', async ({ orcaPage }) => {
+  await orcaPage.setViewportSize({ width: 1280, height: 800 })
+  await waitForSessionReady(orcaPage)
+  const worktreeId = await waitForActiveWorktree(orcaPage)
+  await ensureTerminalVisible(orcaPage)
+  await buildTee(orcaPage, worktreeId)
+  await expect.poll(async () => (await readSeams(orcaPage)).grips.length).toBeGreaterThanOrEqual(1)
+
+  // A dot painted in the divider colour is invisible on the seam it marks: it measured
+  // rgb(38,38,38) on a rgb(15,15,15) bar and the user reported "two lines, no dot".
+  const contrast = await orcaPage.evaluate(() => {
+    const dot = document.querySelector('.split-corner-grip')
+    const bar = document.querySelector('[data-tab-group-strip-id]')
+    if (!dot || !bar) {
+      return null
+    }
+    const dotColor = getComputedStyle(dot, '::before').backgroundColor
+    const barColor = getComputedStyle(bar.parentElement ?? bar).backgroundColor
+    const parse = (css: string): number[] =>
+      (css.match(/\d+/g) ?? ['0', '0', '0']).slice(0, 3).map(Number)
+    const [dr, dg, db] = parse(dotColor)
+    const [br, bg, bb] = parse(barColor)
+    // Perceived brightness, so a dark dot on a dark bar fails regardless of hue.
+    return Math.abs(0.299 * dr + 0.587 * dg + 0.114 * db - (0.299 * br + 0.587 * bg + 0.114 * bb))
+  })
+  expect(contrast).not.toBeNull()
+  expect(contrast!).toBeGreaterThan(40)
+})
